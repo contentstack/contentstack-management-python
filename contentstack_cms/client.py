@@ -18,10 +18,6 @@ class Client:
     def __init__(self, auth_token=None):
         
         self.auth_token = auth_token
-        self.retry_strategy = RETRY_STRATEGY
-        self.region = DEFAULT_REGION
-        self.version = VERSION
-        self.timeout = TIMEOUT
         self.host = self.get_host()
         self.obj = HttpClient()
         
@@ -58,7 +54,8 @@ class Client:
 
 
     def get_host(self):
-
+        self.region = DEFAULT_REGION
+        self.version = VERSION
         if self.region == 'eu': 
             self.host = 'eu-cdn.contentstack.com'
         elif self.region == 'azure-na': 
