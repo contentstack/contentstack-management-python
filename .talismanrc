@@ -1,0 +1,10 @@
+fileignoreconfig:
+- filename: contentstack_management/users/user.py
+  checksum: 9fd02cdc5e1cd22cf3fcd9b3f2159a3e7680d19052c58ab7425bfca4bd675a4f
+- filename: tests/test_organizations.py
+  checksum: a9ee8e15a00474ab16920da1a9cb7f96f9a0e40f945406506ed1e46030758025
+- filename: tests/test_users.py
+  checksum: 55b60bc69e941184bf16697cec82f5e14369460259729bbbd62437e019e6ab60
+- filename: contentstack_management/core/client.py
+  checksum: 1bec47304a29a7c482f530e3ac283e8ddd8fa96f99153833feac5a6513d726df
+version: ""
