@@ -7,4 +7,8 @@ fileignoreconfig:
   checksum: 55b60bc69e941184bf16697cec82f5e14369460259729bbbd62437e019e6ab60
 - filename: contentstack_management/core/client.py
   checksum: 1bec47304a29a7c482f530e3ac283e8ddd8fa96f99153833feac5a6513d726df
+- filename: .github/workflows/release.yml
+  checksum: d2ea9ae192ae0f1b75ff2b68b6bcd9d40eb86d589fb2177535b93194d69a9e0e
+- filename: tests/test_user_session.py
+  checksum: f5000644a471e6ac4ee5bfcb5cfc73762e53fa97980951063f787a83e97244f9
 version: ""
