@@ -1,8 +1,6 @@
 """The __init__.py file that contains modules that need to import"""
 
-
-from .core.login import Login
-from .core.error import Error
+from .core.http_client import HttpClient
 
 from contentstack_management import contentstack
 
