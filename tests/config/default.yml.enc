@@ -1,0 +1,10 @@
+login:
+      email: "EMAIL_ID"
+      password: "PASSWORD"
+
+host:
+      host: "HOST"
+      base_url: "URL"
+
+organization:
+      org_uid: "ORG_UID"

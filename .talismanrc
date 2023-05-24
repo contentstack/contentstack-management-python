@@ -1,0 +1,12 @@
+fileignoreconfig:
+- filename: tests/config/default.yml.enc
+  checksum: f05423216fcfe17716c01932e7a87775a029ec4f1fb1314bfdf0697527e67038
+- filename: tests/test_contentstack.py
+  checksum: 4aae839b0c4e408c6224df5ccdd090ea9d9b28cc9f37e1eadd2d7737bd5ca1ae
+- filename: contentstack_management/users/user.py
+  checksum: a3e98d980282254e26b9fc1073bf297ea6fda3e30e3634d5c7df893cfcc92aa2
+- filename: contentstack_management/stack/stack.py
+  checksum: 704f1cffd452d226e7447213fcb6a3fed7b01f0661aa27d4f7657b8a36eb3d28
+- filename: contentstack_management/core/client.py
+  checksum: 7a1210ec269e05af414e7753758d8b261c157349e24df4fef047810fef8741c9
+version: ""
