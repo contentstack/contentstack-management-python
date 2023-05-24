@@ -3,6 +3,7 @@ import http.cookiejar
 import urllib.request
 import contentstack_management
 
+
 class UserSession:
     """
     This class takes a base URL as an argument when it's initialized, 
@@ -49,6 +50,7 @@ class UserSession:
                     rfc2109=False,
                 ))
                 return response
+
         return response
     
     def logout(self):

@@ -29,6 +29,7 @@ def user_agents(headers):
         name=contentstack_management.__package__,
         version=contentstack_management.__version__
     ), 'os': str(__platform())})
+
     package = f"contentstack-management-python/{contentstack_management.__version__}"
     return {'User-Agent': str(headers), "X-User-Agent": package, 'Content-Type': 'application/json' }
 

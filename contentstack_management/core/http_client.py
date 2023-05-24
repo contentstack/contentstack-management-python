@@ -5,15 +5,9 @@ the CRUD operations that can be performed on the API """
 
 import requests
 import json
-import logging
 
-from ..organizations.organizations import Organization
-from ..users.user import User
-from ..stack.stack import Stack
 
-from ..user_session.user_session import UserSession
-
-class ApiClient:
+class HttpClient:
     """
     This class takes a base URL as an argument when it's initialized, 
     which is the endpoint for the RESTFUL API that
@@ -21,21 +15,15 @@ class ApiClient:
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, endpoint, host, headers, authtoken, authorization, failure_retry, exceptions: bool,
-                 errors: bool, timeout: int, max_requests: int, retry_on_error: bool):
-        self.authorization = authorization
-        self.authtoken = authtoken
-        self.headers = headers
-        self.host = host
+    def __init__(self, endpoint):
+        #init method
+        self.url="user"
         self.endpoint = endpoint
-        self.failure_retry = failure_retry
-        self.exceptions = exceptions
-        self.errors = errors
-        self.timeout = timeout
-        self.max_requests = max_requests
-        self.retry_on_error = retry_on_error
-        
-        
+        self.failure_retry = 0
+        self.exceptions = True
+        self.errors = True
+
+
 
     def get(self, url, headers=None, params=None):
         """
@@ -97,15 +85,13 @@ class ApiClient:
 
                 if response.status_code >= 400:
                     if self.errors:
-
-                        return (response)
-
+                        raise Exception(f"API returned an error: {response.text}")
                     elif retries > 1:
                         retries -= 1
                     else:
                         return None
                 else:
-                    return response
+                    return response.json()
 
             except Exception as e:
                 if self.exceptions:
@@ -114,61 +100,5 @@ class ApiClient:
                     retries -= 1
                 else:
                     return None
-
-
-
-    def login(self,  email=None, password=None):
-        if email is None or email == '':
-            raise PermissionError(
-                'You are not permitted to the stack without valid email id')
-        
-        if password is None or password == '':
-            raise PermissionError(
-                'You are not permitted to the stack without valid password')
-        
-        url = "user-session"
-        data = {
-            "user": {
-                "email": email,
-                "password": password
-
-            }
-        }
-        data = json.dumps(data)
-        self.api_client = ApiClient(
-                    host=self.host, endpoint=self.endpoint, authtoken=self.authtoken,
-                     headers=self.headers, authorization=self.authorization,
-                     timeout=self.timeout, failure_retry=self.failure_retry, exceptions=self.exceptions, errors=self.errors,
-                     max_requests=self.max_requests, retry_on_error=self.retry_on_error
-        )
-
-        response =  UserSession(url = url,headers = self.headers, data = data, api_client=self.api_client, endpoint=self.endpoint).login()
-        if response.status_code == 200:
-            self.auth_token = self.get_authtoken(response.json())
-            return response
-        return response.status_code
-        
-
-    def logout(self):
-        url = "user-session"
-        self.headers['authtoken'] = self.auth_token
-        response =  UserSession(url = url,headers = self.headers, api_client = self.api_client, endpoint=self.endpoint).logout()
-        return response
-        
-    def get_authtoken(self, response):
-        return response['user']['authtoken']
+                
     
-    def user(self):
-        return User(self.endpoint, self.auth_token, self.headers,self.api_client)
-        
-    
-    def organizations(self):
-        return Organization(self.endpoint, self.auth_token, self.headers,self.api_client)
-    
-    def stack(self, api_key = None):
-        if api_key is None or api_key == '':
-            raise PermissionError(
-                'You are not permitted to the stack without valid api key')
-        return Stack(self.endpoint, self.auth_token, self.headers,self.api_client, api_key)
-    
-

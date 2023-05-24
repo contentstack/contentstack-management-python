@@ -11,6 +11,7 @@ from requests.exceptions import HTTPError, Timeout
 import contentstack_management
 
 
+
 class Stack:
     """
     This class takes a base URL as an argument when it's initialized, 
@@ -32,4 +33,5 @@ class Stack:
         self.headers['api_key'] = self.api_key
         return self.api_client.get(url, headers = self.headers)
     
+
 

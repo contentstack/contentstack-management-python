@@ -2,6 +2,7 @@ import platform
 import os
 import contentstack_management
 
+
 class Organization:
     """
     This class takes a base URL as an argument when it's initialized, 
@@ -23,15 +24,18 @@ class Organization:
         return self.api_client.get(url, headers = self.headers)
 
 
+
     def get_organization(self, organization_uid):
         url = f"organizations/{organization_uid}"
         self.headers['authtoken'] = self.authtoken
         return self.api_client.get(url, headers = self.headers)
+
     
     def get_organization_roles(self, organization_uid):
         url = f"organizations/{organization_uid}/roles"
         self.headers['authtoken'] = self.authtoken
         return self.api_client.get(url, headers = self.headers)
+
     
     def organization_add_users(self, organization_uid):
         url = f"organizations/{organization_uid}/share"
@@ -42,13 +46,16 @@ class Organization:
         url = f"organizations/{organization_uid}/transfer-ownership"
         self.headers['authtoken'] = self.authtoken
         return self.api_client.post(url, headers = self.headers, data=data)
+
     
     def organization_stacks(self, organization_uid):
         url = f"organizations/{organization_uid}/stacks"
         self.headers['authtoken'] = self.authtoken
         return self.api_client.get(url, headers = self.headers)
+
     
     def organization_logs(self, organization_uid):
         url = f"organizations/{organization_uid}/logs"
         self.headers['authtoken'] = self.authtoken
         return self.api_client.get(url, headers = self.headers)
+
