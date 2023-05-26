@@ -22,7 +22,7 @@ class UserSession:
 
     
     def login(self):
-        response =  self.api_client._call_request('POST', self.url, headers=self.headers, params=None, data=self.data, json=None)
+        response =  self.api_client._call_request('POST', self.url, headers=self.headers, params=None, data=self.data, json_data=None)
         if response.status_code == 200:
             response_dict = response.json()
             token = response_dict['user']['authtoken']
@@ -55,7 +55,7 @@ class UserSession:
     
     def logout(self):
        
-        response =  self.api_client._call_request('DELETE', self.url, headers=self.headers, params=None, data=self.data, json=None)
+        response =  self.api_client._call_request('DELETE', self.url, headers=self.headers, params=None, data=self.data, json_data=None)
         if response.status_code == 200:
             return response.json()
         return response

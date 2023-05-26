@@ -4,13 +4,6 @@ The create(), read(), update(), and delete() methods each correspond to
 the CRUD operations that can be performed on the API """
 
 import json
-from json import JSONDecodeError
-import requests
-from requests.adapters import HTTPAdapter
-from requests.exceptions import HTTPError, Timeout
-import contentstack_management
-
-
 
 class Stack:
     """
@@ -32,6 +25,100 @@ class Stack:
         self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         return self.api_client.get(url, headers = self.headers)
+    
+    def all(self):
+        url = "stacks"
+        self.headers['authtoken'] = self.authtoken
+        return self.api_client.get(url, headers = self.headers)
+    
+    def create(self, organization_uid, data):
+        url = "stacks"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['organization_uid'] = organization_uid
+        data = json.dumps(data)
+        return self.api_client.post(url, headers = self.headers, data=data)
+    
+    def update(self, data):
+        url = "stacks"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        data = json.dumps(data)
+        return self.api_client.put(url, headers = self.headers, data=data)
+    
+    def delete(self):
+        url = "stacks"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        return self.api_client.delete(url, headers = self.headers)
+    
+    def fetch_all_user(self):
+        url = "stacks/users"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        return self.api_client.get(url, headers = self.headers)
+    
+    def update_user_role(self, data):
+        url = "stacks/users/roles"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        data = json.dumps(data)
+        return self.api_client.put(url, headers = self.headers, data=data)
+    
+    def stack_transfer_ownership(self, data):
+        url = "stacks/transfer_ownership"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        data = json.dumps(data)
+        return self.api_client.post(url, headers = self.headers, data=data)
+    
+    def accept_ownership(self, user_id, ownership_token):
+        url = f"stacks/accept_ownership/{ownership_token}"
+        self.headers['authtoken'] = self.authtoken
+        params = {'api_key': self.api_key, 'uid': user_id}
+        return self.api_client.get(url, headers = self.headers, params = params)
+    
+    def get_stack_settings(self):
+        url = "stacks/settings"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        return self.api_client.get(url, headers = self.headers)
+    
+
+    def create_stack_settings(self, data):
+        url = "stacks/settings"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        data = json.dumps(data)
+        return self.api_client.post(url, headers = self.headers, data=data)
+
+    def reset_stack_settings(self, data):
+        url = "stacks/settings/reset"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        data = json.dumps(data)
+        return self.api_client.post(url, headers = self.headers, data=data)
+    
+    def share_stack(self, data):
+        url = "stacks/share"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        data = json.dumps(data)
+        return self.api_client.post(url, headers = self.headers, data=data)
+    
+    def unshare_stack(self, data):
+        url = "stacks/share"
+        self.headers['authtoken'] = self.authtoken
+        self.headers['api_key'] = self.api_key
+        data = json.dumps(data)
+        return self.api_client.post(url, headers = self.headers, data=data)
+
+
+    
+    
+    
+
+    
+
     
 
 

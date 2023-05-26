@@ -1,8 +1,3 @@
-import platform
-import json
-import contentstack_management
-
-
 
 class User:
     """
@@ -22,25 +17,25 @@ class User:
     def get(self):
         url = "user"
         self.headers['authtoken'] = self.authtoken
-        return self.api_client.get(url, headers = self.headers).json()
+        return self.api_client.get(url, headers = self.headers)
 
 
     def update_user(self, user_data):
         url = "user"
         self.headers['authtoken'] = self.authtoken
-        return self.api_client.put(url, headers = self.headers, data = user_data, params = None).json()
+        return self.api_client.put(url, headers = self.headers, data = user_data, params = None)
     
     def active_user(self, user_activation_token, user_data):
         url = f"user/activate/{user_activation_token}"
         self.headers['authtoken'] = self.authtoken
-        return self.api_client.post(url, headers = self.headers, data = user_data).json()
+        return self.api_client.post(url, headers = self.headers, data = user_data)
     
     def request_password(self, user_data):
         url = "user/forgot_password"
         self.headers['authtoken'] = self.authtoken
-        return self.api_client.post(url, headers = self.headers, data = user_data).json()
+        return self.api_client.post(url, headers = self.headers, data = user_data)
     
     def reset_password(self, user_data):
         url = "user/reset_password"
         self.headers['authtoken'] = self.authtoken
-        return self.api_client.post(url, headers = self.headers, data = user_data).json()
+        return self.api_client.post(url, headers = self.headers, data = user_data)

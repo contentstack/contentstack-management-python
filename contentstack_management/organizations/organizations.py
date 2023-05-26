@@ -1,7 +1,5 @@
-import platform
-import os
-import contentstack_management
 
+import json
 
 class Organization:
     """
@@ -11,51 +9,50 @@ class Organization:
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, endpoint, authtoken, headers, api_client):
+    def __init__(self, endpoint, authtoken, headers, api_client, organization_uid):
         self.api_client = api_client
         self.endpoint = endpoint
         self.authtoken = authtoken
         self.headers = headers
+        self.organization_uid = organization_uid
 
     
     def get(self):
         url = "organizations"
-        self.headers['authtoken'] = self.authtoken
-        return self.api_client.get(url, headers = self.headers)
-
-
-
-    def get_organization(self, organization_uid):
-        url = f"organizations/{organization_uid}"
-        self.headers['authtoken'] = self.authtoken
-        return self.api_client.get(url, headers = self.headers)
-
-    
-    def get_organization_roles(self, organization_uid):
-        url = f"organizations/{organization_uid}/roles"
+        if self.organization_uid is None:
+            url = "organizations"
+        else:
+            url = f"organizations/{self.organization_uid}"
         self.headers['authtoken'] = self.authtoken
         return self.api_client.get(url, headers = self.headers)
 
     
-    def organization_add_users(self, organization_uid):
-        url = f"organizations/{organization_uid}/share"
+    def get_organization_roles(self):
+        url = f"organizations/{self.organization_uid}/roles"
+        self.headers['authtoken'] = self.authtoken
+        return self.api_client.get(url, headers = self.headers)
+
+    
+    def organization_add_users(self):
+        url = f"organizations/{self.organization_uid}/share"
         self.headers['authtoken'] = self.authtoken
         return self.api_client.get(url, headers = self.headers)
     
-    def transfer_organizations_ownership(self, organization_uid, data):
-        url = f"organizations/{organization_uid}/transfer-ownership"
+    def transfer_organizations_ownership(self, data):
+        url = f"organizations/{self.organization_uid}/transfer-ownership"
         self.headers['authtoken'] = self.authtoken
+        data = json.dumps(data)
         return self.api_client.post(url, headers = self.headers, data=data)
 
     
-    def organization_stacks(self, organization_uid):
-        url = f"organizations/{organization_uid}/stacks"
+    def organization_stacks(self):
+        url = f"organizations/{self.organization_uid}/stacks"
         self.headers['authtoken'] = self.authtoken
         return self.api_client.get(url, headers = self.headers)
 
     
-    def organization_logs(self, organization_uid):
-        url = f"organizations/{organization_uid}/logs"
+    def organization_logs(self):
+        url = f"organizations/{self.organization_uid}/logs"
         self.headers['authtoken'] = self.authtoken
         return self.api_client.get(url, headers = self.headers)
 

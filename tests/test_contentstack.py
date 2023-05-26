@@ -11,7 +11,7 @@ class ContentstackTests(unittest.TestCase):
 
     def test_contentstack(self):
         client = contentstack.client(host=config.host.host, endpoint=None)
-        self.assertEqual('eu-api.contentstack.com', client.host)  # add assertion here
+        self.assertEqual('api.contentstack.io', client.host)  # add assertion here
 
     
     def test_successful_get_login(self):

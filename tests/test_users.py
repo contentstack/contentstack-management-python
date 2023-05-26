@@ -1,58 +1,68 @@
 import unittest
-import requests
-import os
+from config2.config import config
+from contentstack_management import contentstack
 
 from contentstack_management import contentstack
 
 class UserTests(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        # Retrieve secret credentials from environment variables
-        cls.username = os.environ.get('API_USERNAME')
-        cls.password = os.environ.get('API_PASSWORD')
+    def setUp(self):
+        config.get_env()
+        config.get()
+        self.client = contentstack.client(host=config.host.host)
+        self.client.login(config.login.email, config.login.password)
 
-    def test_successful_get_request(self):
-        response = requests.get('https://api.example.com/data')
+    def test_get_user(self):    
+        response = self.client.user().get() 
         self.assertEqual(response.status_code, 200)
-        # Additional assertions to validate the response content
+        self.assertEqual(response.request.url, f"{self.client.endpoint}/user")
+        self.assertEqual(response.request.method, "GET")
 
-    def test_invalid_url(self):
-        response = requests.get('https://api.example.com/invalid')
-        self.assertEqual(response.status_code, 404)
+    def test_active_user(self):
+        url = f"user/activate/{config.user.user_activation_token}"
+        act_data = {
+            "user": {
+            "first_name": "your_first_name",
+            "last_name": "your_last_name",
+            "password": "your_password",
+            "password_confirmation": "confirm_your_password"
+            }
+            }
+        response = self.client.user().active_user(config.user.user_activation_token, act_data) 
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
+        self.assertEqual(response.request.method, "POST")
         # Additional assertions for error handling
 
-    def test_request_timeout(self):
-        response = requests.get('https://api.example.com/slow', timeout=2)
-        self.assertEqual(response.status_code, 408)
-        # Additional assertions for handling timeouts
+    def test_request_password(self):
+        url = f"user/forgot_password"
+        act_data ={
+                    "user": {
+                        "email": "your_email_id"
+                    }
+                }
+        response = self.client.user().request_password(act_data) 
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
+        self.assertEqual(response.request.method, "POST")
+        # Additional assertions for error handling
 
-    def test_request_headers(self):
-        headers = {'User-Agent': 'My User Agent'}
-        response = requests.get('https://api.example.com/data', headers=headers)
-        self.assertEqual(response.status_code, 200)
-        # Additional assertions for validating headers in response
+    def test_reset_password(self):
+        url = f"user/reset_password"
+        act_data = {
+                    "user": {
+                        "reset_password_token": "abcdefghijklmnop1234567890",
+                        "password": "Simple@123",
+                        "password_confirmation": "Simple@123"
+                    }
+                }
+        response = self.client.user().reset_password(act_data) 
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
+        self.assertEqual(response.request.method, "POST")
+        # Additional assertions for error handling
 
-    def test_authentication(self):
-        credentials = (self.username, self.password)
-        response = requests.get('https://api.example.com/data', auth=credentials)
-        self.assertEqual(response.status_code, 200)
-        # Additional assertions for successful authentication
 
-    def test_network_exception(self):
-        with self.assertRaises(requests.exceptions.RequestException):
-            response = requests.get('https://api.example.com/data')
-            # Additional assertions can be added if needed
-
-    def test_response_content(self):
-        response = requests.get('https://api.example.com/data')
-        self.assertEqual(response.status_code, 200)
-        # Additional assertions to validate the response content format
-
-    def test_response_headers_and_cookies(self):
-        response = requests.get('https://api.example.com/data')
-        self.assertEqual(response.status_code, 200)
-        # Additional assertions for checking response headers and cookies
 
 if __name__ == '__main__':
     unittest.main()

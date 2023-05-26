@@ -5,8 +5,6 @@ the CRUD operations that can be performed on the API """
 
 import requests
 import json
-import logging
-
 from ..organizations.organizations import Organization
 from ..users.user import User
 from ..stack.stack import Stack
@@ -48,7 +46,7 @@ class ApiClient:
         """
         return self._call_request('GET', url, headers=headers, params=params)
 
-    def put(self, url, headers=None, params=None, data=None, json=None):
+    def put(self, url, headers=None, params=None, data=None, json_data=None):
         """
         Perform an HTTP PUT request with the specified URL and parameters.
 
@@ -59,9 +57,9 @@ class ApiClient:
         :param json: Optional JSON data to include in the body of the request.
         :return: The response from the server.
         """
-        return self._call_request('PUT', url, headers=headers, params=params, data=data, json=json)
+        return self._call_request('PUT', url, headers=headers, params=params, data=data, json_data=json)
 
-    def post(self, url, headers=None, params=None, data=None, json=None):
+    def post(self, url, headers=None, params=None, data=None, json_data=None):
         """
         Perform an HTTP POST request with the specified URL and parameters.
 
@@ -72,7 +70,7 @@ class ApiClient:
         :param json: Optional JSON data to include in the body of the request.
         :return: The response from the server.
         """
-        return self._call_request('POST', url, headers=headers, params=params, data=data, json=json)
+        return self._call_request('POST', url, headers=headers, params=params, data=data, json_data=json_data)
 
     def delete(self, url, headers=None, params=None):
         """
@@ -87,19 +85,16 @@ class ApiClient:
     
 
     
-    def _call_request(self, method, url_path, headers=None, params=None, data=None, json=None):
+    def _call_request(self, method, url_path, headers=None, params=None, data=None, json_data=None):
         url = f"{self.endpoint}/{url_path}"
         retries = self.failure_retry + 1
 
         while retries > 0:
             try:
-                response = requests.request(method, url, data=data, headers=headers, params=params, json=json)
-
+                response = requests.request(method, url, data=data, headers=headers, params=params, json=json_data)
                 if response.status_code >= 400:
                     if self.errors:
-
-                        return (response)
-
+                        return response
                     elif retries > 1:
                         retries -= 1
                     else:
@@ -162,13 +157,10 @@ class ApiClient:
         return User(self.endpoint, self.auth_token, self.headers,self.api_client)
         
     
-    def organizations(self):
-        return Organization(self.endpoint, self.auth_token, self.headers,self.api_client)
+    def organizations(self, organization_uid = None):
+        return Organization(self.endpoint, self.auth_token, self.headers,self.api_client, organization_uid)
     
     def stack(self, api_key = None):
-        if api_key is None or api_key == '':
-            raise PermissionError(
-                'You are not permitted to the stack without valid api key')
         return Stack(self.endpoint, self.auth_token, self.headers,self.api_client, api_key)
     
 

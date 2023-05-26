@@ -21,3 +21,10 @@ fileignoreconfig:
 - filename: tests/test_user_session.py
   checksum: f5000644a471e6ac4ee5bfcb5cfc73762e53fa97980951063f787a83e97244f9
 version: ""
+
+fileignoreconfig:
+- filename: tests/test_users.py
+  checksum: 7c278a3b24fdcf01a30561326fbdadf45dffd52edcbbe421d192c360dc4be1e1
+- filename: contentstack_management/stack/stack.py
+  checksum: 480b855afcc96875ce49f4da6cb433e0ba10183e1b73297c2d1c66565602ff0b
+version: ""
