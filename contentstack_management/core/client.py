@@ -8,6 +8,7 @@ import json
 from ..organizations.organizations import Organization
 from ..users.user import User
 from ..stack.stack import Stack
+import http.cookiejar
 
 from ..user_session.user_session import UserSession
 
@@ -110,53 +111,26 @@ class ApiClient:
                 else:
                     return None
 
-
-
     def login(self,  email=None, password=None):
-        if email is None or email == '':
-            raise PermissionError(
-                'You are not permitted to the stack without valid email id')
-        
-        if password is None or password == '':
-            raise PermissionError(
-                'You are not permitted to the stack without valid password')
-        
-        url = "user-session"
-        data = {
-            "user": {
-                "email": email,
-                "password": password
-
-            }
-        }
-        data = json.dumps(data)
         self.api_client = ApiClient(
                     host=self.host, endpoint=self.endpoint, authtoken=self.authtoken,
                      headers=self.headers, authorization=self.authorization,
                      timeout=self.timeout, failure_retry=self.failure_retry, exceptions=self.exceptions, errors=self.errors,
                      max_requests=self.max_requests, retry_on_error=self.retry_on_error
         )
-
-        response =  UserSession(url = url,headers = self.headers, data = data, api_client=self.api_client, endpoint=self.endpoint).login()
-        if response.status_code == 200:
-            self.auth_token = self.get_authtoken(response.json())
-            return response
-        return response.status_code
-        
-
-    def logout(self):
-        url = "user-session"
-        self.headers['authtoken'] = self.auth_token
-        response =  UserSession(url = url,headers = self.headers, api_client = self.api_client, endpoint=self.endpoint).logout()
+        response = UserSession(username=email, password= password, api_client=self.api_client).login()
+        self.auth_token = self.get_authtoken(response.json())  if response.status_code == 200 else self.authtoken 
         return response
-        
+       
+    def logout(self):
+        return UserSession(api_client = self.api_client).logout()
+
     def get_authtoken(self, response):
-        return response['user']['authtoken']
+        return response['user']['authtoken']      
     
     def user(self):
         return User(self.endpoint, self.auth_token, self.headers,self.api_client)
         
-    
     def organizations(self, organization_uid = None):
         return Organization(self.endpoint, self.auth_token, self.headers,self.api_client, organization_uid)
     

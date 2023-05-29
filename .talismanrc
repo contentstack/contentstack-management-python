@@ -28,3 +28,10 @@ fileignoreconfig:
 - filename: contentstack_management/stack/stack.py
   checksum: 480b855afcc96875ce49f4da6cb433e0ba10183e1b73297c2d1c66565602ff0b
 version: ""
+
+fileignoreconfig:
+- filename: contentstack_management/core/client.py
+  checksum: 253a6e6a0234745cd5d194f6023d207acfb0259a8751d77c67fb8275a723d551
+- filename: contentstack_management/user_session/user_session.py
+  checksum: 8f8353a3f658cd894fce7bee1d0211a612b18a639d1f8006548e89a5f5e32a17
+version: ""
