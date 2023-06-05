@@ -4,6 +4,8 @@ The create(), read(), update(), and delete() methods each correspond to
 the CRUD operations that can be performed on the API """
 
 import json
+from ..branches.branches import Branch
+from ..aliases.aliases import Alias
 
 class Stack:
     """
@@ -13,12 +15,13 @@ class Stack:
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, endpoint, authtoken, headers, api_client, api_key):
+    def __init__(self, endpoint, authtoken, headers, api_client, api_key, authorization):
         self.api_client = api_client
         self.endpoint = endpoint
         self.authtoken = authtoken
         self.headers = headers
         self.api_key = api_key
+        self.authorization = authorization
 
     def fetch(self):
         url = "stacks"
@@ -113,12 +116,10 @@ class Stack:
         return self.api_client.post(url, headers = self.headers, data=data)
 
 
+    def branch(self, branch_uid = None, data = None):
+        data = json.dumps(data)
+        return Branch(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key, self.authorization, branch_uid, data)
     
-    
-    
-
-    
-
-    
-
-
+    def branchAlias(self, branch_alias_uid = None, data = None, json_data = None):
+        data = json.dumps(data)
+        return Alias(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key, self.authorization, branch_alias_uid, data, json_data)
