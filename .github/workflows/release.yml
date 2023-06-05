@@ -24,5 +24,42 @@ jobs:
     - name: Publish
       uses: pypa/gh-action-pypi-publish@master
       with:
-        password: ${{ secrets.pypi_password }}
+        password: ${{ secrets.pypi_test_password }}
         skip_existing: true
+  
+  generate_and_upload_coverage:
+    name: Generate and Upload Coverage Report
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests and generate coverage report
+        run: |
+          coverage run --source=my_package -m unittest discover tests/
+          coverage report -m > coverage.txt
+
+      - name: Archive coverage report
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: coverage.txt
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.Test_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.Test_AWS_SECRET_ACCESS_KEY }}
+          aws-region: <your_aws_region>  # Replace with your actual AWS region
+
+      - name: Upload coverage report to S3
+        run: aws s3 cp coverage.txt s3://<your_bucket_name>/coverage.txt

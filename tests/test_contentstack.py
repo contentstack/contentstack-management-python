@@ -1,28 +1,37 @@
 import unittest
-from config2.config import config
+import os
+from dotenv import load_dotenv
+
+
 from contentstack_management import contentstack
+
+
+# from contentstack import management
+
+def load_api_keys():
+    load_dotenv()
+
 class ContentstackTests(unittest.TestCase):
     
     def setUp(self):
-        config.get_env()
-        config.get()
-        self.client = contentstack.client(host=config.host.host)
-        self.client.login(config.login.email, config.login.password)
+        load_api_keys()
+        self.client = contentstack.client(host=os.getenv("host"))
+        self.client.login(os.getenv("email"), os.getenv("password"))
 
     def test_contentstack(self):
-        client = contentstack.client(host=config.host.host, endpoint=None)
+        client = contentstack.client(host=os.getenv("host"), endpoint=None)
         self.assertEqual('api.contentstack.io', client.host)  # add assertion here
 
     
     def test_successful_get_login(self):
-        client = contentstack.client(host=config.host.host)
-        response = client.login(config.login.email, config.login.password )
+        client = contentstack.client(host=os.getenv("host"))
+        response = client.login(os.getenv("email"), os.getenv("password"))
         self.assertEqual(response.status_code, 200)
 
     def test_error_email_id(self):
         try:
-            self.client = contentstack.client(host=config.host.host)
-            self.client.login('', config.login.password)
+            self.client = contentstack.client(host=os.getenv("host"))
+            self.client.login('', os.getenv("password"))
             self.assertEqual(None, self.client.email)
         except PermissionError as e:
             if hasattr(e, 'message'):
@@ -31,8 +40,8 @@ class ContentstackTests(unittest.TestCase):
                 
     def test_error_password(self):
         try:
-            self.client = contentstack.client(host=config.host.host)
-            self.client.login(config.login.email,'')
+            self.client = contentstack.client(host=os.getenv("host"))
+            self.client.login(os.getenv("email"),'')
             self.assertEqual(None, self.client.password)
         except PermissionError as e:
             if hasattr(e, 'message'):

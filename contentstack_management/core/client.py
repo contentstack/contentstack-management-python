@@ -8,8 +8,6 @@ import json
 from ..organizations.organizations import Organization
 from ..users.user import User
 from ..stack.stack import Stack
-import http.cookiejar
-
 from ..user_session.user_session import UserSession
 
 class ApiClient:

@@ -1,16 +1,18 @@
 import unittest
-from config2.config import config
+import json
+import os
+from dotenv import load_dotenv
 from contentstack_management import contentstack
 
-from contentstack_management import contentstack
+def load_api_keys():
+    load_dotenv()
 
 class UserTests(unittest.TestCase):
 
     def setUp(self):
-        config.get_env()
-        config.get()
-        self.client = contentstack.client(host=config.host.host)
-        self.client.login(config.login.email, config.login.password)
+        load_api_keys()
+        self.client = contentstack.client(host=os.getenv("host"))
+        self.client.login(os.getenv("email"), os.getenv("password"))
 
     def test_get_user(self):    
         response = self.client.user().get() 
@@ -18,8 +20,24 @@ class UserTests(unittest.TestCase):
         self.assertEqual(response.request.url, f"{self.client.endpoint}/user")
         self.assertEqual(response.request.method, "GET")
 
+    def test_update_user(self):
+        url = "user"
+        user_data = {
+                    "user": {
+                        "company": "company name inc.",
+                        "first_name": "sunil B Lak"
+                    }
+                }
+        act_data = json.dumps(user_data)
+        response = self.client.user().update_user(act_data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
+        self.assertEqual(response.request.method, "PUT")
+
+
+
     def test_active_user(self):
-        url = f"user/activate/{config.user.user_activation_token}"
+        url = f"user/activate/{os.getenv('user_activation_token')}"
         act_data = {
             "user": {
             "first_name": "your_first_name",
@@ -28,7 +46,8 @@ class UserTests(unittest.TestCase):
             "password_confirmation": "confirm_your_password"
             }
             }
-        response = self.client.user().active_user(config.user.user_activation_token, act_data) 
+        act_data = json.dumps(act_data)
+        response = self.client.user().active_user(os.getenv('user_activation_token'), act_data) 
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
         self.assertEqual(response.request.method, "POST")
@@ -38,11 +57,12 @@ class UserTests(unittest.TestCase):
         url = f"user/forgot_password"
         act_data ={
                     "user": {
-                        "email": "your_email_id"
+                        "email": os.getenv("email")
                     }
                 }
+        act_data = json.dumps(act_data)
         response = self.client.user().request_password(act_data) 
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
         self.assertEqual(response.request.method, "POST")
         # Additional assertions for error handling
@@ -56,8 +76,9 @@ class UserTests(unittest.TestCase):
                         "password_confirmation": "Simple@123"
                     }
                 }
+        act_data = json.dumps(act_data)
         response = self.client.user().reset_password(act_data) 
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
         self.assertEqual(response.request.method, "POST")
         # Additional assertions for error handling

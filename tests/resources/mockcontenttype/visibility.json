@@ -1,0 +1,16 @@
+{
+  "content_type": {
+    "field_rules": [{
+      "conditions": [{
+        "operand_field": "operand_field_uid",
+        "operator": "equals",
+        "value": "value_corresponding_to_operator"
+      }],
+      "match_type": "all",
+      "actions": [{
+        "action": "show",
+        "target_field": "target_field_uid"
+      }]
+    }]
+  }
+}

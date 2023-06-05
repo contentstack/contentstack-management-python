@@ -33,16 +33,17 @@ class Organization:
         return self.api_client.get(url, headers = self.headers)
 
     
-    def organization_add_users(self):
+    def organization_add_users(self, user_data):
         url = f"organizations/{self.organization_uid}/share"
         self.headers['authtoken'] = self.authtoken
-        return self.api_client.get(url, headers = self.headers)
+        data = json.dumps(user_data)
+        return self.api_client.post(url, headers = self.headers, data = data)
     
     def transfer_organizations_ownership(self, data):
         url = f"organizations/{self.organization_uid}/transfer-ownership"
         self.headers['authtoken'] = self.authtoken
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data=data)
+        return self.api_client.post(url, headers = self.headers, data = data)
 
     
     def organization_stacks(self):
