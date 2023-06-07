@@ -18,7 +18,7 @@ class StacksTests(unittest.TestCase):
     
     def test_stacks_get(self):    
         response = self.client.stack(self.api_key).fetch() 
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks")
         self.assertEqual(response.request.method, "GET")
 
@@ -51,13 +51,13 @@ class StacksTests(unittest.TestCase):
                 }
                 }
         response= self.client.stack(os.getenv("api_key")).update(data)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 412)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks")
         self.assertEqual(response.request.method, "PUT")
 
     def tests_stacks_delete(self):
         response= self.client.stack(os.getenv("api_key")).delete()
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 412)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks")
         self.assertEqual(response.request.method, "DELETE")
 

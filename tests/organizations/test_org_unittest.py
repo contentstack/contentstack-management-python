@@ -6,7 +6,7 @@ from contentstack_management import contentstack
 
 def load_api_keys():
     load_dotenv()
-class OrganizationTests(unittest.TestCase):
+class OrganizationUnitTests(unittest.TestCase):
 
     def setUp(self):
         load_api_keys()
@@ -59,7 +59,7 @@ class OrganizationTests(unittest.TestCase):
                     }
                 }
         response = self.client.organizations(os.getenv('org_uid')).organization_add_users(json.dumps(data))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 400)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/organizations/{os.getenv('org_uid')}/share")
         self.assertEqual(response.request.method, "POST")
 

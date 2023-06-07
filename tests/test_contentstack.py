@@ -1,12 +1,7 @@
 import unittest
 import os
 from dotenv import load_dotenv
-
-
 from contentstack_management import contentstack
-
-
-# from contentstack import management
 
 def load_api_keys():
     load_dotenv()

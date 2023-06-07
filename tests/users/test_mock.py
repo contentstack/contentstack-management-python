@@ -7,7 +7,7 @@ from contentstack_management import contentstack
 def load_api_keys():
     load_dotenv()
 
-class UserTests(unittest.TestCase):
+class UserMockTests(unittest.TestCase):
 
     def setUp(self):
         load_api_keys()

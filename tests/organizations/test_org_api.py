@@ -6,7 +6,7 @@ from contentstack_management import contentstack
 
 def load_api_keys():
     load_dotenv()
-class OrganizationTests(unittest.TestCase):
+class OrganizationApiTests(unittest.TestCase):
 
     def setUp(self):
         load_api_keys()
@@ -43,8 +43,26 @@ class OrganizationTests(unittest.TestCase):
         else:
             self.assertEqual(response.status_code, 400)
 
-    def test_organization_add_users(self):    
-        response = self.client.organizations(os.getenv('org_uid')).organization_add_users()
+    def test_organization_add_users(self):  
+        data = {
+                    "share": {
+                        "users": {
+                            "abc@sample.com": ["orgAdminRoleUid"],
+                            "xyz@sample.com": ["orgMemberRoleUid"]
+                        },
+                        "stacks": {
+                            "abc@sample.com": {
+                                "{piKey": ["{{stackRoleUid1}}"]
+                            },
+                            "xyz@sample.com": {
+                                "blta1ed1f11111c1eb1": ["blt111d1b110111e1f1"],
+                                "bltf0c00caa0f0000f0": ["bltcea22222d2222222", "blt333f33cb3e33ffde"]
+                            }
+                        },
+                        "message": "Invitation message"
+                    }
+                }     
+        response = self.client.organizations(os.getenv('org_uid')).organization_add_users(json.dumps(data))
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
