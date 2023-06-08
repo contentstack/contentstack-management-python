@@ -1,5 +1,4 @@
 import unittest
-import json
 import os
 from dotenv import load_dotenv
 from contentstack_management import contentstack
@@ -7,7 +6,7 @@ from contentstack_management import contentstack
 def load_api_keys():
     load_dotenv()
 
-class BranchTests(unittest.TestCase):
+class BranchApiTests(unittest.TestCase):
 
     def setUp(self):
         load_api_keys()

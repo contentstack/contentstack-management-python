@@ -6,7 +6,7 @@ from contentstack_management import contentstack
 def load_api_keys():
     load_dotenv()
 
-class BranchesTests(unittest.TestCase):
+class BranchesUnitTests(unittest.TestCase):
 
     def setUp(self):
         load_api_keys()

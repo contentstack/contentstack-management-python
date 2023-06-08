@@ -7,7 +7,7 @@ from contentstack_management import contentstack
 def load_api_keys():
     load_dotenv()
 
-class AliaseTests(unittest.TestCase):
+class AliaseApiTests(unittest.TestCase):
 
     def setUp(self):
         load_api_keys()
@@ -32,10 +32,16 @@ class AliaseTests(unittest.TestCase):
         else:
             self.assertEqual(response.status_code, 400)
 
-    def test_create_or_update(self):
+    def test_assign_alias(self):
+        data = {
+            "branch_alias": {
+                "uid": "alias_uid",
+                "target_branch": "test"
+                }
+            }
         branch_test_uid = os.getenv("BRANCH_TEST_UID")
         branch_alias_uid = os.getenv("BRANCH_ALIAS_UID")
-        response = self.client.stack(os.getenv("API_KEY")).branchAlias(branch_alias_uid).createOrUpdate(branch_test_uid)
+        response = self.client.stack(os.getenv("API_KEY")).branchAlias(branch_alias_uid).assign(branch_test_uid, data)
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)

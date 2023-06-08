@@ -7,7 +7,7 @@ from contentstack_management import contentstack
 def load_api_keys():
     load_dotenv()
 
-class BranchTests(unittest.TestCase):
+class BranchMockTests(unittest.TestCase):
 
     def setUp(self):
         load_api_keys()
@@ -26,14 +26,14 @@ class BranchTests(unittest.TestCase):
 
     def test_mock_get_all_branches(self):    
         response = self.client.stack(os.getenv("API_KEY")).branch().find().json()
-        read_mock_branch_data = self.read_file("findAllBranches.json")
+        read_mock_branch_data = self.read_file("find_all_branches.json")
         mock_branch_data = json.loads(read_mock_branch_data)
         self.assertEqual(mock_branch_data.keys(), response.keys())
 
     def test_mock_get_a_branch(self):    
         branch_uid = os.getenv("BRANCH_UID")
         response = self.client.stack(os.getenv("API_KEY")).branch(branch_uid).fetch().json()
-        read_mock_branch_data = self.read_file("fetchBranch.json")
+        read_mock_branch_data = self.read_file("fetch_branch.json")
         mock_branch_data = json.loads(read_mock_branch_data)
         uid = mock_branch_data['branch']['uid']
         self.assertEqual("release", uid)
@@ -46,13 +46,13 @@ class BranchTests(unittest.TestCase):
             }
         }
         response = self.client.stack(os.getenv("API_KEY")).branch().create(data).json()
-        read_mock_branch_data = self.read_file("createBranch.json")
+        read_mock_branch_data = self.read_file("create_branch.json")
         mock_branch_data = json.loads(read_mock_branch_data)
         self.assertEqual("Your request to create branch is in progress. Please check organization bulk task queue for more details.", mock_branch_data['notice'])
 
     def test_mock_delete_branch(self):    
         response = self.client.stack(os.getenv("API_KEY")).branch().delete().json()
-        read_mock_branch_data = self.read_file("deleteBranch.json")
+        read_mock_branch_data = self.read_file("delete_branch.json")
         mock_branch_data = json.loads(read_mock_branch_data)
         self.assertEqual("Your request to delete branch is in progress. Please check organization bulk task queue for more details.", mock_branch_data['notice'])
 
