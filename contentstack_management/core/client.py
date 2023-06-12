@@ -31,8 +31,7 @@ class ApiClient:
         self.timeout = timeout
         self.max_requests = max_requests
         self.retry_on_error = retry_on_error
-        
-        
+
 
     def get(self, url, headers=None, params=None):
         """
@@ -110,6 +109,18 @@ class ApiClient:
                     return None
 
     def login(self,  email=None, password=None):
+        """
+        Fetches the user details and logging into the stack
+        :return: User details, fetch authtoken.
+        -------------------------------
+        [Example:]
+
+            >>> from contentstack_management import contentstack
+            >>> client = contentstack.client(host='HOST NAME')
+            >>> response = client.login(email="email_id", password="password")
+        -------------------------------
+        """
+
         self.api_client = ApiClient(
                     host=self.host, endpoint=self.endpoint, authtoken=self.authtoken,
                      headers=self.headers, authorization=self.authorization,
@@ -119,11 +130,36 @@ class ApiClient:
         response = UserSession(username=email, password= password, api_client=self.api_client).login()
         self.auth_token = self.get_authtoken(response.json())  if response.status_code == 200 else self.authtoken 
         return response
+    
+
        
     def logout(self):
+        """
+        Logging out from the stack
+        :return: Json, with status code and message.
+        -------------------------------
+        [Example:]
+
+            >>> from contentstack_management import contentstack
+            >>> client = contentstack.client(host='HOST NAME')
+            >>> response = client.logout()
+        -------------------------------
+        """
         return UserSession(api_client = self.api_client).logout()
 
     def get_authtoken(self, response):
+        """
+        Fetches the authtoken from the successful response
+        :return: Text, Auth token.
+        -------------------------------
+        [Example:]
+
+            >>> from contentstack_management import contentstack
+            >>> client = contentstack.client(host='HOST NAME')
+            >>> response = client.login(email="email_id", password="password").json()
+            >>> auth_token = client.get_authtoken(response)
+        -------------------------------
+        """
         return response['user']['authtoken']      
     
     def user(self):

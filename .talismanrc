@@ -35,3 +35,17 @@ fileignoreconfig:
 - filename: contentstack_management/user_session/user_session.py
   checksum: 8f8353a3f658cd894fce7bee1d0211a612b18a639d1f8006548e89a5f5e32a17
 version: ""
+fileignoreconfig:
+- filename: contentstack_management/users/user.py
+  checksum: 9944801292f054e6ffcc56b6e1eea2c401776147970dc137de33ad9b63992c36
+- filename: tests/stack/test_stack_apitest.py
+  checksum: 9c9bc43b0aed1f94c27616ca198e3ec0cdc9e6680d9148f8ac7d507fad6d0d19
+- filename: contentstack_management/core/client.py
+  checksum: c584f6982526755542afdb51dec421dd823073405827e32e6f229ff1c4cfa87e
+- filename: contentstack_management/organizations/organizations.py
+  checksum: aea751acdfad7ebf07036d78f792abdf5339c9d02fb9d9f7540fcfe9f1d224f5
+- filename: tests/stack/test_stack_unittest.py
+  checksum: a2ba35250e069e789f11e40efa7c1b2786f5db6899497643b5bf3a0e344d13e9
+- filename: contentstack_management/stack/stack.py
+  checksum: f1b63294922e19f41dbf30caa6cbefe381b0c8834950d94dad7c7a28dd707047
+version: ""

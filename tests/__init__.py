@@ -18,7 +18,8 @@ from .organizations.test_org_api import OrganizationApiTests
 from .organizations.test_org_mock import OrganizationMockTests
 from .organizations.test_org_unittest import OrganizationUnitTests
 
-from .stack.test_stacks import StacksTests
+from .stack.test_stack_unittest import StacksUnitTests
+from .stack.test_stack_apitest import StacksAPITests
 
 from .test_contentstack import ContentstackTests
 
@@ -28,13 +29,20 @@ def all_tests():
     test_module_org_api = TestLoader().loadTestsFromTestCase(OrganizationApiTests)
     test_module_org_mock = TestLoader().loadTestsFromTestCase(OrganizationMockTests)
     test_module_org_unit = TestLoader().loadTestsFromTestCase(OrganizationUnitTests)
-    test_module_user = TestLoader().loadTestsFromTestCase(UserApiTests)
-    test_module_stacks = TestLoader().loadTestsFromTestCase(StacksTests)
+    test_module_user_api = TestLoader().loadTestsFromTestCase(UserApiTests)
+    test_module_user_mock = TestLoader().loadTestsFromTestCase(UserMockTests)
+    test_module_user_unittest = TestLoader().loadTestsFromTestCase(UserUnitTests)
+    test_module_stacks_api = TestLoader().loadTestsFromTestCase(StacksAPITests)
+    test_module_stacks_unit = TestLoader().loadTestsFromTestCase(StacksUnitTests)
     TestSuite([
         test_module_contentstack,
         test_module_org_api,
         test_module_org_mock,
         test_module_org_unit,
-        test_module_user,
-        test_module_stacks
+        test_module_user_api,
+        test_module_user_mock,
+        test_module_user_unittest,
+        test_module_stacks_api,
+        test_module_stacks_unit
+
     ])

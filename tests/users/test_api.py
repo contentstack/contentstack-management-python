@@ -22,7 +22,6 @@ class UserApiTests(unittest.TestCase):
             self.assertEqual(response.status_code, 400)
 
     def test_update_user(self):
-        url = "user"
         user_data = {
                     "user": {
                         "company": "company name inc.",
@@ -43,7 +42,6 @@ class UserApiTests(unittest.TestCase):
        
 
     def test_active_user(self):
-        url = f"user/activate/{os.getenv('user_activation_token')}"
         act_data = {
             "user": {
             "first_name": "your_first_name",
@@ -64,7 +62,6 @@ class UserApiTests(unittest.TestCase):
 
 
     def test_request_password(self):
-        url = f"user/forgot_password"
         act_data ={
                     "user": {
                         "email": os.getenv("email")
@@ -81,7 +78,6 @@ class UserApiTests(unittest.TestCase):
             self.assertEqual(response.status_code, 400)
 
     def test_reset_password(self):
-        url = f"user/reset_password"
         act_data = {
                     "user": {
                         "reset_password_token": "abcdefghijklmnop1234567890",

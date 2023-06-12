@@ -51,10 +51,12 @@ def client(endpoint=None,
     :param max_requests:Optional maximum number of requests to be made
     :param retry_on_error: Optional boolean value indicating whether to retry API requests on error.
     :return: A client object for performing API operations.
-
-    :example:
-    >>> from contentstack_management import contentstack
-    >>> client = contentstack.client()
+    -------------------------------
+    [Example:]
+    
+        >>> from contentstack_management import contentstack
+        >>> client = contentstack.client()
+    -------------------------------
     """
     if headers is None:
         headers = {}
