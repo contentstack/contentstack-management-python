@@ -45,6 +45,7 @@ class ApiClient:
         return self._call_request('GET', url, headers=headers, params=params)
 
     def put(self, url, headers=None, params=None, data=None, json_data=None):
+
         """
         Perform an HTTP PUT request with the specified URL and parameters.
 
@@ -58,6 +59,7 @@ class ApiClient:
         return self._call_request('PUT', url, headers=headers, params=params, data=data, json_data=json)
 
     def post(self, url, headers=None, params=None, data=None, json_data=None, files=None):
+
         """
         Perform an HTTP POST request with the specified URL and parameters.
 
@@ -69,6 +71,7 @@ class ApiClient:
         :return: The response from the server.
         """
         return self._call_request('POST', url, headers=headers, params=params, data=data, json_data=json_data, files=files)
+
 
     def delete(self, url, headers=None, params=None):
         """
@@ -84,6 +87,7 @@ class ApiClient:
 
     
     def _call_request(self, method, url_path, headers=None, params=None, data=None, json_data=None, files=None):
+
         url = f"{self.endpoint}/{url_path}"
         retries = self.failure_retry + 1
 
@@ -93,6 +97,7 @@ class ApiClient:
                 if response.status_code >= 400:
                     if self.errors:
                         return response
+
                     elif retries > 1:
                         retries -= 1
                     else:
