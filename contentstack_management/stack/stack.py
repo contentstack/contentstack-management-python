@@ -6,7 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..branches.branches import Branch
 from ..aliases.aliases import Alias
-from ..contentType.content_type import ContentType
+from ..content_types.content_type import ContentType
 
 class Stack:
     """
@@ -125,4 +125,5 @@ class Stack:
         data = json.dumps(data)
         return Alias(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key, self.authorization, alias_uid, data, json_data)
     
-    
+    def content_type(self, content_type_uid = None, branch = None):
+        return ContentType(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key, self.authorization, branch, content_type_uid)
