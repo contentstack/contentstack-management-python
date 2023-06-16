@@ -24,7 +24,7 @@ class BranchApiTests(unittest.TestCase):
             self.assertEqual(response.status_code, 400)
 
     def test_get_a_branch(self):
-        branch_uid = os.getenv("BRANCH_UID")
+        branch_uid = os.getenv("BRANCH_UID_GET")
         response = self.client.stack(os.getenv("API_KEY")).branch(branch_uid).fetch()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
@@ -34,7 +34,7 @@ class BranchApiTests(unittest.TestCase):
     def test_create_branch(self):
         data = {
         "branch": {
-            "uid": "release",
+            "uid": "release2",
             "source": "main"
             }
         }
@@ -48,7 +48,7 @@ class BranchApiTests(unittest.TestCase):
             self.assertEqual(response.status_code, 400)
 
     def test_delete_branch(self):
-        branch_uid = os.getenv("BRANCH_UID")
+        branch_uid = os.getenv("BRANCH_UID_DEL2")
         response = self.client.stack(os.getenv("API_KEY")).branch(branch_uid).delete()
         if response.status_code == 200:
             result_json = response.json()

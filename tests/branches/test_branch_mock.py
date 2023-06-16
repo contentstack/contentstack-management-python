@@ -31,12 +31,12 @@ class BranchMockTests(unittest.TestCase):
         self.assertEqual(mock_branch_data.keys(), response.keys())
 
     def test_mock_get_a_branch(self):    
-        branch_uid = os.getenv("BRANCH_UID")
+        branch_uid = os.getenv("BRANCH_UID_GET")
         response = self.client.stack(os.getenv("API_KEY")).branch(branch_uid).fetch().json()
         read_mock_branch_data = self.read_file("fetch_branch.json")
         mock_branch_data = json.loads(read_mock_branch_data)
         uid = mock_branch_data['branch']['uid']
-        self.assertEqual("release", uid)
+        self.assertEqual("test_get", uid)
 
     def test_mock_create_branch(self):    
         data = {

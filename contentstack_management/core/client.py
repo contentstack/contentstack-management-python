@@ -135,6 +135,6 @@ class ApiClient:
         return Organization(self.endpoint, self.auth_token, self.headers,self.api_client, organization_uid)
     
     def stack(self, api_key = None):
-        return Stack(self.endpoint, self.auth_token, self.headers,self.api_client, api_key)
+        return Stack(self.endpoint, self.auth_token, self.headers,self.api_client, api_key, self.authorization)
     
 
