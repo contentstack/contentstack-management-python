@@ -18,7 +18,7 @@ class AliasMockTests(unittest.TestCase):
         self.client.login(email, password)
  
     def read_file(self, file_name):
-        file_path= f"tests/resources/mockAlias/{file_name}"
+        file_path= f"tests/resources/mock_alias/{file_name}"
         infile = open(file_path, 'r')
         data = infile.read()
         infile.close()
