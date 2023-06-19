@@ -407,7 +407,7 @@ class ContentType:
         url = f"content_types/import"
         self.headers['api_key'] = self.api_key
         self.headers['authtoken'] = self.authtoken
-        # self.headers['management_token'] = self.authorization
+        self.headers['management_token'] = self.authorization
         self.headers['Content-Type'] = "multipart/form-data"
         self.headers['branch'] = self.branch
         files = {'content_type': open(f"{file_path}",'rb')}
