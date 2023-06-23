@@ -29,7 +29,7 @@ class AliasesUnitTests(unittest.TestCase):
         self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/branch_aliases/{alias_uid}")
         self.assertEqual(response.request.method, "GET")
     
-    def test_create_or_update(self):
+    def test_assign_alias(self):
         data = {
             "branch_alias": {
                 "target_branch": "test"
@@ -42,7 +42,7 @@ class AliasesUnitTests(unittest.TestCase):
         self.assertEqual(response.request.method, "PUT")
 
     def test_delete_alias(self):
-        alias_uid = os.getenv("ALIAS_UID")
+        alias_uid = os.getenv("ALIAS_UID2")
         response = self.client.stack(os.getenv("API_KEY")).branchAlias(alias_uid).delete()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/branch_aliases/{alias_uid}?force=true")

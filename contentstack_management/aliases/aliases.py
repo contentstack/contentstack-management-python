@@ -22,13 +22,13 @@ class Alias:
 
     def fetchAll(self):
         r"""
-        TThe Get all aliases request returns comprehensive information of all the 
-        aliases available in a particular stack in your account..
+        The Get all aliases request returns comprehensive information of all the 
+        aliases available in a particular stack in your account.
 
         :params limit: {int} -- A limit on the number of objects to return.
         :params skip: {int} -- The number of objects to skip before returning any.
         :params include_count: {bool}
-        :return: Fetches all the aliases
+        :return: Returns all the aliases
     
         --------------------------------
 
@@ -55,7 +55,7 @@ class Alias:
         The Get a single alias request returns information of a specific alias.
 
         :param branch_alias_uid: {str} -- Unique ID of the alias that is to be fetched.
-        :return: Fetches the aliase of the given UID
+        :return: Returns the aliase of the given UID
     
         --------------------------------
 
@@ -79,7 +79,7 @@ class Alias:
 
         :param data: {json} -- Data required in json format to assign an alias
         :param alias_uid: {str} -- Unique ID to create and alias
-        :return: Assigns an alias with the given data
+        :return: Returns an alias with the given data
     
         --------------------------------
 
@@ -107,7 +107,7 @@ class Alias:
 
         :param alias_uid: {str} -- Unique ID of the alias that is to be deleted.
         :params force: {bool}
-        :return: Deletes the alias of the given uid
+        :return: Returns status code and message
     
         --------------------------------
 

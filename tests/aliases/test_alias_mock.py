@@ -18,7 +18,7 @@ class AliasMockTests(unittest.TestCase):
         self.client.login(email, password)
  
     def read_file(self, file_name):
-        file_path= f"tests/resources/mockAlias/{file_name}"
+        file_path= f"tests/resources/mock_alias/{file_name}"
         infile = open(file_path, 'r')
         data = infile.read()
         infile.close()
@@ -38,7 +38,7 @@ class AliasMockTests(unittest.TestCase):
         alias_uid = mock_alias_data['branch_alias']['alias']
         self.assertEqual("alias_uid", alias_uid)
 
-    def test_mock_create_or_update_alias(self):
+    def test_assign_alias(self):
         data = {
             "branch_alias": {
                 "target_branch": "test"
@@ -46,7 +46,7 @@ class AliasMockTests(unittest.TestCase):
             }
         branch_test_uid = os.getenv("BRANCH_TEST_UID")
         branch_alias_uid = os.getenv("BRANCH_ALIAS_UID")
-        response = self.client.stack(os.getenv("API_KEY")).branchAlias(branch_alias_uid).assign(branch_test_uid, data).json()
+        response = self.client.stack(os.getenv("API_KEY")).branchAlias(branch_alias_uid).assign(data).json()
         read_mock_alias_data = self.read_file("assign_alias.json")
         mock_alias_data = json.loads(read_mock_alias_data)
         self.assertEqual("Branch alias assigned successfully.", mock_alias_data['notice'])
