@@ -24,7 +24,7 @@ class AliaseApiTests(unittest.TestCase):
         else:
             self.assertEqual(response.status_code, 400)
 
-    def test_get_an_aliase(self):
+    def test_get_an_alias(self):
         alias_uid_get = os.getenv("ALIAS_UID_GET")
         response = self.client.stack(os.getenv("API_KEY")).branchAlias(alias_uid_get).fetch()
         if response.status_code == 200:

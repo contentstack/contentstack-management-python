@@ -26,7 +26,7 @@ class Branch:
         :params limit: {int} -- A limit on the number of objects to return.
         :params skip: {int} -- The number of objects to skip before returning any.
         :params include_count: {bool}
-        :return: Finds all the branches
+        :return: Returns all the branches
     
         --------------------------------
 
@@ -53,7 +53,7 @@ class Branch:
         The Get a single branch request returns information of a specific branch.
 
         :param branch_uid: {str} -- Unique ID of the branch that is to be fetched.
-        :return: Fetches the branch of the given UID
+        :return: Returns the branch of the given UID
     
         --------------------------------
 
@@ -75,7 +75,7 @@ class Branch:
         The Create a branch request creates a new branch in a particular stack of your organization.
 
         :param data: {json} -- Data required in json format to create a branch
-        :return: Created a branch with the given data
+        :return: Returns a branch with the given data
     
         --------------------------------
 
@@ -104,7 +104,7 @@ class Branch:
 
         :param branch_uid: {str} -- Unique ID of the branch that is to be deleted.
         :params force: {bool}
-        :return: Deletes the branch of the given uid
+        :return: Returns status code and message
     
         --------------------------------
 

@@ -38,7 +38,7 @@ class AliasMockTests(unittest.TestCase):
         alias_uid = mock_alias_data['branch_alias']['alias']
         self.assertEqual("alias_uid", alias_uid)
 
-    def test_assign_aliase(self):
+    def test_assign_alias(self):
         data = {
             "branch_alias": {
                 "target_branch": "test"
