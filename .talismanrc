@@ -58,3 +58,7 @@ fileignoreconfig:
 - filename: tests/stack/test_stack_unittest.py
   checksum: 12389c99db0d917954cd9970b340cc443602b4acf512090f42d13f7a726c85b6
 version: ""
+fileignoreconfig:
+- filename: contentstack_management/global_fields/global_fields.py
+  checksum: 53742c03c5c459a195b99b613a1df2dde7b9a61f6c4839b51be3f54dec56dd21
+version: ""
