@@ -20,6 +20,7 @@ class Stack:
         self.authtoken = authtoken
         self.headers = headers
         self.api_key = api_key
+        self.headers['authtoken'] = self.authtoken
 
     def fetch(self):
         """
@@ -36,11 +37,10 @@ class Stack:
         -------------------------------
         """
         url = "stacks"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         return self.api_client.get(url, headers = self.headers)
     
-    def fetch_all(self):
+    def find(self):
 
         """
         Fetches the stacks entries 
@@ -57,7 +57,6 @@ class Stack:
         """
 
         url = "stacks"
-        self.headers['authtoken'] = self.authtoken
         return self.api_client.get(url, headers = self.headers)
     
     def create(self, organization_uid, data):
@@ -81,7 +80,7 @@ class Stack:
         -------------------------------
         """
         url = "stacks"
-        self.headers['authtoken'] = self.authtoken
+       
         self.headers['organization_uid'] = organization_uid
         data = json.dumps(data)
         return self.api_client.post(url, headers = self.headers, data=data)
@@ -107,7 +106,6 @@ class Stack:
         -------------------------------
         """
         url = "stacks"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
         return self.api_client.put(url, headers = self.headers, data=data)
@@ -129,11 +127,10 @@ class Stack:
         """
 
         url = "stacks"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         return self.api_client.delete(url, headers = self.headers)
     
-    def fetch_all_user(self):
+    def users(self):
         """
         Fetches the all users of a stack 
         :return: Json, with users of a stack details.
@@ -149,7 +146,6 @@ class Stack:
         """
 
         url = "stacks/users"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         return self.api_client.get(url, headers = self.headers)
     
@@ -172,12 +168,11 @@ class Stack:
         -------------------------------
         """
         url = "stacks/users/roles"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
         return self.api_client.put(url, headers = self.headers, data=data)
     
-    def stack_transfer_ownership(self, data):
+    def transfer_ownership(self, data):
         """
         Transfer owership of the stacks 
         :return: Json, with status code and message.
@@ -194,7 +189,6 @@ class Stack:
         -------------------------------
         """
         url = "stacks/transfer_ownership"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
         return self.api_client.post(url, headers = self.headers, data=data)
@@ -214,11 +208,10 @@ class Stack:
         -------------------------------
         """
         url = f"stacks/accept_ownership/{ownership_token}"
-        self.headers['authtoken'] = self.authtoken
         params = {'api_key': self.api_key, 'uid': user_id}
         return self.api_client.get(url, headers = self.headers, params = params)
     
-    def get_stack_settings(self):
+    def settings(self):
         """
         Fetches the stack settings 
         :return: Json, with stack settings details.
@@ -233,12 +226,11 @@ class Stack:
         -------------------------------
         """
         url = "stacks/settings"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         return self.api_client.get(url, headers = self.headers)
     
 
-    def create_stack_settings(self, data):
+    def create_settings(self, data):
         """
         Create the stack settings 
         :return: Json, with stack setting details.
@@ -264,12 +256,11 @@ class Stack:
         -------------------------------
         """
         url = "stacks/settings"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
         return self.api_client.post(url, headers = self.headers, data=data)
 
-    def reset_stack_settings(self, data):
+    def reset_settings(self, data):
         """
         Reset the stack settings
         :return: Json, with stack setting details.
@@ -286,12 +277,11 @@ class Stack:
         -------------------------------
         """
         url = "stacks/settings/reset"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
         return self.api_client.post(url, headers = self.headers, data=data)
     
-    def share_stack(self, data):
+    def share(self, data):
         """
         Share a stack to the users with user roles 
         :return: Json, with status code and message
@@ -315,12 +305,11 @@ class Stack:
         -------------------------------
         """
         url = "stacks/share"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
         return self.api_client.post(url, headers = self.headers, data=data)
     
-    def unshare_stack(self, data):
+    def unshare(self, data):
         """
         Unshare a stack to the users with user roles 
         :return: Json, with status code and message
@@ -337,7 +326,6 @@ class Stack:
         -------------------------------
         """
         url = "stacks/unshare"
-        self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
         return self.api_client.post(url, headers = self.headers, data=data)

@@ -136,3 +136,4 @@ tests/resources/.DS_Store
 tests/.DS_Store
 tests/resources/.DS_Store
 .DS_Store
+.talismanrc

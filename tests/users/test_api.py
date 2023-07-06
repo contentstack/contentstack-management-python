@@ -15,7 +15,7 @@ class UserApiTests(unittest.TestCase):
         self.client.login(os.getenv("email"), os.getenv("password"))
 
     def test_get_user(self):    
-        response = self.client.user().get() 
+        response = self.client.user().find() 
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -28,8 +28,7 @@ class UserApiTests(unittest.TestCase):
                         "first_name": "sunil B Lak"
                     }
                 }
-        act_data = json.dumps(user_data)
-        response = self.client.user().update_user(act_data)
+        response = self.client.user().update(user_data)
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)
@@ -50,8 +49,7 @@ class UserApiTests(unittest.TestCase):
             "password_confirmation": "confirm_your_password"
             }
             }
-        act_data = json.dumps(act_data)
-        response = self.client.user().active_user(os.getenv('user_activation_token'), act_data) 
+        response = self.client.user().activate(os.getenv('user_activation_token'), act_data) 
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)
@@ -61,14 +59,13 @@ class UserApiTests(unittest.TestCase):
             self.assertEqual(response.status_code, 400)
 
 
-    def test_request_password(self):
+    def test_forgot_password(self):
         act_data ={
                     "user": {
                         "email": os.getenv("email")
                     }
                 }
-        act_data = json.dumps(act_data)
-        response = self.client.user().request_password(act_data) 
+        response = self.client.user().forgot_password(act_data) 
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)
@@ -85,7 +82,6 @@ class UserApiTests(unittest.TestCase):
                         "password_confirmation": "Simple@123"
                     }
                 }
-        act_data = json.dumps(act_data)
         response = self.client.user().reset_password(act_data) 
         result_json = response.json()
         if response.status_code == 200:

@@ -7,7 +7,7 @@ from setuptools import build_meta
 
 # Replace fetch_build_eggs call
 # build_deps = fetch_build_eggs(dist.setup_requires)
-build_deps = build_meta.get_requires_for_build_wheel(dist.setup_requires)
+# build_deps = build_meta.get_requires_for_build_wheel(dist.setup_requires)
 
 
 with open("README.md", "r") as f:
@@ -33,7 +33,7 @@ setup(
     ],
     install_requires=["bson >= 0.5.10"],
     extras_require={
-        "dev": ["pytest>=7.0", "twine>=4.0.2"],
+        "dev": ["pytest>=7.0", "twine>=4.0.2", "dotenv>=0.0.5"],
     },
-    python_requires=">=3.10",
+    python_requires=">=3.9",
 )

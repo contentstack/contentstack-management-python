@@ -49,3 +49,12 @@ fileignoreconfig:
 - filename: contentstack_management/stack/stack.py
   checksum: f1b63294922e19f41dbf30caa6cbefe381b0c8834950d94dad7c7a28dd707047
 version: ""
+
+fileignoreconfig:
+- filename: contentstack_management/organizations/organizations.py
+  checksum: 31dc00bc449f8a9e5cb9321da10384dd7d40bd8fce30e56699e0ce0a0e3de48e
+- filename: contentstack_management/users/user.py
+  checksum: 1aa5ed251d166293e2616c6a227ee945a8213c5fde03778db08abac5f1a09c72
+- filename: tests/stack/test_stack_unittest.py
+  checksum: 12389c99db0d917954cd9970b340cc443602b4acf512090f42d13f7a726c85b6
+version: ""

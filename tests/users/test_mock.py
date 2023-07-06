@@ -22,7 +22,7 @@ class UserMockTests(unittest.TestCase):
         return data
 
     def test_mock_get_user(self):    
-        response = self.client.user().get().json()
+        response = self.client.user().find().json()
         read_mock_user_data = self.read_file("getuser.json")
         mock_user_data = json.loads(read_mock_user_data)
         authtoken = self.client.get_authtoken(mock_user_data)
@@ -40,7 +40,7 @@ class UserMockTests(unittest.TestCase):
             }
             }
 
-        response = self.client.user().active_user(os.getenv('user_activation_token'), act_data).json()
+        response = self.client.user().activate(os.getenv('user_activation_token'), act_data).json()
         read_mock_user_data = self.read_file("activateuser.json")
         mock_user_data = json.loads(read_mock_user_data)
         self.assertEqual("Your account has been activated.", mock_user_data['notice'])
@@ -52,8 +52,7 @@ class UserMockTests(unittest.TestCase):
                         "first_name": "sunil B Lakshman"
                     }
                 }
-        act_data = json.dumps(user_data)
-        response = self.client.user().update_user(act_data).json()
+        response = self.client.user().update(user_data).json()
         read_mock_user_data = self.read_file("updateuser.json")
         mock_user_data = json.loads(read_mock_user_data)
         uid = mock_user_data['user']['uid']
@@ -68,8 +67,7 @@ class UserMockTests(unittest.TestCase):
                         "email": "john.doe@contentstack.com"
                     }
                 }
-        act_data = json.dumps(act_data)
-        response = self.client.user().request_password(act_data).json()
+        response = self.client.user().forgot_password(act_data).json()
         read_mock_user_data = self.read_file("request_password.json")
         mock_user_data = json.loads(read_mock_user_data)
         self.assertEqual(mock_user_data['notice'], response['notice'])
@@ -83,8 +81,7 @@ class UserMockTests(unittest.TestCase):
                         "password_confirmation": "Simple@123"
                     }
                 }
-        act_data = json.dumps(act_data)
-        response = self.client.user().reset_password(act_data) 
+        response = self.client.user().reset_password(act_data).json()
         read_mock_user_data = self.read_file("reset_password.json")
         mock_user_data = json.loads(read_mock_user_data)
         self.assertEqual("Your password has been reset successfully.", mock_user_data['notice'])

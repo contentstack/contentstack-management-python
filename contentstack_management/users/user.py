@@ -14,9 +14,10 @@ class User:
         self.endpoint = endpoint
         self.authtoken = authtoken
         self.headers = headers
+        self.headers['authtoken'] = authtoken
 
     
-    def get(self):
+    def find(self):
         """
         Fetches the user entries 
         :return: Json, with user details.
@@ -31,11 +32,11 @@ class User:
         -------------------------------
         """
         url = "user"
-        self.headers['authtoken'] = self.authtoken
+       
         return self.api_client.get(url, headers = self.headers)
 
 
-    def update_user(self, user_data):
+    def update(self, user_data):
         """
         Updated user details.
         :return: Json, with response message.
@@ -54,11 +55,10 @@ class User:
         -------------------------------
         """
         url = "user"
-        self.headers['authtoken'] = self.authtoken
         data = json.dumps(user_data)
         return self.api_client.put(url, headers = self.headers, data = data, params = None)
     
-    def active_user(self, user_activation_token, user_data):
+    def activate(self, user_activation_token, user_data):
         """
         Activate user
         :return: Json, with response message.
@@ -80,11 +80,10 @@ class User:
         -------------------------------
         """
         url = f"user/activate/{user_activation_token}"
-        self.headers['authtoken'] = self.authtoken
         data = json.dumps(user_data)
         return self.api_client.post(url, headers = self.headers, data = data)
     
-    def request_password(self, user_data):
+    def forgot_password(self, user_data):
         """
         Requested password
         :return: Json, with response message.
@@ -103,7 +102,6 @@ class User:
         -------------------------------
         """
         url = "user/forgot_password"
-        self.headers['authtoken'] = self.authtoken
         data = json.dumps(user_data)
         return self.api_client.post(url, headers = self.headers, data = data)
     
@@ -128,6 +126,5 @@ class User:
         -------------------------------
         """
         url = "user/reset_password"
-        self.headers['authtoken'] = self.authtoken
         data = json.dumps(user_data)
         return self.api_client.post(url, headers = self.headers, data = data)

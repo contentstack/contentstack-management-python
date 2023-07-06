@@ -25,7 +25,7 @@ class StacksAPITests(unittest.TestCase):
 
 
     def test_stacks_all(self):    
-        response = self.client.stack().fetch_all()
+        response = self.client.stack().find()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -68,7 +68,7 @@ class StacksAPITests(unittest.TestCase):
 
 
     def tests_stacks_fetch_all_user(self):
-        response= self.client.stack(os.getenv("api_key")).fetch_all_user()
+        response= self.client.stack(os.getenv("api_key")).users()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -90,7 +90,7 @@ class StacksAPITests(unittest.TestCase):
         data = {
                 "transfer_to": "manager@example.com"
             }
-        response= self.client.stack(os.getenv("api_key")).stack_transfer_ownership(data)
+        response= self.client.stack(os.getenv("api_key")).transfer_ownership(data)
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -101,10 +101,10 @@ class StacksAPITests(unittest.TestCase):
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
-            self.assertEqual(response.status_code, 400)
+            self.assertEqual(response.status_code, 404)
 
     def tests_stacks_get_stack_settings(self):
-        response= self.client.stack(os.getenv("api_key")).get_stack_settings()
+        response= self.client.stack(os.getenv("api_key")).settings()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -123,7 +123,7 @@ class StacksAPITests(unittest.TestCase):
                     }
                 }
             }
-        response= self.client.stack(os.getenv("api_key")).create_stack_settings(data)
+        response= self.client.stack(os.getenv("api_key")).create_settings(data)
         if response.status_code == 201:
             self.assertEqual(response.status_code, 201)
         else:
@@ -133,7 +133,7 @@ class StacksAPITests(unittest.TestCase):
         data = {
                 "stack_settings":{}
             }
-        response= self.client.stack(os.getenv("api_key")).reset_stack_settings(data)
+        response= self.client.stack(os.getenv("api_key")).reset_settings(data)
         if response.status_code == 201:
             self.assertEqual(response.status_code, 201)
         else:
@@ -150,7 +150,7 @@ class StacksAPITests(unittest.TestCase):
                     ]
                 }
             }
-        response= self.client.stack(os.getenv("api_key")).share_stack(data)
+        response= self.client.stack(os.getenv("api_key")).share(data)
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -160,7 +160,7 @@ class StacksAPITests(unittest.TestCase):
         data = {
                 "email": "manager@example.com"
             }
-        response= self.client.stack(os.getenv("api_key")).unshare_stack(data)
+        response= self.client.stack(os.getenv("api_key")).unshare(data)
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:

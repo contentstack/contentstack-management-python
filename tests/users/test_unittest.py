@@ -15,7 +15,7 @@ class UserUnitTests(unittest.TestCase):
         self.client.login(os.getenv("email"), os.getenv("password"))
 
     def test_get_user(self):    
-        response = self.client.user().get() 
+        response = self.client.user().find() 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/user")
         self.assertEqual(response.request.method, "GET")
@@ -25,11 +25,10 @@ class UserUnitTests(unittest.TestCase):
         user_data = {
                     "user": {
                         "company": "company name inc.",
-                        "first_name": "sunil B Lak"
+                        "first_name": "sunil B Lakshman"
                     }
                 }
-        act_data = json.dumps(user_data)
-        response = self.client.user().update_user(act_data)
+        response = self.client.user().update(user_data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
         self.assertEqual(response.request.method, "PUT")
@@ -46,8 +45,7 @@ class UserUnitTests(unittest.TestCase):
             "password_confirmation": "confirm_your_password"
             }
             }
-        act_data = json.dumps(act_data)
-        response = self.client.user().active_user(os.getenv('user_activation_token'), act_data) 
+        response = self.client.user().activate(os.getenv('user_activation_token'), act_data) 
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
         self.assertEqual(response.request.method, "POST")
@@ -60,8 +58,7 @@ class UserUnitTests(unittest.TestCase):
                         "email": os.getenv("email")
                     }
                 }
-        act_data = json.dumps(act_data)
-        response = self.client.user().request_password(act_data) 
+        response = self.client.user().forgot_password(act_data) 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
         self.assertEqual(response.request.method, "POST")
@@ -76,7 +73,6 @@ class UserUnitTests(unittest.TestCase):
                         "password_confirmation": "Simple@123"
                     }
                 }
-        act_data = json.dumps(act_data)
         response = self.client.user().reset_password(act_data) 
         self.assertEqual(response.status_code, 422)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
