@@ -3,7 +3,6 @@ import platform
 import contentstack_management
 from .core.client import ApiClient
 
-
 default_host = 'api.contentstack.io'
 default_endpoint = 'https://api.contentstack.io'
 default_api_version = 'v3'
@@ -28,9 +27,10 @@ def user_agents(headers):
     headers.update({'sdk': dict(
         name=contentstack_management.__package__,
         version=contentstack_management.__version__
-    ), 'os': __platform})
+    ), 'os': str(__platform())})
+
     package = f"contentstack-management-python/{contentstack_management.__version__}"
-    return {'User-Agent': str(headers), "X-User-Agent": package, 'Content-Type': 'application/json' }
+    return {'User-Agent': str(headers), "X-User-Agent": package, 'Content-Type': 'application/json'}
 
 
 def client(endpoint=None,
@@ -50,10 +50,12 @@ def client(endpoint=None,
     :param max_requests:Optional maximum number of requests to be made
     :param retry_on_error: Optional boolean value indicating whether to retry API requests on error.
     :return: A client object for performing API operations.
-
-    :example:
-    >>> from contentstack_management import contentstack
-    >>> client = contentstack.client()
+    -------------------------------
+    [Example:]
+    
+        >>> from contentstack_management import contentstack
+        >>> client = contentstack.client()
+    -------------------------------
     """
     if headers is None:
         headers = {}
@@ -73,4 +75,3 @@ def client(endpoint=None,
                      headers=headers, authorization=authorization,
                      timeout=timeout, failure_retry=failure_retry, exceptions=exceptions, errors=errors,
                      max_requests=max_requests, retry_on_error=retry_on_error)
-
