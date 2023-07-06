@@ -1,5 +1,8 @@
 {
   "users": {
-    "user_uid": ["role_uid1", "role_uid2"]
+    "user_uid": [
+      "role_uid1",
+      "role_uid2"
+    ]
   }
 }

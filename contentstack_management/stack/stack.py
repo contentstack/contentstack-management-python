@@ -4,7 +4,9 @@ The create(), read(), update(), and delete() methods each correspond to
 the CRUD operations that can be performed on the API """
 
 import json
+
 from ..global_fields.global_fields import Globalfields
+
 
 class Stack:
     """
@@ -38,10 +40,9 @@ class Stack:
         """
         url = "stacks"
         self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers = self.headers)
-    
-    def find(self):
+        return self.api_client.get(url, headers=self.headers)
 
+    def find(self):
         """
         Fetches the stacks entries 
         :return: Json, with stacks details.
@@ -57,8 +58,8 @@ class Stack:
         """
 
         url = "stacks"
-        return self.api_client.get(url, headers = self.headers)
-    
+        return self.api_client.get(url, headers=self.headers)
+
     def create(self, organization_uid, data):
         """
         Create the stacks entries 
@@ -80,11 +81,11 @@ class Stack:
         -------------------------------
         """
         url = "stacks"
-       
+
         self.headers['organization_uid'] = organization_uid
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data=data)
-    
+        return self.api_client.post(url, headers=self.headers, data=data)
+
     def update(self, data):
         """
         Update the stacks entries 
@@ -108,10 +109,9 @@ class Stack:
         url = "stacks"
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
-        return self.api_client.put(url, headers = self.headers, data=data)
-    
-    def delete(self):
+        return self.api_client.put(url, headers=self.headers, data=data)
 
+    def delete(self):
         """
         Delete the stacks  
         :return: Json, with status code and message.
@@ -128,8 +128,8 @@ class Stack:
 
         url = "stacks"
         self.headers['api_key'] = self.api_key
-        return self.api_client.delete(url, headers = self.headers)
-    
+        return self.api_client.delete(url, headers=self.headers)
+
     def users(self):
         """
         Fetches the all users of a stack 
@@ -147,8 +147,8 @@ class Stack:
 
         url = "stacks/users"
         self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers = self.headers)
-    
+        return self.api_client.get(url, headers=self.headers)
+
     def update_user_role(self, data):
         """
         Update the user roles of the stacks 
@@ -170,8 +170,8 @@ class Stack:
         url = "stacks/users/roles"
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
-        return self.api_client.put(url, headers = self.headers, data=data)
-    
+        return self.api_client.put(url, headers=self.headers, data=data)
+
     def transfer_ownership(self, data):
         """
         Transfer owership of the stacks 
@@ -191,8 +191,8 @@ class Stack:
         url = "stacks/transfer_ownership"
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data=data)
-    
+        return self.api_client.post(url, headers=self.headers, data=data)
+
     def accept_ownership(self, user_id, ownership_token):
         """
         Accept ownership of the stack 
@@ -209,8 +209,8 @@ class Stack:
         """
         url = f"stacks/accept_ownership/{ownership_token}"
         params = {'api_key': self.api_key, 'uid': user_id}
-        return self.api_client.get(url, headers = self.headers, params = params)
-    
+        return self.api_client.get(url, headers=self.headers, params=params)
+
     def settings(self):
         """
         Fetches the stack settings 
@@ -227,8 +227,7 @@ class Stack:
         """
         url = "stacks/settings"
         self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers = self.headers)
-    
+        return self.api_client.get(url, headers=self.headers)
 
     def create_settings(self, data):
         """
@@ -258,7 +257,7 @@ class Stack:
         url = "stacks/settings"
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data=data)
+        return self.api_client.post(url, headers=self.headers, data=data)
 
     def reset_settings(self, data):
         """
@@ -279,8 +278,8 @@ class Stack:
         url = "stacks/settings/reset"
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data=data)
-    
+        return self.api_client.post(url, headers=self.headers, data=data)
+
     def share(self, data):
         """
         Share a stack to the users with user roles 
@@ -307,8 +306,8 @@ class Stack:
         url = "stacks/share"
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data=data)
-    
+        return self.api_client.post(url, headers=self.headers, data=data)
+
     def unshare(self, data):
         """
         Unshare a stack to the users with user roles 
@@ -328,18 +327,8 @@ class Stack:
         url = "stacks/unshare"
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data=data)
-    
-    def global_fields(self, global_field_uid = None):
-        return Globalfields(self.endpoint, self.authtoken, self.headers,self.api_client, self.api_key, global_field_uid)
+        return self.api_client.post(url, headers=self.headers, data=data)
 
-
-    
-    
-    
-
-    
-
-    
-
-
+    def global_fields(self, global_field_uid=None):
+        return Globalfields(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key,
+                            global_field_uid)

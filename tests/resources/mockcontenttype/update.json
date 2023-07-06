@@ -2,17 +2,18 @@
   "content_type": {
     "title": "Hello.. testing to update the content type",
     "uid": "fake_content_type",
-    "schema": [{
-      "display_name": "Just for deletion",
-      "uid": "updated",
-      "data_type": "text",
-      "field_metadata": {
-        "_default": true
+    "schema": [
+      {
+        "display_name": "Just for deletion",
+        "uid": "updated",
+        "data_type": "text",
+        "field_metadata": {
+          "_default": true
+        },
+        "unique": false,
+        "mandatory": true,
+        "multiple": false
       },
-      "unique": false,
-      "mandatory": true,
-      "multiple": false
-    },
       {
         "display_name": "URL",
         "uid": "url",

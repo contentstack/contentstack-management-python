@@ -1,5 +1,5 @@
-
 import json
+
 
 class Organization:
     """
@@ -17,7 +17,6 @@ class Organization:
         self.organization_uid = organization_uid
         self.headers['authtoken'] = self.authtoken
 
-    
     def find(self):
         """
         Finds the organizations entries 
@@ -32,8 +31,8 @@ class Organization:
         -------------------------------
         """
         url = "organizations"
-        return self.api_client.get(url, headers = self.headers)
-    
+        return self.api_client.get(url, headers=self.headers)
+
     def fetch(self):
         """
         Fetches the organizations entry
@@ -49,9 +48,8 @@ class Organization:
         -------------------------------
         """
         url = f"organizations/{self.organization_uid}"
-        return self.api_client.get(url, headers = self.headers)
+        return self.api_client.get(url, headers=self.headers)
 
-    
     def roles(self):
         """
         Fetches the organization roles entries 
@@ -67,9 +65,8 @@ class Organization:
         -------------------------------
         """
         url = f"organizations/{self.organization_uid}/roles"
-        return self.api_client.get(url, headers = self.headers)
+        return self.api_client.get(url, headers=self.headers)
 
-    
     def add_users(self, user_data):
         """
         Add user to the organization 
@@ -104,8 +101,8 @@ class Organization:
         """
         url = f"organizations/{self.organization_uid}/share"
         data = json.dumps(user_data)
-        return self.api_client.post(url, headers = self.headers, data = data)
-    
+        return self.api_client.post(url, headers=self.headers, data=data)
+
     def transfer_ownership(self, data):
         """
         Add user to the organization 
@@ -126,9 +123,8 @@ class Organization:
 
         url = f"organizations/{self.organization_uid}/transfer-ownership"
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data = data)
+        return self.api_client.post(url, headers=self.headers, data=data)
 
-    
     def stacks(self):
         """
         Fetches the organization stacks 
@@ -144,9 +140,8 @@ class Organization:
         -------------------------------
         """
         url = f"organizations/{self.organization_uid}/stacks"
-        return self.api_client.get(url, headers = self.headers)
+        return self.api_client.get(url, headers=self.headers)
 
-    
     def logs(self):
         """
         Fetches the organization log entries 
@@ -162,5 +157,4 @@ class Organization:
         -------------------------------
         """
         url = f"organizations/{self.organization_uid}/logs"
-        return self.api_client.get(url, headers = self.headers)
-
+        return self.api_client.get(url, headers=self.headers)

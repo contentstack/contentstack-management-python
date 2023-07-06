@@ -1,5 +1,5 @@
-
 import json
+
 
 class User:
     """
@@ -16,7 +16,6 @@ class User:
         self.headers = headers
         self.headers['authtoken'] = authtoken
 
-    
     def find(self):
         """
         Fetches the user entries 
@@ -32,9 +31,8 @@ class User:
         -------------------------------
         """
         url = "user"
-       
-        return self.api_client.get(url, headers = self.headers)
 
+        return self.api_client.get(url, headers=self.headers)
 
     def update(self, user_data):
         """
@@ -56,8 +54,8 @@ class User:
         """
         url = "user"
         data = json.dumps(user_data)
-        return self.api_client.put(url, headers = self.headers, data = data, params = None)
-    
+        return self.api_client.put(url, headers=self.headers, data=data, params=None)
+
     def activate(self, user_activation_token, user_data):
         """
         Activate user
@@ -81,8 +79,8 @@ class User:
         """
         url = f"user/activate/{user_activation_token}"
         data = json.dumps(user_data)
-        return self.api_client.post(url, headers = self.headers, data = data)
-    
+        return self.api_client.post(url, headers=self.headers, data=data)
+
     def forgot_password(self, user_data):
         """
         Requested password
@@ -103,8 +101,8 @@ class User:
         """
         url = "user/forgot_password"
         data = json.dumps(user_data)
-        return self.api_client.post(url, headers = self.headers, data = data)
-    
+        return self.api_client.post(url, headers=self.headers, data=data)
+
     def reset_password(self, user_data):
         """
         Reset user password 
@@ -127,4 +125,4 @@ class User:
         """
         url = "user/reset_password"
         data = json.dumps(user_data)
-        return self.api_client.post(url, headers = self.headers, data = data)
+        return self.api_client.post(url, headers=self.headers, data=data)

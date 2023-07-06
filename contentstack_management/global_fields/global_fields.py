@@ -5,6 +5,7 @@ the CRUD operations that can be performed on the API """
 
 import json
 
+
 class Globalfields:
     """
     This class takes a base URL as an argument when it's initialized, 
@@ -38,10 +39,8 @@ class Globalfields:
         url = "global_fields"
         self.headers['api_key'] = self.api_key
         self.headers['authtoken'] = self.authtoken
-        return self.api_client.get(url, headers = self.headers)
-    
-      
-    
+        return self.api_client.get(url, headers=self.headers)
+
     def fetch(self):
         """
         Fetches the global fields entry 
@@ -59,9 +58,8 @@ class Globalfields:
         url = f"global_fields/{self.global_field_uid}"
         self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers = self.headers)
-        
-    
+        return self.api_client.get(url, headers=self.headers)
+
     def create(self, data):
         """
         Create the global fields entries 
@@ -105,8 +103,8 @@ class Globalfields:
         self.headers['api_key'] = self.api_key
         self.headers['authtoken'] = self.authtoken
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data=data)
-    
+        return self.api_client.post(url, headers=self.headers, data=data)
+
     def update(self, data):
         """
         Update the global fields entries 
@@ -150,8 +148,8 @@ class Globalfields:
         self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         data = json.dumps(data)
-        return self.api_client.put(url, headers = self.headers, data=data)
-    
+        return self.api_client.put(url, headers=self.headers, data=data)
+
     def delete(self):
         """
         Delete the global fields  
@@ -170,8 +168,8 @@ class Globalfields:
         self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
         params = {'force': True}
-        return self.api_client.delete(url, headers = self.headers, params = params)
-    
+        return self.api_client.delete(url, headers=self.headers, params=params)
+
     def imports(self, file_path):
         """
         Import the global fields
@@ -192,9 +190,9 @@ class Globalfields:
         self.headers['api_key'] = self.api_key
         self.headers['Content-Type'] = "multipart/form-data"
         params = {'include_branch': False}
-        files = {'global_field': open(f"{file_path}",'rb')}
-        return self.api_client.post(url, headers = self.headers, params = params, files = files)
-    
+        files = {'global_field': open(f"{file_path}", 'rb')}
+        return self.api_client.post(url, headers=self.headers, params=params, files=files)
+
     def export(self):
         """
         Export the global fields 
@@ -212,15 +210,4 @@ class Globalfields:
         url = f"global_fields/{self.global_field_uid}/export"
         self.headers['authtoken'] = self.authtoken
         self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers = self.headers)
-    
-    
-    
-    
-    
-
-    
-
-    
-
-
+        return self.api_client.get(url, headers=self.headers)

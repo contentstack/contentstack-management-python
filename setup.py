@@ -1,14 +1,4 @@
-from distutils import dist
-from setuptools import find_packages, setup
-
-# Replace import
-# from setuptools.installer import fetch_build_eggs
-from setuptools import build_meta
-
-# Replace fetch_build_eggs call
-# build_deps = fetch_build_eggs(dist.setup_requires)
-# build_deps = build_meta.get_requires_for_build_wheel(dist.setup_requires)
-
+from setuptools import setup
 
 with open("README.md", "r") as f:
     long_description = f.read()
