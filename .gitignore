@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 tests/config/default.yml
 .vscode/settings.json
+
+.talismanrc

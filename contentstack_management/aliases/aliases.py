@@ -19,8 +19,10 @@ class Alias:
         self.alias_uid = alias_uid
         self.data = data
         self.json_data = json_data
+        self.headers['api_key'] = self.api_key
+        self.headers['authtoken'] = self.authtoken
 
-    def fetchAll(self):
+    def find(self):
         r"""
         The Get all aliases request returns comprehensive information of all the 
         aliases available in a particular stack in your account.
@@ -35,8 +37,8 @@ class Alias:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> branch = client.stack(api_key='api_key').branchAlias()
-            >>> response = branch.fetchAll()
+            >>> branch = client.stack(api_key='api_key').branch_alias()
+            >>> response = branch.find()
         --------------------------------
         """
         self.params = {
@@ -45,9 +47,7 @@ class Alias:
             "include_count": "false"
         }
         url = f"stacks/branch_aliases"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        # self.authorization['management_token'] = self.authorization
+        self.authorization['management_token'] = self.authorization
         return self.api_client.get(url, headers = self.headers, params = self.params)
     
     def fetch(self):
@@ -62,14 +62,12 @@ class Alias:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> branch = client.stack(api_key='api_key').branchAlias(branch_alias_uid)
+            >>> branch = client.stack(api_key='api_key').branch_alias(branch_alias_uid)
             >>> response = branch.fetch()
         --------------------------------
         """
         url = f"stacks/branch_aliases/{self.alias_uid}"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        # self.authorization['management_token'] = self.authorization
+        self.authorization['management_token'] = self.authorization
         return self.api_client.get(url, headers = self.headers)
     
     def assign(self, data):
@@ -91,13 +89,11 @@ class Alias:
                         "target_branch": "test"
                         }
                     }
-            >>> branch = client.stack(api_key='api_key').branchAlias("alias_uid")
+            >>> branch = client.stack(api_key='api_key').branch_alias("alias_uid")
             >>> response = branch.assign(data)
         --------------------------------
         """
         url = f"stacks/branch_aliases/{self.alias_uid}"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
         self.data = json.dumps(data)
         return self.api_client.put(url, headers = self.headers, data = self.data, json_data = self.json_data)
 
@@ -122,6 +118,4 @@ class Alias:
             "force": "true"
         }
         url = f"stacks/branch_aliases/{self.alias_uid}?"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
         return self.api_client.delete(url, headers = self.headers, params = self.params)

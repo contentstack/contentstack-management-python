@@ -121,7 +121,7 @@ class Stack:
         data = json.dumps(data)
         return Branch(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key, self.authorization, branch_uid, data)
     
-    def branchAlias(self, alias_uid = None, data = None, json_data = None):
+    def branch_alias(self, alias_uid = None, data = None, json_data = None):
         data = json.dumps(data)
         return Alias(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key, self.authorization, alias_uid, data, json_data)
     

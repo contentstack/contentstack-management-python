@@ -17,6 +17,8 @@ class Branch:
         self.authorization = authorization
         self.branch_uid = branch_uid
         self.data = data
+        self.headers['api_key'] = self.api_key
+        self.headers['authtoken'] = self.authtoken
 
     def find(self):
         r"""
@@ -43,8 +45,6 @@ class Branch:
             "include_count": "false"
         }
         url = f"stacks/branches"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
         self.headers['management_token'] = self.authorization
         return self.api_client.get(url, headers = self.headers, params = self.params)
 
@@ -65,8 +65,6 @@ class Branch:
         --------------------------------
         """
         url = f"stacks/branches/{self.branch_uid}"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
         self.headers['management_token'] = self.authorization
         return self.api_client.get(url, headers = self.headers)
     
@@ -93,8 +91,6 @@ class Branch:
         --------------------------------
         """
         url = f"stacks/branches"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
         data = json.dumps(data)
         return self.api_client.post(url, headers = self.headers, data = data)
 
@@ -119,7 +115,4 @@ class Branch:
             "force": "true"
         }
         url = f"stacks/branches/{self.branch_uid}?"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['authorization'] = self.authorization
         return self.api_client.delete(url, headers = self.headers, params = self.params)

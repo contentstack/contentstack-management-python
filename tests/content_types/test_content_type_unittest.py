@@ -218,9 +218,9 @@ class ContentTypeUnitTests(unittest.TestCase):
         self.assertEqual(response.request.url, f"{self.client.endpoint}/content_types/{content_type_uid}/export?version=1&include_branch=false")
         self.assertEqual(response.request.method, "GET")
 
-    def test_import_content_type(self):
+    def test_imports(self):
         file_path = "tests/resources/mock_content_type/import.json"
-        response = self.client.stack(os.getenv("API_KEY")).content_type().import_content_type(file_path)
+        response = self.client.stack(os.getenv("API_KEY")).content_type().imports(file_path)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/content_types/import?overwrite=false&include_branch=false")
         self.assertEqual(response.request.method, "POST")

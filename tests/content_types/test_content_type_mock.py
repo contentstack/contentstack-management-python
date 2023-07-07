@@ -228,10 +228,10 @@ class ContentTypeMockTests(unittest.TestCase):
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual(mock_content_type_data.keys(), response.keys())
 
-    def test_import_content_type(self):
+    def test_imports(self):
         file_path = "tests/resources/mock_content_type/import.json"
-        response = self.client.stack(os.getenv("API_KEY")).content_type().import_content_type(file_path).json
-        read_mock_content_type_data  = self.read_file("import_content_type.json")
+        response = self.client.stack(os.getenv("API_KEY")).content_type().imports(file_path).json
+        read_mock_content_type_data  = self.read_file("imports.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual("Content Type imported successfully.", mock_content_type_data['notice'])
 

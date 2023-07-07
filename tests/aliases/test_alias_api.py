@@ -18,7 +18,7 @@ class AliaseApiTests(unittest.TestCase):
         self.client.login(email, password)
 
     def test_get_all_aliases(self):    
-        response = self.client.stack(os.getenv("API_KEY")).branchAlias().fetchAll()
+        response = self.client.stack(os.getenv("API_KEY")).branch_alias().find()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -26,7 +26,7 @@ class AliaseApiTests(unittest.TestCase):
 
     def test_get_an_alias(self):
         alias_uid_get = os.getenv("ALIAS_UID_GET")
-        response = self.client.stack(os.getenv("API_KEY")).branchAlias(alias_uid_get).fetch()
+        response = self.client.stack(os.getenv("API_KEY")).branch_alias(alias_uid_get).fetch()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -39,7 +39,7 @@ class AliaseApiTests(unittest.TestCase):
                 }
             }
         alias_uid = os.getenv("ALIAS_UID2")
-        response = self.client.stack(os.getenv("API_KEY")).branchAlias(alias_uid).assign(data)
+        response = self.client.stack(os.getenv("API_KEY")).branch_alias(alias_uid).assign(data)
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)
@@ -50,7 +50,7 @@ class AliaseApiTests(unittest.TestCase):
 
     def test_delete_alias(self):
         alias_uid = os.getenv("ALIAS_UID")
-        response = self.client.stack(os.getenv("API_KEY")).branchAlias(alias_uid).delete()
+        response = self.client.stack(os.getenv("API_KEY")).branch_alias(alias_uid).delete()
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)

@@ -20,6 +20,10 @@ class ContentType:
         self.authorization = authorization
         self.branch = branch
         self.content_type_uid = content_type_uid
+        self.headers['api_key'] = self.api_key
+        self.headers['authtoken'] = self.authtoken
+        self.headers['management_token'] = self.authorization
+        self.headers['branch'] = self.branch
 
     def find(self):
         r"""
@@ -43,10 +47,6 @@ class ContentType:
             "include_branch": "false"
         }
         url = "content_types"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['management_token'] = self.authorization
-        self.headers['branch'] = self.branch
         return self.api_client.get(url, headers = self.headers, params = self.params)
     
     def fetch(self):
@@ -70,10 +70,6 @@ class ContentType:
             "include_branch": "false"
         }
         url = f"content_types/{self.content_type_uid}"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['management_token'] = self.authorization
-        self.headers['branch'] = self.branch
         return self.api_client.get(url, headers = self.headers, params = self.params)
     
     def create(self, data):
@@ -137,10 +133,6 @@ class ContentType:
         }
         data = json.dumps(data)
         url = f"content_types"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['management_token'] = self.authorization
-        self.headers['branch'] = self.branch
         return self.api_client.post(url, headers = self.headers, params = self.params, data = data)
 
     def update(self, data):
@@ -202,13 +194,9 @@ class ContentType:
         }
         data = json.dumps(data)
         url = f"content_types/{self.content_type_uid}"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['management_token'] = self.authorization
-        self.headers['branch'] = self.branch
         return self.api_client.put(url, headers = self.headers, params = self.params, data = data)
     
-    def set_set_field_visibility_rules(self, data):
+    def set_field_visibility_rules(self, data):
         r"""
         The Set Field Visibility Rule for Content Type API request lets you add 
         Field Visibility Rules to existing content types. These rules allow you 
@@ -299,10 +287,6 @@ class ContentType:
         }
         data = json.dumps(data)
         url = f"content_types/{self.content_type_uid}"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['management_token'] = self.authorization
-        self.headers['branch'] = self.branch
         return self.api_client.put(url, headers = self.headers, params = self.params, data = data)
     
     def delete(self):
@@ -324,10 +308,6 @@ class ContentType:
             "force": "true"
         }
         url = f"content_types/{self.content_type_uid}"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['management_token'] = self.authorization
-        self.headers['branch'] = self.branch
         return self.api_client.delete(url, headers = self.headers, params = self.params)
     
     def references(self):
@@ -351,10 +331,6 @@ class ContentType:
             "include_branch": "false"
         }
         url = f"content_types/{self.content_type_uid}/references"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['management_token'] = self.authorization
-        self.headers['branch'] = self.branch
         return self.api_client.get(url, headers = self.headers, params = self.params)
     
     def export(self):
@@ -379,13 +355,9 @@ class ContentType:
             "include_branch": "false"
         }
         url = f"content_types/{self.content_type_uid}/export"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['management_token'] = self.authorization
-        self.headers['branch'] = self.branch
         return self.api_client.get(url, headers = self.headers, params = self.params)
     
-    def import_content_type(self, file_path):
+    def imports(self, file_path):
         r"""
         The Import a content type call imports a content type into a stack by uploading JSON file.
 
@@ -397,7 +369,7 @@ class ContentType:
             >>> import contentstack
             >>> from contentstack_management import contentstack
             >>> content_type = client.stack(api_key='api_key').content_type(content_type_uid)
-            >>> response = content_type.import_content_type()
+            >>> response = content_type.imports()
         --------------------------------
         """
         self.params = {
@@ -405,10 +377,6 @@ class ContentType:
             "include_branch": "false"
         }
         url = f"content_types/import"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        self.headers['management_token'] = self.authorization
         self.headers['Content-Type'] = "multipart/form-data"
-        self.headers['branch'] = self.branch
         files = {'content_type': open(f"{file_path}",'rb')}
         return self.api_client.post(url, headers = self.headers, params = self.params, files = files)
