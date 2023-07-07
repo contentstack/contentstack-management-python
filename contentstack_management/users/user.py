@@ -1,3 +1,5 @@
+import json
+
 
 class User:
     """
@@ -12,30 +14,115 @@ class User:
         self.endpoint = endpoint
         self.authtoken = authtoken
         self.headers = headers
+        self.headers['authtoken'] = authtoken
 
-    
-    def get(self):
+    def find(self):
+        """
+        Fetches the user entries 
+        :return: Json, with user details.
+        -------------------------------
+        [Example:]
+
+            >>> from contentstack_management import contentstack
+            >>> client = contentstack.client(host='HOST NAME')
+            >>> client.login(email="email_id", password="password")
+            >>> result = client.user().get().json()
+
+        -------------------------------
+        """
         url = "user"
-        self.headers['authtoken'] = self.authtoken
-        return self.api_client.get(url, headers = self.headers)
 
+        return self.api_client.get(url, headers=self.headers)
 
-    def update_user(self, user_data):
+    def update(self, user_data):
+        """
+        Updated user details.
+        :return: Json, with response message.
+        -------------------------------
+        [Example:]
+            >>> update_entry ={
+                                    "user": {
+                                        "company": "company name inc.",
+                                        "first_name": "sunil B Lakshman"
+                                    }
+                                }
+            >>> from contentstack_management import contentstack
+            >>> client = contentstack.client(host='HOST NAME')
+            >>> client.login(email="email_id", password="password")
+            >>> result = client.update_user(update_entry)
+        -------------------------------
+        """
         url = "user"
-        self.headers['authtoken'] = self.authtoken
-        return self.api_client.put(url, headers = self.headers, data = user_data, params = None)
-    
-    def active_user(self, user_activation_token, user_data):
+        data = json.dumps(user_data)
+        return self.api_client.put(url, headers=self.headers, data=data, params=None)
+
+    def activate(self, user_activation_token, user_data):
+        """
+        Activate user
+        :return: Json, with response message.
+        -------------------------------
+        [Example:]
+
+            >>> act_data={
+                            "user": {
+                                "first_name": "your_first_name",
+                                "last_name": "your_last_name",
+                                "password": "your_password",
+                                "password_confirmation": "confirm_your_password"
+                                }
+                            }
+            >>> from contentstack_management import contentstack
+            >>> client = contentstack.client(host='HOST NAME')
+            >>> client.login(email="email_id", password="password")
+            >>> result = client.user().active_user('user_activation_token',act_data).json()
+        -------------------------------
+        """
         url = f"user/activate/{user_activation_token}"
-        self.headers['authtoken'] = self.authtoken
-        return self.api_client.post(url, headers = self.headers, data = user_data)
-    
-    def request_password(self, user_data):
+        data = json.dumps(user_data)
+        return self.api_client.post(url, headers=self.headers, data=data)
+
+    def forgot_password(self, user_data):
+        """
+        Requested password
+        :return: Json, with response message.
+        -------------------------------
+        [Example:]
+
+            >>> user_data={
+                            "user": {
+                                "email": "john.doe@contentstack.com"
+                            }
+                        }
+            >>> from contentstack_management import contentstack
+            >>> client = contentstack.client(host='HOST NAME')
+            >>> client.login(email="email_id", password="password")
+            >>> result = client.user().request_password(user_data).json()
+        -------------------------------
+        """
         url = "user/forgot_password"
-        self.headers['authtoken'] = self.authtoken
-        return self.api_client.post(url, headers = self.headers, data = user_data)
-    
+        data = json.dumps(user_data)
+        return self.api_client.post(url, headers=self.headers, data=data)
+
     def reset_password(self, user_data):
+        """
+        Reset user password 
+        :return: Json, with response message.
+        -------------------------------
+        [Example:]
+
+           >>> user_data={
+                            "user": {
+                                "reset_password_token": "abcdefghijklmnop1234567890",
+                                "password": "Simple@123",
+                                "password_confirmation": "Simple@123"
+                            }
+                        }
+            >>> from contentstack_management import contentstack
+            >>> client = contentstack.client(host='HOST NAME')
+            >>> client.login(email="email_id", password="password")
+            >>> result = client.user().reset_password(user_data).json()
+        -------------------------------
+        """
         url = "user/reset_password"
-        self.headers['authtoken'] = self.authtoken
-        return self.api_client.post(url, headers = self.headers, data = user_data)
+        data = json.dumps(user_data)
+        return self.api_client.post(url, headers=self.headers, data=data)

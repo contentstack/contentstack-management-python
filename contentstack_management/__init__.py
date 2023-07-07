@@ -1,6 +1,5 @@
 """The __init__.py file that contains modules that need to import"""
 
-
 from contentstack_management import contentstack
 
 __title__ = 'contentstack-cms'

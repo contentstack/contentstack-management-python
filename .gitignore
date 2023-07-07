@@ -128,6 +128,13 @@ dmypy.json
 # Pyre type checker
 .pyre/
 tests/config/default.yml
-.vscode/settings.json
 
+.talismanrc
+.vscode/settings.json
+run.py
+tests/resources/.DS_Store
+.talismanrc
+tests/.DS_Store
+tests/resources/.DS_Store
+.DS_Store
 .talismanrc
