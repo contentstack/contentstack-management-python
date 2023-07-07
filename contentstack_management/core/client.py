@@ -21,8 +21,9 @@ class ApiClient:
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, endpoint, host, headers, authtoken, authorization, failure_retry, exceptions: bool,
-                 errors: bool, timeout: int, max_requests: int, retry_on_error: bool):
+    def __init__(self, endpoint, host, headers, authtoken, authorization,
+                 failure_retry, exceptions: bool, errors: bool, timeout: int,
+                 max_requests: int, retry_on_error: bool):
         self.authorization = authorization
         self.authtoken = authtoken
         self.headers = headers
@@ -116,7 +117,7 @@ class ApiClient:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
+            >>> client = contentstack.client(host='host')
             >>> response = client.login(email="email_id", password="password")
         -------------------------------
         """
@@ -161,10 +162,11 @@ class ApiClient:
         return response['user']['authtoken']
 
     def user(self):
-        return User(self.endpoint, self.auth_token, self.headers,self.api_client)
-        
-    def organizations(self, organization_uid = None):
-        return Organization(self.endpoint, self.auth_token, self.headers,self.api_client, organization_uid)
-      
-    def stack(self, api_key = None):
-        return Stack(self.endpoint, self.auth_token, self.headers,self.api_client, api_key, authorization= self.authorization)
+        return User(self.endpoint, self.auth_token, self.headers, self.api_client)
+
+    def organizations(self, organization_uid=None):
+        return Organization(self.endpoint, self.auth_token, self.headers, self.api_client, organization_uid)
+
+    def stack(self, api_key=None):
+        return Stack(self.endpoint, self.auth_token, self.headers, self.api_client, api_key,
+                     authorization=self.authorization)

@@ -2,9 +2,10 @@
 
 from contentstack_management import contentstack
 
-__title__ = 'contentstack-cms'
-__author__ = 'contentstack'
+__title__ = 'contentstack-management-python'
+__author__ = 'ishaileshmishra'
 __status__ = 'debug'
+__region__ = 'na'
 __version__ = '0.0.1'
 __host__ = 'api.contentstack.io'
 __protocol__ = 'https://'

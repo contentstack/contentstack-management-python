@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="contentstack-management",
-    version="0.0.2",
+    version="0.0.1",
     packages=['contentstack_management'],
     description="Contentstack API Client Library for Python",
     # package_dir={"": "contentstack"},
