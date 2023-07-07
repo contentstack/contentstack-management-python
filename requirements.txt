@@ -1,4 +1,4 @@
 python-dotenv
-setuptools
+setuptools==68.0.0
 requests
 pylint

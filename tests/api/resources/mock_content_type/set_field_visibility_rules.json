@@ -1,0 +1,186 @@
+{
+  "notice": "Content Type updated successfully.",
+  "content_type": {
+    "created_at": "created_at",
+    "updated_at": "updated_at",
+    "title": "updatedContentType",
+    "uid": "content_type_uid",
+    "_version": 4,
+    "inbuilt_class": false,
+    "schema": [
+      {
+        "display_name": "Title",
+        "uid": "title",
+        "data_type": "text",
+        "field_metadata": {
+          "_default": true,
+          "version": 3
+        },
+        "unique": false,
+        "mandatory": true,
+        "multiple": false,
+        "non_localizable": false
+      },
+      {
+        "display_name": "URL",
+        "uid": "url",
+        "data_type": "text",
+        "field_metadata": {
+          "_default": true,
+          "version": 3
+        },
+        "unique": false,
+        "multiple": false,
+        "mandatory": false,
+        "non_localizable": false
+      },
+      {
+        "display_name": "Single Line Textbox",
+        "uid": "single_line_textbox",
+        "data_type": "text",
+        "field_metadata": {
+          "_default": true,
+          "version": 3
+        },
+        "unique": false,
+        "multiple": false,
+        "mandatory": false,
+        "non_localizable": false
+      },
+      {
+        "display_name": "Multi Line Textbox",
+        "uid": "multi_line_textbox",
+        "data_type": "text",
+        "field_metadata": {
+          "_default": true,
+          "version": 3
+        },
+        "unique": false,
+        "multiple": false,
+        "mandatory": false,
+        "non_localizable": false
+      }
+    ],
+    "last_activity": {},
+    "maintain_revisions": true,
+    "description": "",
+    "DEFAULT_ACL": [
+      {
+        "k": "others",
+        "v": {
+          "read": false,
+          "create": false
+        }
+      },
+      {
+        "k": "users.uid",
+        "v": {
+          "read": true,
+          "sub_acl": {
+            "read": true
+          }
+        }
+      }
+    ],
+    "SYS_ACL": {
+      "roles": [
+        {
+          "read": true,
+          "sub_acl": {
+            "create": true,
+            "update": true,
+            "read": true
+          },
+          "uid": "uid"
+        },
+        {
+          "read": true,
+          "sub_acl": {
+            "read": true,
+            "create": true,
+            "update": true,
+            "delete": true
+          },
+          "uid": "uid"
+        },
+        {
+          "read": true,
+          "sub_acl": {
+            "read": true
+          },
+          "uid": "uid"
+        },
+        {
+          "read": true,
+          "sub_acl": {
+            "read": true,
+            "publish": true
+          },
+          "uid": "uid"
+        },
+        {
+          "read": true,
+          "sub_acl": {
+            "create": true,
+            "update": true,
+            "read": true,
+            "delete": true
+          },
+          "uid": "uid"
+        },
+        {
+          "read": true,
+          "sub_acl": {
+            "read": true
+          },
+          "uid": "uid"
+        },
+        {
+          "read": true,
+          "sub_acl": {
+            "read": true,
+            "publish": true
+          },
+          "uid": "uid"
+        }
+      ]
+    },
+    "field_rules": [
+      {
+        "conditions": [
+          {
+            "operand_field": "single_line_textbox",
+            "operator": "equals",
+            "value": "abc"
+          }
+        ],
+        "match_type": "all",
+        "actions": [
+          {
+            "action": "show",
+            "target_field": "multi_line_textbox"
+          }
+        ]
+      }
+    ],
+    "options": {
+      "title": "title",
+      "publishable": true,
+      "is_page": true,
+      "singleton": false,
+      "sub_title": [
+        "url"
+      ],
+      "url_pattern": "/:title",
+      "url_prefix": "/"
+    },
+    "abilities": {
+      "get_one_object": true,
+      "get_all_objects": true,
+      "create_object": true,
+      "update_object": true,
+      "delete_object": true,
+      "delete_all_objects": true
+    }
+  }
+}

@@ -3,14 +3,14 @@ frontend code to pull content from the target branch associated with an alias.""
 
 import json
 
-class Alias:
 
-    """An alias acts as a pointer to a particular branch. You can specify the alias ID in your 
+class Alias:
+    """An alias acts as a pointer to a particular branch. You can specify the alias ID in your
     frontend code to pull content from the target branch associated with an alias."""
 
     def __init__(self, endpoint, authtoken, headers, api_client, api_key, authorization, alias_uid, data, json_data):
         self.api_client = api_client
-        self.endpoint =  endpoint
+        self.endpoint = endpoint
         self.api_key = api_key
         self.params = {}
         self.headers = headers
@@ -21,6 +21,12 @@ class Alias:
         self.json_data = json_data
         self.headers['api_key'] = self.api_key
         self.headers['authtoken'] = self.authtoken
+
+    def add_param(self, key, value):
+        self.params[key] = value
+
+    def add_header(self, key, value):
+        self.headers[key] = value
 
     def find(self):
         r"""
@@ -37,7 +43,7 @@ class Alias:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> branch = client.stack(api_key='api_key').branch_alias()
+            >>> branch = contentstack.client().stack(api_key='api_key').branch_alias()
             >>> response = branch.find()
         --------------------------------
         """
@@ -48,28 +54,26 @@ class Alias:
         }
         url = f"stacks/branch_aliases"
         self.authorization['management_token'] = self.authorization
-        return self.api_client.get(url, headers = self.headers, params = self.params)
-    
+        return self.api_client.get(url, headers=self.headers, params=self.params)
+
     def fetch(self):
         r"""
         The Get a single alias request returns information of a specific alias.
 
-        :param branch_alias_uid: {str} -- Unique ID of the alias that is to be fetched.
         :return: Returns the aliase of the given UID
     
         --------------------------------
 
         [Example:]
-            >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> branch = client.stack(api_key='api_key').branch_alias(branch_alias_uid)
+            >>> branch = contentstack.client().stack(api_key='api_key').branch_alias('branch_alias_uid')
             >>> response = branch.fetch()
         --------------------------------
         """
         url = f"stacks/branch_aliases/{self.alias_uid}"
         self.authorization['management_token'] = self.authorization
-        return self.api_client.get(url, headers = self.headers)
-    
+        return self.api_client.get(url, headers=self.headers)
+
     def assign(self, data):
         r"""
         The Assign an alias request creates a new alias in a particular stack of your organization. 
@@ -95,7 +99,7 @@ class Alias:
         """
         url = f"stacks/branch_aliases/{self.alias_uid}"
         self.data = json.dumps(data)
-        return self.api_client.put(url, headers = self.headers, data = self.data, json_data = self.json_data)
+        return self.api_client.put(url, headers=self.headers, data=self.data, json_data=self.json_data)
 
     def delete(self):
         r"""
@@ -108,7 +112,6 @@ class Alias:
         --------------------------------
 
         [Example:]
-            >>> import contentstack
             >>> from contentstack_management import contentstack
             >>> branch = client.stack(api_key='api_key').branch(branch_uid="branch_uid")
             >>> response = branch.delete(data)
@@ -118,4 +121,4 @@ class Alias:
             "force": "true"
         }
         url = f"stacks/branch_aliases/{self.alias_uid}?"
-        return self.api_client.delete(url, headers = self.headers, params = self.params)
+        return self.api_client.delete(url, headers=self.headers, params=self.params)
