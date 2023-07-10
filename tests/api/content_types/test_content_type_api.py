@@ -21,21 +21,21 @@ class ContentTypeApiTests(unittest.TestCase):
         self.client.login(email, password)
 
     def test_get_all_content_types(self):
-        response = self.client.stack(os.getenv("API_KEY")).content_type().find()
+        response = self.client.stack(os.getenv("API_KEY")).content_types().find()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
             self.assertEqual(response.request.method, "GET")
 
-    def test_get_a_content_type(self):
+    def test_get_a_content_types(self):
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).fetch()
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).fetch()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
             self.assertEqual(response.request.method, "GET")
          
-    def test_create_content_type(self):
+    def test_create_content_types(self):
         data = {
 		"content_type": {
 			"title": "test content type",
@@ -75,7 +75,7 @@ class ContentTypeApiTests(unittest.TestCase):
 				}
 			}
 		}
-        response = self.client.stack(os.getenv("API_KEY")).content_type().create(data)
+        response = self.client.stack(os.getenv("API_KEY")).content_types().create(data)
         if response.status_code == 201:
             result_json = response.json()
             self.assertEqual(response.status_code, 201)
@@ -84,7 +84,7 @@ class ContentTypeApiTests(unittest.TestCase):
         else:
             self.assertEqual(response.status_code, 4222)
 
-    def test_update_content_type(self):
+    def test_update_content_types(self):
         data = {
 	    "content_type": {
 	    	"title": "updated content type",
@@ -125,7 +125,7 @@ class ContentTypeApiTests(unittest.TestCase):
 	        }
         }
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).update(data)
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).update(data)
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)
@@ -205,7 +205,7 @@ class ContentTypeApiTests(unittest.TestCase):
 	        }
         }
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).set_set_field_visibility_rules(data)
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).set_set_field_visibility_rules(data)
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)
@@ -214,9 +214,9 @@ class ContentTypeApiTests(unittest.TestCase):
         else:
             self.assertEqual(response.status_code, 422)
 
-    def test_delete_content_type(self):
+    def test_delete_content_types(self):
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).delete()
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).delete()
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)
@@ -227,7 +227,7 @@ class ContentTypeApiTests(unittest.TestCase):
 
     def test_get_all_references(self):
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).references()
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).references()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -236,7 +236,7 @@ class ContentTypeApiTests(unittest.TestCase):
 
     def test_export(self):
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).export()
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).export()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -244,7 +244,7 @@ class ContentTypeApiTests(unittest.TestCase):
 
     def test_import(self):
         file_path = "tests/resources/mock_content_type/import.json"
-        response = self.client.stack(os.getenv("API_KEY")).content_type().imports(file_path)
+        response = self.client.stack(os.getenv("API_KEY")).content_types().imports(file_path)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}/content_types/import?overwrite=false&include_branch=false")
         self.assertEqual(response.request.method, "POST")

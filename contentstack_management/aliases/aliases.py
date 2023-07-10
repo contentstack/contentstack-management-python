@@ -43,8 +43,8 @@ class Alias:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> branch = contentstack.client().stack(api_key='api_key').branch_alias()
-            >>> response = branch.find()
+            >>> alias = contentstack.client().stack(api_key='api_key').branch_alias()
+            >>> response = alias.find()
         --------------------------------
         """
         self.params = {
@@ -66,8 +66,8 @@ class Alias:
 
         [Example:]
             >>> from contentstack_management import contentstack
-            >>> branch = contentstack.client().stack(api_key='api_key').branch_alias('branch_alias_uid')
-            >>> response = branch.fetch()
+            >>> alias = contentstack.client().stack(api_key='api_key').branch_alias('branch_alias_uid')
+            >>> response = alias.fetch()
         --------------------------------
         """
         url = f"stacks/branch_aliases/{self.alias_uid}"
@@ -93,8 +93,8 @@ class Alias:
                         "target_branch": "test"
                         }
                     }
-            >>> branch = client.stack(api_key='api_key').branch_alias("alias_uid")
-            >>> response = branch.assign(data)
+            >>> alias = client.stack(api_key='api_key').branch_alias("alias_uid")
+            >>> response = alias.assign(data)
         --------------------------------
         """
         url = f"stacks/branch_aliases/{self.alias_uid}"
@@ -113,8 +113,8 @@ class Alias:
 
         [Example:]
             >>> from contentstack_management import contentstack
-            >>> branch = client.stack(api_key='api_key').branch(branch_uid="branch_uid")
-            >>> response = branch.delete(data)
+            >>> alias = client.stack(api_key='api_key').branch_alias(branch_uid="branch_uid")
+            >>> response = alias.delete(data)
         --------------------------------
         """
         self.params = {

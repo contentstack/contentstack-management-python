@@ -31,14 +31,14 @@ class ContentTypeMockTests(unittest.TestCase):
 
 
     def test_get_all_content_types(self):
-        response = self.client.stack(os.getenv("API_KEY")).content_type().find().json()
+        response = self.client.stack(os.getenv("API_KEY")).content_types().find().json()
         read_mock_content_type_data  = self.read_file("find_content_types.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual(mock_content_type_data.keys(), response.keys())
 
-    def test_get_a_content_type(self):
+    def test_get_a_content_types(self):
         content_type_uid = os.getenv("CONTENT_TYPE_UID_GET")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).fetch().json()
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).fetch().json()
         read_mock_content_type_data  = self.read_file("fetch_a_content_type.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         uid = mock_content_type_data['content_type']['uid']
@@ -84,12 +84,12 @@ class ContentTypeMockTests(unittest.TestCase):
 				}
 			}
 		}
-        response = self.client.stack(os.getenv("API_KEY")).content_type().create(data).json()
+        response = self.client.stack(os.getenv("API_KEY")).content_types().create(data).json()
         read_mock_content_type_data  = self.read_file("create_content_type.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual("Content Type created successfully.", mock_content_type_data['notice'])
 
-    def test_update_content_type(self):
+    def test_update_content_types(self):
         data = {
 	    "content_type": {
 	    	"title": "updated content type",
@@ -130,7 +130,7 @@ class ContentTypeMockTests(unittest.TestCase):
 	        }
         }
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).update(data).json
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).update(data).json
         read_mock_content_type_data  = self.read_file("update_content_type.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual("Content Type updated successfully.", mock_content_type_data['notice'])
@@ -206,35 +206,35 @@ class ContentTypeMockTests(unittest.TestCase):
 	        }
         }
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).set_set_field_visibility_rules(data)
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).set_set_field_visibility_rules(data)
         read_mock_content_type_data  = self.read_file("set_field_visibility_rules.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual("Content Type updated successfully.", mock_content_type_data['notice'])
 
-    def test_delete_content_type(self):
+    def test_delete_content_types(self):
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).delete().json()
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).delete().json()
         read_mock_content_type_data  = self.read_file("delete_content_type.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual("Content Type deleted successfully.", mock_content_type_data['notice'])
         
     def test_get_all_references(self):
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).references().json()
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).references().json()
         read_mock_content_type_data  = self.read_file("references_content_type.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual(mock_content_type_data.keys(), response.keys())
 
     def test_export(self):
         content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).export().json()
+        response = self.client.stack(os.getenv("API_KEY")).content_types(content_type_uid).export().json()
         read_mock_content_type_data  = self.read_file("export_content_type.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual(mock_content_type_data.keys(), response.keys())
 
     def test_imports(self):
         file_path = "tests/resources/mock_content_type/import.json"
-        response = self.client.stack(os.getenv("API_KEY")).content_type().imports(file_path).json
+        response = self.client.stack(os.getenv("API_KEY")).content_types().imports(file_path).json
         read_mock_content_type_data  = self.read_file("imports.json")
         mock_content_type_data = json.loads(read_mock_content_type_data)
         self.assertEqual("Content Type imported successfully.", mock_content_type_data['notice'])

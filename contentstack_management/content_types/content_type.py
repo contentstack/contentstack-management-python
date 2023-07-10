@@ -37,8 +37,8 @@ class ContentType:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> content_type = client.stack(api_key='api_key').content_type()
-            >>> response = content_type.find()
+            >>> content_type = client.stack(api_key='api_key').content_types()
+            >>> response = content_types.find()
         --------------------------------
         """
         self.params = {
@@ -60,8 +60,8 @@ class ContentType:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> content_type = client.stack(api_key='api_key').content_type(content_type_uid)
-            >>> response = content_type.fetch()
+            >>> content_type = client.stack(api_key='api_key').content_types(content_type_uid)
+            >>> response = content_types.fetch()
         --------------------------------
         """
         self.params = {
@@ -123,8 +123,8 @@ class ContentType:
 				        }
 			        }
 		        }
-            >>> content_type = client.stack(api_key='api_key').content_type()
-            >>> response = content_type.create(data)
+            >>> content_type = client.stack(api_key='api_key').content_types()
+            >>> response = content_types.create(data)
         --------------------------------
         """
 
@@ -185,8 +185,8 @@ class ContentType:
 			            	}
 			            }
 		            }
-            >>> content_type = client.stack(api_key='api_key').content_type("content_type_uid)
-            >>> response = content_type.update(data)
+            >>> content_type = client.stack(api_key='api_key').content_types("content_type_uid)
+            >>> response = content_types.update(data)
         --------------------------------
         """
         self.params = {
@@ -278,8 +278,8 @@ class ContentType:
 		                    }
 	                    }
                     }
-            >>> content_type = client.stack(api_key='api_key').content_type(content_type_uid)
-            >>> response = content_type.set.set_field_visibility_rules(data)
+            >>> content_type = client.stack(api_key='api_key').content_types(content_type_uid)
+            >>> response = content_types.set.set_field_visibility_rules(data)
         --------------------------------
         """
         self.params = {
@@ -300,8 +300,8 @@ class ContentType:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> content_type = client.stack(api_key='api_key').content_type(content_type_uid)
-            >>> response = content_type.delete()
+            >>> content_type = client.stack(api_key='api_key').content_types(content_type_uid)
+            >>> response = content_types.delete()
         --------------------------------
         """
         self.params = {
@@ -322,8 +322,8 @@ class ContentType:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> content_type = client.stack(api_key='api_key').content_type(content_type_uid)
-            >>> response = content_type.references()
+            >>> content_type = client.stack(api_key='api_key').content_types(content_type_uid)
+            >>> response = content_types.references()
         --------------------------------
         """
         self.params = {
@@ -346,8 +346,8 @@ class ContentType:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> content_type = client.stack(api_key='api_key').content_type(content_type_uid)
-            >>> response = content_type.export()
+            >>> content_type = client.stack(api_key='api_key').content_types(content_type_uid)
+            >>> response = content_types.export()
         --------------------------------
         """
         self.params = {
@@ -368,8 +368,8 @@ class ContentType:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> content_type = client.stack(api_key='api_key').content_type(content_type_uid)
-            >>> response = content_type.imports()
+            >>> content_type = client.stack(api_key='api_key').content_types(content_type_uid)
+            >>> response = content_types.imports()
         --------------------------------
         """
         self.params = {

@@ -320,7 +320,7 @@ class Stack:
         data = json.dumps(data)
         return Alias(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key, self.authorization, alias_uid, data, json_data)
     
-    def content_type(self, content_type_uid = None, branch = None):
+    def content_types(self, content_type_uid = None, branch = None):
         return ContentType(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key, self.authorization, branch, content_type_uid)
 
 
