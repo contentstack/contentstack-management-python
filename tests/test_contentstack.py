@@ -16,7 +16,7 @@ class ContentstackTests(unittest.TestCase):
         self.client.login(username, password)
 
     def test_contentstack(self):
-        client = contentstack.client(host=host, endpoint=None)
+        client = contentstack.client(host=host, authtoken='blt233233232222', max_requests=20)
         self.assertEqual(host, client.host)  # add assertion here
 
     def test_successful_get_login(self):

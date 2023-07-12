@@ -13,7 +13,7 @@ activation_token = credentials["activation_token"]
 class UserUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.client(host=host)
+        self.client = contentstack.ContentstackClient(host=host)
         self.client.login(username, password)
 
     def test_get_user(self):
@@ -68,7 +68,7 @@ class UserUnitTests(unittest.TestCase):
         url = f"user/reset_password"
         act_data = {
             "user": {
-                "reset_password_token": "abcdefghijklmnop1234567890",
+                "reset_password_token": "****",
                 "password": "Simple@123",
                 "password_confirmation": "Simple@123"
             }

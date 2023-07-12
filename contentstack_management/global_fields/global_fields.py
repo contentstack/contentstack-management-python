@@ -5,8 +5,12 @@ the CRUD operations that can be performed on the API """
 
 import json
 
+from contentstack_management.common import Parameter
 
-class Globalfields:
+_path = 'global_fields'
+
+
+class GlobalFields(Parameter):
     """
     This class takes a base URL as an argument when it's initialized, 
     which is the endpoint for the RESTFUL API that
@@ -14,13 +18,10 @@ class Globalfields:
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, endpoint, authtoken, headers, api_client, api_key, global_field_uid):
-        self.api_client = api_client
-        self.endpoint = endpoint
-        self.authtoken = authtoken
-        self.headers = headers
-        self.api_key = api_key
+    def __init__(self, client, global_field_uid=None):
+        self.client = client
         self.global_field_uid = global_field_uid
+        super().__init__(self.client)
 
     def find(self):
         """
@@ -28,18 +29,12 @@ class Globalfields:
         :return: Json, with global fields details.
         -------------------------------
         [Example:]
-
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack("API_KEY").global_fields('global_field_uid').find().json()
-
+            >>> client = contentstack.ContentstackClient(authtoken='authtoken')
+            >>> result = client.stack("api_key").global_fields('global_field_uid').find().json()
         -------------------------------
         """
-        url = "global_fields"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
-        return self.api_client.get(url, headers=self.headers)
+        return self.client.get(_path, headers=self.headers)
 
     def fetch(self):
         """
@@ -49,16 +44,13 @@ class Globalfields:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').global_fields('global_field_uid').fetch().json()
+            >>> client = contentstack.ContentstackClient(authtoken='authtoken')
+            >>> result = client.stack('api_key').global_fields('global_field_uid').fetch().json()
 
         -------------------------------
         """
-        url = f"global_fields/{self.global_field_uid}"
-        self.headers['authtoken'] = self.authtoken
-        self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers=self.headers)
+        url = f"{_path}/{self.global_field_uid}"
+        return self.client.get(url, headers=self.headers)
 
     def create(self, data):
         """
@@ -67,43 +59,22 @@ class Globalfields:
         -------------------------------
         [Example:]
             >>> data = {
-                        "global_field": {
-                            "title": "Servlet",
-                            "uid": "servlet",
-                            "schema": [{
-                                "display_name": "Name",
-                                "uid": "name",
-                                "data_type": "text"
-                            }, {
-                                "data_type": "text",
-                                "display_name": "Rich text editor",
-                                "uid": "description",
-                                "field_metadata": {
-                                    "allow_rich_text": true,
-                                    "description": "",
-                                    "multiline": false,
-                                    "rich_text_type": "advanced",
-                                    "options": [],
-                                    "version": 3
-                                },
-                                "multiple": false,
-                                "mandatory": false,
-                                "unique": false
-                            }]
-                        }
-                    }
+            >>>            "global_field": {
+            >>>                "title": "Servlet",
+            >>>                "uid": "servlet",
+            >>>                "schema": [{
+            >>>                    "display_name": "Name",
+            >>>                    "uid": "name",
+            >>>                    "data_type": "text"
+            >>>                }
+            >>>        }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').global_fields().create(data).json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> result = client.stack('api_key').global_fields().create(data)
         -------------------------------
         """
-        url = "global_fields"
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
         data = json.dumps(data)
-        return self.api_client.post(url, headers=self.headers, data=data)
+        return self.client.post(_path, headers=self.client.headers, data=data)
 
     def update(self, data):
         """
@@ -112,43 +83,23 @@ class Globalfields:
         -------------------------------
         [Example:]
             >>> data = {
-                        "global_field": {
-                            "title": "Servlet",
-                            "uid": "servlet",
-                            "schema": [{
-                                "display_name": "Name",
-                                "uid": "name",
-                                "data_type": "text"
-                            }, {
-                                "data_type": "text",
-                                "display_name": "Rich text editor",
-                                "uid": "description",
-                                "field_metadata": {
-                                    "allow_rich_text": true,
-                                    "description": "",
-                                    "multiline": false,
-                                    "rich_text_type": "advanced",
-                                    "options": [],
-                                    "version": 3
-                                },
-                                "multiple": false,
-                                "mandatory": false,
-                                "unique": false
-                            }]
-                        }
-                    }
+            >>>            "global_field": {
+            >>>                "title": "Servlet",
+            >>>                "uid": "servlet",
+            >>>                "schema": [{
+            >>>                    "display_name": "Name",
+            >>>                    "uid": "name",
+            >>>                    "data_type": "text"
+            >>>                }
+            >>>        }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').global_fields('global_field_uid').update(data).json()
-
+            >>> client = contentstack.ContentstackClient(authtoken="authtoken")
+            >>> result = client.stack('api_key').global_fields('global_field_uid').update(data)
         -------------------------------
         """
-        url = f"global_fields/{self.global_field_uid}"
-        self.headers['authtoken'] = self.authtoken
-        self.headers['api_key'] = self.api_key
+        url = f"{_path}/{self.global_field_uid}"
         data = json.dumps(data)
-        return self.api_client.put(url, headers=self.headers, data=data)
+        return self.client.put(url, headers=self.client.headers, params=self.params, data=data)
 
     def delete(self):
         """
@@ -158,17 +109,12 @@ class Globalfields:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = result = client.stack('API_KEY').global_fields('global_field_uid').delete().json()
-
+            >>> client = contentstack.ContentstackClient(authtoken="authtoken")
+            >>> result = client.stack('api_key').global_fields('global_field_uid').delete()
         -------------------------------
         """
-        url = f"global_fields/{self.global_field_uid}"
-        self.headers['authtoken'] = self.authtoken
-        self.headers['api_key'] = self.api_key
-        params = {'force': True}
-        return self.api_client.delete(url, headers=self.headers, params=params)
+        url = f"{_path}/{self.global_field_uid}"
+        return self.client.delete(url, headers=self.client.headers, params=self.params)
 
     def imports(self, file_path):
         """
@@ -178,20 +124,14 @@ class Globalfields:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> file_path = "tests/resources/mock_global_fields/import_global_fields.json"
-            >>> result = client.stack('API_KEY').global_fields().imports(file_path).json()
-
+            >>> client = contentstack.ContentstackClient(authtoken="authtoken")
+            >>> path = "tests/resources/mock_global_fields/import_global_fields.json"
+            >>> result = client.stack('api_key').global_fields().imports(path)
         -------------------------------
         """
-        url = f"global_fields/import"
-        self.headers['authtoken'] = self.authtoken
-        self.headers['api_key'] = self.api_key
-        self.headers['Content-Type'] = "multipart/form-data"
-        params = {'include_branch': False}
+        self.client.headers['Content-Type'] = "multipart/form-data"
         files = {'global_field': open(f"{file_path}", 'rb')}
-        return self.api_client.post(url, headers=self.headers, params=params, files=files)
+        return self.client.post('global_fields/import', headers=self.client.headers, params=self.params, files=files)
 
     def export(self):
         """
@@ -201,13 +141,11 @@ class Globalfields:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').global_fields().export().json()
-
+            >>> client = contentstack.ContentstackClient(authtoken='authtoken')
+            >>> result = client.stack('api_key').global_fields().export().json()
         -------------------------------
         """
-        url = f"global_fields/{self.global_field_uid}/export"
-        self.headers['authtoken'] = self.authtoken
-        self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers=self.headers)
+        if self.global_field_uid is None or '':
+            raise Exception('global_field_uid is required')
+        url = f"{_path}/{self.global_field_uid}/export"
+        return self.client.get(url, headers=self.client.headers, params=self.params)

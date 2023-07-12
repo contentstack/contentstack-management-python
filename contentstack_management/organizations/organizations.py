@@ -1,21 +1,22 @@
 import json
 
+from contentstack_management.common import Parameter
 
-class Organization:
+
+class Organization(Parameter):
     """
     This class takes a base URL as an argument when it's initialized, 
     which is the endpoint for the RESTFUL API that
     we'll be interacting with. The create(), read(), update(), and delete() 
     methods each correspond to the CRUD 
-    operations that can be performed on the API """
+    operations that can be performed on the API
+    """
 
-    def __init__(self, endpoint, authtoken, headers, api_client, organization_uid):
-        self.api_client = api_client
-        self.endpoint = endpoint
-        self.authtoken = authtoken
-        self.headers = headers
+    def __init__(self, client, organization_uid):
+        self.client = client
         self.organization_uid = organization_uid
-        self.headers['authtoken'] = self.authtoken
+        self._path = f'organizations/{self.organization_uid}'
+        super().__init__(client)
 
     def find(self):
         """
@@ -25,13 +26,11 @@ class Organization:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.organizations().get().json()
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> result = client.organizations().find()
         -------------------------------
         """
-        url = "organizations"
-        return self.api_client.get(url, headers=self.headers)
+        return self.client.get('organizations', headers=self.client.headers)
 
     def fetch(self):
         """
@@ -41,14 +40,15 @@ class Organization:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.organizations('ORG_UID').get().json()
+            >>> client = contentstack.ContentstackClient(host='host', authtoken="")
+            >>> client.login(email="email", password="password")
+            >>> result = client.organizations('organization_uid').get().json()
 
         -------------------------------
         """
-        url = f"organizations/{self.organization_uid}"
-        return self.api_client.get(url, headers=self.headers)
+        if self.organization_uid is None or '':
+            raise Exception('organization_uid is required')
+        return self.client.get(self._path, headers=self.client.headers)
 
     def roles(self):
         """
@@ -58,14 +58,16 @@ class Organization:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.organizations('ORG_UID').get_organization_roles().json()
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> client.login(email="email", password="password")
+            >>> result = client.organizations('organization_uid').get_organization_roles().json()
 
         -------------------------------
         """
-        url = f"organizations/{self.organization_uid}/roles"
-        return self.api_client.get(url, headers=self.headers)
+        url = f"{self._path}/roles"
+        if self.organization_uid is None or '':
+            raise Exception('organization_uid is required')
+        return self.client.get(url, headers=self.client.headers)
 
     def add_users(self, user_data):
         """
@@ -74,34 +76,33 @@ class Organization:
         -------------------------------
         [Example:]
             >>> data = {
-                        "share": {
-                            "users": {
-                                "abc@sample.com": ["{{orgAdminRoleUid}}"],
-                                "xyz@sample.com": ["{{orgMemberRoleUid}}"]
-                            },
-                            "stacks": {
-                                "abc@sample.com": {
-                                    "{{apiKey}}": ["{{stackRoleUid1}}"]
-                                },
-                                "xyz@sample.com": {
-                                    "blta1ed1f11111c1eb1": ["blt111d1b110111e1f1"],
-                                    "bltf0c00caa0f0000f0": ["bltcea22222d2222222", "blt333f33cb3e33ffde"]
-                                }
-                            },
-                            "message": "Invitation message"
-                        }
-                    }
-
+            >>>            "share": {
+            >>>                "users": {
+            >>>                    "abc@sample.com": ["{****}"],
+            >>>                    "xyz@sample.com": ["{****}"]
+            >>>                },
+            >>>                "stacks": {
+            >>>                    "abc@sample.com": {
+            >>>                        "{{apiKey}}": ["{****}"]
+            >>>                    },
+            >>>                    "xyz@sample.com": {
+            >>>                    }
+            >>>                },
+            >>>                "message": "Invitation message"
+            >>>            }
+            >>>        }
+            >>>
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.organizations('ORG_UID').organization_add_users(data).json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> client.login(email="email", password="password")
+            >>> result = client.organizations('organization_uid').organization_add_users(data).json()
         -------------------------------
         """
-        url = f"organizations/{self.organization_uid}/share"
+        url = f"{self._path}/share"
+        if self.organization_uid is None or '':
+            raise Exception('organization_uid is required')
         data = json.dumps(user_data)
-        return self.api_client.post(url, headers=self.headers, data=data)
+        return self.client.post(url, headers=self.client.headers, data=data)
 
     def transfer_ownership(self, data):
         """
@@ -109,21 +110,20 @@ class Organization:
         :return: Json, with user details.
         -------------------------------
         [Example:]
-            >>> data ={
-                        "transfer_to": "abc@sample.com"
-                    }
-
+            >>> data = {
+            >>>      "transfer_to": "abc@sample.com"
+            >>>   }
+            >>>
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.organizations('ORG_UID').transfer_organizations_ownership(data).json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> result = client.organizations('organization_uid').transfer_organizations_ownership(data)
         -------------------------------
         """
-
-        url = f"organizations/{self.organization_uid}/transfer-ownership"
+        url = f"{self._path}/transfer-ownership"
+        if self.organization_uid is None or '':
+            raise Exception('organization_uid is required')
         data = json.dumps(data)
-        return self.api_client.post(url, headers=self.headers, data=data)
+        return self.client.post(url, headers=self.client.headers, data=data)
 
     def stacks(self):
         """
@@ -131,16 +131,16 @@ class Organization:
         :return: Json, with organization stack details.
         -------------------------------
         [Example:]
-
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.organizations('ORG_UID').organization_stacks().json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> client.login(email="email", password="password")
+            >>> result = client.organizations('organization_uid').organization_stacks()
         -------------------------------
         """
-        url = f"organizations/{self.organization_uid}/stacks"
-        return self.api_client.get(url, headers=self.headers)
+        url = f"{self._path}/stacks"
+        if self.organization_uid is None or '':
+            raise Exception('organization_uid is required')
+        return self.client.get(url, headers=self.client.headers)
 
     def logs(self):
         """
@@ -148,13 +148,13 @@ class Organization:
         :return: Json, with organization log details.
         -------------------------------
         [Example:]
-
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.organizations('ORG_UID').organization_logs().json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> client.login(email="email", password="password")
+            >>> result = client.organizations('organization_uid').organization_logs().json()
         -------------------------------
         """
-        url = f"organizations/{self.organization_uid}/logs"
-        return self.api_client.get(url, headers=self.headers)
+        url = f"{self._path}/logs"
+        if self.organization_uid is None or '':
+            raise Exception('organization_uid is required')
+        return self.client.get(url, headers=self.client.headers, params=self.params)

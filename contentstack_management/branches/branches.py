@@ -5,20 +5,17 @@ organized, and structured manner without impacting each other."""
 
 import json
 
-class Branch:
+from contentstack_management.common import Parameter
 
-    def __init__(self, endpoint, authtoken, headers, api_client, api_key, authorization, branch_uid, data):
-        self.api_client = api_client
-        self.endpoint =  endpoint
-        self.api_key = api_key
-        self.params = {}
-        self.headers = headers
-        self.authtoken = authtoken
-        self.authorization = authorization
+_path = 'stacks/branches'
+
+
+class Branch(Parameter):
+
+    def __init__(self, client, branch_uid=None):
         self.branch_uid = branch_uid
-        self.data = data
-        self.headers['api_key'] = self.api_key
-        self.headers['authtoken'] = self.authtoken
+        self.client = client
+        super().__init__(self.client)
 
     def find(self):
         r"""
@@ -35,20 +32,13 @@ class Branch:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> branch = client.stack(api_key='api_key').branch()
+            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch()
             >>> response = branch.find()
         --------------------------------
         """
-        self.params = {
-            "limit": 2,
-            "skip": 2,
-            "include_count": "false"
-        }
-        url = f"stacks/branches"
-        self.headers['management_token'] = self.authorization
-        return self.api_client.get(url, headers = self.headers, params = self.params)
+        return self.client.get(_path, headers=self.client.headers, params=self.params)
 
-    def fetch(self):
+    def fetch(self, branch_uid: str):
         r"""
         The Get a single branch request returns information of a specific branch.
 
@@ -60,14 +50,16 @@ class Branch:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> branch = client.stack(api_key='api_key').branch(branch_uid="branch_uid")
+            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch(branch_uid="branch_uid")
             >>> response = branch.fetch()
         --------------------------------
         """
-        url = f"stacks/branches/{self.branch_uid}"
-        self.headers['management_token'] = self.authorization
-        return self.api_client.get(url, headers = self.headers)
-    
+        if branch_uid is None or '':
+            raise Exception('branch_uid is required field')
+        self.branch_uid = branch_uid
+        url = f"{_path}/{self.branch_uid}"
+        return self.client.get(url, headers=self.client.headers)
+
     def create(self, data):
         r"""
         The Create a branch request creates a new branch in a particular stack of your organization.
@@ -86,18 +78,16 @@ class Branch:
                     "source": "main"
                     }
                 }
-            >>> branch = client.stack(api_key='api_key').branch()
+            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch()
             >>> response = branch.create(data)
         --------------------------------
         """
-        url = f"stacks/branches"
         data = json.dumps(data)
-        return self.api_client.post(url, headers = self.headers, data = data)
+        return self.client.post(_path, headers=self.client.headers, data=data)
 
-    def delete(self):
+    def delete(self, branch_uid: str):
         r"""
         The Create a branch request creates a new branch in a particular stack of your organization.
-
         :param branch_uid: {str} -- Unique ID of the branch that is to be deleted.
         :params force: {bool}
         :return: Returns status code and message
@@ -107,12 +97,12 @@ class Branch:
         [Example:]
             >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> branch = client.stack(api_key='api_key').branch(branch_uid="branch_uid")
+            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch(branch_uid="branch_uid")
             >>> response = branch.delete(data)
         --------------------------------
         """
-        self.params = {
-            "force": "true"
-        }
-        url = f"stacks/branches/{self.branch_uid}?"
-        return self.api_client.delete(url, headers = self.headers, params = self.params)
+        self.branch_uid = branch_uid
+        if self.branch_uid is None or '':
+            raise Exception('branch_uid is required field')
+        url = f"{_path}/{self.branch_uid}"
+        return self.client.delete(url, headers=self.client.headers, params=self.params)

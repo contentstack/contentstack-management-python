@@ -1,84 +1,83 @@
-import platform
+from enum import Enum
 
-import contentstack_management
-from .core.client import ApiClient
+from contentstack_management._api_client import _APIClient
+from contentstack_management.organizations.organizations import Organization
+from contentstack_management.stack.stack import Stack
+from contentstack_management.user_session.user_session import UserSession
+from contentstack_management.users.user import User
 
-default_host = 'api.contentstack.io'
-default_endpoint = 'https://api.contentstack.io'
-default_api_version = 'v3'
-default_protocol = 'https://'
-default_region = 'na'
-default_timeout = 30
-default_max_request = 5
+version = '0.0.1'
 
 
-def __platform():
-    os_platform = platform.system()
-    if os_platform == 'Darwin':
-        os_platform = 'macOS'
-    elif not os_platform or os_platform == 'Java':
-        os_platform = None
-    elif os_platform and os_platform not in ['macOS', 'Windows']:
-        os_platform = 'Linux'
-    os_platform = {'name': os_platform, 'version': platform.release()}
-    return os_platform
+class ContentstackRegion(Enum):
+    US = "us"
+    EU = "eu"
+    AZURE_EU = "azure-eu"
+    AZURE_NA = "azure-na"
 
 
-def user_agents(headers):
-    headers.update({'sdk': dict(
-        name=contentstack_management.__package__,
-        version=contentstack_management.__version__
-    ), 'os': str(__platform())})
-
-    package = f"{contentstack_management.__title__}/{contentstack_management.__version__}"
-    return {'User-Agent': str(headers), "X-User-Agent": package, 'Content-Type': 'application/json'}
-
-
-def client(endpoint=None,
-           host: str = None, authtoken: str = None,
-           authorization: str = None, headers=None, region=default_region,
-           timeout: int = default_timeout,
-           failure_retry: int = 0,
-           exceptions: bool = True, errors: bool = True,
-           max_requests: int = default_max_request, retry_on_error: bool = True):
-    """
-    :param endpoint: Optional API endpoint.
-    :param host: Optional hostname for the API endpoint.
-    :param authtoken: Optional authentication token for API requests
-    :param headers: Optional headers to be included with API requests
-    :param region: optional region to be included in API requests,
-        We have region support options for na, eu, azure-eu, azure-na
-    :param authorization: Optional authorization value for API requests
-    :param timeout: Optional timeout value for API requests
-    :param failure_retry: Optional number of retries for API requests that fail
-    :param exceptions: Optional boolean value indicating whether to handle exceptions during API requests
-    :param errors: Optional boolean value indicating whether to handle errors during API requests.
-    :param max_requests:Optional maximum number of requests to be made
-    :param retry_on_error: Optional boolean value indicating whether to retry API requests on error.
-    :return: A client object for performing API operations.
-    -------------------------------
-    [Example:]
-    
-        >>> from contentstack_management import contentstack
-        >>> client = contentstack.client()
-    -------------------------------
-    """
+def user_agents(headers=None):
     if headers is None:
         headers = {}
-    headers = user_agents(headers)
-    if host is None:
-        host = contentstack_management.__host__
+    local_headers = {'X-User-Agent': f'contentstack-management-python/v{version}',
+                     "Content-Type": "application/json"}
+    headers.update(local_headers)
+    return headers
 
-    if endpoint is None:
-        endpoint = contentstack_management.__endpoint__
+
+class ContentstackClient:
+
+    # TODO: DefaultCSCredential(), needs to be implemented
+    def __init__(self, host: str = 'api.contentstack.io', scheme: str = 'https://',
+                 authtoken=None, management_token=None, headers: {} = None,
+                 region: ContentstackRegion = ContentstackRegion.US, version='v3', timeout=2, max_retries: int = 18,
+                 **kwargs):
+        self.endpoint = 'https://api.contentstack.io/v3/'
+        if region is not ContentstackRegion.US:
+            self.endpoint = f'{scheme}{region.value}-{host}/{version}/'
         if host is not None:
-            endpoint = f'{contentstack_management.__protocol__}{host}/{contentstack_management.__api_version__}'
+            self.endpoint = f'{scheme}{host}/{version}/'
+        headers['authtoken'] = authtoken
+        headers['authorization'] = management_token
+        self.client = _APIClient(endpoint=self.endpoint, headers=headers, timeout=timeout, max_retries=max_retries)
 
-    if timeout is None:
-        timeout = default_timeout
+        """
+        :param host: Optional hostname for the API endpoint.
+        :param authtoken: Optional authentication token for API requests
+        :param headers: Optional headers to be included with API requests
+        :param authorization: Optional headers to be included in the api request
+        :param region: optional region to be included in API requests, 
+        We have region support options for na, eu, azure-eu, azure-na
+        :param scheme: optional scheme to be included in API requests
+        :param version: optional version to be included in API request path url,
+        :param timeout: Optional timeout value for API requests
+        :param max_requests:Optional maximum number of requests to be made
+        :param retry_on_error: Optional boolean value indicating whether to retry API requests on error.
+        :return: A client object for performing API operations.
+        -------------------------------
+        [Example:]
 
-    return ApiClient(host=host, endpoint=endpoint, authtoken=authtoken,
-                     headers=headers, authorization=authorization,
-                     timeout=timeout, failure_retry=failure_retry,
-                     exceptions=exceptions, errors=errors,
-                     max_requests=max_requests, retry_on_error=retry_on_error)
+        >>> from contentstack_management import contentstack
+        >>> contentstack_client = contentstack.client()
+        -------------------------------
+        """
+
+    def login(self, email: str, password: str, tfa_token: str = None):
+        return UserSession(self.client).login(email, password, tfa_token)
+        pass
+
+    def logout(self):
+        return UserSession(client=self.client).logout()
+
+    @property
+    def authtoken(self):
+        return self.client.headers['authtoken']
+
+    def user(self):
+        return User(self.client)
+
+    def organizations(self, organization_uid: str = None):
+        return Organization(self.client, organization_uid)
+
+    def stack(self, api_key: str = None):
+        return Stack(self.client, api_key)

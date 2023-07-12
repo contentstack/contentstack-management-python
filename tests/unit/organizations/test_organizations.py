@@ -2,20 +2,23 @@ import json
 import os
 import unittest
 
-from dotenv import load_dotenv
-
 from contentstack_management import contentstack
+from tests.cred import get_credentials
 
-
-def load_api_keys():
-    load_dotenv()
+credentials = get_credentials()
+username = credentials["username"]
+password = credentials["password"]
+api_key = credentials["api_key"]
+host = credentials["host"]
+organization_uid = credentials["organization_uid"]
+user_id = credentials["user_id"]
+ownership_token = credentials["ownership_token"]
 
 
 class OrganizationUnitTests(unittest.TestCase):
 
     def setUp(self):
-        load_api_keys()
-        self.client = contentstack.client(host=os.getenv("host"))
+        self.client = contentstack.ContentstackClient(host=host)
         self.client.login(os.getenv("email"), os.getenv("password"))
 
     def test_fetch_organization(self):
@@ -48,8 +51,8 @@ class OrganizationUnitTests(unittest.TestCase):
                         "{piKey": ["{{stackRoleUid1}}"]
                     },
                     "xyz@sample.com": {
-                        "blta1ed1f11111c1eb1": ["blt111d1b110111e1f1"],
-                        "bltf0c00caa0f0000f0": ["bltcea22222d2222222", "blt333f33cb3e33ffde"]
+                        "a": [""],
+                        "b": ["", ""]
                     }
                 },
                 "message": "Invitation message"

@@ -1,5 +1,11 @@
 import json
 
+_path = "user-session"
+
+
+def authtoken(response):
+    return response['user']['authtoken']
+
 
 class UserSession:
     """
@@ -7,43 +13,42 @@ class UserSession:
     which is the endpoint for the RESTFUL API that
     we'll be interacting with. The create(), read(), update(), and delete() 
     methods each correspond to the CRUD 
-    operations that can be performed on the API """
+    operations that can be performed on the API
+    """
 
-    def __init__(self, username=None, password=None, api_client=None):
-        self.headers = api_client.headers
-        self.api_client = api_client
-        self.endpoint = api_client.endpoint
-        self.email = username
-        self.password = password
-        self.authtoken = api_client.authtoken
+    def __init__(self, client=None):
+        self.client = client
+        self.authtoken = self.client.headers['authtoken']
 
-    def login(self):
-        if self.email is None or self.email == '':
+    def login(self, email=None, password=None, tfa_token=None):
+        if email is None or email == '':
             raise PermissionError(
-                'You are not permitted to the stack without valid email id')
+                'Email Id is required')
 
-        if self.password is None or self.password == '':
+        if password is None or password == '':
             raise PermissionError(
-                'You are not permitted to the stack without valid password')
+                'Password is required')
 
-        url = "user-session"
         data = {
             "user": {
-                "email": self.email,
-                "password": self.password
-
+                "email": email,
+                "password": password,
             }
         }
+
+        if tfa_token is not None:
+            data["user"]["tf_token"] = tfa_token
+
         data = json.dumps(data)
-        response = self.api_client.post(url, headers=self.headers, data=data, json_data=None)
-        self.auth_token = self.get_authtoken(response.json()) if response.status_code == 200 else self.authtoken
+        response = self.client.post(_path, headers=self.client.headers, data=data, json_data=None)
+        if response.status_code == 200:
+            res = response.json()
+            self.client.headers['authtoken'] = res['user']['authtoken']
         return response
 
     def logout(self):
-        url = "user-session"
-        self.headers['authtoken'] = self.auth_token
-        response = self.api_client.delete(url, headers=self.headers, params=None, json_data=None)
+        self.client.headers.update['authtoken'] = self.authtoken
+        response = self.client.delete(_path, headers=self.client.headers, params=None, json_data=None)
+        if response.status_code == 200:
+            self.client.headers['authtoken'] = None
         return response
-
-    def get_authtoken(self, response):
-        return response['user']['authtoken']
