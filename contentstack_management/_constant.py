@@ -1,13 +1,18 @@
 import platform
-
-from requests import __version__
+from sys import _version_info
 
 
 def _default_user_agent():
+    """
+    The function `_default_user_agent()` returns a dictionary containing information about the user
+    agent, including the SDK, app, platform, and operating system.
+    :return: a dictionary containing information about the user agent.
+    """
+
     header = {
         'sdk': {
             'name': 'contentstack-management.python',
-            'version': __version__
+            'version': _version_info
         },
         'app': {
             'name': 'contentstack-management.python',
@@ -36,6 +41,11 @@ def _default_user_agent():
 
 
 def _request_headers():
+    """
+    The function `_request_headers` returns a dictionary of headers for an HTTP request.
+    :return: a dictionary containing the headers for a HTTP request.
+    """
+    
     headers = {
         'X-User-Agent': _default_user_agent(),
         'Content-Type':
