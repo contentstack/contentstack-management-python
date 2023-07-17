@@ -29,7 +29,7 @@ class ContentstackClient:
 
     # TODO: DefaultCSCredential(), needs to be implemented
     def __init__(self, host: str = 'api.contentstack.io', scheme: str = 'https://',
-                 authtoken=None, management_token=None, headers: {} = None,
+                 authtoken=None, management_token=None, headers: dict = None,
                  region: ContentstackRegion = ContentstackRegion.US, version='v3', timeout=2, max_retries: int = 18,
                  **kwargs):
         self.endpoint = 'https://api.contentstack.io/v3/'
@@ -37,8 +37,12 @@ class ContentstackClient:
             self.endpoint = f'{scheme}{region.value}-{host}/{version}/'
         if host is not None:
             self.endpoint = f'{scheme}{host}/{version}/'
-        headers['authtoken'] = authtoken
-        headers['authorization'] = management_token
+        if authtoken is not None:
+            headers['authtoken'] = authtoken
+        
+        if management_token is not None:
+            headers['authorization'] = management_token
+        headers = user_agents(headers)
         self.client = _APIClient(endpoint=self.endpoint, headers=headers, timeout=timeout, max_retries=max_retries)
 
         """

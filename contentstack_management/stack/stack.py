@@ -284,7 +284,7 @@ class Stack(Parameter):
     def branch_alias(self):
         return Alias(self.client)
 
-    def content_type(self, content_type_uid=None, branch=None):
+    def content_types(self, content_type_uid=None, branch=None):
         return ContentType(self.client, content_type_uid, branch)
 
     def unshare(self, data):

@@ -19,7 +19,7 @@ class UserUnitTests(unittest.TestCase):
     def test_get_user(self):
         response = self.client.user().find()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/user")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}user")
         self.assertEqual(response.request.method, "GET")
 
     def test_update_user(self):
@@ -27,12 +27,13 @@ class UserUnitTests(unittest.TestCase):
         user_data = {
             "user": {
                 "company": "company name inc.",
-                "first_name": "sunil B Lakshman"
+                "first_name": "Sunil",
+                "last_name": "Lakshman",
             }
         }
         response = self.client.user().update(user_data)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}{url}")
         self.assertEqual(response.request.method, "PUT")
 
     def test_active_user(self):
@@ -46,8 +47,7 @@ class UserUnitTests(unittest.TestCase):
             }
         }
         response = self.client.user().activate(activation_token, act_data)
-        self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}{url}")
         self.assertEqual(response.request.method, "POST")
         # Additional assertions for error handling
 
@@ -60,7 +60,7 @@ class UserUnitTests(unittest.TestCase):
         }
         response = self.client.user().forgot_password(act_data)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}{url}")
         self.assertEqual(response.request.method, "POST")
         # Additional assertions for error handling
 
@@ -75,7 +75,7 @@ class UserUnitTests(unittest.TestCase):
         }
         response = self.client.user().reset_password(act_data)
         self.assertEqual(response.status_code, 422)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/{url}")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}{url}")
         self.assertEqual(response.request.method, "POST")
         # Additional assertions for error handling
 

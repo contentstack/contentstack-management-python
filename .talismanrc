@@ -62,3 +62,13 @@ fileignoreconfig:
 - filename: contentstack_management/global_fields/global_fields.py
   checksum: 53742c03c5c459a195b99b613a1df2dde7b9a61f6c4839b51be3f54dec56dd21
 version: ""
+fileignoreconfig:
+- filename: tests/mock/entry/test_entry_mock.py
+  checksum: 8a3c549a33f4726e6157596a518d99aee1f7f0d8530345ed28c109642d0a856a
+- filename: tests/unit/entry/test_entry.py
+  checksum: 643ad913863e31c965251e3ab840e518c48765da6fb11eb5059321b8b6ec5612
+- filename: contentstack_management/entry/entry.py
+  checksum: 60eb34df71a177f0539b9615e36d92dd1648030d464bc62468a6b533b739bcc9
+- filename: tests/api/entry/test_entry_api.py
+  checksum: 3bc7ea1f5a5a9ecd7d422df8760e69d212cdef8c2cf3a1d22d78991ba549c504
+version: ""

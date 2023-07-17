@@ -24,7 +24,10 @@ class UserSession:
         assumed to be a dictionary
         """
         self.client = client
-        self.authtoken = self.client.headers['authtoken']
+        if 'authtoken' in self.client.headers:
+            self.authtoken = self.client.headers['authtoken']
+        else:
+            self.authtoken = None
 
 
     def login(self, email=None, password=None, tfa_token=None):

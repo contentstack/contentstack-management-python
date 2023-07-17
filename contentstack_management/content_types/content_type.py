@@ -5,6 +5,7 @@ to first create a content type, and then create entries using the content type. 
 import json
 
 from contentstack_management.common import Parameter
+from ..entry.entry import Entry
 
 _path = 'content_types'
 
@@ -15,9 +16,10 @@ class ContentType(Parameter):
         The create(), read(), update(), and delete() methods each correspond to 
         the CRUD operations that can be performed on the API"""
 
-    def __init__(self, client, content_type_uid=None):
+    def __init__(self, client, content_type_uid=None, branch = None):
         self.client = client
         self.content_type_uid = content_type_uid
+        self.branch = branch
         super().__init__(self.client)
 
     def find(self):
@@ -338,3 +340,8 @@ class ContentType(Parameter):
         self.client.headers['Content-Type'] = "multipart/form-data"
         files = {'content_type': open(f"{file_path}", 'rb')}
         return self.client.post(url, headers=self.client.headers, params=self.params, files=files)
+
+    def entry(self, entry_uid=None):
+        if self.content_type_uid is None:
+            raise Exception('Content type uid is required')
+        return Entry(self.client, self.content_type_uid, entry_uid)

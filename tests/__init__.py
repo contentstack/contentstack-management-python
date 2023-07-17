@@ -25,6 +25,7 @@ from .unit.content_types.test_content_type import ContentTypeUnitTests
 from .unit.organizations.test_organizations import OrganizationUnitTests
 from .unit.stack.test_stack import StacksUnitTests
 from .unit.users.test_users import UserUnitTests
+from .unit.entry.test_entry import EntryUnitTests
 
 
 def all_tests():
@@ -38,6 +39,8 @@ def all_tests():
     test_module_user_api = TestLoader().loadTestsFromTestCase(UserApiTests)
     test_module_org_mock = TestLoader().loadTestsFromTestCase(OrganizationMockTests)
     test_module_user_mock = TestLoader().loadTestsFromTestCase(UserMockTests)
+    test_module_entry_unittest = TestLoader().loadTestsFromTestCase(EntryUnitTests)
+
 
     TestSuite([
         test_module_contentstack,
@@ -48,6 +51,7 @@ def all_tests():
         test_module_user_mock,
         test_module_user_unittest,
         test_module_stacks_api,
-        test_module_stacks_unit
+        test_module_stacks_unit,
+        test_module_entry_unittest
 
     ])

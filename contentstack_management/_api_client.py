@@ -22,7 +22,7 @@ class _APIClient:
         """
         
         self.endpoint = endpoint
-        # self.headers = headers
+        self.headers = headers
         self.timeout = timeout
         self.max_retries = max_retries
         pass
@@ -56,7 +56,7 @@ class _APIClient:
         response = requests.request(
             method, url, headers=headers, params=params, data=data, json=json_data)
         # response.raise_for_status()
-        return response.json()
+        return response
 
     def get(self, path, params=None, headers=None):
         """
