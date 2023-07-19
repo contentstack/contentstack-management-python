@@ -19,7 +19,7 @@ from .mock.branches.test_branch_mock import BranchMockTests
 from .mock.organizations.test_org_mock import OrganizationMockTests
 from .mock.users.test_mock import UserMockTests
 from .test_contentstack import ContentstackTests
-from .unit.aliases.test_alias import AliasesUnitTests
+from .unit.aliases.test_alias_unit import AliasesUnitTests
 from .unit.branches.test_branch import BranchesUnitTests
 from .unit.content_types.test_content_type import ContentTypeUnitTests
 from .unit.organizations.test_organizations import OrganizationUnitTests
@@ -40,6 +40,7 @@ def all_tests():
     test_module_org_mock = TestLoader().loadTestsFromTestCase(OrganizationMockTests)
     test_module_user_mock = TestLoader().loadTestsFromTestCase(UserMockTests)
     test_module_entry_unittest = TestLoader().loadTestsFromTestCase(EntryUnitTests)
+    test_module_alias_unittest = TestLoader().loadTestsFromTestCase(AliasesUnitTests)
 
 
     TestSuite([
@@ -52,6 +53,7 @@ def all_tests():
         test_module_user_unittest,
         test_module_stacks_api,
         test_module_stacks_unit,
-        test_module_entry_unittest
+        test_module_entry_unittest,
+        test_module_alias_unittest
 
     ])

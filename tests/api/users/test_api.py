@@ -13,7 +13,7 @@ activation_token = credentials["activation_token"]
 class UserApiTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.client(host=host)
+        self.client = contentstack.ContentstackClient(host=host)
         self.client.login(username, password)
 
     def test_get_user(self):

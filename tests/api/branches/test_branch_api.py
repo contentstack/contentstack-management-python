@@ -4,32 +4,32 @@ import unittest
 from dotenv import load_dotenv
 
 from contentstack_management import contentstack
+from tests.cred import get_credentials
 
+credentials = get_credentials()
+username = credentials["username"]
+password = credentials["password"]
+api_key = credentials["api_key"]
+host = credentials["host"]
+branch_uid = credentials["branch_uid"]
 
-def load_api_keys():
-    load_dotenv()
 
 
 class BranchApiTests(unittest.TestCase):
 
     def setUp(self):
-        load_api_keys()
-        host = os.getenv("HOST")
-        email = os.getenv("EMAIL")
-        password = os.getenv("PASSWORD")
-        self.client = contentstack.client(host = host)
-        self.client.login(email, password)
+        self.client = contentstack.ContentstackClient(host = host)
+        self.client.login(username, password)
 
     def test_get_all_branches(self):    
-        response = self.client.stack(os.getenv("API_KEY")).branch().find()
+        response = self.client.stack(api_key).branch().find()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
             self.assertEqual(response.status_code, 400)
 
     def test_get_a_branch(self):
-        branch_uid = os.getenv("BRANCH_UID_GET")
-        response = self.client.stack(os.getenv("API_KEY")).branch(branch_uid).fetch()
+        response = self.client.stack(api_key).branch(branch_uid).fetch()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -42,7 +42,7 @@ class BranchApiTests(unittest.TestCase):
             "source": "main"
             }
         }
-        response = self.client.stack(os.getenv("API_KEY")).branch().create(data)
+        response = self.client.stack(api_key).branch().create(data)
         if response.status_code == 201:
             result_json = response.json()
             self.assertEqual(response.status_code, 201)
@@ -52,8 +52,7 @@ class BranchApiTests(unittest.TestCase):
             self.assertEqual(response.status_code, 400)
 
     def test_delete_branch(self):
-        branch_uid = os.getenv("BRANCH_UID_DEL2")
-        response = self.client.stack(os.getenv("API_KEY")).branch(branch_uid).delete()
+        response = self.client.stack(api_key).branch(branch_uid).delete()
         if response.status_code == 200:
             result_json = response.json()
             self.assertEqual(response.status_code, 200)

@@ -4,36 +4,36 @@ import unittest
 from dotenv import load_dotenv
 
 from contentstack_management import contentstack
+from tests.cred import get_credentials
 
+credentials = get_credentials()
+username = credentials["username"]
+password = credentials["password"]
+host = credentials["host"]
+api_key = credentials["api_key"]
+content_type_uid = credentials["content_type_uid"]
 
-def load_api_keys():
-    load_dotenv()
 
 
 class ContentTypeUnitTests(unittest.TestCase):
 
     def setUp(self):
-        load_api_keys()
-        host = os.getenv("HOST")
-        email = os.getenv("EMAIL")
-        password = os.getenv("PASSWORD")
         self.client = contentstack.ContentstackClient(host=host)
-        self.client.login(email, password)
+        self.client.login(username, password)
 
     def test_get_all_content_types(self):
-        response = self.client.stack(os.getenv("API_KEY")).content_type().find()
+        response = self.client.stack(api_key).content_type().find()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}/content_types?include_count=false&include_global_field_schema=true"
+                         f"{self.client.endpoint}content_types?include_count=false&include_global_field_schema=true"
                          f"&include_branch=false")
         self.assertEqual(response.request.method, "GET")
 
     def test_get_a_content_type(self):
-        content_type_uid = os.getenv("CONTENT_TYPE_UID_GET")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).fetch()
+        response = self.client.stack(api_key).content_type(content_type_uid).fetch()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}/content_types/{content_type_uid}?version=1"
+                         f"{self.client.endpoint}content_types/{content_type_uid}?version=1"
                          f"&include_global_field_schema=true&include_branch=false")
         self.assertEqual(response.request.method, "GET")
 
@@ -77,9 +77,9 @@ class ContentTypeUnitTests(unittest.TestCase):
                 }
             }
         }
-        response = self.client.stack(os.getenv("API_KEY")).content_type().create(data)
+        response = self.client.stack(api_key).content_type().create(data)
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/content_types?include_branch=false")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types?include_branch=false")
         self.assertEqual(response.request.method, "POST")
 
     def test_update_content_type(self):
@@ -122,11 +122,10 @@ class ContentTypeUnitTests(unittest.TestCase):
                 }
             }
         }
-        content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).update(data)
+        response = self.client.stack(api_key).content_type(content_type_uid).update(data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}/content_types/{content_type_uid}?include_branch=false")
+                         f"{self.client.endpoint}content_types/{content_type_uid}?include_branch=false")
         self.assertEqual(response.request.method, "PUT")
 
     def test_set_field_visibility_rule(self):
@@ -199,44 +198,40 @@ class ContentTypeUnitTests(unittest.TestCase):
                 }
             }
         }
-        content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(
+        response = self.client.stack(api_key).content_type(
             content_type_uid).set_set_field_visibility_rules(data)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}/content_types/{content_type_uid}?include_branch=false")
+                         f"{self.client.endpoint}content_types/{content_type_uid}?include_branch=false")
         self.assertEqual(response.request.method, "PUT")
 
     def test_delete_content_type(self):
-        content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).delete()
+        response = self.client.stack(api_key).content_type(content_type_uid).delete()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/content_types/{content_type_uid}?force=true")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}?force=true")
         self.assertEqual(response.request.method, "DELETE")
 
     def test_get_all_references(self):
-        content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).references()
+        response = self.client.stack(api_key).content_type(content_type_uid).references()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}/content_types/{content_type_uid}/references?include_global_fields"
+                         f"{self.client.endpoint}content_types/{content_type_uid}/references?include_global_fields"
                          f"=true&include_branch=false")
         self.assertEqual(response.request.method, "GET")
 
     def test_export(self):
-        content_type_uid = os.getenv("CONTENT_TYPE_UID")
-        response = self.client.stack(os.getenv("API_KEY")).content_type(content_type_uid).export()
+        response = self.client.stack(api_key).content_type(content_type_uid).export()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}/content_types/{content_type_uid}/export?version=1&include_branch=false")
+                         f"{self.client.endpoint}content_types/{content_type_uid}/export?version=1&include_branch=false")
         self.assertEqual(response.request.method, "GET")
 
     def test_imports(self):
         file_path = "tests/resources/mock_content_type/import.json"
-        response = self.client.stack(os.getenv("API_KEY")).content_type().imports(file_path)
+        response = self.client.stack(api_key).content_type().imports(file_path)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}/content_types/import?overwrite=false&include_branch=false")
+                         f"{self.client.endpoint}content_types/import?overwrite=false&include_branch=false")
         self.assertEqual(response.request.method, "POST")
 
 

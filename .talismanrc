@@ -72,3 +72,29 @@ fileignoreconfig:
 - filename: tests/api/entry/test_entry_api.py
   checksum: 3bc7ea1f5a5a9ecd7d422df8760e69d212cdef8c2cf3a1d22d78991ba549c504
 version: ""
+fileignoreconfig:
+- filename: tests/mock/stack/test_stack_apitest.py
+  checksum: 903c2459838b8c89941cfa860afa50eb9bd426f26e9533b30bb9d242cf7c1124
+- filename: tests/mock/organizations/test_org_mock.py
+  checksum: 7cab6dfd2bd204df7648d992cf4d4b9e79e41cb562be7ff56c3d704db4e505c8
+- filename: tests/mock/content_types/test_content_type_mock.py
+  checksum: 40c31a69d2fdc9218e3bbd9f59bb22502f2ce113ebb0adbf29fefe5ea8d68ab9
+- filename: tests/api/aliases/test_alias.py
+  checksum: 14c1f4329bea20619e63746767a6a80821e6057694667bb04565c3133b33c291
+- filename: tests/test_contentstack.py
+  checksum: ee87c22d26f3bff8e97bc3b7aaefe302f3624f685894d26fa01516642b6afcef
+- filename: tests/unit/branches/test_branch.py
+  checksum: 2da47adad7bf99759d65dfeb8192d579020c7c0e453ad8129e529cdfc5a0f2da
+- filename: tests/api/branches/test_branch_api.py
+  checksum: d8ccc262c23bf0e70abc7142a688d018d2476e36e6112057b629c2c802b3b93e
+- filename: tests/unit/stack/test_stack.py
+  checksum: 28ee50df31137ccf1ff199edb6ee0cfb1282cafdf00db091bbe3793fb2141f1d
+- filename: tests/api/content_types/test_content_type_api.py
+  checksum: f9ecf25651f96018ae844f1fb3fad7772d345004683089d719e2f029f44fd10a
+- filename: tests/cred.py
+  checksum: 365aa9281579d24e52ac725a7c56383b3c54905797f31c475085a6b57fbb6974
+- filename: tests/mock/branches/test_branch_mock.py
+  checksum: 6e78fa23c089575e1e90fefde42d587c4f459561e29f5d5b5ea2fdb65098d513
+- filename: tests/unit/content_types/test_content_type.py
+  checksum: 05d30dd8e1fcc5680da6a6226b2c61a03fc4121f3d6e05ba66202a5dcc0c551f
+version: ""

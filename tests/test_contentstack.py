@@ -12,21 +12,21 @@ host = credentials["host"]
 class ContentstackTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.client(host=host)
+        self.client = contentstack.ContentstackClient(host=host)
         self.client.login(username, password)
 
-    def test_contentstack(self):
-        client = contentstack.client(host=host, authtoken='blt233233232222', max_requests=20)
+    def test_client(self):
+        client = contentstack.ContentstackClient(host=host)
         self.assertEqual(host, client.host)  # add assertion here
 
     def test_successful_get_login(self):
-        client = contentstack.client(host=host)
+        client = contentstack.ContentstackClient(host=host)
         response = client.login(username, password)
-        self.assertEqual(response.status_code, 422)
+        self.assertEqual(response.status_code, 200)
 
     def test_error_email_id(self):
         try:
-            self.client = contentstack.client(host=host)
+            self.client = contentstack.ContentstackClient(host=host)
             self.client.login('', password)
             self.assertEqual(None, self.client.email)
         except PermissionError as e:
@@ -36,13 +36,15 @@ class ContentstackTests(unittest.TestCase):
 
     def test_error_password(self):
         try:
-            self.client = contentstack.client(host=host)
+            self.client = contentstack.ContentstackClient(host=host)
             self.client.login(username, '')
             self.assertEqual(None, self.client.password)
         except PermissionError as e:
             if hasattr(e, 'message'):
                 self.assertEqual(
                     "'You are not permitted to the stack without valid password'", e.args[0])
+                
+   
 
 
 if __name__ == '__main__':

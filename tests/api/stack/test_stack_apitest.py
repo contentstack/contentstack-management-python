@@ -16,7 +16,7 @@ ownership_token = credentials["ownership_token"]
 class StacksAPITests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.client(host=host)
+        self.client = contentstack.ContentstackClient(host=host)
         self.client.login(username, password)
         self.api_key = api_key
 

@@ -14,7 +14,7 @@ activation_token = credentials["activation_token"]
 class UserMockTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.client(host=host)
+        self.client = contentstack.ContentstackClient(host=host)
         self.client.login(username, password)
 
     def read_file(self, file_name):

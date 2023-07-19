@@ -3,20 +3,21 @@ import os
 import unittest
 
 from dotenv import load_dotenv
-
 from contentstack_management import contentstack
+from tests.cred import get_credentials
 
-
-def load_api_keys():
-    load_dotenv()
-
+credentials = get_credentials()
+username = credentials["username"]
+password = credentials["password"]
+api_key = credentials["api_key"]
+host = credentials["host"]
+organization_uid = credentials["organization_uid"]
 
 class OrganizationMockTests(unittest.TestCase):
 
     def setUp(self):
-        load_api_keys()
-        self.client = contentstack.client(host=os.getenv("host"))
-        self.client.login(os.getenv("email"), os.getenv("password"))
+        self.client = contentstack.ContentstackClient(host=host)
+        self.client.login(username, password)
 
     def read_file(self, file_name):
         file_path = f"tests/resources/mockorg/{file_name}"
@@ -32,8 +33,8 @@ class OrganizationMockTests(unittest.TestCase):
         self.assertEqual(mock_org_data.keys(), response.keys())
 
     def test_get_organization(self):
-        response = self.client.organizations(os.getenv("org_uid")).fetch().json()
-        self.assertEqual(os.getenv("org_uid"), response["organization"]["uid"])
+        response = self.client.organizations(organization_uid).fetch().json()
+        self.assertEqual(organization_uid, response["organization"]["uid"])
 
     def test_get_organizations(self):
         response = self.client.organizations().find().json()
@@ -42,8 +43,8 @@ class OrganizationMockTests(unittest.TestCase):
         self.assertEqual(mock_org_data.keys(), response.keys())
 
     def test_get_organization_roles(self):
-        response = self.client.organizations(os.getenv('org_uid')).roles().json()
-        self.assertEqual(os.getenv("org_uid"), response["roles"][0]["org_uid"])
+        response = self.client.organizations(organization_uid).roles().json()
+        self.assertEqual(organization_uid, response["roles"][0]["org_uid"])
 
     def test_organization_add_users(self):
         data = {
@@ -64,29 +65,29 @@ class OrganizationMockTests(unittest.TestCase):
                 "message": "Invitation message"
             }
         }
-        response = self.client.organizations(os.getenv('org_uid')).add_users(json.dumps(data))
+        response = self.client.organizations(organization_uid).add_users(json.dumps(data))
         self.assertEqual(response.status_code, 400)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/organizations/{os.getenv('org_uid')}/share")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}organizations/{organization_uid}/share")
         self.assertEqual(response.request.method, "POST")
 
     def test_transfer_organizations_ownership(self):
         data = {"transfer_to": "abc@sample.com"}
-        response = self.client.organizations(os.getenv('org_uid')).transfer_ownership(json.dumps(data))
+        response = self.client.organizations(organization_uid).transfer_ownership(json.dumps(data))
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}/organizations/{os.getenv('org_uid')}/transfer-ownership")
+                         f"{self.client.endpoint}organizations/{organization_uid}/transfer-ownership")
         self.assertEqual(response.request.method, "POST")
 
     def test_organization_stacks(self):
-        response = self.client.organizations(os.getenv('org_uid')).stacks()
+        response = self.client.organizations(organization_uid).stacks()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/organizations/{os.getenv('org_uid')}/stacks")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}organizations/{organization_uid}/stacks")
         self.assertEqual(response.request.method, "GET")
 
     def test_organization_logs(self):
-        response = self.client.organizations(os.getenv('org_uid')).logs()
+        response = self.client.organizations(organization_uid).logs()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/organizations/{os.getenv('org_uid')}/logs")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}organizations/{organization_uid}/logs")
         self.assertEqual(response.request.method, "GET")
 
 

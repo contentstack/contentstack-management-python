@@ -16,7 +16,7 @@ ownership_token = credentials["ownership_token"]
 class StacksUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.client(host=host)
+        self.client = contentstack.ContentstackClient(host=host)
         self.client.login(username, password)
         self.api_key = api_key
         self.stack = self.client.stack(api_key)
@@ -24,13 +24,13 @@ class StacksUnitTests(unittest.TestCase):
     def test_stacks_get(self):
         response = self.stack.fetch()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "GET")
 
     def test_stacks_all(self):
         response = self.client.stack().find()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "GET")
 
     def tests_stacks_create(self):
@@ -43,7 +43,7 @@ class StacksUnitTests(unittest.TestCase):
         }
         response = self.client.stack().create(organization_uid, data)
         self.assertEqual(response.status_code, 429)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "POST")
 
     def tests_stacks_update(self):
@@ -56,19 +56,19 @@ class StacksUnitTests(unittest.TestCase):
         }
         response = self.stack.update(data)
         self.assertEqual(response.status_code, 401)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "PUT")
 
     def tests_stacks_delete(self):
         response = self.stack.delete()
         self.assertEqual(response.status_code, 403)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "DELETE")
 
     def tests_stacks_fetch_all_user(self):
         response = self.stack.users()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/users")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/users")
         self.assertEqual(response.request.method, "GET")
 
     def tests_stacks_update_user_role(self):
@@ -79,7 +79,7 @@ class StacksUnitTests(unittest.TestCase):
         }
         response = self.stack.update_user_role(data)
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/users/roles")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/users/roles")
         self.assertEqual(response.request.method, "PUT")
 
     def tests_stacks_transfer_ownership(self):
@@ -88,7 +88,7 @@ class StacksUnitTests(unittest.TestCase):
         }
         response = self.stack.transfer_ownership(data)
         self.assertEqual(response.status_code, 422)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/transfer_ownership")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/transfer_ownership")
         self.assertEqual(response.request.method, "POST")
 
     def tests_stacks_accept_ownership(self):
@@ -96,13 +96,13 @@ class StacksUnitTests(unittest.TestCase):
                                                ownership_token)
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}/stacks/accept_ownership/?api_key={self.api_key}")
+                         f"{self.client.endpoint}stacks/accept_ownership/?api_key={self.api_key}")
         self.assertEqual(response.request.method, "GET")
 
     def tests_stacks_get_stack_settings(self):
         response = self.stack.settings()
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/settings")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/settings")
         self.assertEqual(response.request.method, "GET")
 
     def tests_stacks_create_stack_settings(self):
@@ -120,7 +120,7 @@ class StacksUnitTests(unittest.TestCase):
         }
         response = self.stack.create_settings(data)
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/settings")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/settings")
         self.assertEqual(response.request.method, "POST")
 
     def tests_stacks_reset_stack_settings(self):
@@ -129,7 +129,7 @@ class StacksUnitTests(unittest.TestCase):
         }
         response = self.stack.reset_settings(data)
         self.assertEqual(response.status_code, 201)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/settings/reset")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/settings/reset")
         self.assertEqual(response.request.method, "POST")
 
     def tests_stacks_share_stack(self):
@@ -145,7 +145,7 @@ class StacksUnitTests(unittest.TestCase):
         }
         response = self.stack.share(data)
         self.assertEqual(response.status_code, 422)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/share")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/share")
         self.assertEqual(response.request.method, "POST")
 
     def tests_stacks_unshare_stack(self):
@@ -154,7 +154,7 @@ class StacksUnitTests(unittest.TestCase):
         }
         response = self.stack.unshare(data)
         self.assertEqual(response.status_code, 422)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}/stacks/unshare")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/unshare")
         self.assertEqual(response.request.method, "POST")
 
 

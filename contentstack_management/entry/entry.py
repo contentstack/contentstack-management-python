@@ -326,7 +326,7 @@ class Entry(Parameter):
         if file_path is None:
             raise Exception('File path is required')
         url = f"content_types/{self.content_type_uid}/entries/import"
-        self.headers['Content-Type'] = "multipart/form-data"
+        self.client.headers['Content-Type'] = "multipart/form-data"
         files = {'entry': open(f"{file_path}",'rb')}
         params = {'locale': locale }
         return self.client.post(url, headers = self.client.headers, params = params, files = files)

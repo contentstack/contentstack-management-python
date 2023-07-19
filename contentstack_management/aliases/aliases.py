@@ -2,9 +2,7 @@
 frontend code to pull content from the target branch associated with an alias."""
 
 import json
-
-from contentstack_management.common import Parameter
-
+from ..common import Parameter
 _path = 'stacks/branch_aliases'
 
 

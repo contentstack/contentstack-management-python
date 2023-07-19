@@ -5,21 +5,21 @@ import unittest
 from dotenv import load_dotenv
 
 from contentstack_management import contentstack
+from tests.cred import get_credentials
 
-
-def load_api_keys():
-    load_dotenv()
+credentials = get_credentials()
+username = credentials["username"]
+password = credentials["password"]
+api_key = credentials["api_key"]
+host = credentials["host"]
+branch_alias_uid = credentials["branch_alias_uid"]
 
 
 class AliasMockTests(unittest.TestCase):
 
     def setUp(self):
-        load_api_keys()
-        host = os.getenv("HOST")
-        email = os.getenv("EMAIL")
-        password = os.getenv("PASSWORD")
-        self.client = contentstack.client(host = host)
-        self.client.login(email, password)
+        self.client = contentstack.ContentstackClient(host = host)
+        self.client.login(username, password)
  
     def read_file(self, file_name):
         file_path= f"tests/resources/mock_alias/{file_name}"
@@ -29,14 +29,13 @@ class AliasMockTests(unittest.TestCase):
         return data
 
     def test_mock_get_all_aliases(self):    
-        response = self.client.stack(os.getenv("API_KEY")).branch_alias().find().json()
+        response = self.client.stack(api_key).branch_alias().find().json()
         read_mock_alias_data = self.read_file("fetch_all_aliases.json")
         mock_alias_data = json.loads(read_mock_alias_data)
         self.assertEqual(mock_alias_data.keys(), response.keys())
 
     def test_mock_get_a_alias(self):    
-        branch_alias_uid = os.getenv("BRANCH_ALIAS_UID")
-        response = self.client.stack(os.getenv("API_KEY")).branch_alias(branch_alias_uid).fetch().json()
+        response = self.client.stack(api_key).branch_alias(branch_alias_uid).fetch().json()
         read_mock_alias_data = self.read_file("fetch_alias.json")
         mock_alias_data = json.loads(read_mock_alias_data)
         alias_uid = mock_alias_data['branch_alias']['alias']
@@ -48,17 +47,14 @@ class AliasMockTests(unittest.TestCase):
                 "target_branch": "test"
                 }
             }
-        branch_test_uid = os.getenv("BRANCH_TEST_UID")
-        branch_alias_uid = os.getenv("BRANCH_ALIAS_UID")
-        response = self.client.stack(os.getenv("API_KEY")).branch_alias(branch_alias_uid).assign(data).json()
+        response = self.client.stack(api_key).branch_alias(branch_alias_uid).assign(data).json()
         read_mock_alias_data = self.read_file("assign_alias.json")
         mock_alias_data = json.loads(read_mock_alias_data)
         self.assertEqual("Branch alias assigned successfully.", mock_alias_data['notice'])
 
 
     def test_mock_delete_alias(self):
-        branch_alias_uid = os.getenv("BRANCH_ALIAS_UID")
-        response = self.client.stack(os.getenv("API_KEY")).branch_alias(branch_alias_uid).delete().json()
+        response = self.client.stack(api_key).branch_alias(branch_alias_uid).delete().json()
         read_mock_alias_data = self.read_file("delete_alias.json")
         mock_alias_data = json.loads(read_mock_alias_data)
         self.assertEqual("Branch alias deleted successfully.", mock_alias_data['notice'])

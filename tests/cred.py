@@ -16,6 +16,9 @@ default_ownership_token = "ownership@contentstack"  # Default ownership token va
 default_user_id = "userid@contentstack"  # Default ownership token value
 default_content_type_uid = "content_type_uid"  # Default ownership token value
 default_entry_uid = "entry_uid"  # Default ownership token value
+default_alias_uid = "alias_uid"  # Default ownership token value
+default_branch_uid = "branch_uid"  # Default ownership token value
+default_branch_alias_uid = "branch_alias_uid"  # Default ownership token value
 
 
 def get_credentials():
@@ -39,5 +42,8 @@ def get_credentials():
         # Retrieve ownership token from environment or use default
         "content_type_uid": os.getenv("CONTENT_TYPE_UID", default_content_type_uid),
         "entry_uid": os.getenv("ENTRY_UID", default_entry_uid),
+        "alias_uid": os.getenv("ALIAS_UID", default_alias_uid),
+        "branch_uid": os.getenv("BRANCH_UID", default_branch_uid),
+        "branch_alias_uid": os.getenv("BRANCH_ALIAS_UID", default_branch_alias_uid),
     }
     return credentials

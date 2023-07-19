@@ -17,7 +17,7 @@ ownership_token = credentials["ownership_token"]
 class OrganizationApiTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.client(host=host)
+        self.client = contentstack.ContentstackClient(host=host)
         self.client.login(username, password)
         self.organization = self.client.organizations(organization_uid)
 
