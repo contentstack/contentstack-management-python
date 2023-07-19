@@ -1,0 +1,10 @@
+{
+    "references": [
+      {
+        "entry_uid": "uid",
+        "content_type_uid": "page",
+        "locale": "en-us",
+        "content_type_title": "Page"
+      }
+    ]
+  }

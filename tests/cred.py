@@ -14,7 +14,8 @@ default_uid_value = "blt98998999999"  # Default UID value
 default_activation_token = "activation@contentstack"  # Default activation token value
 default_ownership_token = "ownership@contentstack"  # Default ownership token value
 default_user_id = "userid@contentstack"  # Default ownership token value
-
+default_asset_uid = "asset_uid" #Default asset uid
+default_folder_uid = "folder_uid" #Default folder uid
 
 def get_credentials():
     load_dotenv()
@@ -35,5 +36,7 @@ def get_credentials():
         "ownership_token": os.getenv("OWNERSHIP_TOKEN", default_ownership_token),
         "user_id": os.getenv("USER_ID", default_user_id),
         # Retrieve ownership token from environment or use default
+        "asset_uid": os.getenv("ASSET_UID", default_asset_uid),
+        "folder_uid": os.getenv("FOLDER_UID", default_folder_uid),
     }
     return credentials
