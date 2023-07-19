@@ -1,6 +1,8 @@
 import os
 import unittest
+import json
 from contentstack_management import contentstack
+from contentstack_management.common import Parameter
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -39,26 +41,26 @@ class AssetsUnitTests(unittest.TestCase):
 
     def test_specific_folder(self):
         response = self.client.stack(api_key).assets().specific_folder(folder_uid)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?folder=folder_uid")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?folder={folder_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
     def test_subfolder(self):
         response = self.client.stack(api_key).assets().subfolders(folder_uid)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?include_folders=True&folder=folder_uid")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?include_folders=True&folder={folder_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
     def test_upload(self):
-        file_path = ""
+        file_path = f"tests/resources/mock_assets/chaat.jpeg"
         response = self.client.stack(api_key).assets().upload(file_path)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets")
         self.assertEqual(response.request.method, "POST")
 
     def test_replace(self):
-        file_path = ""
+        file_path = f"tests/resources/mock_assets/chaat.jpeg"
         response = self.client.stack(api_key).assets(asset_uid).replace(file_path)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}")
         self.assertEqual(response.request.method, "PUT")
@@ -147,7 +149,7 @@ class AssetsUnitTests(unittest.TestCase):
 		        "title": "Title"
 	        }
         }
-        response = self.client.stack().assets(asset_uid).update_asset_revision(data)
+        response = self.client.stack().assets(asset_uid).update(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}")
         self.assertEqual(response.request.method, "PUT")
         self.assertEqual(response.request.headers["Content-Type"], "multipart/form-data")
@@ -189,7 +191,7 @@ class AssetsUnitTests(unittest.TestCase):
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_get_folder(self):
-        response = self.client.stack().assets().folder_collection(folder_uid)
+        response = self.client.stack().assets().folder(folder_uid)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/folders/{folder_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -197,16 +199,19 @@ class AssetsUnitTests(unittest.TestCase):
 
     def test_get_folder_by_name(self):
         query = {"is_dir": True, "name": "folder_name"}
-        response = self.client.stack().assets().folder_collection(query)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?query={query}")
+        q = json.dumps((query))
+        response = self.client.stack().assets().folder_by_name()
+        p=print(response.request.url)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?include_folders=true&query={q}&folder={folder_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
-    def test_get_subfolder(self):
+    def test_get_subfolders(self):
         query = {"is_dir": True}
-        response = self.client.stack().assets().folder_collection(folder_uid, query)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?include_folders=true&query={query}&folder={folder_uid}")
+        q = str(query)
+        response = self.client.stack().assets().get_subfolders(folder_uid, query)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?include_folders=true&query={q}&folder={folder_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)

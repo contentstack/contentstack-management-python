@@ -53,7 +53,7 @@ class AssetsApiTests(unittest.TestCase):
             self.assertEqual(response.request.method, "GET")
 
     def test_upload(self):
-        file_path = ""
+        file_path = f"tests/resources/mock_assets/chaat.jpeg"
         response = self.client.stack(api_key).assets().upload(file_path)
         if response.status_code == 201:
             self.assertEqual(response.status_code, 201)
@@ -61,7 +61,7 @@ class AssetsApiTests(unittest.TestCase):
             self.assertEqual(response.request.method, "POST")
 
     def test_replace(self):
-        file_path = ""
+        file_path = f"tests/resources/mock_assets/chaat.jpeg"
         response = self.client.stack(api_key).assets(asset_uid).replace(file_path)
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
@@ -200,7 +200,7 @@ class AssetsApiTests(unittest.TestCase):
             self.assertEqual(response.request.method, "POST")
 
     def test_get_folder(self):
-        response = self.client.stack().assets().folder_collection(folder_uid)
+        response = self.client.stack().assets().folder(folder_uid)
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -208,7 +208,7 @@ class AssetsApiTests(unittest.TestCase):
 
     def test_get_folder_by_name(self):
         query = {"is_dir": True, "name": "folder_name"}
-        response = self.client.stack().assets().folder_collection(query)
+        response = self.client.stack().assets().folder_by_name()
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
@@ -216,7 +216,7 @@ class AssetsApiTests(unittest.TestCase):
 
     def test_get_subfolder(self):
         query = {"is_dir": True}
-        response = self.client.stack().assets().folder_collection(folder_uid, query)
+        response = self.client.stack().assets().get_subfolders(folder_uid)
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:

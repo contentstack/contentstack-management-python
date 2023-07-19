@@ -6,6 +6,10 @@ the CRUD operations that can be performed on the API
 """
 import json
 from contentstack_management.common import Parameter
+from tests.cred import get_credentials
+
+credentials = get_credentials()
+api_key = credentials["api_key"]
 
 class Assets(Parameter):
     """
@@ -14,7 +18,7 @@ class Assets(Parameter):
     we'll be interacting with. The create(), read(), update(), and delete() 
     methods each correspond to the CRUD 
     operations that can be performed on the API """
-    
+
     def __init__(self, client, asset_uid, branch):
         self.client = client
         self.asset_uid = asset_uid
@@ -100,7 +104,7 @@ class Assets(Parameter):
         """
 
         url = "assets"
-        Parameter.add_param("folder", folder_uid)
+        Parameter.add_param(self, "folder", folder_uid)
         return self.client.get(url , headers = self.client.headers, params = self.params)
 
     def subfolders(self, folder_uid):
@@ -123,8 +127,8 @@ class Assets(Parameter):
         """
 
         url = "assets"
-        Parameter.add_param("include_folders", True)
-        Parameter.add_param("folder", folder_uid)
+        Parameter.add_param(self, "include_folders", True)
+        Parameter.add_param(self, "folder", folder_uid)
         return self.client.get(url, headers = self.client.headers, params = self.params)
 
     def upload(self, file_path):
@@ -147,7 +151,7 @@ class Assets(Parameter):
         """
 
         url = "assets"
-        Parameter.add_header["Content-Type"] = "multipart/form-data"
+        Parameter.add_header(self, "Content-Type", "multipart/form-data")
         files = {"asset": open(f"{file_path}",'rb')}
         return self.client.post(url, headers = self.client.headers, params = self.params, files = files)
     
@@ -171,10 +175,7 @@ class Assets(Parameter):
         """
 
         url = f"assets/{self.asset_uid}"
-        self.add_param("include_urls", False)
-        self.add_param("include_dimensions", True)
-        self.add_param("include_branch", False)
-        Parameter.add_header["Content-Type"] = "multipart/form-data"
+        Parameter.add_header(self, "Content-Type", "multipart/form-data")
         files = {"asset": open(f"{file_path}",'rb')}
         return self.client.put(url, headers = self.client.headers, params = self.params, files = files)
     
@@ -203,9 +204,8 @@ class Assets(Parameter):
         --------------------------------
         """
 
-        data = json.dumps(self, data)
+        data = json.dumps(data)
         url = f"assets/{self.asset_uid}"
-        self.add_param("include_branch", False)
         return self.client.put(url, headers = self.client.headers, params = self.params, data = data)
 
     def download(self):
@@ -224,7 +224,7 @@ class Assets(Parameter):
         --------------------------------
         """
         
-        url = f"assets/{self.api_key}/{self.asset_uid}/{self.slug}"
+        url = f"assets/{api_key}/{self.asset_uid}"
         return self.client.get(url, headers = self.client.headers, params = self.params)
 
     def rte(self):
@@ -244,7 +244,6 @@ class Assets(Parameter):
         """
 
         url = "assets/rt"
-        self.add_param("include_branch", False)
         return self.client.get(url, headers = self.client.headers, params = self.params)
 
     def version_naming(self, version_number, data):
@@ -274,7 +273,7 @@ class Assets(Parameter):
         
         data = json.dumps(data)
         url = f"assets/{self.asset_uid}/versions/{version_number}/name"
-        return self.client.put(url, headers = self.client.headers, params = self.params, data = data)
+        return self.client.post(url, headers = self.client.headers, params = self.params, data = data)
     
     def version(self):
         """
@@ -317,7 +316,7 @@ class Assets(Parameter):
             raise Exception('asset_uid is required')
         if version_number is None:
             raise Exception('Version Number is required')
-        url = f"assets/{self.asset_uid}/versions/{version_number}"
+        url = f"assets/{self.asset_uid}/versions/{version_number}/name"
         return self.client.delete(url, headers = self.client.headers, params = self.params)
 
     def references(self):
@@ -386,7 +385,7 @@ class Assets(Parameter):
         --------------------------------
         """
         
-        data = json.dumps(self, data)
+        data = json.dumps(data)
         if self.asset_uid is None or '':
             raise Exception('asset_uid is required')
         url = f"assets/{self.asset_uid}"
@@ -415,11 +414,11 @@ class Assets(Parameter):
         --------------------------------
         """
 
-        data = json.dumps(self, data)
+        data = json.dumps(data)
         if self.asset_uid is None or '':
             raise Exception('asset_uid is required')
         url = f"assets/{self.asset_uid}"
-        Parameter.add_header["Content-Type"] = "multipart/form-data"
+        Parameter.add_header(self, "Content-Type", "multipart/form-data")
         return self.client.put(url, headers = self.client.headers, params = self.params, data = data)
 
     def publish(self, data):
@@ -451,7 +450,7 @@ class Assets(Parameter):
         --------------------------------
         """
         
-        data = json.dumps(self, data)
+        data = json.dumps(data)
         if self.asset_uid is None or '':
             raise Exception('asset_uid is required')
         url = f"assets/{self.asset_uid}/publish"
@@ -487,13 +486,13 @@ class Assets(Parameter):
         --------------------------------
         """
 
-        data = json.dumps(self, data)
+        data = json.dumps(data)
         if self.asset_uid is None or '':
             raise Exception('asset_uid is required')
         url = f"assets/{self.asset_uid}/unpublish"
         return self.client.post(url, headers = self.client.headers, data = data)
     
-    def folder_collection(self, folder_uid):
+    def folder(self, folder_uid):
         """
         The Get a single folder call gets the comprehensive details of a specific asset folder by means of folder UID.
 
@@ -514,7 +513,7 @@ class Assets(Parameter):
         url = f"assets/folders/{folder_uid}"
         return self.client.get(url, params = self.params, headers = self.client.headers)
 
-    def folder_collection(self, query):
+    def folder_by_name(self):
         """
         The Get a single folder by name call retrieves a specific asset folder based on the name provided.
 
@@ -534,10 +533,11 @@ class Assets(Parameter):
         """
 
         url = "assets"
-        Parameter.add_param("query", query)
+        query = {"is_dir": True, "name": "folder_name"}
+        Parameter.add_param(self, "query", query)
         return self.client.get(url, params = self.params, headers = self.client.headers)
 
-    def folder_collection(self, folder_uid, query):
+    def get_subfolders(self, folder_uid):
         """
         The Get subfolders of a parent folder request retrieves the details of only the subfolders of a specific asset folder. This request does not retrieve asset files.
         
@@ -558,9 +558,10 @@ class Assets(Parameter):
         """
 
         url = "assets"
-        Parameter.add_param("include_folder", True)
-        Parameter.add_param("folder", folder_uid)
-        Parameter.add_param("query", query)
+        query = {"is_dir": True}
+        Parameter.add_param(self, "include_folders", True)
+        Parameter.add_param(self, "query",query)
+        Parameter.add_param(self, "folder", folder_uid)
         return self.client.get(url, params = self.params, headers = self.client.headers)
 
     def create_folder(self, data):
@@ -615,7 +616,7 @@ class Assets(Parameter):
         --------------------------------
         """
 
-        data = json.dumps(self, data)
+        data = json.dumps(data)
         url = f"assets/folders/{folder_uid}"
         return self.client.put(url, params = self.params, headers = self.client.headers, data = data)
 
