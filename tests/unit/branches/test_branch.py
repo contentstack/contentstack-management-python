@@ -22,16 +22,17 @@ class BranchesUnitTests(unittest.TestCase):
 
     def test_get_all_branches(self):
         response = self.client.stack(api_key).branch().find()
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branches?limit=2&skip=2&include_count"
-                                               f"=false")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branches")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_get_a_branch(self):
         response = self.client.stack(api_key).branch(branch_uid).fetch()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branches/{branch_uid}")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_create_branch(self):
         data = {
@@ -41,12 +42,12 @@ class BranchesUnitTests(unittest.TestCase):
             }
         }
         response = self.client.stack(api_key).branch().create(data)
-        self.assertEqual(response.status_code, 201)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branches")
         self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_delete_branch(self):
         response = self.client.stack(api_key).branch(branch_uid).delete()
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branches/{branch_uid}?force=true")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branches/{branch_uid}")
         self.assertEqual(response.request.method, "DELETE")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")

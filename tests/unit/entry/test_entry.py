@@ -351,9 +351,9 @@ class EntryUnitTests(unittest.TestCase):
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_imports(self):
-        file_path = "/Downloads/entry.json"
-        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).imports(file_path)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/import?locale=en-us")
+        file_path = "tests/resources/imports/entry.json"
+        response = self.client.stack(api_key).content_types(content_type_uid).entry().imports(file_path)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries/import?locale=en-us")
         self.assertEqual(response.request.method, "POST")
         self.assertEqual(response.request.headers["Content-Type"], "multipart/form-data")
 

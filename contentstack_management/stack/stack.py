@@ -277,12 +277,11 @@ class Stack(Parameter):
         data = json.dumps(data)
         return self.client.post('stacks/share', headers=self.client.headers, params=self.params, data=data)
 
-    def branch(self, branch_uid=None, data=None):
-        data = json.dumps(data)
-        return Branch(self.client, branch_uid, data)
+    def branch(self, branch_uid=None):
+        return Branch(self.client, branch_uid)
 
-    def branch_alias(self):
-        return Alias(self.client)
+    def branch_alias(self, alias_uid=None):
+        return Alias(self.client, alias_uid)
 
     def content_types(self, content_type_uid=None, branch=None):
         return ContentType(self.client, content_type_uid, branch)

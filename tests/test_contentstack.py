@@ -16,13 +16,15 @@ class ContentstackTests(unittest.TestCase):
         self.client.login(username, password)
 
     def test_client(self):
-        client = contentstack.ContentstackClient(host=host)
-        self.assertEqual(host, client.host)  # add assertion here
+        client = contentstack.ContentstackClient()
+        self.assertEqual('https://api.contentstack.io/v3/', client.endpoint) # Default host 'api.contentstack.io'
 
     def test_successful_get_login(self):
         client = contentstack.ContentstackClient(host=host)
         response = client.login(username, password)
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}user-session")
+        self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_error_email_id(self):
         try:

@@ -17,10 +17,11 @@ class UserUnitTests(unittest.TestCase):
         self.client.login(username, password)
 
     def test_get_user(self):
-        response = self.client.user().find()
-        self.assertEqual(response.status_code, 200)
+        response = self.client.user().fetch()
         self.assertEqual(response.request.url, f"{self.client.endpoint}user")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_update_user(self):
         url = "user"
@@ -32,9 +33,9 @@ class UserUnitTests(unittest.TestCase):
             }
         }
         response = self.client.user().update(user_data)
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}{url}")
         self.assertEqual(response.request.method, "PUT")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_active_user(self):
         url = f"user/activate/{activation_token}"
@@ -49,7 +50,7 @@ class UserUnitTests(unittest.TestCase):
         response = self.client.user().activate(activation_token, act_data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}{url}")
         self.assertEqual(response.request.method, "POST")
-        # Additional assertions for error handling
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_request_password(self):
         url = f"user/forgot_password"
@@ -59,10 +60,9 @@ class UserUnitTests(unittest.TestCase):
             }
         }
         response = self.client.user().forgot_password(act_data)
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}{url}")
         self.assertEqual(response.request.method, "POST")
-        # Additional assertions for error handling
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_reset_password(self):
         url = f"user/reset_password"
@@ -74,10 +74,9 @@ class UserUnitTests(unittest.TestCase):
             }
         }
         response = self.client.user().reset_password(act_data)
-        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.request.url, f"{self.client.endpoint}{url}")
         self.assertEqual(response.request.method, "POST")
-        # Additional assertions for error handling
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
 
 if __name__ == '__main__':

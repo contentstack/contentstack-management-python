@@ -27,7 +27,7 @@ class _APIClient:
         self.max_retries = max_retries
         pass
 
-    def _call_request(self, method, url, headers: dict = None, params=None, data=None, json_data=None):
+    def _call_request(self, method, url, headers: dict = None, params=None, data=None, json_data=None, files=None):
         """
         The function `_call_request` sends an HTTP request using the specified method, URL, headers,
         parameters, data, and JSON data, and returns the response as a JSON object.
@@ -54,7 +54,7 @@ class _APIClient:
         
         # headers.update(self.headers)
         response = requests.request(
-            method, url, headers=headers, params=params, data=data, json=json_data)
+            method, url, headers=headers, params=params, data=data, json=json_data, files=files)
         # response.raise_for_status()
         return response
 
@@ -104,7 +104,7 @@ class _APIClient:
         # headers = headers or {}
         return self._call_request('PUT', url, headers=headers, params=params, data=data, json_data=json_data)
 
-    def post(self, path, data=None, json_data=None, headers=None, params=None):
+    def post(self, path, data=None, json_data=None, headers=None, params=None, files=None):
         """
         The function sends a POST request to a specified URL with optional data, headers, and
         parameters.
@@ -128,7 +128,7 @@ class _APIClient:
         
         url = f"{self.endpoint}{path}"
         # headers = headers or {}
-        return self._call_request('POST', url, headers=headers, params=params, data=data, json_data=json_data)
+        return self._call_request('POST', url, headers=headers, params=params, data=data, json_data=json_data, files=files)
 
     def delete(self, path, headers=None, params=None):
         """

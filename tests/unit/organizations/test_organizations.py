@@ -23,21 +23,24 @@ class OrganizationUnitTests(unittest.TestCase):
 
     def test_fetch_organization(self):
         response = self.client.organizations(organization_uid).fetch()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}organizations/{organization_uid}")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_find_organizations(self):
         response = self.client.organizations().find()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}organizations")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_get_organization_roles(self):
         response = self.client.organizations(organization_uid).roles()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}organizations/{organization_uid}/roles")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_organization_add_users(self):
         data = {
@@ -59,29 +62,31 @@ class OrganizationUnitTests(unittest.TestCase):
             }
         }
         response = self.client.organizations(organization_uid).add_users(json.dumps(data))
-        self.assertEqual(response.status_code, 400)
         self.assertEqual(response.request.url, f"{self.client.endpoint}organizations/{organization_uid}/share")
         self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_transfer_organizations_ownership(self):
         data = {"transfer_to": "abc@sample.com"}
         response = self.client.organizations(organization_uid).transfer_ownership(json.dumps(data))
-        self.assertEqual(response.status_code, 400)
         self.assertEqual(response.request.url,
                          f"{self.client.endpoint}organizations/{organization_uid}/transfer-ownership")
         self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_organization_stacks(self):
         response = self.client.organizations(organization_uid).stacks()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}organizations/{organization_uid}/stacks")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_organization_logs(self):
         response = self.client.organizations(organization_uid).logs()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}organizations/{organization_uid}/logs")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
 
 if __name__ == '__main__':

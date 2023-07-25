@@ -26,12 +26,16 @@ class StacksUnitTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_stacks_all(self):
         response = self.client.stack().find()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def tests_stacks_create(self):
         data = {
@@ -42,9 +46,9 @@ class StacksUnitTests(unittest.TestCase):
             }
         }
         response = self.client.stack().create(organization_uid, data)
-        self.assertEqual(response.status_code, 429)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def tests_stacks_update(self):
         data = {
@@ -55,21 +59,23 @@ class StacksUnitTests(unittest.TestCase):
             }
         }
         response = self.stack.update(data)
-        self.assertEqual(response.status_code, 401)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "PUT")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def tests_stacks_delete(self):
         response = self.stack.delete()
-        self.assertEqual(response.status_code, 403)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "DELETE")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def tests_stacks_fetch_all_user(self):
         response = self.stack.users()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/users")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def tests_stacks_update_user_role(self):
         data = {
@@ -78,32 +84,36 @@ class StacksUnitTests(unittest.TestCase):
             }
         }
         response = self.stack.update_user_role(data)
-        self.assertEqual(response.status_code, 404)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/users/roles")
         self.assertEqual(response.request.method, "PUT")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def tests_stacks_transfer_ownership(self):
         data = {
             "transfer_to": "manager@example.com"
         }
         response = self.stack.transfer_ownership(data)
-        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/transfer_ownership")
         self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def tests_stacks_accept_ownership(self):
         response = self.stack.accept_ownership(user_id,
                                                ownership_token)
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}stacks/accept_ownership/?api_key={self.api_key}")
+                         f"{self.client.endpoint}stacks/accept_ownership/?api_key={api_key}&uid={user_id}")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def tests_stacks_get_stack_settings(self):
         response = self.stack.settings()
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/settings")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def tests_stacks_create_stack_settings(self):
         data = {
@@ -119,18 +129,18 @@ class StacksUnitTests(unittest.TestCase):
             }
         }
         response = self.stack.create_settings(data)
-        self.assertEqual(response.status_code, 201)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/settings")
         self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def tests_stacks_reset_stack_settings(self):
         data = {
             "stack_settings": {}
         }
         response = self.stack.reset_settings(data)
-        self.assertEqual(response.status_code, 201)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/settings/reset")
         self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def tests_stacks_share_stack(self):
         data = {
@@ -144,18 +154,18 @@ class StacksUnitTests(unittest.TestCase):
             }
         }
         response = self.stack.share(data)
-        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/share")
         self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def tests_stacks_unshare_stack(self):
         data = {
             "email": "manager@example.com"
         }
         response = self.stack.unshare(data)
-        self.assertEqual(response.status_code, 422)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/unshare")
         self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
 
 if __name__ == '__main__':

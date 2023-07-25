@@ -38,7 +38,7 @@ class Branch(Parameter):
         """
         return self.client.get(_path, headers=self.client.headers, params=self.params)
 
-    def fetch(self, branch_uid: str):
+    def fetch(self):
         r"""
         The Get a single branch request returns information of a specific branch.
 
@@ -54,9 +54,8 @@ class Branch(Parameter):
             >>> response = branch.fetch()
         --------------------------------
         """
-        if branch_uid is None or '':
+        if self.branch_uid is None or '':
             raise Exception('branch_uid is required field')
-        self.branch_uid = branch_uid
         url = f"{_path}/{self.branch_uid}"
         return self.client.get(url, headers=self.client.headers)
 
@@ -85,7 +84,7 @@ class Branch(Parameter):
         data = json.dumps(data)
         return self.client.post(_path, headers=self.client.headers, data=data)
 
-    def delete(self, branch_uid: str):
+    def delete(self):
         r"""
         The Create a branch request creates a new branch in a particular stack of your organization.
         :param branch_uid: {str} -- Unique ID of the branch that is to be deleted.
@@ -101,7 +100,6 @@ class Branch(Parameter):
             >>> response = branch.delete(data)
         --------------------------------
         """
-        self.branch_uid = branch_uid
         if self.branch_uid is None or '':
             raise Exception('branch_uid is required field')
         url = f"{_path}/{self.branch_uid}"

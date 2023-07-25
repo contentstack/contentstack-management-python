@@ -19,18 +19,18 @@ class AliasesUnitTests(unittest.TestCase):
 
     def test_get_all_aliases(self):
         response = self.client.stack(api_key).branch_alias().find()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}stacks/branch_aliases?limit=2&skip=2")
+                         f"{self.client.endpoint}stacks/branch_aliases")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
     def test_get_an_alias(self):
         response = self.client.stack(api_key).branch_alias(alias_uid).fetch()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branch_aliases/{alias_uid}")
         self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_assign_alias(self):
         data = {
@@ -39,15 +39,15 @@ class AliasesUnitTests(unittest.TestCase):
             }
         }
         response = self.client.stack(api_key).branch_alias(alias_uid).assign(data)
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branch_aliases/{alias_uid}")
         self.assertEqual(response.request.method, "PUT")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_delete_alias(self):
         response = self.client.stack(api_key).branch_alias(alias_uid).delete()
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branch_aliases/{alias_uid}?force=true")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branch_aliases/{alias_uid}")
         self.assertEqual(response.request.method, "DELETE")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
 
 if __name__ == '__main__':

@@ -26,6 +26,8 @@ jobs:
         run: pip install python-dotenv
       - name: Install requests
         run: pip install requests
+      - name: Change to test directory
+        run: cd tests/unit
       - uses: lpenz/ghaction-pytest-cov@v1
       - uses: AndreMiras/coveralls-python-action@v20201129
         with:

@@ -98,3 +98,14 @@ fileignoreconfig:
 - filename: tests/unit/content_types/test_content_type.py
   checksum: 05d30dd8e1fcc5680da6a6226b2c61a03fc4121f3d6e05ba66202a5dcc0c551f
 version: ""
+
+fileignoreconfig:
+- filename: tests/unit/global_fields/test_global_fields_unittest.py
+  checksum: 486808bd82cb6ef74b606029bcaea99a0bd5e04b167dac942d5a6a00ff8655e7
+- filename: tests/mock/global_fields/test_global_fields_mock.py
+  checksum: e018d0f58edf8b21dab9189e5f541c4cbebf9ad456bf576b1006d54d6a4e1809
+- filename: tests/api/global_fields/test_global_fields_api.py
+  checksum: b96487463cfdd84288f14562200f9e33de0946c184b4ac11fc263cd436fad393
+- filename: tests/unit/stack/test_stack.py
+  checksum: 1a585269958abb12dd58c4a67b63524a740ae7d3cdfdcaccf1e064e88ac08b15
+version: ""

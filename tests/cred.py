@@ -13,12 +13,13 @@ default_management_token_value = "management@contentstack"  # Default management
 default_uid_value = "blt98998999999"  # Default UID value
 default_activation_token = "activation@contentstack"  # Default activation token value
 default_ownership_token = "ownership@contentstack"  # Default ownership token value
-default_user_id = "userid@contentstack"  # Default ownership token value
-default_content_type_uid = "content_type_uid"  # Default ownership token value
-default_entry_uid = "entry_uid"  # Default ownership token value
-default_alias_uid = "alias_uid"  # Default ownership token value
-default_branch_uid = "branch_uid"  # Default ownership token value
-default_branch_alias_uid = "branch_alias_uid"  # Default ownership token value
+default_user_id = "userid@contentstack"  # Default user uid value
+default_content_type_uid = "content_type_uid"  # Default content type  value
+default_entry_uid = "entry_uid"  # Default entry value
+default_alias_uid = "alias_uid"  # Default alias  value
+default_branch_uid = "branch_uid"  # Default branch  value
+default_branch_alias_uid = "branch_alias_uid"  # Default branch alias token value
+default_global_field_uid = "global_field_uid"  # Default branch alias token value
 
 
 def get_credentials():
@@ -45,5 +46,6 @@ def get_credentials():
         "alias_uid": os.getenv("ALIAS_UID", default_alias_uid),
         "branch_uid": os.getenv("BRANCH_UID", default_branch_uid),
         "branch_alias_uid": os.getenv("BRANCH_ALIAS_UID", default_branch_alias_uid),
+        "global_field_uid": os.getenv("GLOBAL_FIELD_UID", default_global_field_uid)
     }
     return credentials
