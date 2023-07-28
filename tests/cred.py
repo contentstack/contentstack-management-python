@@ -20,6 +20,8 @@ default_alias_uid = "alias_uid"  # Default alias  value
 default_branch_uid = "branch_uid"  # Default branch  value
 default_branch_alias_uid = "branch_alias_uid"  # Default branch alias token value
 default_global_field_uid = "global_field_uid"  # Default branch alias token value
+default_webhook_execution_uid = "webhook_execution_uid"  # Default webhook execution value
+default_webhook_uid = "webhook_uid"  # Default webhook value
 
 
 def get_credentials():
@@ -46,6 +48,8 @@ def get_credentials():
         "alias_uid": os.getenv("ALIAS_UID", default_alias_uid),
         "branch_uid": os.getenv("BRANCH_UID", default_branch_uid),
         "branch_alias_uid": os.getenv("BRANCH_ALIAS_UID", default_branch_alias_uid),
-        "global_field_uid": os.getenv("GLOBAL_FIELD_UID", default_global_field_uid)
+        "global_field_uid": os.getenv("GLOBAL_FIELD_UID", default_global_field_uid),
+        "webhook_execution_uid": os.getenv("WEBHOOK_EXECUTION_UID", default_webhook_execution_uid),
+        "webhook_uid": os.getenv("WEBHOOK_UID", default_webhook_uid)
     }
     return credentials

@@ -109,3 +109,15 @@ fileignoreconfig:
 - filename: tests/unit/stack/test_stack.py
   checksum: 1a585269958abb12dd58c4a67b63524a740ae7d3cdfdcaccf1e064e88ac08b15
 version: ""
+fileignoreconfig:
+- filename: tests/resources/mock_webhooks/logs.json
+  checksum: 0824501a517fa90ebcb6ece6cb06fa7425bdcdb826a9b0e39fb72f30cd6412f0
+- filename: tests/resources/mock_webhooks/executions.json
+  checksum: 53d21cd93c316d45f0d9a44f0f72ee2c3a2fa57b85a30397f0e156c2085d0e22
+- filename: tests/mock/webhooks/test_webhook_mock.py
+  checksum: 141b58d0c7b3b1ed0fd92778552e9055db5585543b996a37046028c65a000ccc
+- filename: tests/unit/webhooks/test_webhhok_unittest.py
+  checksum: a1d5a4ee564abe792efa8db4fce6c7aa223b69825dff4b773fd1aa43033bd20d
+- filename: contentstack_management/webhook/webhook.py
+  checksum: 683d66d057502bfccd996fd92f8a9f91e02f33803693f874a328b958cbb7aa65
+version: ""

@@ -5,6 +5,7 @@ from ..branches.branches import Branch
 from ..common import Parameter
 from ..content_types.content_type import ContentType
 from ..global_fields.global_fields import GlobalFields
+from ..webhook.webhook import Webhooks
 
 
 class Stack(Parameter):
@@ -310,3 +311,6 @@ class Stack(Parameter):
         if 'api_key' not in self.client.headers:
             raise Exception('api_key is required')
         return GlobalFields(self.client, global_field_uid)
+
+    def webhooks(self, webhook_uid=None):
+        return Webhooks(self.client, webhook_uid)
