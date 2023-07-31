@@ -1,0 +1,22 @@
+{
+    "asset": {
+      "uid": "uid",
+      "created_at": "2019-07-16T07:25:43.846Z",
+      "updated_at": "2019-07-16T07:25:43.846Z",
+      "created_by": "blt123123cc123fe123",
+      "updated_by": "blt123123cc123fe123",
+      "content_type": "application/vnd.contenstack.folder",
+      "tags": [],
+      "name": "Demo",
+      "ACL": {},
+      "is_dir": true,
+      "parent_uid": "uid",
+      "path": [
+        {
+          "uid": "uid",
+          "name": "sample"
+        }
+      ],
+      "_version": 1
+    }
+  }

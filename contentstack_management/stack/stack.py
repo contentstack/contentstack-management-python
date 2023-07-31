@@ -1,6 +1,7 @@
 import json
 
 from ..aliases.aliases import Alias
+from ..assets.assets import Assets
 from ..branches.branches import Branch
 from ..common import Parameter
 from ..content_types.content_type import ContentType
@@ -312,5 +313,10 @@ class Stack(Parameter):
             raise Exception('api_key is required')
         return GlobalFields(self.client, global_field_uid)
 
+
     def webhooks(self, webhook_uid=None):
         return Webhooks(self.client, webhook_uid)
+
+    def assets(self, asset_uid=None, branch=None):
+        return Assets(self.client, asset_uid, branch)
+

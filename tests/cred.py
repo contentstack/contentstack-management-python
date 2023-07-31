@@ -22,7 +22,9 @@ default_branch_alias_uid = "branch_alias_uid"  # Default branch alias token valu
 default_global_field_uid = "global_field_uid"  # Default branch alias token value
 default_webhook_execution_uid = "webhook_execution_uid"  # Default webhook execution value
 default_webhook_uid = "webhook_uid"  # Default webhook value
-
+default_user_id = "userid@contentstack"  # Default ownership token value
+default_asset_uid = "asset_uid" #Default asset uid
+default_folder_uid = "folder_uid" #Default folder uid
 
 def get_credentials():
     load_dotenv()
@@ -51,5 +53,7 @@ def get_credentials():
         "global_field_uid": os.getenv("GLOBAL_FIELD_UID", default_global_field_uid),
         "webhook_execution_uid": os.getenv("WEBHOOK_EXECUTION_UID", default_webhook_execution_uid),
         "webhook_uid": os.getenv("WEBHOOK_UID", default_webhook_uid)
+        "asset_uid": os.getenv("ASSET_UID", default_asset_uid),
+        "folder_uid": os.getenv("FOLDER_UID", default_folder_uid),
     }
     return credentials
