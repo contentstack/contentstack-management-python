@@ -25,6 +25,9 @@ default_webhook_uid = "webhook_uid"  # Default webhook value
 default_user_id = "userid@contentstack"  # Default ownership token value
 default_asset_uid = "asset_uid" #Default asset uid
 default_folder_uid = "folder_uid" #Default folder uid
+default_workflow_uid = "workflow_uid" #Default workflow uid
+default_rule_uid = "rule_uid" #Default rule uid
+
 
 def get_credentials():
     load_dotenv()
@@ -52,8 +55,11 @@ def get_credentials():
         "branch_alias_uid": os.getenv("BRANCH_ALIAS_UID", default_branch_alias_uid),
         "global_field_uid": os.getenv("GLOBAL_FIELD_UID", default_global_field_uid),
         "webhook_execution_uid": os.getenv("WEBHOOK_EXECUTION_UID", default_webhook_execution_uid),
-        "webhook_uid": os.getenv("WEBHOOK_UID", default_webhook_uid)
+        "webhook_uid": os.getenv("WEBHOOK_UID", default_webhook_uid),
         "asset_uid": os.getenv("ASSET_UID", default_asset_uid),
         "folder_uid": os.getenv("FOLDER_UID", default_folder_uid),
+        "workflow_uid": os.getenv("WORKFLOW_UID", default_workflow_uid),
+        "rule_uid": os.getenv("RULE_UID", default_rule_uid)
+
     }
     return credentials

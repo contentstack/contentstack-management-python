@@ -121,3 +121,32 @@ fileignoreconfig:
 - filename: contentstack_management/webhook/webhook.py
   checksum: 683d66d057502bfccd996fd92f8a9f91e02f33803693f874a328b958cbb7aa65
 version: ""
+
+fileignoreconfig:
+- filename: tests/resources/mock_workflows/publish_rules.json
+  checksum: dcb07d2e96473c0e05207c19db1ffee14789c631a678ffa58a34a11c1b2c0186
+- filename: tests/resources/mock_workflows/publish_rule.json
+  checksum: 6b46d70f07458e2b4aa2f2f7c78b7fcf2e1f126469aafbf497ae8dfcf42c23ca
+- filename: tests/resources/mock_workflows/delete.json
+  checksum: f0f6122271adc0e6364fb95579bafedd87cd25f092420febe71b248ad825f9a1
+- filename: tests/resources/mock_workflows/publish_rule_content_type.json
+  checksum: 69d9b0a73098f8aef8d72ce25578701466792eda50e60099e5b6e041a4208784
+- filename: tests/api/webhooks/test_webhooks_api.py
+  checksum: e610a29acaed02da1d124b721662c6169853e73be7b928d52aab823787bc4c4d
+- filename: tests/resources/mock_workflows/find.json
+  checksum: 7ce44fdb8ad8a12e7255e8a7e277af320eff43bc84392891e615042b81aa79c6
+- filename: tests/resources/mock_workflows/create.json
+  checksum: 63357384086430f89129e3291290485d9083332017c63960576caf34f3ae8f88
+- filename: tests/resources/mock_workflows/update.json
+  checksum: 872b5727d6548d13bbd575db63ef73bf273422787f8bb2003255573585a16528
+- filename: tests/resources/mock_workflows/fetch.json
+  checksum: 9d80c7d12d07c2099a48852c3b79659143de0f4f69711889074e40f2834123fc
+- filename: tests/api/workflows/test_workflow_api.py
+  checksum: d56dc52c724785165dc770360fc86c635b4b39857803417b6c7f6aceb312546c
+- filename: tests/mock/workflows/test_workflows_mock.py
+  checksum: 1356aebed156211c470014d2d65b49c977710cddcb554c3466adce9c22ae3685
+- filename: tests/unit/workflows/test_workflows_unittest.py
+  checksum: 8443a3e81196e009ba744da0bafb294f5e70fbfb5faf370893e4a8afdca589b0
+- filename: contentstack_management/workflows/workflows.py
+  checksum: 85e3a2ee0ced2fd1787f74f15388a674130ec2b2fe433f19ca96c2cc968508a5
+version: ""
