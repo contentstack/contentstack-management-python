@@ -8,6 +8,7 @@ from ..content_types.content_type import ContentType
 from ..global_fields.global_fields import GlobalFields
 from ..webhook.webhook import Webhooks
 from ..workflows.workflows import Workflows
+from ..metadata.metadata import Metadata
 
 
 class Stack(Parameter):
@@ -321,6 +322,7 @@ class Stack(Parameter):
     def assets(self, asset_uid=None, branch=None):
         return Assets(self.client, asset_uid, branch)
     
-    def workflows(self, webhook_uid=None):
-        return Workflows(self.client, webhook_uid)
+    def workflows(self, workflow_uid=None):
+        return Workflows(self.client, workflow_uid)
+
 
