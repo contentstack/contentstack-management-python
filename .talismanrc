@@ -150,3 +150,22 @@ fileignoreconfig:
 - filename: contentstack_management/workflows/workflows.py
   checksum: 85e3a2ee0ced2fd1787f74f15388a674130ec2b2fe433f19ca96c2cc968508a5
 version: ""
+
+fileignoreconfig:
+- filename: tests/resources/mock_metadata/create.json
+  checksum: 4d8942e449701b1599dca9485ef7a6d6e65d44d71ebabd04335147132c93a807
+- filename: tests/resources/mock_metadata/update.json
+  checksum: 8bb19547a9ecbbac023db0dde82c6d69a4893953c6b6c0118839e40810f9a61d
+- filename: tests/mock/metadata/test_metadata_mock.py
+  checksum: fc239da7691c242e8bbf0fa3db04cb4d024c841b1a8e227177294ec055566b05
+- filename: tests/resources/mock_metadata/fetch.json
+  checksum: 305bb32cd8dc0d3bbe4dc1708e3a6b2e770f92504c807b1c2747511e567d58b1
+- filename: tests/resources/mock_metadata/find.json
+  checksum: b69fe03ca10170c7d00cca0d0784e8bb334307a9872f9a57f0ec75cc6def302a
+- filename: tests/unit/metadata/test_metadata_unit.py
+  checksum: 990c7e67627204c671da5eb2043630b635cfaa9d2f9ef4c46cddd2fd3ebedb19
+- filename: tests/api/metadata/test_metadata_api.py
+  checksum: 72e6676565b99227b0e87ef9569fdd8298143ab4601259b46d05b7cc09f1e912
+- filename: contentstack_management/metadata/metadata.py
+  checksum: aa059e6dee28d87be47e7aa2cb92fd39fcd0f2f89366d27236ddf8ecc51e8f7b
+version: ""

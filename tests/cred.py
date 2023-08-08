@@ -27,6 +27,7 @@ default_asset_uid = "asset_uid" #Default asset uid
 default_folder_uid = "folder_uid" #Default folder uid
 default_workflow_uid = "workflow_uid" #Default workflow uid
 default_rule_uid = "rule_uid" #Default rule uid
+default_metadata_uid = "metadata_uid" #Default metadata uid
 
 
 def get_credentials():
@@ -59,7 +60,8 @@ def get_credentials():
         "asset_uid": os.getenv("ASSET_UID", default_asset_uid),
         "folder_uid": os.getenv("FOLDER_UID", default_folder_uid),
         "workflow_uid": os.getenv("WORKFLOW_UID", default_workflow_uid),
-        "rule_uid": os.getenv("RULE_UID", default_rule_uid)
+        "rule_uid": os.getenv("RULE_UID", default_rule_uid),
+        "metadata_uid": os.getenv("METADATA_UID", default_metadata_uid)
 
     }
     return credentials
