@@ -15,7 +15,7 @@ class Metadata(Parameter):
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, client, metadata_uid):
+    def __init__(self, client, metadata_uid: str):
         self.client = client
         self.metadata_uid = metadata_uid
         super().__init__(self.client)
@@ -56,13 +56,13 @@ class Metadata(Parameter):
 
         -------------------------------
         """
-        if self.metadata_uid is None:
+        if self.metadata_uid is None or '':
             raise Exception('metadata uid is required')
         url = f"{self.path}/{self.metadata_uid}"
         return self.client.get(url, headers = self.client.headers)
         
     
-    def create(self, data):
+    def create(self, data: dict):
         """
         The Create metadata request lets you create metadata for a specific asset or entry. 
         Whenever you create metadata for an entry or asset, you need to specify the extension to which it will be connected.
@@ -98,7 +98,7 @@ class Metadata(Parameter):
         data = json.dumps(data)
         return self.client.post(self.path, headers = self.client.headers, data=data)
     
-    def update(self, data):
+    def update(self, data: dict):
         """
         The Update metadata request lets you update the metadata for a specific entry or asset.
 
@@ -146,7 +146,7 @@ class Metadata(Parameter):
         -------------------------------
         """
         
-        if self.metadata_uid is None:
+        if self.metadata_uid is None or '':
             raise Exception('metadata uid is required')
         url = f"{self.path}/{self.metadata_uid}"
         data = json.dumps(data)
@@ -170,13 +170,13 @@ class Metadata(Parameter):
         """
         
         
-        if self.metadata_uid is None:
+        if self.metadata_uid is None or '':
             raise Exception('metadata uid is required')
         url = f"{self.path}/{self.metadata_uid}"
         
         return self.client.delete(url, headers = self.client.headers)
     
-    def publish(self, data):
+    def publish(self, data: dict):
         """
         The Publish metadata request lets you publish the metadata associated with a specific entry or asset.
         
@@ -201,13 +201,13 @@ class Metadata(Parameter):
         -------------------------------
         """
         
-        if self.metadata_uid is None:
+        if self.metadata_uid is None or '':
             raise Exception('metadata uid is required')
         url = f"{self.path}/{self.metadata_uid}/publish"
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers, data = data)
     
-    def unpublish(self, data):
+    def unpublish(self, data: dict):
         """
         The Unpublish metadata request lets you unpublish the metadata associated with a specific entry or asset.
         :return: Json, with updated Metadata details.
@@ -231,7 +231,7 @@ class Metadata(Parameter):
         -------------------------------
         """
         
-        if self.metadata_uid is None:
+        if self.metadata_uid is None  or '':
             raise Exception('metadata uid is required')
         url = f"{self.path}/{self.metadata_uid}/unpublish"
         data = json.dumps(data)

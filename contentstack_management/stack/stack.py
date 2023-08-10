@@ -325,6 +325,5 @@ class Stack(Parameter):
     def workflows(self, workflow_uid=None):
         return Workflows(self.client, workflow_uid)
     
-    def metadata(self, metadata_uid=None):
+    def metadata(self, metadata_uid: str = None):
             return Metadata(self.client, metadata_uid)
-
