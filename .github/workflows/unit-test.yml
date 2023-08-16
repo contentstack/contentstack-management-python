@@ -29,7 +29,7 @@ jobs:
           coverage report --include="tests/unit/*" -m > coverage_report.txt
           coverage xml --include="tests/unit/*" -o coverage.xml
           coverage html --include="tests/unit/*"
-          
+
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v2
         with:
@@ -38,3 +38,8 @@ jobs:
             coverage_report.txt
             coverage.xml
             htmlcov
+      - name: Generate coverage report
+        uses: orgoro/coverage@v3.1
+        with:
+          coverageFile: coverage.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
