@@ -188,3 +188,8 @@ fileignoreconfig:
 - filename: contentstack_management/roles/roles.py
   checksum: 373a75c8df71801a8b39cfa992bc9296b7ff5398bf4de4f990f6fe1977841a3c
 version: ""
+
+fileignoreconfig:
+- filename: tests/unit/stack/test_stack.py
+  checksum: 882d1d8d76848a5192c0d042948a04e4edbabac3b47ee725689181ff4ec3393b
+version: ""

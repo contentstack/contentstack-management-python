@@ -98,7 +98,7 @@ class StacksUnitTests(unittest.TestCase):
         response = self.stack.accept_ownership(user_id,
                                                ownership_token)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}stacks/accept_ownership/?api_key={api_key}&uid={user_id}")
+                         f"{self.client.endpoint}stacks/accept_ownership/ownership@contentstack?api_key=apikeycontentstack&uid=userid%40contentstack")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
