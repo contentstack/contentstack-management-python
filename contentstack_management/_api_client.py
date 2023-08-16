@@ -80,7 +80,7 @@ class _APIClient:
         # self.headers = headers or {}
         return self._call_request('GET', url, headers=headers, params=params)
 
-    def put(self, path, data=None, params=None, json_data=None, headers=None):
+    def put(self, path, data=None, params=None, json_data=None, headers=None, files=None):
         """
         The function sends a PUT request to a specified URL with optional data, parameters, JSON data,
         and headers.
@@ -102,7 +102,7 @@ class _APIClient:
         
         url = f"{self.endpoint}{path}"
         # headers = headers or {}
-        return self._call_request('PUT', url, headers=headers, params=params, data=data, json_data=json_data)
+        return self._call_request('PUT', url, headers=headers, params=params, data=data, json_data=json_data, files=files)
 
     def post(self, path, data=None, json_data=None, headers=None, params=None, files=None):
         """

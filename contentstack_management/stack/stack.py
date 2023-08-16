@@ -9,6 +9,7 @@ from ..global_fields.global_fields import GlobalFields
 from ..webhook.webhook import Webhooks
 from ..workflows.workflows import Workflows
 from ..metadata.metadata import Metadata
+from ..roles.roles import Roles
 
 
 class Stack(Parameter):
@@ -327,3 +328,6 @@ class Stack(Parameter):
     
     def metadata(self, metadata_uid: str = None):
             return Metadata(self.client, metadata_uid)
+    
+    def roles(self, roles_uid: str = None):
+            return Roles(self.client, roles_uid)

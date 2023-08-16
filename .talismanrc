@@ -169,3 +169,22 @@ fileignoreconfig:
 - filename: contentstack_management/metadata/metadata.py
   checksum: aa059e6dee28d87be47e7aa2cb92fd39fcd0f2f89366d27236ddf8ecc51e8f7b
 version: ""
+
+fileignoreconfig:
+- filename: tests/resources/mock_roles/fetch.json
+  checksum: 9207921c9508fe82e59bf6101d1fa99b2b9a62b6b864f36d90f5819a15fdbaa0
+- filename: tests/resources/mock_roles/create.json
+  checksum: d59d280188a9d57a596fbcd7746b718ef5cf2bc9ad187537f9caa730bc2c03af
+- filename: tests/resources/mock_roles/find.json
+  checksum: 70b7016d8dcf96474c298cf3052d91d83cb3b154d16ebb3e167cb85cefa3a760
+- filename: tests/resources/mock_roles/update.json
+  checksum: f83955fa82e9e8f84aaccc0b7f866116e07d9115deb3ffac3f1406e9c1800745
+- filename: tests/api/roles/test_roles_api.py
+  checksum: 36d5ccd16ee1785b2ca774303bd3d4d24ab15846bb1b67037b26e152b117b4b2
+- filename: tests/mock/roles/test_roles_mock.py
+  checksum: a6ca0282a3df204bf783b8bf73dbdac02e256177df2b000f95ba9d528f2322b4
+- filename: tests/unit/roles/test_roles_unit.py
+  checksum: 3294f71a285ba9e2e61a6d75884498618a7934b76993b1c0ff385937bb5ed74f
+- filename: contentstack_management/roles/roles.py
+  checksum: 373a75c8df71801a8b39cfa992bc9296b7ff5398bf4de4f990f6fe1977841a3c
+version: ""
