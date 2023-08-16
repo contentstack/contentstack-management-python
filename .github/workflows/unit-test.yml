@@ -29,6 +29,7 @@ jobs:
           coverage report --include="tests/unit/*" -m > coverage_report.txt
           coverage xml --include="tests/unit/*" -o coverage.xml
           coverage html --include="tests/unit/*"
+          coverage-badge -o coverage.svg
 
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v2
@@ -38,4 +39,5 @@ jobs:
             coverage_report.txt
             coverage.xml
             htmlcov
+            coverage.svg
       
