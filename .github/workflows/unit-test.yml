@@ -28,7 +28,8 @@ jobs:
           coverage run  -m pytest tests/unit/
           coverage report --include="tests/unit/*" -m > coverage_report.txt
           coverage xml --include="tests/unit/*" -o coverage.xml
-
+          coverage html --include="tests/unit/*"
+          
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v2
         with:
@@ -36,3 +37,4 @@ jobs:
           path: |
             coverage_report.txt
             coverage.xml
+            htmlcov
