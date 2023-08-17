@@ -1,4 +1,4 @@
-class Error(Exception):
+class ArgumentException(Exception):
 
     pass
     def __init__(self, f, *args):
@@ -6,4 +6,4 @@ class Error(Exception):
         self.f = f
 
     def __str__(self):
-        return f'The {self.f} uid is required'
+        return self.f

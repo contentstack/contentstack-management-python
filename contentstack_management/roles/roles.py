@@ -6,7 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from urllib.parse import quote
-from .._errors import Error
+from .._errors import ArgumentException
 
 class Roles(Parameter):
     """
@@ -32,14 +32,12 @@ class Roles(Parameter):
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").roles().find().json()
 
         -------------------------------
         """        
-        url = self.path
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers)
     
       
     
@@ -51,14 +49,12 @@ class Roles(Parameter):
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').roles('role_uid').fetch().json()
 
         -------------------------------
         """
-        if self.role_uid is None or '':
-            raise Error('role')
+        self.validate_uid()
         url = f"{self.path}/{self.role_uid}"
         return self.client.get(url, headers = self.client.headers)
         
@@ -155,8 +151,7 @@ class Roles(Parameter):
             >>>        }
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').roles().create(data).json()
 
         -------------------------------
@@ -263,15 +258,13 @@ class Roles(Parameter):
             >>>        }
             >>>        }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').roles("role_uid").update(data).json()
 
         -------------------------------
         """
         
-        if self.role_uid is None or '':
-            raise Error('role')
+        self.validate_uid()
         url = f"{self.path}/{self.role_uid}"
         data = json.dumps(data)
         return self.client.put(url, headers = self.client.headers, data=data)
@@ -286,17 +279,18 @@ class Roles(Parameter):
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').roles('role_uid').delete().json()
 
         -------------------------------
         """
         
         
-        if self.role_uid is None or '':
-            raise Error('role')
+        self.validate_uid()
         url = f"{self.path}/{self.role_uid}"
-        
         return self.client.delete(url, headers = self.client.headers)
+    
+    def validate_uid(self):
+        if self.role_uid is None or '':
+            raise ArgumentException('Role Uid is required')
     
