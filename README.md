@@ -83,7 +83,7 @@ var  asset  = {
 }
 
 asset = client().stack(api_key='API_KEY').assets()
-response = asset.upload(asset)
+result = asset.upload(asset)
 ```
 
 ### Helpful Links
