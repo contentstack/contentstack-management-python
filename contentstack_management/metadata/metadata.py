@@ -75,9 +75,9 @@ class Metadata(Parameter):
             >>>            "entity_uid": "entity_uid",
             >>>            "type": "entry",
             >>>            "_content_type_uid": "sample_content",
-            >>>            "extension_uid": "blt8c723a09fdd0b25e",
+            >>>            "extension_uid": "extension_uid",
             >>>            "presets": [{
-            >>>                "uid": "d9300b22-f37d-4b25-93df-fc0395d62814",
+            >>>                "uid": "presents_uid",
             >>>                "name": "Test1",
             >>>                "options": {
             >>>                }
@@ -105,19 +105,19 @@ class Metadata(Parameter):
         [Example:]
             >>> data = {
             >>>        "metadata": {
-            >>>            "entity_uid": "bltcbdfb3f254446076",
+            >>>            "entity_uid": "entity_uid",
             >>>            "type": "entry",
-            >>>            "extension_uid": "blt8c723a09fdd0b25e",
+            >>>            "extension_uid": "extension_uid",
             >>>            "locale": "en_us",
-            >>>            "_content_type_uid": "sample_content",
+            >>>            "_content_type_uid": "_content_type_uid",
             >>>            "presets": [{
-            >>>                    "uid": "d9300b22-f37d-4b25-93df-fc0395d62814",
+            >>>                    "uid": "presets_uid",
             >>>                    "name": "test1",
             >>>                    "options": {}
             >>>                },
             >>>                {
             >>>                    "name": "Test3",
-            >>>                    "uid": "8418f24e-4393-4dd9-9f20-d2ecba539431",
+            >>>                    "uid": "presets_uid",
             >>>                    "options": {
             >>>                        "quality": "100",
             >>>                        "transform": {
