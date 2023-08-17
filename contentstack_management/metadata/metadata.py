@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from urllib.parse import quote
+from .._errors import ArgumentException
 
 class Metadata(Parameter):
     """
@@ -20,7 +21,7 @@ class Metadata(Parameter):
         self.metadata_uid = metadata_uid
         super().__init__(self.client)
 
-        self.path = f"metadata"
+        self.path = "metadata"
 
     def find(self):
         """
@@ -31,14 +32,12 @@ class Metadata(Parameter):
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").metadata().find().json()
 
         -------------------------------
         """        
-        url = self.path
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers)
     
       
     
@@ -50,14 +49,12 @@ class Metadata(Parameter):
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata('metadata_uid').fetch().json()
 
         -------------------------------
         """
-        if self.metadata_uid is None or '':
-            raise Exception('metadata uid is required')
+        self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}"
         return self.client.get(url, headers = self.client.headers)
         
@@ -88,8 +85,7 @@ class Metadata(Parameter):
             >>>        }
             >>>    }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata().create(data).json()
 
         -------------------------------
@@ -139,15 +135,12 @@ class Metadata(Parameter):
             >>>        }
             >>>    }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata("metadata_uid").update(data).json()
 
         -------------------------------
         """
-        
-        if self.metadata_uid is None or '':
-            raise Exception('metadata uid is required')
+        self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}"
         data = json.dumps(data)
         return self.client.put(url, headers = self.client.headers, data=data)
@@ -162,18 +155,13 @@ class Metadata(Parameter):
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
-            >>> result = result = client.stack('api_key').metadata('metadata_uid').delete().json()
+            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> result = client.stack('api_key').metadata('metadata_uid').delete().json()
 
         -------------------------------
         """
-        
-        
-        if self.metadata_uid is None or '':
-            raise Exception('metadata uid is required')
+        self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}"
-        
         return self.client.delete(url, headers = self.client.headers)
     
     def publish(self, data: dict):
@@ -194,15 +182,12 @@ class Metadata(Parameter):
             >>>        }
             >>>        }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata('metadata_uid').publish(data).json()
 
         -------------------------------
         """
-        
-        if self.metadata_uid is None or '':
-            raise Exception('metadata uid is required')
+        self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}/publish"
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers, data = data)
@@ -224,15 +209,16 @@ class Metadata(Parameter):
             >>>        }
             >>>        }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack.client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata('metadata_uid').unpublish(data).json()
 
         -------------------------------
         """
-        
-        if self.metadata_uid is None  or '':
-            raise Exception('metadata uid is required')
+        self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}/unpublish"
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers, data = data)
+    
+    def validate_uid(self):
+         if self.metadata_uid is None or '':
+            raise ArgumentException("Metadata Uid is required")
