@@ -20,7 +20,7 @@ from [here](https://www.python.org/ftp/python/3.7.4/python-3.7.4-macosx10.9.pkg)
 pip install contentstack_management
 ```
 To import the SDK, use the following command:
-```
+```python
 from contentstack_management import contentstack
 
 client = contentstack.ContentstackClient()
@@ -29,60 +29,60 @@ client = contentstack.ContentstackClient()
 ### Authentication
 To use this SDK, you need to authenticate your users by using the Authtoken, credentials, or Management Token (stack-level token).
 ### Authtoken
-An [Authtoken](https://www.contentstack.com/docs/developers/create-tokens/types-of-tokens/#authentication-tokens-authtokens-) is a read-write token used to make authorized CMA requests, and it is a **user-specific** token.
-```
-client = contentstack.ContentstackClient(authtoken= 'AUTHTOKEN')
+An **Authtoken** is a read-write token used to make authorized CMA requests, and it is a **user-specific** token.
+```python
+client = contentstack.ContentstackClient(authtoken= 'authtoken')
 ```
 ### Login
 To Login to Contentstack by using credentials, you can use the following lines of code:
-```
-client.login(email="EMAIL", password="PASSWORD")
+```python
+client.login(email="email", password="password")
 
 ```
 
 ### Management Token
-[Management Tokens](https://www.contentstack.com/docs/developers/create-tokens/about-management-tokens/) are **stack-level** tokens, with no users attached to them.
-```
-result = client.stack(api_key = 'API_KEY', management_token= 'MANAGEMENT_TOKEN' ).content_type('CONTENT_TYPE_UID')
+**Management Tokens** are **stack-level** tokens, with no users attached to them.
+```python
+result = client.stack(api_key = 'api_key', management_token= 'management_token' ).content_type('content_type_uid')
 .fetch().json()
 print(result)
 ```
 ### Contentstack Management Python SDK: 5-minute Quickstart
 #### Initializing Your SDK:
 To use the Python CMA SDK, you need to first initialize it. To do this, use the following code:
-```
+```python
 from contentstack_management import contentstack
 
-client = contentstack.ContentstackClient(authtoken= 'AUTHTOKEN')
+client = contentstack.ContentstackClient(authtoken= 'authtoken')
 ```
 #### Fetch Stack Detail
 Use the following lines of code to fetch your stack detail using this SDK:
-```
-result = client.stack(api_key= 'API_KEY').fetch().json()
+```python
+result = client.stack(api_key= 'api_key').fetch().json()
 print(result)
 ```
 
 #### Create Entry
 To create an entry in a specific content type of a stack, use the following lines of code:
-```
-var  entry  = {
+```python
+entry  = {
 	title: 'Sample Entry',
 	url: '/sampleEntry'
 }
 
-result = client.stack(api_key= 'API_KEY').content_types('CONTENT_TYPE_UID').entry().create(entry).json()
+result = client.stack(api_key= 'api_key').content_types('content_type_uid').entry().create(entry).json()
 print(result)
 ```
 
 #### Create Asset
 The following lines of code can be used to upload assets to your stack:
-```
-var  asset  = {
+```python
+asset  = {
 	upload: 'path/to/file',
 	title: 'Asset Title'
 }
 
-asset = client().stack(api_key='API_KEY').assets()
+asset = client().stack(api_key='api_key').assets()
 result = asset.upload(asset)
 ```
 
@@ -93,7 +93,7 @@ result = asset.upload(asset)
 -   [Content Management API Docs](https://www.contentstack.com/docs/developers/apis/content-management-api)
 
 ### The MIT License (MIT)
-Copyright © 2012-2022  [Contentstack](https://www.contentstack.com/). All Rights Reserved
+Copyright © 2012-2023  [Contentstack](https://www.contentstack.com/). All Rights Reserved
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

@@ -197,3 +197,7 @@ fileignoreconfig:
 - filename: README.md
   checksum: 769bf6032aa18764c5924a0f71b911a1b66258a0b04f1e0aef4650c486b0a050
 version: ""
+fileignoreconfig:
+- filename: README.md
+  checksum: 45ea945d901c8a47144e8eb7106e49b1d121400cf47cbc7e5134f62a236b8da5
+version: ""
