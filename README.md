@@ -29,6 +29,7 @@ client = contentstack.ContentstackClient()
 ### Authentication
 To use this SDK, you need to authenticate your users by using the Authtoken, credentials, or Management Token (stack-level token).
 ### Authtoken
+
 An **Authtoken** is a read-write token used to make authorized CMA requests, and it is a **user-specific** token.
 ```python
 client = contentstack.ContentstackClient(authtoken= 'authtoken')
@@ -42,6 +43,7 @@ client.login(email="email", password="password")
 
 ### Management Token
 **Management Tokens** are **stack-level** tokens, with no users attached to them.
+
 ```python
 result = client.stack(api_key = 'api_key', management_token= 'management_token' ).content_type('content_type_uid')
 .fetch().json()
@@ -50,6 +52,7 @@ print(result)
 ### Contentstack Management Python SDK: 5-minute Quickstart
 #### Initializing Your SDK:
 To use the Python CMA SDK, you need to first initialize it. To do this, use the following code:
+
 ```python
 from contentstack_management import contentstack
 
@@ -64,24 +67,25 @@ print(result)
 
 #### Create Entry
 To create an entry in a specific content type of a stack, use the following lines of code:
+
 ```python
 entry  = {
-	title: 'Sample Entry',
-	url: '/sampleEntry'
+  title: 'Sample Entry',
+  url: '/sampleEntry'
 }
 
-result = client.stack(api_key= 'api_key').content_types('content_type_uid').entry().create(entry).json()
-print(result)
+result = client.stack(api_key= 'api_key').content_types('content_type_uid').entry().create(entry)
+print(result.json())
 ```
 
 #### Create Asset
 The following lines of code can be used to upload assets to your stack:
+
 ```python
 asset  = {
-	upload: 'path/to/file',
-	title: 'Asset Title'
+   upload: 'path/to/file',
+   title: 'Asset Title'
 }
-
 asset = client().stack(api_key='api_key').assets()
 result = asset.upload(asset)
 ```
