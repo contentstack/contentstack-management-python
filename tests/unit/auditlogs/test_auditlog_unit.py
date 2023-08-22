@@ -61,5 +61,5 @@ class auditlogesUnitTests(unittest.TestCase):
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
-    if __name__ == '__main__':
-        unittest.main()
+    # if __name__ == '__main__':
+    #     unittest.main()
