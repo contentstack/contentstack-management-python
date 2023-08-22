@@ -4,6 +4,7 @@ import unittest
 from dotenv import load_dotenv
 
 from contentstack_management import contentstack
+from contentstack_management._errors import ArgumentException
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -33,6 +34,14 @@ class auditlogesUnitTests(unittest.TestCase):
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
+
+    def test_get_a_auditlog_invalid_input(self):
+        try: 
+            response = self.client.stack(api_key).auditlog().fetch()
+        except ArgumentException as e:
+            if hasattr(e, 'message'):
+                self.assertEqual(
+                    "Log item Uid is required", e.args[0])
 
     def test_get_all_auditloges_with_params(self):
         query = self.client.stack(api_key).auditlog()
