@@ -339,5 +339,5 @@ class Stack(Parameter):
     def auditlog(self, log_item_uid: str = None):
             return auditlog.Auditlog(self.client, log_item_uid)
     
-    def environments(self, environments_uid: str = None):
-            return environments.Environment(self.client, environments_uid)
+    def environments(self, environment_name: str = None):
+            return environments.Environment(self.client, environment_name)

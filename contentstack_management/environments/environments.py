@@ -16,9 +16,9 @@ class Environment(Parameter):
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, client, environments_uid: str):
+    def __init__(self, client, environment_name: str):
         self.client = client
-        self.environments_uid = environments_uid
+        self.environment_name = environment_name
         super().__init__(self.client)
 
         self.path = "environments"
@@ -50,12 +50,12 @@ class Environment(Parameter):
 
             >>> from contentstack_management import contentstack
             >>> client = contentstack.client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').environments('environments_uid').fetch().json()
+            >>> result = client.stack('api_key').environments('environment_name').fetch().json()
 
         -------------------------------
         """
         self.validate_uid()
-        url = f"{self.path}/{self.environments_uid}"
+        url = f"{self.path}/{self.environment_name}"
         return self.client.get(url, headers = self.client.headers)
         
     
@@ -106,12 +106,12 @@ class Environment(Parameter):
             >>>    }
             >>> from contentstack_management import contentstack
             >>> client = contentstack.client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').environments("environments_uid").update(data).json()
+            >>> result = client.stack('api_key').environments("environment_name").update(data).json()
 
         -------------------------------
         """
         self.validate_uid()
-        url = f"{self.path}/{self.environments_uid}"
+        url = f"{self.path}/{self.environment_name}"
         data = json.dumps(data)
         return self.client.put(url, headers = self.client.headers, data=data)
     
@@ -126,14 +126,14 @@ class Environment(Parameter):
 
             >>> from contentstack_management import contentstack
             >>> client = contentstack.client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').environments('environments_uid').delete().json()
+            >>> result = client.stack('api_key').environments('environment_name').delete().json()
 
         -------------------------------
         """
         self.validate_uid()
-        url = f"{self.path}/{self.environments_uid}"
+        url = f"{self.path}/{self.environment_name}"
         return self.client.delete(url, headers = self.client.headers)
         
     def validate_uid(self):
-         if self.environments_uid is None or '':
+         if self.environment_name is None or '':
             raise ArgumentException("Environments Uid is required")

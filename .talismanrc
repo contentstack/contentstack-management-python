@@ -221,3 +221,7 @@ fileignoreconfig:
 - filename: contentstack_management/contentstack.py
   checksum: 89896be10ec6f47b814a0256dd6db9763202006180ec67e99d091f65c221f1d2
 version: ""
+fileignoreconfig:
+- filename: contentstack_management/environments/environments.py
+  checksum: 68813381218aa355711e03dae52f87f367f103a05cf13475319a71f1984dbfca
+version: ""
