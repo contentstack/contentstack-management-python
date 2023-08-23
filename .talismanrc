@@ -201,3 +201,11 @@ fileignoreconfig:
 - filename: README.md
   checksum: 45ea945d901c8a47144e8eb7106e49b1d121400cf47cbc7e5134f62a236b8da5
 version: ""
+fileignoreconfig:
+- filename: tests/mock/auditlogs/test_auditlogs_mock.py
+  checksum: 6be6e351200624863cbfc443d3215242f03b0b06adc06649d119bee80b7608a3
+- filename: tests/api/auditlogs/test_auditlogs_api.py
+  checksum: ff37d395fe03a822775e73a1c867cfcbbe14a75e37e4cb8a6d09f19fd790da7e
+- filename: tests/unit/auditlogs/test_auditlog_unit.py
+  checksum: 1b8b24cc7f7921d209b983a99c0305d5fb27c1fe8e3fc74f1d525a7327eba830
+version: ""

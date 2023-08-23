@@ -1,0 +1,321 @@
+{
+    "logs": [
+       {
+          "uid": "uid",
+          "stack": "stack",
+          "created_at": "2023-08-17T21:53:29.817Z",
+          "created_by": "created_by",
+          "module": "global_field",
+          "event_type": "update",
+          "request_id": "request_id",
+          "metadata": {
+             "title": "First",
+             "uid": "first",
+             "version": 6
+          },
+          "remote_addr": "ip_addr",
+          "request": {
+             "global_field": {
+                "title": "First",
+                "description": "",
+                "schema": [
+                   {
+                      "display_name": "Name",
+                      "uid": "name",
+                      "data_type": "text",
+                      "multiple": false,
+                      "mandatory": false,
+                      "unique": false,
+                      "non_localizable": false
+                   },
+                   {
+                      "data_type": "text",
+                      "display_name": "Rich text editor",
+                      "uid": "description",
+                      "multiple": false,
+                      "mandatory": false,
+                      "unique": false,
+                      "non_localizable": false
+                   }
+                ]
+             }
+          },
+          "response": {
+             "notice": "Global Field updated successfully.",
+             "global_field": {
+                "created_at": "2023-07-13T08:14:10.772Z",
+                "updated_at": "2023-08-17T21:53:29.794Z",
+                "title": "First",
+                "uid": "first",
+                "_version": 6,
+                "inbuilt_class": false,
+                "schema": [
+                   {
+                      "display_name": "Name",
+                      "uid": "name",
+                      "data_type": "text",
+                      "multiple": false,
+                      "mandatory": false,
+                      "unique": false,
+                      "non_localizable": false
+                   },
+                   {
+                      "data_type": "text",
+                      "display_name": "Rich text editor",
+                      "uid": "description",
+                      "multiple": false,
+                      "mandatory": false,
+                      "unique": false,
+                      "non_localizable": false
+                   }
+                ],
+                "last_activity": {},
+                "maintain_revisions": true,
+                "description": "",
+                "DEFAULT_ACL": null,
+                "SYS_ACL": null,
+                "field_rules": null
+             }
+          }
+       },
+       {
+          "stack": "stack",
+          "created_by": "created_by",
+          "created_at": "2023-08-16T17:00:18.962Z",
+          "request_id": "request_id",
+          "event_type": "create",
+          "module": "webhook",
+          "metadata": {
+             "title": "Test",
+             "uid": "uid",
+             "version": 1
+          },
+          "remote_addr": "ip_addr",
+          "request": {
+             "webhook": {
+                "name": "Test",
+                "destinations": [
+                   {
+                      "target_url": "http://example.com",
+                      "http_basic_auth": "basic",
+                      "http_basic_password": "test",
+                      "custom_header": [
+                         {
+                            "header_name": "Custom",
+                            "value": "testing"
+                         }
+                      ]
+                   }
+                ],
+                "notifiers": "dave.joe@gmail.com",
+                "channels": [
+                   "assets.create"
+                ],
+                "branches": [
+                   "main"
+                ],
+                "retry_policy": "manual",
+                "disabled": false,
+                "concise_payload": true,
+                "org_uid": "org_uid",
+                "applikation_id": "applikation_id",
+                "updated_by": "updated_by",
+                "created_by": "created_by",
+                "project_uid": "project_uid"
+             }
+          },
+          "response": {
+             "notice": "The Webhook was created successfully",
+             "webhook": {
+                "name": "Test",
+                "destinations": [
+                   {
+                      "target_url": "http://example.com",
+                      "http_basic_auth": "basic",
+                      "http_basic_password": "test",
+                      "custom_header": [
+                         {
+                            "header_name": "Custom",
+                            "value": "testing"
+                         }
+                      ]
+                   }
+                ],
+                "channels": [
+                   "assets.create"
+                ],
+                "retry_policy": "manual",
+                "branches": [
+                   "main"
+                ],
+                "notifiers": [
+                   "dave.joe@gmail.com"
+                ],
+                "disabled": false,
+                "updated_by": "updated_by",
+                "created_by": "created_by",
+                "concise_payload": true,
+                "uid": "uid",
+                "created_at": "2023-08-16T17:00:18.956Z",
+                "updated_at": "2023-08-16T17:00:18.956Z"
+             }
+          },
+          "uid": "uid",
+          "__v": 0
+       },
+       {
+          "uid": "uid",
+          "stack": "stack",
+          "created_at": "2023-08-09T09:46:42.344Z",
+          "created_by": "created_by",
+          "module": "entry/asset",
+          "event_type": "bulk-publish",
+          "request_id": "request_id",
+          "metadata": {
+             "title": "Bulk Publish",
+             "uid": ""
+          },
+          "remote_addr": "remote_addr",
+          "request": {
+             "r": "0.15904304909842337",
+             "locales": [
+                "en-at",
+                "en-us",
+                "hi-in"
+             ],
+             "environments": [
+                "environments"
+             ],
+             "assets": [
+                {
+                   "uid": "uid",
+                   "version": 1,
+                   "parent_uid": null,
+                   "content_type": "image/jpeg",
+                   "file_size": 131268,
+                   "filename": "dosa.jpeg",
+                   "dimension": {
+                      "height": 696,
+                      "width": 696
+                   },
+                   "asset_id": "asset_id",
+                   "title": "dosa.jpeg",
+                   "_version": 1,
+                   "_branches": [
+                      "main"
+                   ],
+                   "type": "asset",
+                   "entry": {
+                      "title": "dosa.jpeg",
+                      "uid": "uid",
+                      "version": 1
+                   },
+                   "environments": [
+                      "environments"
+                   ],
+                   "locales": [
+                      "en-at",
+                      "en-us",
+                      "hi-in"
+                   ]
+                },
+                {
+                   "uid": "uid",
+                   "version": 1,
+                   "parent_uid": null,
+                   "content_type": "image/png",
+                   "file_size": 108095,
+                   "filename": "light_house_reports.png",
+                   "dimension": {
+                      "height": 909,
+                      "width": 1920
+                   },
+                   "asset_id": "asset_id",
+                   "title": "light_house_reports.png",
+                   "_version": 1,
+                   "_branches": [
+                      "main",
+                      "release",
+                      "release2"
+                   ],
+                   "type": "asset",
+                   "entry": {
+                      "title": "light_house_reports.png",
+                      "uid": "uid",
+                      "version": 1
+                   },
+                   "environments": [
+                      "environments"
+                   ],
+                   "locales": [
+                      "en-at",
+                      "en-us",
+                      "hi-in"
+                   ]
+                },
+                {
+                   "uid": "uid",
+                   "version": 1,
+                   "content_type": "multipart/form-data",
+                   "file_size": 330000,
+                   "filename": "shailesh",
+                   "asset_id": "asset_id",
+                   "title": "shailesh",
+                   "_version": 1,
+                   "parent_uid": null,
+                   "_branches": [
+                      "main",
+                      "release2"
+                   ],
+                   "type": "asset",
+                   "entry": {
+                      "title": "shailesh",
+                      "uid": "uid",
+                      "version": 1
+                   },
+                   "environments": [
+                      "environments"
+                   ],
+                   "locales": [
+                      "en-at",
+                      "en-us",
+                      "hi-in"
+                   ]
+                },
+                {
+                   "uid": "uid",
+                   "version": 1,
+                   "content_type": "application/json",
+                   "file_size": 392,
+                   "filename": "webhook.json",
+                   "asset_id": "asset_id",
+                   "title": "webhook.json",
+                   "_version": 1,
+                   "parent_uid": null,
+                   "_branches": [
+                      "main",
+                      "release",
+                      "release2"
+                   ],
+                   "type": "asset",
+                   "entry": {
+                      "title": "webhook.json",
+                      "uid": "uid",
+                      "version": 1
+                   },
+                   "environments": [
+                      "environments"
+                   ],
+                   "locales": [
+                      "en-at",
+                      "en-us",
+                      "hi-in"
+                   ]
+                }
+             ],
+             "entries": []
+          },
+          "response": {}
+       }
+    ]
+ }
