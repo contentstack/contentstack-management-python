@@ -1,0 +1,95 @@
+{
+    "notice": "The role updated successfully.",
+    "role": {
+       "name": "sampleRole",
+       "description": "This is a test role.",
+       "rules": [
+          {
+             "module": "branch",
+             "branches": [
+                "main"
+             ],
+             "acl": {
+                "read": true
+             }
+          },
+          {
+             "module": "branch_alias",
+             "branch_aliases": [
+                "branch_aliases_uid"
+             ],
+             "acl": {
+                "read": true
+             }
+          },
+          {
+             "module": "content_type",
+             "content_types": [
+                "$all"
+             ],
+             "acl": {
+                "read": true,
+                "sub_acl": {
+                   "read": true
+                }
+             }
+          },
+          {
+             "module": "asset",
+             "assets": [
+                "$all"
+             ],
+             "acl": {
+                "read": true,
+                "update": true,
+                "publish": true,
+                "delete": true
+             }
+          },
+          {
+             "module": "folder",
+             "folders": [
+                "$all"
+             ],
+             "acl": {
+                "read": true,
+                "update": true,
+                "publish": true,
+                "delete": true,
+                "sub_acl": {
+                   "read": true,
+                   "update": true,
+                   "publish": true,
+                   "delete": true
+                }
+             }
+          },
+          {
+             "module": "environment",
+             "environments": [
+                "$all"
+             ],
+             "acl": {
+                "read": true
+             }
+          },
+          {
+             "module": "locale",
+             "locales": [
+                "$all"
+             ],
+             "acl": {
+                "read": true
+             }
+          }
+       ],
+       "users": [],
+       "uid": "role_uid",
+       "org_uid": "org_uid",
+       "api_key": "api_key",
+       "created_by": "user_uid",
+       "updated_by": "user_uid",
+       "created_at": "2023-08-16T11:25:55.953Z",
+       "updated_at": "2023-08-16T11:28:13.724Z"
+    }
+ }

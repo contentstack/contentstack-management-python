@@ -1,4 +1,5 @@
 class ArgumentException(Exception):
+
     pass
     def __init__(self, f, *args):
         super().__init__(args)
@@ -6,3 +7,4 @@ class ArgumentException(Exception):
 
     def __str__(self):
         return self.f
+

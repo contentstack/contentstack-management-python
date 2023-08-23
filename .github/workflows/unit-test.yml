@@ -1,45 +1,48 @@
-name: Pytest Workflow
+name: Coverage Report
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push]  # You can adjust the trigger events as needed
 
 jobs:
-  coverage-report:
-    strategy:
-      matrix:
-        python-version:
-          - 3.9
+  coverage:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install build dependencies
-        run: pip install --upgrade setuptools
-      - name: Install dot env
-        run: pip install python-dotenv
-      - name: Install requests
-        run: pip install requests
-      - name: Change to test directory
-        run: cd tests/unit
-      - uses: lpenz/ghaction-pytest-cov@v1
-      - uses: AndreMiras/coveralls-python-action@v20201129
+          python-version: 3.11  # Choose the appropriate Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # If you have a requirements file
+          pip install coverage
+          pip install pytest
+          pip install coverage-badge
+
+
+      - name: Run tests and coverage
+        run: |
+          coverage run  -m pytest tests/unit/
+          coverage report --include="tests/unit/*" -m > coverage_report.txt
+          coverage xml --include="tests/unit/*" -o coverage.xml
+          coverage html --include="tests/unit/*"
+          coverage-badge -o coverage.svg
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v2
         with:
-          parallel: true
-          flag-name: python-${{ matrix.python-version }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-       
-          
-  coverage-finish:
-    needs: coverage-report
-    runs-on: ubuntu-latest
-    steps:
-      - uses: AndreMiras/coveralls-python-action@v20201129
-        with:
-          parallel-finished: true
+          name: coverage-report
+          path: |
+            coverage_report.txt
+            coverage.xml
+            htmlcov
+            coverage.svg
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      

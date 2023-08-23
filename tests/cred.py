@@ -28,6 +28,8 @@ default_folder_uid = "folder_uid" #Default folder uid
 default_workflow_uid = "workflow_uid" #Default workflow uid
 default_rule_uid = "rule_uid" #Default rule uid
 default_metadata_uid = "metadata_uid" #Default metadata uid
+default_role_uid = "roles_uid" #Default roles uid
+default_log_item_uid = "log_item_uid" #Default roles uid
 
 
 def get_credentials():
@@ -61,7 +63,9 @@ def get_credentials():
         "folder_uid": os.getenv("FOLDER_UID", default_folder_uid),
         "workflow_uid": os.getenv("WORKFLOW_UID", default_workflow_uid),
         "rule_uid": os.getenv("RULE_UID", default_rule_uid),
-        "metadata_uid": os.getenv("METADATA_UID", default_metadata_uid)
+        "metadata_uid": os.getenv("METADATA_UID", default_metadata_uid),
+        "role_uid": os.getenv("ROLE_UID", default_role_uid),
+        "log_item_uid": os.getenv("LOG_ITEM_UID", default_log_item_uid)
 
     }
     return credentials
