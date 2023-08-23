@@ -1,16 +1,17 @@
 import json
 
-from ..aliases.aliases import Alias
-from ..assets.assets import Assets
-from ..branches.branches import Branch
+from ..aliases import aliases
+from ..assets import assets
+from ..branches import branches
 from ..common import Parameter
-from ..content_types.content_type import ContentType
-from ..global_fields.global_fields import GlobalFields
-from ..webhook.webhook import Webhooks
-from ..workflows.workflows import Workflows
-from ..metadata.metadata import Metadata
-from ..roles.roles import Roles
-from ..auditlogs.auditlog import Auditlog
+from ..content_types import content_type
+from ..global_fields import global_fields
+from ..webhook import webhook
+from ..workflows import workflows
+from ..metadata import metadata
+from ..roles import roles
+from ..auditlogs import auditlog
+from ..environments import environments
 
 
 
@@ -284,14 +285,7 @@ class Stack(Parameter):
         data = json.dumps(data)
         return self.client.post('stacks/share', headers=self.client.headers, params=self.params, data=data)
 
-    def branch(self, branch_uid=None):
-        return Branch(self.client, branch_uid)
 
-    def branch_alias(self, alias_uid=None):
-        return Alias(self.client, alias_uid)
-
-    def content_types(self, content_type_uid=None, branch=None):
-        return ContentType(self.client, content_type_uid, branch)
 
     def unshare(self, data):
         """
@@ -316,23 +310,34 @@ class Stack(Parameter):
     def global_fields(self, global_field_uid=None):
         if 'api_key' not in self.client.headers:
             raise Exception('api_key is required')
-        return GlobalFields(self.client, global_field_uid)
+        return global_fields.GlobalFields(self.client, global_field_uid)
 
+    def branch(self, branch_uid=None):
+        return branches.Branch(self.client, branch_uid)
+
+    def branch_alias(self, alias_uid=None):
+        return aliases.Alias(self.client, alias_uid)
+
+    def content_types(self, content_type_uid=None, branch=None):
+        return content_type.ContentType(self.client, content_type_uid, branch)
 
     def webhooks(self, webhook_uid=None):
-        return Webhooks(self.client, webhook_uid)
+        return webhook.Webhooks(self.client, webhook_uid)
 
     def assets(self, asset_uid=None, branch=None):
-        return Assets(self.client, asset_uid, branch)
+        return assets.Assets(self.client, asset_uid, branch)
     
     def workflows(self, workflow_uid=None):
-        return Workflows(self.client, workflow_uid)
+        return workflows.Workflows(self.client, workflow_uid)
     
     def metadata(self, metadata_uid: str = None):
-            return Metadata(self.client, metadata_uid)
+            return metadata.Metadata(self.client, metadata_uid)
     
     def roles(self, roles_uid: str = None):
-            return Roles(self.client, roles_uid)
+            return roles.Roles(self.client, roles_uid)
     
     def auditlog(self, log_item_uid: str = None):
-            return Auditlog(self.client, log_item_uid)
+            return auditlog.Auditlog(self.client, log_item_uid)
+    
+    def environments(self, environments_uid: str = None):
+            return environments.Environment(self.client, environments_uid)

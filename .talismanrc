@@ -209,3 +209,15 @@ fileignoreconfig:
 - filename: tests/unit/auditlogs/test_auditlog_unit.py
   checksum: 1b8b24cc7f7921d209b983a99c0305d5fb27c1fe8e3fc74f1d525a7327eba830
 version: ""
+fileignoreconfig:
+- filename: contentstack_management/environments/environments.py
+  checksum: d2289d750bcc3fc7197d3c853fd0fcbde5e9a971ed332cb6477edcb6620ad58b
+- filename: tests/api/environments/test_environments_api.py
+  checksum: 7cd53aff15a83f45f2520e989604cd87d44787bec1068ce94614735d1c57fdce
+- filename: tests/mock/environments/test_environments_mock.py
+  checksum: 3b9d9b2b91d6145a8d4ed1ec962fa61eedf63229022d2df4ad695c265f84dc5b
+- filename: tests/unit/environments/test_environment_unit.py
+  checksum: 3e362120a05306a0495a1103ea5a7c0152516b72703ab9d7609848aa15f90400
+- filename: contentstack_management/contentstack.py
+  checksum: 89896be10ec6f47b814a0256dd6db9763202006180ec67e99d091f65c221f1d2
+version: ""
