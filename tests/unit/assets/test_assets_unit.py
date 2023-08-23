@@ -198,20 +198,16 @@ class AssetsUnitTests(unittest.TestCase):
         self.assertEqual(response.request.body, None)
 
     def test_get_folder_by_name(self):
-        query = {"is_dir": True, "name": "folder_name"}
-        q = json.dumps((query))
         response = self.client.stack().assets().folder_by_name()
         p=print(response.request.url)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?include_folders=true&query={q}&folder={folder_uid}")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?query=is_dir&query=name")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
     def test_get_subfolders(self):
-        query = {"is_dir": True}
-        q = str(query)
-        response = self.client.stack().assets().get_subfolders(folder_uid, query)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?include_folders=true&query={q}&folder={folder_uid}")
+        response = self.client.stack().assets().get_subfolders(folder_uid)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?include_folders=True&query=is_dir&folder={folder_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)

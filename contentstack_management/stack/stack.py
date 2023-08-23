@@ -9,6 +9,9 @@ from ..global_fields.global_fields import GlobalFields
 from ..webhook.webhook import Webhooks
 from ..workflows.workflows import Workflows
 from ..metadata.metadata import Metadata
+from ..roles.roles import Roles
+from ..auditlogs.auditlog import Auditlog
+
 
 
 class Stack(Parameter):
@@ -324,5 +327,12 @@ class Stack(Parameter):
     
     def workflows(self, workflow_uid=None):
         return Workflows(self.client, workflow_uid)
-
-
+    
+    def metadata(self, metadata_uid: str = None):
+            return Metadata(self.client, metadata_uid)
+    
+    def roles(self, roles_uid: str = None):
+            return Roles(self.client, roles_uid)
+    
+    def auditlog(self, log_item_uid: str = None):
+            return Auditlog(self.client, log_item_uid)

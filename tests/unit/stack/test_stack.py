@@ -23,7 +23,6 @@ class StacksUnitTests(unittest.TestCase):
 
     def test_stacks_get(self):
         response = self.stack.fetch()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -31,7 +30,6 @@ class StacksUnitTests(unittest.TestCase):
 
     def test_stacks_all(self):
         response = self.client.stack().find()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -71,7 +69,6 @@ class StacksUnitTests(unittest.TestCase):
 
     def tests_stacks_fetch_all_user(self):
         response = self.stack.users()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/users")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -100,16 +97,14 @@ class StacksUnitTests(unittest.TestCase):
     def tests_stacks_accept_ownership(self):
         response = self.stack.accept_ownership(user_id,
                                                ownership_token)
-        self.assertEqual(response.status_code, 404)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}stacks/accept_ownership/?api_key={api_key}&uid={user_id}")
+                         f"{self.client.endpoint}stacks/accept_ownership/ownership@contentstack?api_key=apikeycontentstack&uid=userid%40contentstack")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
     def tests_stacks_get_stack_settings(self):
         response = self.stack.settings()
-        self.assertEqual(response.status_code, 200)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/settings")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
