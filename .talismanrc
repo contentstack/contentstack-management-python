@@ -225,3 +225,12 @@ fileignoreconfig:
 - filename: contentstack_management/environments/environments.py
   checksum: 68813381218aa355711e03dae52f87f367f103a05cf13475319a71f1984dbfca
 version: ""
+
+fileignoreconfig:
+- filename: .github/workflows/release.yml
+  checksum: 0b4d09c0534e318d8cc49a57a2547b2ce494d01d2c67c9016babd9d7b85c8ded
+- filename: contentstack_management/aliases/aliases.py
+  checksum: a47832f67e73f47e953d94082c7457ccd74c407a5b12e11a44621f42b6ea3f13
+- filename: contentstack_management/assets/assets.py
+  checksum: f5c471138d63b91e50a2137748dd31848c299fbd71e7127f58d9c4a57163b9bc
+version: ""

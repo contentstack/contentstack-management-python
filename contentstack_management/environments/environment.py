@@ -62,7 +62,7 @@ class Environment(Parameter):
     def create(self, data: dict):
         """
         The Add an environment call will add a publishing environment for a stack.
-        :param data: The `data` parameter is the payload that you want to send in the request body. It
+        :param data: The data parameter is the payload that you want to send in the request body. It
         should be a dictionary or a JSON serializable object that you want to send as the request body
         :return: Json, with environments details.
 
@@ -90,7 +90,7 @@ class Environment(Parameter):
     def update(self, data: dict):
         """
         The Update environment call will update the details of an existing publishing environment for a stack.
-        :param data: The `data` parameter is the data that you want to update. It should be a dictionary
+        :param data: The data parameter is the data that you want to update. It should be a dictionary
         or an object that can be serialized to JSON
         :return: Json, with updated environments details.
         -------------------------------

@@ -1,10 +1,10 @@
-
+from contentstack_management import contentstack
 from enum import Enum
 from ._api_client import _APIClient
-from .organizations import organizations
-from .stack import stack
-from .user_session import user_session
-from .users import user
+from contentstack_management.organizations import organization
+from contentstack_management.stack import stack
+from contentstack_management.user_session import user_session
+from contentstack_management.users import user
 
 version = '0.0.1'
 
@@ -81,7 +81,7 @@ class ContentstackClient:
         return user.User(self.client)
 
     def organizations(self, organization_uid: str = None):
-        return organizations.Organization(self.client, organization_uid)
+        return organization.Organization(self.client, organization_uid)
 
     def stack(self, api_key: str = None):
         return stack.Stack(self.client, api_key)

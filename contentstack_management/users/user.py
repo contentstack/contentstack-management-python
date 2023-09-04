@@ -24,7 +24,7 @@ class User(Parameter):
             >>> from contentstack_management import contentstack
             >>> client = contentstack.ContentstackClient(host='host')
             >>> client.login(email="email", password="password")
-            >>> result = client.user().find()
+            >>> result = client.user().fetch()
         -------------------------------
         """
         return self.client.get(_path, params=self.params, headers=self.client.headers)
@@ -80,7 +80,7 @@ class User(Parameter):
             >>> from contentstack_management import contentstack
             >>> client = contentstack.ContentstackClient(host='host')
             >>> client.login(email="email", password="password")
-            >>> result = self.client.user().active_user('user_activation_token', body)
+            >>> result = self.client.user().activate('user_activation_token', body)
         -------------------------------
         """
         

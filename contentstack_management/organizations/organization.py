@@ -1,6 +1,5 @@
 import json
-
-from contentstack_management.common import Parameter
+from ..common import Parameter
 
 
 class Organization(Parameter):
@@ -42,7 +41,7 @@ class Organization(Parameter):
             >>> from contentstack_management import contentstack
             >>> client = contentstack.ContentstackClient(host='host', authtoken="")
             >>> client.login(email="email", password="password")
-            >>> result = client.organizations('organization_uid').get().json()
+            >>> result = client.organizations('organization_uid').fetch().json()
 
         -------------------------------
         """

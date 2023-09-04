@@ -1,5 +1,5 @@
 import platform
-from sys import _version_info
+import sys 
 
 
 def _default_user_agent():
@@ -12,7 +12,7 @@ def _default_user_agent():
     header = {
         'sdk': {
             'name': 'contentstack-management.python',
-            'version': _version_info
+            'version': sys.version_info
         },
         'app': {
             'name': 'contentstack-management.python',

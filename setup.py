@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -6,9 +6,11 @@ with open("README.md", "r") as f:
 setup(
     name="contentstack-management",
     version="0.0.1",
-    packages=['contentstack_management'],
+    packages=find_packages(exclude=['tests']),
+    py_modules=['_api_client', 'contentstack','common','_errors','_constant'],
     description="Contentstack API Client Library for Python",
     # package_dir={"": "contentstack"},
+    # packages=find_namespace_packages(include=['contentstack_management.*']),
     # packages=find_packages(where="contentstack"),
     long_description=long_description,
     long_description_content_type="text/markdown",
