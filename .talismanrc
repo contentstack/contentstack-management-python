@@ -234,3 +234,12 @@ fileignoreconfig:
 - filename: contentstack_management/assets/assets.py
   checksum: f5c471138d63b91e50a2137748dd31848c299fbd71e7127f58d9c4a57163b9bc
 version: ""
+
+fileignoreconfig:
+- filename: tests/mock/locales/test_locale_mock.py
+  checksum: 832eaede8c96d7a486b12d75492d792be240ab1d01be382cb7ed6a6521387dab
+- filename: tests/api/locales/test_locale_api.py
+  checksum: 19632edc6c8fcbbf9284d7f9f205d813a0e97e89afed7cf28d35a010452cdbd4
+- filename: tests/unit/locales/test_locale_unit.py
+  checksum: 7d272795c81f4ab17a9e47a4c208fd6cb40f86c52e304aa528b05cef16e86125
+version: ""

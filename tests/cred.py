@@ -31,6 +31,7 @@ default_metadata_uid = "metadata_uid" #Default metadata uid
 default_role_uid = "roles_uid" #Default roles uid
 default_log_item_uid = "log_item_uid" #Default roles uid
 default_environments_name = "environments_name" #Default environment name
+default_locale_code = "locale_code" #Default locale code
 
 
 def get_credentials():
@@ -67,7 +68,8 @@ def get_credentials():
         "metadata_uid": os.getenv("METADATA_UID", default_metadata_uid),
         "role_uid": os.getenv("ROLE_UID", default_role_uid),
         "log_item_uid": os.getenv("LOG_ITEM_UID", default_log_item_uid),
-        "environments_name": os.getenv("ENVIRONMENT_NAME", default_environments_name)
+        "environments_name": os.getenv("ENVIRONMENT_NAME", default_environments_name),
+        "locale_code": os.getenv("LOCALE_CODE", default_locale_code),
 
     }
     return credentials
