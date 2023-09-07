@@ -18,7 +18,7 @@ class AliasesUnitTests(unittest.TestCase):
         self.client.login(username, password)
 
     def test_get_all_aliases(self):
-        response = self.client.stack(api_key).branch_alias().find()
+        response = self.client.stack(api_key).alias().find()
         self.assertEqual(response.request.url,
                          f"{self.client.endpoint}stacks/branch_aliases")
         self.assertEqual(response.request.method, "GET")
@@ -26,7 +26,7 @@ class AliasesUnitTests(unittest.TestCase):
         self.assertEqual(response.request.body, None)
 
     def test_get_an_alias(self):
-        response = self.client.stack(api_key).branch_alias(alias_uid).fetch()
+        response = self.client.stack(api_key).alias(alias_uid).fetch()
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branch_aliases/{alias_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -38,13 +38,13 @@ class AliasesUnitTests(unittest.TestCase):
                 "target_branch": "test"
             }
         }
-        response = self.client.stack(api_key).branch_alias(alias_uid).assign(data)
+        response = self.client.stack(api_key).alias(alias_uid).assign(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branch_aliases/{alias_uid}")
         self.assertEqual(response.request.method, "PUT")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_delete_alias(self):
-        response = self.client.stack(api_key).branch_alias(alias_uid).delete()
+        response = self.client.stack(api_key).alias(alias_uid).delete()
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks/branch_aliases/{alias_uid}")
         self.assertEqual(response.request.method, "DELETE")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")

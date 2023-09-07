@@ -1,16 +1,18 @@
 import json
-
 from ..aliases.aliases import Alias
 from ..assets.assets import Assets
 from ..branches.branches import Branch
 from ..common import Parameter
 from ..content_types.content_type import ContentType
 from ..global_fields.global_fields import GlobalFields
-from ..webhook.webhook import Webhooks
+from ..webhooks.webhook import Webhook
 from ..workflows.workflows import Workflows
 from ..metadata.metadata import Metadata
 from ..roles.roles import Roles
 from ..auditlogs.auditlog import Auditlog
+from ..environments.environment import Environment
+from ..locale.locale import Locale
+from ..taxonomies.taxonomy import Taxonomy
 
 
 
@@ -284,14 +286,7 @@ class Stack(Parameter):
         data = json.dumps(data)
         return self.client.post('stacks/share', headers=self.client.headers, params=self.params, data=data)
 
-    def branch(self, branch_uid=None):
-        return Branch(self.client, branch_uid)
 
-    def branch_alias(self, alias_uid=None):
-        return Alias(self.client, alias_uid)
-
-    def content_types(self, content_type_uid=None, branch=None):
-        return ContentType(self.client, content_type_uid, branch)
 
     def unshare(self, data):
         """
@@ -318,9 +313,17 @@ class Stack(Parameter):
             raise Exception('api_key is required')
         return GlobalFields(self.client, global_field_uid)
 
+    def branch(self, branch_uid=None):
+        return Branch(self.client, branch_uid)
+
+    def alias(self, alias_uid=None):
+        return Alias(self.client, alias_uid)
+
+    def content_types(self, content_type_uid=None, branch=None):
+        return ContentType(self.client, content_type_uid, branch)
 
     def webhooks(self, webhook_uid=None):
-        return Webhooks(self.client, webhook_uid)
+        return Webhook(self.client, webhook_uid)
 
     def assets(self, asset_uid=None, branch=None):
         return Assets(self.client, asset_uid, branch)
@@ -336,3 +339,13 @@ class Stack(Parameter):
     
     def auditlog(self, log_item_uid: str = None):
             return Auditlog(self.client, log_item_uid)
+    
+    def environments(self, environment_name: str = None):
+            return Environment(self.client, environment_name)
+    
+    def locale(self, locale_code: str = None):
+            return Locale(self.client, locale_code)
+    
+    def taxonomy(self, taxonomy_uid: str = None):
+            return Taxonomy(self.client, taxonomy_uid)
+    

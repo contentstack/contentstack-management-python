@@ -1,0 +1,15 @@
+{
+    "notice": "Language updated successfully.",
+    "locale": {
+       "name": "kannada",
+       "code": "ka",
+       "fallback_locale": "en-at",
+       "uid": "locale_uid",
+       "created_by": "user_uid",
+       "updated_by": "user_uid",
+       "created_at": "2023-09-05T10:02:54.877Z",
+       "updated_at": "2023-09-05T10:06:53.434Z",
+       "ACL": {},
+       "_version": 1
+    }
+ }

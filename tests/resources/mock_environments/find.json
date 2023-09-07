@@ -1,0 +1,52 @@
+{
+    "environments": [
+       {
+          "urls": [
+             {
+                "url": "http://example.com/",
+                "locale": "en-us"
+             }
+          ],
+          "name": "asset",
+          "uid": "uid",
+          "created_by": "created_by",
+          "updated_by": "updated_by",
+          "created_at": "2023-08-09T08:07:18.732Z",
+          "updated_at": "2023-08-09T09:36:19.707Z",
+          "ACL": [],
+          "_version": 3
+       },
+       {
+          "name": "production",
+          "urls": [
+             {
+                "locale": "en-us",
+                "url": "http://example.com/"
+             }
+          ],
+          "uid": "uid",
+          "created_by": "created_by",
+          "updated_by": "updated_by",
+          "created_at": "2023-07-13T08:12:37.225Z",
+          "updated_at": "2023-07-13T08:12:37.225Z",
+          "ACL": [],
+          "_version": 1
+       },
+       {
+          "urls": [
+             {
+                "locale": "en-us",
+                "url": "http://example.com/"
+             }
+          ],
+          "name": "development",
+          "uid": "uid",
+          "created_by": "created_by",
+          "updated_by": "updated_by",
+          "created_at": "2023-06-08T10:19:21.750Z",
+          "updated_at": "2023-07-13T08:12:35.265Z",
+          "ACL": [],
+          "_version": 3
+       }
+    ]
+ }

@@ -25,10 +25,9 @@ class Alias(Parameter):
         :return: Returns all the aliases
         --------------------------------
         [Example:]
-            >>> import contentstack
             >>> from contentstack_management import contentstack
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch_alias()
-            >>> response = branch.find()
+            >>> alias = contentstack.ContentstackClient().stack(api_key='api_key').alias()
+            >>> response = alias.find()
         --------------------------------
         """
         return self.client.get(_path, headers=self.client.headers, params=self.params)
@@ -43,8 +42,8 @@ class Alias(Parameter):
 
         [Example:]
             >>> from contentstack_management import contentstack
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch_alias('branch_alias_uid')
-            >>> response = branch.fetch()
+            >>> alias = contentstack.ContentstackClient().stack(api_key='api_key').alias('alias_uid')
+            >>> response = alias.fetch()
         --------------------------------
         """
         if self.alias_uid is None or '':
@@ -68,8 +67,8 @@ class Alias(Parameter):
             >>>            "target_branch": "test"
             >>>            }
             >>>        }
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').alias("alias_uid")
-            >>> response = branch.assign(data)
+            >>> alias = contentstack.ContentstackClient().stack(api_key='api_key').alias("alias_uid")
+            >>> response = alias.assign(data)
         --------------------------------
         """
         url = f"{_path}/{self.alias_uid}"
@@ -84,8 +83,8 @@ class Alias(Parameter):
         --------------------------------
         [Example:]
             >>> from contentstack_management import contentstack
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch(branch_uid="branch_uid")
-            >>> response = branch.delete()
+            >>> alias = contentstack.ContentstackClient().stack(api_key='api_key').alias(alias_uid="alias_uid")
+            >>> response = alias.delete()
         --------------------------------
         """
         url = f"{_path}/{self.alias_uid}"

@@ -1,10 +1,10 @@
+from contentstack_management import contentstack
 from enum import Enum
-
-from contentstack_management._api_client import _APIClient
-from contentstack_management.organizations.organizations import Organization
-from contentstack_management.stack.stack import Stack
-from contentstack_management.user_session.user_session import UserSession
-from contentstack_management.users.user import User
+from ._api_client import _APIClient
+from contentstack_management.organizations import organization
+from contentstack_management.stack import stack
+from contentstack_management.user_session import user_session
+from contentstack_management.users import user
 
 version = '0.0.1'
 
@@ -67,21 +67,21 @@ class ContentstackClient:
         """
 
     def login(self, email: str, password: str, tfa_token: str = None):
-        return UserSession(self.client).login(email, password, tfa_token)
+        return user_session.UserSession(self.client).login(email, password, tfa_token)
         pass
 
     def logout(self):
-        return UserSession(client=self.client).logout()
+        return user_session.UserSession(client=self.client).logout()
 
     @property
     def authtoken(self):
         return self.client.headers['authtoken']
 
     def user(self):
-        return User(self.client)
+        return user.User(self.client)
 
     def organizations(self, organization_uid: str = None):
-        return Organization(self.client, organization_uid)
+        return organization.Organization(self.client, organization_uid)
 
     def stack(self, api_key: str = None):
-        return Stack(self.client, api_key)
+        return stack.Stack(self.client, api_key)

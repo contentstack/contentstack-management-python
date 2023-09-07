@@ -84,7 +84,7 @@ class AssetsUnitTests(unittest.TestCase):
         self.assertEqual(response.request.body, None)
 
     def test_rte(self):
-        response = self.client.stack().assets().rte()
+        response = self.client.stack(api_key).assets().rte()
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/rt")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.body, None)
@@ -96,13 +96,13 @@ class AssetsUnitTests(unittest.TestCase):
 		    "_version_name": "Version name"
 	        }
         }
-        response = self.client.stack().assets(asset_uid).version_naming(version_number, data)
+        response = self.client.stack(api_key).assets(asset_uid).version_naming(version_number, data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}/versions/{version_number}/name")
         self.assertEqual(response.request.method, "POST")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_version(self):
-        response = self.client.stack().assets(asset_uid).version()
+        response = self.client.stack(api_key).assets(asset_uid).version()
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}/versions")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -110,13 +110,13 @@ class AssetsUnitTests(unittest.TestCase):
 
     def test_delete_version(self):
         version_number = 1
-        response = self.client.stack().assets(asset_uid).version_delete(version_number)
+        response = self.client.stack(api_key).assets(asset_uid).version_delete(version_number)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}/versions/{version_number}/name")
         self.assertEqual(response.request.method, "DELETE")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_references(self):
-        response = self.client.stack().assets(asset_uid).references()
+        response = self.client.stack(api_key).assets(asset_uid).references()
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}/references")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -124,7 +124,7 @@ class AssetsUnitTests(unittest.TestCase):
 
     def test_asset_type(self):
         asset_type = "images"
-        response = self.client.stack().assets().specific_asset_type(asset_type)
+        response = self.client.stack(api_key).assets().specific_asset_type(asset_type)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_type}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -138,7 +138,7 @@ class AssetsUnitTests(unittest.TestCase):
 	        },
 	        "version": 2
         }
-        response = self.client.stack().assets(asset_uid).update_asset_revision(data)
+        response = self.client.stack(api_key).assets(asset_uid).update_asset_revision(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}")
         self.assertEqual(response.request.method, "PUT")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -149,7 +149,7 @@ class AssetsUnitTests(unittest.TestCase):
 		        "title": "Title"
 	        }
         }
-        response = self.client.stack().assets(asset_uid).update(data)
+        response = self.client.stack(api_key).assets(asset_uid).update(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}")
         self.assertEqual(response.request.method, "PUT")
         self.assertEqual(response.request.headers["Content-Type"], "multipart/form-data")
@@ -167,7 +167,7 @@ class AssetsUnitTests(unittest.TestCase):
 	        "version": 1,
 	        "scheduled_at": "2019-02-08T18:30:00.000Z"
         }
-        response = self.client.stack().assets(asset_uid).publish(data)
+        response = self.client.stack(api_key).assets(asset_uid).publish(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}/publish")
         self.assertEqual(response.request.method, "POST")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -185,20 +185,20 @@ class AssetsUnitTests(unittest.TestCase):
 	        "version": 1,
 	        "scheduled_at": "2019-02-08T18:30:00.000Z"
         }
-        response = self.client.stack().assets(asset_uid).unpublish(data)
+        response = self.client.stack(api_key).assets(asset_uid).unpublish(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}/unpublish")
         self.assertEqual(response.request.method, "POST")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_get_folder(self):
-        response = self.client.stack().assets().folder(folder_uid)
+        response = self.client.stack(api_key).assets().folder(folder_uid)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/folders/{folder_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
     def test_get_folder_by_name(self):
-        response = self.client.stack().assets().folder_by_name()
+        response = self.client.stack(api_key).assets().folder_by_name()
         p=print(response.request.url)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets?query=is_dir&query=name")
         self.assertEqual(response.request.method, "GET")
@@ -206,7 +206,7 @@ class AssetsUnitTests(unittest.TestCase):
         self.assertEqual(response.request.body, None)
 
     def test_get_subfolders(self):
-        response = self.client.stack().assets().get_subfolders(folder_uid)
+        response = self.client.stack(api_key).assets().get_subfolders(folder_uid)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets?include_folders=True&query=is_dir&folder={folder_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -218,7 +218,7 @@ class AssetsUnitTests(unittest.TestCase):
 		        "name": "Demo"
 	        }
         }
-        response = self.client.stack().assets().create_folder(data)
+        response = self.client.stack(api_key).assets().create_folder(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/folders")
         self.assertEqual(response.request.method, "POST")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -229,13 +229,13 @@ class AssetsUnitTests(unittest.TestCase):
 		        "name": "Demo"
 	        }
         }
-        response = self.client.stack().assets().update_or_move(folder_uid, data)
+        response = self.client.stack(api_key).assets().update_or_move(folder_uid, data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/folders/{folder_uid}")
         self.assertEqual(response.request.method, "PUT")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_delete_folder(self):
-        response = self.client.stack().assets().delete_folder(folder_uid)
+        response = self.client.stack(api_key).assets().delete_folder(folder_uid)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/folders/{folder_uid}")
         self.assertEqual(response.request.method, "DELETE")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")

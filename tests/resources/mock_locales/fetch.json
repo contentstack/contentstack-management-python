@@ -1,0 +1,14 @@
+{
+    "locale": {
+       "name": "Locale name",
+       "code": "Locale code",
+       "fallback_locale": "en-us",
+       "uid": "Locale_uid",
+       "created_by": "created_user_uid",
+       "updated_by": "updated_user_uid",
+       "created_at": "2023-09-05T10:15:59.865Z",
+       "updated_at": "2023-09-05T10:15:59.865Z",
+       "ACL": {},
+       "_version": 1
+    }
+ }
