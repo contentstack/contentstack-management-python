@@ -234,3 +234,20 @@ fileignoreconfig:
 - filename: contentstack_management/assets/assets.py
   checksum: f5c471138d63b91e50a2137748dd31848c299fbd71e7127f58d9c4a57163b9bc
 version: ""
+
+fileignoreconfig:
+- filename: tests/mock/locales/test_locale_mock.py
+  checksum: 832eaede8c96d7a486b12d75492d792be240ab1d01be382cb7ed6a6521387dab
+- filename: tests/api/locales/test_locale_api.py
+  checksum: 19632edc6c8fcbbf9284d7f9f205d813a0e97e89afed7cf28d35a010452cdbd4
+- filename: tests/unit/locales/test_locale_unit.py
+  checksum: 7d272795c81f4ab17a9e47a4c208fd6cb40f86c52e304aa528b05cef16e86125
+version: ""
+fileignoreconfig:
+- filename: tests/mock/taxonomies/test_taxonomy_mock.py
+  checksum: fab3e50d4f82a206b8d0250e0e48825def4505ff92d45f4883c230428fa350d9
+- filename: tests/api/taxonomies/test_taxonomy_api.py
+  checksum: c02ddccee423f2f50e0428a3d151f35128a51c3a4a8b11e87a4f0042c83f3fa9
+- filename: tests/unit/taxonomies/test_taxonomy_unit.py
+  checksum: 5dd2f73f683c293f71fd9002148747a7167a85981d6fb90e491cafddf7b96169
+version: ""

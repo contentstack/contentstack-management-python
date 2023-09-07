@@ -20,6 +20,8 @@ from .contentstack import ContentstackClient, ContentstackRegion
 from ._api_client import _APIClient
 from .common import Parameter
 from ._errors import ArgumentException
+from .locale.locale import Locale
+from .taxonomies.taxonomy import Taxonomy
 
 __all__ = (
 "ContentstackClient",
@@ -43,6 +45,8 @@ __all__ = (
 "Auditlog",
 "Environment",
 "Entry",
+"Locale",
+"Taxonomy",
 )
 
 __title__ = 'contentstack-management-python'

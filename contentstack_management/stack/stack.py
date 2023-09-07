@@ -11,6 +11,8 @@ from ..metadata.metadata import Metadata
 from ..roles.roles import Roles
 from ..auditlogs.auditlog import Auditlog
 from ..environments.environment import Environment
+from ..locale.locale import Locale
+from ..taxonomies.taxonomy import Taxonomy
 
 
 
@@ -340,3 +342,10 @@ class Stack(Parameter):
     
     def environments(self, environment_name: str = None):
             return Environment(self.client, environment_name)
+    
+    def locale(self, locale_code: str = None):
+            return Locale(self.client, locale_code)
+    
+    def taxonomy(self, taxonomy_uid: str = None):
+            return Taxonomy(self.client, taxonomy_uid)
+    

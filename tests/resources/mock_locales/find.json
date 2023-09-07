@@ -1,0 +1,52 @@
+{
+    "locales": [
+       {
+          "name": "Arabic - Bahrain",
+          "code": "ar-bh",
+          "fallback_locale": "en-us",
+          "uid": "locale_uid",
+          "created_by": "user_uid",
+          "updated_by": "user_uid",
+          "created_at": "2023-09-05T09:39:31.030Z",
+          "updated_at": "2023-09-05T09:39:31.030Z",
+          "ACL": [],
+          "_version": 1
+       },
+       {
+          "code": "hi-in",
+          "uid": "locale_uid",
+          "created_by": "user_uid",
+          "updated_by": "user_uid",
+          "created_at": "2023-07-13T08:12:22.073Z",
+          "updated_at": "2023-07-13T08:12:27.748Z",
+          "fallback_locale": "en-at",
+          "name": "Hindi - India",
+          "ACL": [],
+          "_version": 1
+       },
+       {
+          "code": "en-at",
+          "uid": "locale_uid",
+          "created_by": "user_uid",
+          "updated_by": "user_uid",
+          "created_at": "2023-07-13T08:12:21.143Z",
+          "updated_at": "2023-07-13T08:12:21.143Z",
+          "fallback_locale": "en-us",
+          "name": "English - Austria",
+          "ACL": [],
+          "_version": 1
+       },
+       {
+          "code": "en-us",
+          "fallback_locale": "en-us",
+          "uid": "locale_uid",
+          "created_by": "user_uid",
+          "updated_by": "user_uid",
+          "created_at": "2023-05-15T09:52:13.049Z",
+          "updated_at": "2023-05-15T09:52:13.049Z",
+          "name": "English - United States",
+          "ACL": [],
+          "_version": 1
+       }
+    ]
+ }
