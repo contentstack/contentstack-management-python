@@ -8,7 +8,7 @@ from ..common import Parameter
 from urllib.parse import quote
 from .._errors import ArgumentException
 
-class Environment(Parameter):
+class Taxonomy(Parameter):
     """
     This class takes a base URL as an argument when it's initialized, 
     which is the endpoint for the RESTFUL API that
@@ -16,24 +16,24 @@ class Environment(Parameter):
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, client, environment_name: str):
+    def __init__(self, client, taxonomy_uid: str):
         self.client = client
-        self.environment_name = environment_name
+        self.taxonomy_uid = taxonomy_uid
         super().__init__(self.client)
 
-        self.path = "environments"
+        self.path = "taxonomies"
 
     def find(self):
         """
-        The Get a single environment call returns more details about the specified environment of a stack.
-        :return: Json, with environments details.
+        This call fetches the list of all taxonomies available for a stack.
+        :return: Json, with taxonomy details.
 
         -------------------------------
         [Example:]
 
             >>> from contentstack_management import contentstack
             >>> client = contentstack.client(authtoken='your_authtoken')
-            >>> result = client.stack("api_key").environments().find().json()
+            >>> result = client.stack("api_key").taxonomy().find().json()
 
         -------------------------------
         """        
@@ -41,45 +41,47 @@ class Environment(Parameter):
     
       
     
-    def fetch(self):
+    def fetch(self, taxonomy_uid: str = None):
         """
-        The Get all environments call fetches the list of all environments available in a stack.
-        :return: Json, with environments details.
+        The "Get a taxonomy" call returns information about a specific taxonomy available on the stack.
+        :return: Json, with taxonomy details.
         -------------------------------
         [Example:]
 
             >>> from contentstack_management import contentstack
             >>> client = contentstack.client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').environments('environment_name').fetch().json()
+            >>> result = client.stack('api_key').taxonomy('taxonomy_uid').fetch('taxonomy_uid').json()
 
         -------------------------------
         """
-        self.validate_uid()
-        url = f"{self.path}/{self.environment_name}"
+        if taxonomy_uid is not None and taxonomy_uid != '':
+            self.taxonomy_uid = taxonomy_uid
+            
+        self.validate_taxonomy_uid()
+        url = f"{self.path}/{self.taxonomy_uid}"
         return self.client.get(url, headers = self.client.headers)
         
     
     def create(self, data: dict):
         """
-        The Add an environment call will add a publishing environment for a stack.
+        This call lets you add a new taxonomy to your stack.
+
         :param data: The `data` parameter is the payload that you want to send in the request body. It
         should be a dictionary or a JSON serializable object that you want to send as the request body
-        :return: Json, with environments details.
+        :return: Json, with taxonomy details.
 
         -------------------------------
         [Example:]
             >>> data ={
-            >>>        "environment": {
-            >>>            "name": "development",
-            >>>            "urls": [{
-            >>>                "locale": "en-us",
-            >>>                "url": "http://example.com/"
-            >>>            }]
+            >>>        "taxonomy": {
+            >>>            "uid": "taxonomy12345",
+            >>>            "name": "Taxonomy 12345",
+            >>>            "description": "Description for Taxonomy 1"
             >>>        }
-            >>>    }
+            >>>        }
             >>> from contentstack_management import contentstack
             >>> client = contentstack.client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').environments().create(data).json()
+            >>> result = client.stack('api_key').taxonomy().create(data).json()
 
         -------------------------------
         """
@@ -87,38 +89,40 @@ class Environment(Parameter):
         data = json.dumps(data)
         return self.client.post(self.path, headers = self.client.headers, data=data)
     
-    def update(self, data: dict):
+    def update(self, data: dict, taxonomy_uid: str = None):
         """
-        The Update environment call will update the details of an existing publishing environment for a stack.
+        The "Update taxonomy" call will let you update the details
+
         :param data: The `data` parameter is the data that you want to update. It should be a dictionary
         or an object that can be serialized to JSON
-        :return: Json, with updated environments details.
+        :return: Json, with updated taxonomy details.
         -------------------------------
         [Example:]
-            >>> data = {
-            >>>        "environment": {
-            >>>            "name": "development",
-            >>>            "urls": [{
-            >>>                "locale": "en-us",
-            >>>                "url": "http://example.com/"
-            >>>            }]
-            >>>        }
+            >>> data ={
+            >>>    "taxonomy": {
+            >>>        "name": "Taxonomy 12345",
+            >>>        "description": "Description updated for Taxonomy 12345"
+            >>>    }
             >>>    }
             >>> from contentstack_management import contentstack
             >>> client = contentstack.client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').environments("environment_name").update(data).json()
+            >>> result = client.stack('api_key').taxonomy("taxonomy_uid").update(data).json()
 
         -------------------------------
         """
-        self.validate_uid()
-        url = f"{self.path}/{self.environment_name}"
+        
+        if taxonomy_uid is not None and taxonomy_uid != '':
+            self.taxonomy_uid = taxonomy_uid
+
+        self.validate_taxonomy_uid()
+        url = f"{self.path}/{self.taxonomy_uid}"
         data = json.dumps(data)
         return self.client.put(url, headers = self.client.headers, data=data)
     
     
-    def delete(self): 
+    def delete(self, taxonomy_uid: str = None): 
         """
-        The Delete environment call will delete an existing publishing environment from your stack.
+        The "Delete taxonomy" call deletes an existing taxonomy from your stack.
         :return: The delete() method returns the status code and message as a response.
 
         -------------------------------
@@ -126,14 +130,22 @@ class Environment(Parameter):
 
             >>> from contentstack_management import contentstack
             >>> client = contentstack.client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').environments('environment_name').delete().json()
+            >>> result = result = client.stack('api_key').taxonomy('taxonomy_uid').delete('taxonomy_uid').json()
 
         -------------------------------
         """
-        self.validate_uid()
-        url = f"{self.path}/{self.environment_name}"
-        return self.client.delete(url, headers = self.client.headers)
         
-    def validate_uid(self):
-         if self.environment_name is None or '':
-            raise ArgumentException("Environments Uid is required")
+        if taxonomy_uid is not None and taxonomy_uid != '':
+            self.taxonomy_uid = taxonomy_uid
+            
+        self.validate_taxonomy_uid()
+        url = f"{self.path}/{self.taxonomy_uid}"
+        return self.client.delete(url, headers = self.client.headers)
+    
+        
+    def validate_taxonomy_uid(self):
+        if self.taxonomy_uid is None or '':
+            raise ArgumentException('Taxonomy Uid is required')
+        
+    
+    

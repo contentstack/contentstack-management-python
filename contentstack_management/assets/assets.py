@@ -5,11 +5,7 @@ The create(), read(), update(), and delete() methods each correspond to
 the CRUD operations that can be performed on the API
 """
 import json
-from contentstack_management.common import Parameter
-from tests.cred import get_credentials
-
-credentials = get_credentials()
-api_key = credentials["api_key"]
+from ..common import Parameter
 
 class Assets(Parameter):
     """
@@ -23,6 +19,7 @@ class Assets(Parameter):
         self.client = client
         self.asset_uid = asset_uid
         self.branch = branch
+        self.api_key = self.client.headers['api_key']
         super().__init__(self.client)
 
     def find(self):
@@ -224,7 +221,7 @@ class Assets(Parameter):
         --------------------------------
         """
         
-        url = f"assets/{api_key}/{self.asset_uid}"
+        url = f"assets/{self.api_key}/{self.asset_uid}"
         return self.client.get(url, headers = self.client.headers, params = self.params)
 
     def rte(self):

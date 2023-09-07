@@ -5,7 +5,7 @@ to first create a content type, and then create entries using the content type. 
 import json
 
 from contentstack_management.common import Parameter
-from ..entry.entry import Entry
+from ..entries import entry
 
 _path = 'content_types'
 
@@ -344,4 +344,4 @@ class ContentType(Parameter):
     def entry(self, entry_uid=None):
         if self.content_type_uid is None:
             raise Exception('Content type uid is required')
-        return Entry(self.client, self.content_type_uid, entry_uid)
+        return entry.Entry(self.client, self.content_type_uid, entry_uid)

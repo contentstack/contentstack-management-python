@@ -7,7 +7,7 @@ import json
 from ..common import Parameter
 from urllib.parse import quote
 
-class Webhooks(Parameter):
+class Webhook(Parameter):
     """
     This class takes a base URL as an argument when it's initialized, 
     which is the endpoint for the RESTFUL API that

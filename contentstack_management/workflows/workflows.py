@@ -68,7 +68,7 @@ class Workflows(Parameter):
         """
         The Create a Workflow request allows you to create a Workflow.
 
-        :param data: The `data` parameter is the payload that you want to send in the request body. It
+        :param data: The data parameter is the payload that you want to send in the request body. It
         should be a dictionary or a JSON serializable object that you want to send as the request body
         :return: Json, with workflow details.
 
@@ -236,8 +236,8 @@ class Workflows(Parameter):
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows("workflow_uid").update(data).json()
-
         -------------------------------
+        
         """
         
         if self.workflow_uid is None:
