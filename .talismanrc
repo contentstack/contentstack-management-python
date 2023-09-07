@@ -243,3 +243,11 @@ fileignoreconfig:
 - filename: tests/unit/locales/test_locale_unit.py
   checksum: 7d272795c81f4ab17a9e47a4c208fd6cb40f86c52e304aa528b05cef16e86125
 version: ""
+fileignoreconfig:
+- filename: tests/mock/taxonomies/test_taxonomy_mock.py
+  checksum: fab3e50d4f82a206b8d0250e0e48825def4505ff92d45f4883c230428fa350d9
+- filename: tests/api/taxonomies/test_taxonomy_api.py
+  checksum: c02ddccee423f2f50e0428a3d151f35128a51c3a4a8b11e87a4f0042c83f3fa9
+- filename: tests/unit/taxonomies/test_taxonomy_unit.py
+  checksum: 5dd2f73f683c293f71fd9002148747a7167a85981d6fb90e491cafddf7b96169
+version: ""
