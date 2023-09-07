@@ -32,6 +32,7 @@ default_role_uid = "roles_uid" #Default roles uid
 default_log_item_uid = "log_item_uid" #Default roles uid
 default_environments_name = "environments_name" #Default environment name
 default_locale_code = "locale_code" #Default locale code
+default_taxonomy_uid = "taxonomy_uid" #Default taxonomy code
 
 
 def get_credentials():
@@ -70,6 +71,7 @@ def get_credentials():
         "log_item_uid": os.getenv("LOG_ITEM_UID", default_log_item_uid),
         "environments_name": os.getenv("ENVIRONMENT_NAME", default_environments_name),
         "locale_code": os.getenv("LOCALE_CODE", default_locale_code),
+        "taxonomy_uid": os.getenv("TAXONOMY_UID", default_taxonomy_uid),
 
     }
     return credentials
