@@ -1,0 +1,18 @@
+{
+    "environment": {
+       "urls": [
+          {
+             "locale": "en-us",
+             "url": "http://example.com/"
+          }
+       ],
+       "name": "development",
+       "uid": "uid",
+       "created_by": "created_by",
+       "updated_by": "updated_by",
+       "created_at": "2023-06-08T10:19:21.750Z",
+       "updated_at": "2023-07-13T08:12:35.265Z",
+       "ACL": [],
+       "_version": 3
+    }
+ }

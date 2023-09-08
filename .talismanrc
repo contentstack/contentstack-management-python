@@ -1,0 +1,253 @@
+fileignoreconfig:
+
+- filename: tests/config/default.yml.enc
+  checksum: f05423216fcfe17716c01932e7a87775a029ec4f1fb1314bfdf0697527e67038
+- filename: tests/test_contentstack.py
+  checksum: 4aae839b0c4e408c6224df5ccdd090ea9d9b28cc9f37e1eadd2d7737bd5ca1ae
+- filename: contentstack_management/users/user.py
+  checksum: a3e98d980282254e26b9fc1073bf297ea6fda3e30e3634d5c7df893cfcc92aa2
+- filename: contentstack_management/stack/stack.py
+  checksum: 704f1cffd452d226e7447213fcb6a3fed7b01f0661aa27d4f7657b8a36eb3d28
+- filename: contentstack_management/core/client.py
+  checksum: 7a1210ec269e05af414e7753758d8b261c157349e24df4fef047810fef8741c9
+- filename: tests/test_organizations.py
+  checksum: a9ee8e15a00474ab16920da1a9cb7f96f9a0e40f945406506ed1e46030758025
+- filename: tests/test_users.py
+  checksum: 55b60bc69e941184bf16697cec82f5e14369460259729bbbd62437e019e6ab60
+- filename: contentstack_management/core/client.py
+  checksum: 1bec47304a29a7c482f530e3ac283e8ddd8fa96f99153833feac5a6513d726df
+- filename: .github/workflows/release.yml
+  checksum: d2ea9ae192ae0f1b75ff2b68b6bcd9d40eb86d589fb2177535b93194d69a9e0e
+- filename: tests/test_user_session.py
+  checksum: f5000644a471e6ac4ee5bfcb5cfc73762e53fa97980951063f787a83e97244f9
+version: ""
+
+fileignoreconfig:
+- filename: tests/test_users.py
+  checksum: 7c278a3b24fdcf01a30561326fbdadf45dffd52edcbbe421d192c360dc4be1e1
+- filename: contentstack_management/stack/stack.py
+  checksum: 480b855afcc96875ce49f4da6cb433e0ba10183e1b73297c2d1c66565602ff0b
+version: ""
+
+fileignoreconfig:
+- filename: contentstack_management/core/client.py
+  checksum: 253a6e6a0234745cd5d194f6023d207acfb0259a8751d77c67fb8275a723d551
+- filename: contentstack_management/user_session/user_session.py
+  checksum: 8f8353a3f658cd894fce7bee1d0211a612b18a639d1f8006548e89a5f5e32a17
+version: ""
+fileignoreconfig:
+- filename: contentstack_management/users/user.py
+  checksum: 9944801292f054e6ffcc56b6e1eea2c401776147970dc137de33ad9b63992c36
+- filename: tests/stack/test_stack_apitest.py
+  checksum: 9c9bc43b0aed1f94c27616ca198e3ec0cdc9e6680d9148f8ac7d507fad6d0d19
+- filename: contentstack_management/core/client.py
+  checksum: c584f6982526755542afdb51dec421dd823073405827e32e6f229ff1c4cfa87e
+- filename: contentstack_management/organizations/organizations.py
+  checksum: aea751acdfad7ebf07036d78f792abdf5339c9d02fb9d9f7540fcfe9f1d224f5
+- filename: tests/stack/test_stack_unittest.py
+  checksum: a2ba35250e069e789f11e40efa7c1b2786f5db6899497643b5bf3a0e344d13e9
+- filename: contentstack_management/stack/stack.py
+  checksum: f1b63294922e19f41dbf30caa6cbefe381b0c8834950d94dad7c7a28dd707047
+version: ""
+
+fileignoreconfig:
+- filename: contentstack_management/organizations/organizations.py
+  checksum: 31dc00bc449f8a9e5cb9321da10384dd7d40bd8fce30e56699e0ce0a0e3de48e
+- filename: contentstack_management/users/user.py
+  checksum: 1aa5ed251d166293e2616c6a227ee945a8213c5fde03778db08abac5f1a09c72
+- filename: tests/stack/test_stack_unittest.py
+  checksum: 12389c99db0d917954cd9970b340cc443602b4acf512090f42d13f7a726c85b6
+version: ""
+fileignoreconfig:
+- filename: contentstack_management/global_fields/global_fields.py
+  checksum: 53742c03c5c459a195b99b613a1df2dde7b9a61f6c4839b51be3f54dec56dd21
+version: ""
+fileignoreconfig:
+- filename: tests/mock/entry/test_entry_mock.py
+  checksum: 8a3c549a33f4726e6157596a518d99aee1f7f0d8530345ed28c109642d0a856a
+- filename: tests/unit/entry/test_entry.py
+  checksum: 643ad913863e31c965251e3ab840e518c48765da6fb11eb5059321b8b6ec5612
+- filename: contentstack_management/entry/entry.py
+  checksum: 60eb34df71a177f0539b9615e36d92dd1648030d464bc62468a6b533b739bcc9
+- filename: tests/api/entry/test_entry_api.py
+  checksum: 3bc7ea1f5a5a9ecd7d422df8760e69d212cdef8c2cf3a1d22d78991ba549c504
+version: ""
+fileignoreconfig:
+- filename: tests/mock/stack/test_stack_apitest.py
+  checksum: 903c2459838b8c89941cfa860afa50eb9bd426f26e9533b30bb9d242cf7c1124
+- filename: tests/mock/organizations/test_org_mock.py
+  checksum: 7cab6dfd2bd204df7648d992cf4d4b9e79e41cb562be7ff56c3d704db4e505c8
+- filename: tests/mock/content_types/test_content_type_mock.py
+  checksum: 40c31a69d2fdc9218e3bbd9f59bb22502f2ce113ebb0adbf29fefe5ea8d68ab9
+- filename: tests/api/aliases/test_alias.py
+  checksum: 14c1f4329bea20619e63746767a6a80821e6057694667bb04565c3133b33c291
+- filename: tests/test_contentstack.py
+  checksum: ee87c22d26f3bff8e97bc3b7aaefe302f3624f685894d26fa01516642b6afcef
+- filename: tests/unit/branches/test_branch.py
+  checksum: 2da47adad7bf99759d65dfeb8192d579020c7c0e453ad8129e529cdfc5a0f2da
+- filename: tests/api/branches/test_branch_api.py
+  checksum: d8ccc262c23bf0e70abc7142a688d018d2476e36e6112057b629c2c802b3b93e
+- filename: tests/unit/stack/test_stack.py
+  checksum: 28ee50df31137ccf1ff199edb6ee0cfb1282cafdf00db091bbe3793fb2141f1d
+- filename: tests/api/content_types/test_content_type_api.py
+  checksum: f9ecf25651f96018ae844f1fb3fad7772d345004683089d719e2f029f44fd10a
+- filename: tests/cred.py
+  checksum: 365aa9281579d24e52ac725a7c56383b3c54905797f31c475085a6b57fbb6974
+- filename: tests/mock/branches/test_branch_mock.py
+  checksum: 6e78fa23c089575e1e90fefde42d587c4f459561e29f5d5b5ea2fdb65098d513
+- filename: tests/unit/content_types/test_content_type.py
+  checksum: 05d30dd8e1fcc5680da6a6226b2c61a03fc4121f3d6e05ba66202a5dcc0c551f
+version: ""
+
+fileignoreconfig:
+- filename: tests/unit/global_fields/test_global_fields_unittest.py
+  checksum: 486808bd82cb6ef74b606029bcaea99a0bd5e04b167dac942d5a6a00ff8655e7
+- filename: tests/mock/global_fields/test_global_fields_mock.py
+  checksum: e018d0f58edf8b21dab9189e5f541c4cbebf9ad456bf576b1006d54d6a4e1809
+- filename: tests/api/global_fields/test_global_fields_api.py
+  checksum: b96487463cfdd84288f14562200f9e33de0946c184b4ac11fc263cd436fad393
+- filename: tests/unit/stack/test_stack.py
+  checksum: 1a585269958abb12dd58c4a67b63524a740ae7d3cdfdcaccf1e064e88ac08b15
+version: ""
+fileignoreconfig:
+- filename: tests/resources/mock_webhooks/logs.json
+  checksum: 0824501a517fa90ebcb6ece6cb06fa7425bdcdb826a9b0e39fb72f30cd6412f0
+- filename: tests/resources/mock_webhooks/executions.json
+  checksum: 53d21cd93c316d45f0d9a44f0f72ee2c3a2fa57b85a30397f0e156c2085d0e22
+- filename: tests/mock/webhooks/test_webhook_mock.py
+  checksum: 141b58d0c7b3b1ed0fd92778552e9055db5585543b996a37046028c65a000ccc
+- filename: tests/unit/webhooks/test_webhhok_unittest.py
+  checksum: a1d5a4ee564abe792efa8db4fce6c7aa223b69825dff4b773fd1aa43033bd20d
+- filename: contentstack_management/webhook/webhook.py
+  checksum: 683d66d057502bfccd996fd92f8a9f91e02f33803693f874a328b958cbb7aa65
+version: ""
+
+fileignoreconfig:
+- filename: tests/resources/mock_workflows/publish_rules.json
+  checksum: dcb07d2e96473c0e05207c19db1ffee14789c631a678ffa58a34a11c1b2c0186
+- filename: tests/resources/mock_workflows/publish_rule.json
+  checksum: 6b46d70f07458e2b4aa2f2f7c78b7fcf2e1f126469aafbf497ae8dfcf42c23ca
+- filename: tests/resources/mock_workflows/delete.json
+  checksum: f0f6122271adc0e6364fb95579bafedd87cd25f092420febe71b248ad825f9a1
+- filename: tests/resources/mock_workflows/publish_rule_content_type.json
+  checksum: 69d9b0a73098f8aef8d72ce25578701466792eda50e60099e5b6e041a4208784
+- filename: tests/api/webhooks/test_webhooks_api.py
+  checksum: e610a29acaed02da1d124b721662c6169853e73be7b928d52aab823787bc4c4d
+- filename: tests/resources/mock_workflows/find.json
+  checksum: 7ce44fdb8ad8a12e7255e8a7e277af320eff43bc84392891e615042b81aa79c6
+- filename: tests/resources/mock_workflows/create.json
+  checksum: 63357384086430f89129e3291290485d9083332017c63960576caf34f3ae8f88
+- filename: tests/resources/mock_workflows/update.json
+  checksum: 872b5727d6548d13bbd575db63ef73bf273422787f8bb2003255573585a16528
+- filename: tests/resources/mock_workflows/fetch.json
+  checksum: 9d80c7d12d07c2099a48852c3b79659143de0f4f69711889074e40f2834123fc
+- filename: tests/api/workflows/test_workflow_api.py
+  checksum: d56dc52c724785165dc770360fc86c635b4b39857803417b6c7f6aceb312546c
+- filename: tests/mock/workflows/test_workflows_mock.py
+  checksum: 1356aebed156211c470014d2d65b49c977710cddcb554c3466adce9c22ae3685
+- filename: tests/unit/workflows/test_workflows_unittest.py
+  checksum: 8443a3e81196e009ba744da0bafb294f5e70fbfb5faf370893e4a8afdca589b0
+- filename: contentstack_management/workflows/workflows.py
+  checksum: 85e3a2ee0ced2fd1787f74f15388a674130ec2b2fe433f19ca96c2cc968508a5
+version: ""
+
+fileignoreconfig:
+- filename: tests/resources/mock_metadata/create.json
+  checksum: 4d8942e449701b1599dca9485ef7a6d6e65d44d71ebabd04335147132c93a807
+- filename: tests/resources/mock_metadata/update.json
+  checksum: 8bb19547a9ecbbac023db0dde82c6d69a4893953c6b6c0118839e40810f9a61d
+- filename: tests/mock/metadata/test_metadata_mock.py
+  checksum: fc239da7691c242e8bbf0fa3db04cb4d024c841b1a8e227177294ec055566b05
+- filename: tests/resources/mock_metadata/fetch.json
+  checksum: 305bb32cd8dc0d3bbe4dc1708e3a6b2e770f92504c807b1c2747511e567d58b1
+- filename: tests/resources/mock_metadata/find.json
+  checksum: b69fe03ca10170c7d00cca0d0784e8bb334307a9872f9a57f0ec75cc6def302a
+- filename: tests/unit/metadata/test_metadata_unit.py
+  checksum: 990c7e67627204c671da5eb2043630b635cfaa9d2f9ef4c46cddd2fd3ebedb19
+- filename: tests/api/metadata/test_metadata_api.py
+  checksum: 72e6676565b99227b0e87ef9569fdd8298143ab4601259b46d05b7cc09f1e912
+- filename: contentstack_management/metadata/metadata.py
+  checksum: aa059e6dee28d87be47e7aa2cb92fd39fcd0f2f89366d27236ddf8ecc51e8f7b
+version: ""
+
+fileignoreconfig:
+- filename: tests/resources/mock_roles/fetch.json
+  checksum: 9207921c9508fe82e59bf6101d1fa99b2b9a62b6b864f36d90f5819a15fdbaa0
+- filename: tests/resources/mock_roles/create.json
+  checksum: d59d280188a9d57a596fbcd7746b718ef5cf2bc9ad187537f9caa730bc2c03af
+- filename: tests/resources/mock_roles/find.json
+  checksum: 70b7016d8dcf96474c298cf3052d91d83cb3b154d16ebb3e167cb85cefa3a760
+- filename: tests/resources/mock_roles/update.json
+  checksum: f83955fa82e9e8f84aaccc0b7f866116e07d9115deb3ffac3f1406e9c1800745
+- filename: tests/api/roles/test_roles_api.py
+  checksum: 36d5ccd16ee1785b2ca774303bd3d4d24ab15846bb1b67037b26e152b117b4b2
+- filename: tests/mock/roles/test_roles_mock.py
+  checksum: a6ca0282a3df204bf783b8bf73dbdac02e256177df2b000f95ba9d528f2322b4
+- filename: tests/unit/roles/test_roles_unit.py
+  checksum: 3294f71a285ba9e2e61a6d75884498618a7934b76993b1c0ff385937bb5ed74f
+- filename: contentstack_management/roles/roles.py
+  checksum: 373a75c8df71801a8b39cfa992bc9296b7ff5398bf4de4f990f6fe1977841a3c
+version: ""
+
+fileignoreconfig:
+- filename: tests/unit/stack/test_stack.py
+  checksum: 882d1d8d76848a5192c0d042948a04e4edbabac3b47ee725689181ff4ec3393b
+version: ""
+fileignoreconfig:
+- filename: README.md
+  checksum: 769bf6032aa18764c5924a0f71b911a1b66258a0b04f1e0aef4650c486b0a050
+version: ""
+fileignoreconfig:
+- filename: README.md
+  checksum: 45ea945d901c8a47144e8eb7106e49b1d121400cf47cbc7e5134f62a236b8da5
+version: ""
+fileignoreconfig:
+- filename: tests/mock/auditlogs/test_auditlogs_mock.py
+  checksum: 6be6e351200624863cbfc443d3215242f03b0b06adc06649d119bee80b7608a3
+- filename: tests/api/auditlogs/test_auditlogs_api.py
+  checksum: ff37d395fe03a822775e73a1c867cfcbbe14a75e37e4cb8a6d09f19fd790da7e
+- filename: tests/unit/auditlogs/test_auditlog_unit.py
+  checksum: 1b8b24cc7f7921d209b983a99c0305d5fb27c1fe8e3fc74f1d525a7327eba830
+version: ""
+fileignoreconfig:
+- filename: contentstack_management/environments/environments.py
+  checksum: d2289d750bcc3fc7197d3c853fd0fcbde5e9a971ed332cb6477edcb6620ad58b
+- filename: tests/api/environments/test_environments_api.py
+  checksum: 7cd53aff15a83f45f2520e989604cd87d44787bec1068ce94614735d1c57fdce
+- filename: tests/mock/environments/test_environments_mock.py
+  checksum: 3b9d9b2b91d6145a8d4ed1ec962fa61eedf63229022d2df4ad695c265f84dc5b
+- filename: tests/unit/environments/test_environment_unit.py
+  checksum: 3e362120a05306a0495a1103ea5a7c0152516b72703ab9d7609848aa15f90400
+- filename: contentstack_management/contentstack.py
+  checksum: 89896be10ec6f47b814a0256dd6db9763202006180ec67e99d091f65c221f1d2
+version: ""
+fileignoreconfig:
+- filename: contentstack_management/environments/environments.py
+  checksum: 68813381218aa355711e03dae52f87f367f103a05cf13475319a71f1984dbfca
+version: ""
+
+fileignoreconfig:
+- filename: .github/workflows/release.yml
+  checksum: 0b4d09c0534e318d8cc49a57a2547b2ce494d01d2c67c9016babd9d7b85c8ded
+- filename: contentstack_management/aliases/aliases.py
+  checksum: a47832f67e73f47e953d94082c7457ccd74c407a5b12e11a44621f42b6ea3f13
+- filename: contentstack_management/assets/assets.py
+  checksum: f5c471138d63b91e50a2137748dd31848c299fbd71e7127f58d9c4a57163b9bc
+version: ""
+
+fileignoreconfig:
+- filename: tests/mock/locales/test_locale_mock.py
+  checksum: 832eaede8c96d7a486b12d75492d792be240ab1d01be382cb7ed6a6521387dab
+- filename: tests/api/locales/test_locale_api.py
+  checksum: 19632edc6c8fcbbf9284d7f9f205d813a0e97e89afed7cf28d35a010452cdbd4
+- filename: tests/unit/locales/test_locale_unit.py
+  checksum: 7d272795c81f4ab17a9e47a4c208fd6cb40f86c52e304aa528b05cef16e86125
+version: ""
+fileignoreconfig:
+- filename: tests/mock/taxonomies/test_taxonomy_mock.py
+  checksum: fab3e50d4f82a206b8d0250e0e48825def4505ff92d45f4883c230428fa350d9
+- filename: tests/api/taxonomies/test_taxonomy_api.py
+  checksum: c02ddccee423f2f50e0428a3d151f35128a51c3a4a8b11e87a4f0042c83f3fa9
+- filename: tests/unit/taxonomies/test_taxonomy_unit.py
+  checksum: 5dd2f73f683c293f71fd9002148747a7167a85981d6fb90e491cafddf7b96169
+version: ""

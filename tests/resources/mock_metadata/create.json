@@ -1,0 +1,28 @@
+{
+    "notice":"Metadata created successfully.",
+    "metadata":{
+       "entity_uid":"entity_uid",
+       "type":"entry",
+       "_content_type_uid":"_content_type_uid",
+       "extension_uid":"extension_uid",
+       "presets":[
+          {
+             "uid":"presets_uid",
+             "name":"Test1",
+             "options":{
+                
+             }
+          }
+       ],
+       "uid":"uid",
+       "locale":"en-us",
+       "scope":"local",
+       "created_by":"user_uid",
+       "updated_by":"user_uid",
+       "created_at":"2023-08-08T16:35:02.599Z",
+       "updated_at":"2023-08-08T16:35:02.599Z",
+       "api_key":"api_key",
+       "deleted_at":false,
+       "_version":1
+    }
+ }

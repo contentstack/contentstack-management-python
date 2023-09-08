@@ -1,0 +1,35 @@
+{
+   "name": "Updated webhook",
+   "destinations": [
+      {
+         "target_url": "http://example.com",
+         "http_basic_auth": "basic",
+         "http_basic_password": "test",
+         "custom_header": [
+            {
+               "header_name": "Custom",
+               "value": "testing"
+            }
+         ]
+      }
+   ],
+   "channels": [
+      "assets.create"
+   ],
+   "retry_policy": "manual",
+   "branches": [
+      "main"
+   ],
+   "notifiers": [
+      "dave.joe@gmail.com"
+   ],
+   "disabled": true,
+   "org_uid": "org_uid",
+   "updated_by": "user_uid",
+   "created_by": "user_uid",
+   "concise_payload": false,
+   "uid": "webhook_uid",
+   "created_at": "2023-07-13T08:13:41.468Z",
+   "updated_at": "2023-07-26T10:56:11.461Z"
+   
+}

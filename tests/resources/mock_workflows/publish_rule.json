@@ -1,0 +1,33 @@
+{
+    "publishing_rule":{
+       "uid":"uid",
+       "api_key":"api_key",
+       "workflow":"workflow_uid",
+       "workflow_stage":"workflow_stage",
+       "actions":[
+          
+       ],
+       "environment":"environment_uid",
+       "branches":[
+          "main"
+       ],
+       "content_types":[
+          "$all"
+       ],
+       "locales":[
+          "en-us"
+       ],
+       "approvers":{
+          "users":[
+             "user_uid"
+          ],
+          "roles":[
+             "role_uid"
+          ]
+       },
+       "status":true,
+       "disable_approver_publishing":false,
+       "created_at":"2023-08-08T10:20:28.302Z",
+       "created_by":"user_uid"
+    }
+ }

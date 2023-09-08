@@ -1,0 +1,120 @@
+{
+    "webhooks": [
+      {
+        "uid": "uid",
+        "channel": [
+          "content_types.create"
+        ],
+        "created_at": "2021-09-30T19:50:41.675Z",
+        "event_data": {
+          "module": "content_type",
+          "api_key": "api_key",
+          "event": "create",
+          "data": {
+            "uid": "test",
+            "title": "Test",
+            "branch": {
+              "alias": [
+                {
+                  "uid": "test"
+                },
+                {
+                  "uid": "development"
+                }
+              ],
+              "uid": "main",
+              "source": ""
+            }
+          }
+        },
+        "event_headers": {
+          "Content-Type": "application/json",
+          "User-Agent": "Contentstack",
+          "X-Contentstack-Signature": "signature",
+          "Authorization": "Basic auth",
+          "Custom": "testing"
+        },
+        "org_uid": "org_uid",
+        "request_details": [
+          {
+            "_id": "id",
+            "retry_number": 0,
+            "request": {
+              "method": "POST",
+              "followAllRedirects": true,
+              "uri": "http://example.com",
+              "body": {
+                "triggered_at": "2021-09-30T19:50:41.603Z",
+                "module": "content_type",
+                "api_key": "api_key",
+                "event": "create",
+                "data": {
+                  "uid": "test",
+                  "title": "Test",
+                  "branch": {
+                    "alias": [
+                      {
+                        "uid": "test"
+                      },
+                      {
+                        "uid": "development"
+                      }
+                    ],
+                    "uid": "main",
+                    "source": ""
+                  }
+                }
+              },
+              "headers": {
+                "Content-Type": "application/json",
+                "User-Agent": "Contentstack",
+                "X-Contentstack-Signature": "signature",
+                "Authorization": "Basic auth",
+                "Custom": "testing"
+              },
+              "json": true,
+              "resolveWithFullResponse": true,
+              "timeout": 30000
+            },
+            "response": {
+              "statusCode": 200,
+              "body": "<!doctype html>\n<html>\n<head>\n    <title>Example Domain</title>\n\n    <meta charset=\"utf-8\" />\n    <meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n    <style type=\"text/css\">\n    body {\n        background-color: #f0f0f2;\n        margin: 0;\n        padding: 0;\n        font-family: -apple-system, system-ui, BlinkMacSystemFont, \"Segoe UI\", \"Open Sans\", \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n        \n    }\n    div {\n        width: 600px;\n        margin: 5em auto;\n        padding: 2em;\n        background-color: #fdfdff;\n        border-radius: 0.5em;\n        box-shadow: 2px 3px 7px 2px rgba(0,0,0,0.02);\n    }\n    a:link, a:visited {\n        color: #38488f;\n        text-decoration: none;\n    }\n    @media (max-width: 700px) {\n        div {\n            margin: 0 auto;\n            width: auto;\n        }\n    }\n    </style>    \n</head>\n\n<body>\n<div>\n    <h1>Example Domain</h1>\n    <p>This domain is for use in illustrative examples in documents. You may use this\n    domain in literature without prior coordination or asking for permission.</p>\n    <p><a href=\"https://www.iana.org/domains/example\">More information...</a></p>\n</div>\n</body>\n</html>\n",
+              "headers": {
+                "accept-ranges": "bytes",
+                "cache-control": "max-age=604800",
+                "content-type": "text/html; charset=UTF-8",
+                "date": "Thu, 30 Sep 2021 19:50:41 GMT",
+                "etag": "\"3147526947\"",
+                "expires": "Thu, 07 Oct 2021 19:50:41 GMT",
+                "last-modified": "Thu, 17 Oct 2019 07:18:26 GMT",
+                "server": "EOS (vny/044E)",
+                "content-length": "1256",
+                "connection": "close"
+              },
+              "request": {
+                "uri": {
+                  "href": "http://example.com"
+                },
+                "method": "POST",
+                "headers": {
+                  "Content-Type": "application/json",
+                  "User-Agent": "Contentstack",
+                  "X-Contentstack-Signature": "signature",
+                  "Authorization": "Basic auth",
+                  "Custom": "testing"
+                }
+              }
+            },
+            "created_at": "2021-09-30T19:50:41.675Z"
+          }
+        ],
+        "retry_count": 0,
+        "status": 200,
+        "updated_at": "2021-09-30T19:50:41.675Z",
+        "webhooks": [
+          "uid"
+        ],
+        "destination": {}
+      }
+    ]
+  }

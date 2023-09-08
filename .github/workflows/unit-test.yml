@@ -1,0 +1,48 @@
+name: Coverage Report
+
+on: [push]  # You can adjust the trigger events as needed
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11  # Choose the appropriate Python version
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # If you have a requirements file
+          pip install coverage
+          pip install pytest
+          pip install coverage-badge
+
+
+      - name: Run tests and coverage
+        run: |
+          coverage run  -m pytest tests/unit/
+          coverage report --include="tests/unit/*" -m > coverage_report.txt
+          coverage xml --include="tests/unit/*" -o coverage.xml
+          coverage html --include="tests/unit/*"
+          coverage-badge -o coverage.svg
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage-report
+          path: |
+            coverage_report.txt
+            coverage.xml
+            htmlcov
+            coverage.svg
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      

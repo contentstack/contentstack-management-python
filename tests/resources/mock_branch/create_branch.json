@@ -1,0 +1,12 @@
+{
+    "notice": "Your request to create branch is in progress. Please check organization bulk task queue for more details.",
+    "branch": {
+        "uid": "release",
+        "source": "main",
+        "created_by": "created_by",
+        "updated_by": "updated_by",
+        "created_at": "created_at",
+        "updated_at": "updated_at",
+        "alias": []
+    }
+}
