@@ -1,0 +1,57 @@
+{
+    "role": {
+       "name": "Content Manager",
+       "description": "Content Managers can view all content types, manage entries and assets. They cannot edit content types or access stack settings.",
+       "uid": "role_uid",
+       "created_by": "user_uid",
+       "updated_by": "user_uids",
+       "created_at": "2023-05-15T09:52:13.042Z",
+       "updated_at": "2023-07-24T12:06:47.704Z",
+       "users": [
+          "user1_uid",
+          "user2_uid",
+          "user3_uid"
+       ],
+       "roles": [],
+       "owner": "owner@contentstack.com",
+       "stack": {
+          "created_at": "2023-05-15T09:52:12.429Z",
+          "updated_at": "2023-08-04T12:38:49.775Z",
+          "uid": "stack_uid",
+          "name": "stack_name",
+          "org_uid": "org_uid",
+          "api_key": "api_key",
+          "master_locale": "en-us",
+          "is_asset_download_public": true,
+          "owner_uid": "owner_uid",
+          "user_uids": [
+             "user1_uid",
+             "user2_uid",
+             "user3_uid",
+             "user4_uid"
+          ],
+          "settings": {
+             "version": "2019-04-30",
+             "rte_version": 3,
+             "blockAuthQueryParams": true,
+             "allowedCDNTokens": [
+                "access_token"
+             ],
+             "branches": true,
+             "localesOptimization": false,
+             "webhook_enabled": true,
+             "stack_variables": {},
+             "live_preview": {},
+             "discrete_variables": {
+                "cms": true,
+                "_version": 3,
+                "secret_key": "secret_key"
+             },
+             "language_fallback": false,
+             "rte": {},
+             "workflow_stages": true
+          }
+       },
+       "SYS_ACL": {}
+    }
+ }

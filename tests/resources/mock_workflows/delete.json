@@ -1,0 +1,87 @@
+{
+    "notice": "Workflow deleted successfully.",
+    "workflow": {
+       "_id": "id",
+       "name": "Workflow",
+       "uid": "Workflow_uid",
+       "org_uid": "org_uid",
+       "api_key": "api_key",
+       "branches": [
+          "main"
+       ],
+       "content_types": [
+          "$all"
+       ],
+       "workflow_stages": [
+          {
+             "name": "Review",
+             "uid": "uid",
+             "color": "#2196f3",
+             "SYS_ACL": {
+                "others": {
+                   "read": true,
+                   "write": true,
+                   "transit": false
+                },
+                "users": {
+                   "uids": [
+                      "$all"
+                   ],
+                   "read": true,
+                   "write": true,
+                   "transit": true
+                },
+                "roles": {
+                   "uids": [],
+                   "read": true,
+                   "write": true,
+                   "transit": true
+                }
+             },
+             "next_available_stages": [
+                "$all"
+             ]
+          },
+          {
+             "name": "Complete",
+             "uid": "uid",
+             "color": "#74ba76",
+             "SYS_ACL": {
+                "others": {
+                   "read": true,
+                   "write": true,
+                   "transit": false
+                },
+                "users": {
+                   "uids": [
+                      "$all"
+                   ],
+                   "read": true,
+                   "write": true,
+                   "transit": true
+                },
+                "roles": {
+                   "uids": [],
+                   "read": true,
+                   "write": true,
+                   "transit": true
+                }
+             },
+             "next_available_stages": [
+                "$all"
+             ]
+          }
+       ],
+       "admin_users": {
+          "users": [],
+          "roles": [
+             "role_uid"
+          ]
+       },
+       "enabled": true,
+       "created_at": "2023-08-01T06:46:07.643Z",
+       "created_by": "user_uid",
+       "deleted_at": "2023-08-07T12:32:36.799Z",
+       "deleted_by": "user_uid"
+    }
+ }

@@ -1,0 +1,17 @@
+{
+    "entries": [
+        {
+            "title": "test1",
+            "tags": [],
+            "locale": "en-us",
+            "uid": "entry-uid",
+            "created_by": "user-uid",
+            "updated_by": "user-uid",
+            "created_at": "2023-06-19T11:49:42.133Z",
+            "updated_at": "2023-07-12T09:51:56.336Z",
+            "ACL": {},
+            "_version": 4,
+            "url": "https://goolgre.com"
+        }
+    ]
+}

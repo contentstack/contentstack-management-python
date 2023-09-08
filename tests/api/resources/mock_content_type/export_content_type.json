@@ -1,0 +1,146 @@
+{
+  "_branches": [
+    "main"
+  ],
+  "_version": 1,
+  "deleted_at": false,
+  "uid": "content_type_uid",
+  "DEFAULT_ACL": {
+    "others": {
+      "read": false,
+      "create": false
+    },
+    "management_token": {
+      "read": true
+    }
+  },
+  "SYS_ACL": {
+    "roles": [
+      {
+        "read": true,
+        "sub_acl": {
+          "create": true,
+          "update": true,
+          "read": true
+        },
+        "uid": "uid"
+      },
+      {
+        "read": true,
+        "sub_acl": {
+          "read": true,
+          "create": true,
+          "update": true,
+          "delete": true
+        },
+        "uid": "uid"
+      },
+      {
+        "read": true,
+        "sub_acl": {
+          "read": true
+        },
+        "uid": "uid"
+      },
+      {
+        "read": true,
+        "sub_acl": {
+          "read": true,
+          "publish": true
+        },
+        "uid": "uid"
+      },
+      {
+        "read": true,
+        "sub_acl": {
+          "create": true,
+          "update": true,
+          "read": true,
+          "delete": true
+        },
+        "uid": "uid"
+      },
+      {
+        "read": true,
+        "sub_acl": {
+          "read": true
+        },
+        "uid": "uid"
+      },
+      {
+        "read": true,
+        "sub_acl": {
+          "read": true,
+          "publish": true
+        },
+        "uid": "uid"
+      }
+    ]
+  },
+  "_metadata": {
+    "references": []
+  },
+  "abilities": {
+    "get_one_object": true,
+    "get_all_objects": true,
+    "create_object": true,
+    "update_object": true,
+    "delete_object": true,
+    "delete_all_objects": true
+  },
+  "created_at": "created_at",
+  "created_by": "uid",
+  "description": "",
+  "extension_refs": [],
+  "inbuilt_class": false,
+  "last_activity": {},
+  "maintain_revisions": true,
+  "non_localizable_fields": [],
+  "options": {
+    "title": "title",
+    "publishable": true,
+    "is_page": true,
+    "singleton": false,
+    "sub_title": [
+      "url"
+    ],
+    "url_pattern": "/:title",
+    "url_prefix": "/"
+  },
+  "schema": [
+    {
+      "display_name": "Title",
+      "uid": "title",
+      "data_type": "text",
+      "field_metadata": {
+        "_default": true,
+        "version": 3
+      },
+      "unique": false,
+      "mandatory": true,
+      "multiple": false,
+      "indexed": false,
+      "inbuilt_model": false,
+      "non_localizable": false
+    },
+    {
+      "display_name": "URL",
+      "uid": "url",
+      "data_type": "text",
+      "field_metadata": {
+        "_default": true,
+        "version": 3
+      },
+      "unique": false,
+      "multiple": false,
+      "mandatory": false,
+      "indexed": false,
+      "inbuilt_model": false,
+      "non_localizable": false
+    }
+  ],
+  "tags": [],
+  "title": "test content type",
+  "updated_at": "updated_at",
+  "updated_by": "uid"
+}

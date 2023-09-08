@@ -1,0 +1,9 @@
+{
+  "module": "branch",
+  "branches": [
+    "main"
+  ],
+  "acl": {
+    "read": true
+  }
+}

@@ -1,14 +1,22 @@
-"""This class takes a base URL as an argument when it's initialized, 
-which is the endpoint for the RESTFUL API that we'll be interacting with.
-The create(), read(), update(), and delete() methods each correspond to 
-the CRUD operations that can be performed on the API """
-
 import json
+from ..aliases.aliases import Alias
+from ..assets.assets import Assets
+from ..branches.branches import Branch
+from ..common import Parameter
+from ..content_types.content_type import ContentType
+from ..global_fields.global_fields import GlobalFields
+from ..webhooks.webhook import Webhook
+from ..workflows.workflows import Workflows
+from ..metadata.metadata import Metadata
+from ..roles.roles import Roles
+from ..auditlogs.auditlog import Auditlog
+from ..environments.environment import Environment
+from ..locale.locale import Locale
+from ..taxonomies.taxonomy import Taxonomy
 
-from ..global_fields.global_fields import Globalfields
 
 
-class Stack:
+class Stack(Parameter):
     """
     This class takes a base URL as an argument when it's initialized, 
     which is the endpoint for the RESTFUL API that
@@ -16,13 +24,11 @@ class Stack:
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, endpoint, authtoken, headers, api_client, api_key):
-        self.api_client = api_client
-        self.endpoint = endpoint
-        self.authtoken = authtoken
-        self.headers = headers
-        self.api_key = api_key
-        self.headers['authtoken'] = self.authtoken
+    def __init__(self, client, api_key=None):
+        self.client = client
+        if api_key is not None and not '':
+            self.client.headers['api_key'] = api_key
+        super().__init__(self.client)
 
     def fetch(self):
         """
@@ -32,15 +38,12 @@ class Stack:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').fetch().json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> client.login(email="email", password="password")
+            >>> result = client.stack('api_key').fetch()
         -------------------------------
         """
-        url = "stacks"
-        self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers=self.headers)
+        return self.client.get('stacks', headers=self.client.headers, params=self.params)
 
     def find(self):
         """
@@ -50,15 +53,12 @@ class Stack:
         [Example:]
 
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack().fetch_all().json()
-
+            >>> client = contentstack.ContentstackClient(host='host', authtoken='authtoken')
+            >>> client.login(email="email", password="password")
+            >>> result = client.stack().find()
         -------------------------------
         """
-
-        url = "stacks"
-        return self.api_client.get(url, headers=self.headers)
+        return self.client.get('stacks', headers=self.client.headers, params=self.params)
 
     def create(self, organization_uid, data):
         """
@@ -67,24 +67,22 @@ class Stack:
         -------------------------------
         [Example:]
             >>> data = {
-                            "stack": {
-                                "name": "My New Stack",
-                                "description": "My new test stack",
-                                "master_locale": "en-us"
-                            }
-                        }
+            >>>    "stack": {
+            >>>         "name": "My New Stack",
+            >>>         "description": "My new test stack",
+            >>>         "master_locale": "en-us"
+            >>>         }
+            >>>      }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack().create('ORG_UID', data).json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> result = client.stack().create('organization_uid', data).json()
         -------------------------------
         """
-        url = "stacks"
-
-        self.headers['organization_uid'] = organization_uid
+        if organization_uid is not None and '':
+            self.client.headers['organization_uid'] = organization_uid
         data = json.dumps(data)
-        return self.api_client.post(url, headers=self.headers, data=data)
+        return self.client.post('stacks', headers=self.client.headers,
+                                params=self.params, data=data)
 
     def update(self, data):
         """
@@ -93,23 +91,19 @@ class Stack:
         -------------------------------
         [Example:]
             >>> data = {
-                            "stack": {
-                                "name": "My New Stack",
-                                "description": "My new test stack",
-                                "master_locale": "en-us"
-                            }
-                        }
+            >>> "stack": {
+            >>>     "name": "My New Stack",
+            >>>     "description": "My new test stack",
+            >>>     "master_locale": "en-us"
+            >>>     }
+            >>> }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').update(data).json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> result = client.stack('api_key').update(data).json()
         -------------------------------
         """
-        url = "stacks"
-        self.headers['api_key'] = self.api_key
         data = json.dumps(data)
-        return self.api_client.put(url, headers=self.headers, data=data)
+        return self.client.put('stacks', headers=self.client.headers, params=self.params, data=data)
 
     def delete(self):
         """
@@ -117,18 +111,12 @@ class Stack:
         :return: Json, with status code and message.
         -------------------------------
         [Example:]
-
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').delete().json()
-
+            >>> client = contentstack.ContentstackClient(authtoken='authtoken')
+            >>> result = client.stack('api_key').delete()
         -------------------------------
         """
-
-        url = "stacks"
-        self.headers['api_key'] = self.api_key
-        return self.api_client.delete(url, headers=self.headers)
+        return self.client.delete('stacks', headers=self.client.headers, params=self.params)
 
     def users(self):
         """
@@ -136,18 +124,13 @@ class Stack:
         :return: Json, with users of a stack details.
         -------------------------------
         [Example:]
-
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack().fetch_all_user().json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> client.login(email="email", password="password")
+            >>> result = client.stack().users()
         -------------------------------
         """
-
-        url = "stacks/users"
-        self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers=self.headers)
+        return self.client.get('stacks/users', headers=self.client.headers, params=self.params)
 
     def update_user_role(self, data):
         """
@@ -156,21 +139,19 @@ class Stack:
         -------------------------------
         [Example:]
             >>> data = {
-                        "users": {
-                            "user_uid": ["role_uid1", "role_uid2"]
-                        }
-                    }
+            >>>     "users": {
+            >>>         "user_uid": ["role_uid1", "role_uid2"]
+            >>>       }
+            >>>   }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').update_user_role(data).json()
-
+            >>> client = contentstack.ContentstackClient(authtoken='the_authtoken')
+            >>> result = client.stack('api_key').update_user_role(data)
         -------------------------------
         """
-        url = "stacks/users/roles"
-        self.headers['api_key'] = self.api_key
+        if 'api_key' not in self.client.headers:
+            raise Exception('api_key is required')
         data = json.dumps(data)
-        return self.api_client.put(url, headers=self.headers, data=data)
+        return self.client.put('stacks/users/roles', headers=self.client.headers, params=self.params, data=data)
 
     def transfer_ownership(self, data):
         """
@@ -182,16 +163,14 @@ class Stack:
                         "transfer_to": "manager@example.com"
                     }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').stack_transfer_ownership(data).json()
-
+            >>> client = contentstack.ContentstackClient(authtoken='the_authtoken')
+            >>> result = client.stack('api_key').transfer_ownership(data)
         -------------------------------
         """
-        url = "stacks/transfer_ownership"
-        self.headers['api_key'] = self.api_key
+        if 'api_key' not in self.client.headers:
+            raise Exception('api_key is required')
         data = json.dumps(data)
-        return self.api_client.post(url, headers=self.headers, data=data)
+        return self.client.post('stacks/transfer_ownership', headers=self.client.headers, data=data)
 
     def accept_ownership(self, user_id, ownership_token):
         """
@@ -199,17 +178,20 @@ class Stack:
         :return: Json, with stacks details.
         -------------------------------
         [Example:]
-
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').accept_ownership(user_id, ownership_token).json()
-
+            >>> client = contentstack.ContentstackClient(authtoken='the_authtoken')
+            >>> result = client.stack('api_key').accept_ownership('user_id', 'ownership_token')
         -------------------------------
         """
+        if 'api_key' not in self.client.headers:
+            raise PermissionError('api_key is required')
+        if user_id is None or '':
+            raise PermissionError('user_id is required')
+        if ownership_token is None or '':
+            raise PermissionError('ownership_token is required')
         url = f"stacks/accept_ownership/{ownership_token}"
-        params = {'api_key': self.api_key, 'uid': user_id}
-        return self.api_client.get(url, headers=self.headers, params=params)
+        self.params.update({'api_key': self.client.headers['api_key'], 'uid': user_id})
+        return self.client.get(url, headers=self.client.headers, params=self.params)
 
     def settings(self):
         """
@@ -217,17 +199,15 @@ class Stack:
         :return: Json, with stack settings details.
         -------------------------------
         [Example:]
-
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').get_stack_settings().json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> client.login(email="email", password="password")
+            >>> result = client.stack('api_key').settings()
         -------------------------------
         """
-        url = "stacks/settings"
-        self.headers['api_key'] = self.api_key
-        return self.api_client.get(url, headers=self.headers)
+        if 'api_key' not in self.client.headers:
+            raise Exception('api_key is required')
+        return self.client.get('stacks/settings', headers=self.client.headers, params=self.params)
 
     def create_settings(self, data):
         """
@@ -236,28 +216,28 @@ class Stack:
         -------------------------------
         [Example:]
             >>> data = {
-                        "stack_settings": {
-                            "stack_variables": {
-                                "enforce_unique_urls": true,
-                                "sys_rte_allowed_tags": "style,figure,script",
-                                "sys_rte_skip_format_on_paste": "GD:font-size"
-                                },
-                            "rte": {
-                                "cs_only_breakline": true
-                            }
-                        }
-                    }
+            >>>            "stack_settings": {
+            >>>                "stack_variables": {
+            >>>                    "enforce_unique_urls": 'true',
+            >>>                    "sys_rte_allowed_tags": "style,figure,script",
+            >>>                    "sys_rte_skip_format_on_paste": "GD:font-size"
+            >>>               },
+            >>>                "rte": {
+            >>>                    "cs_only_breakline": 'true'
+            >>>                }
+            >>>            }
+            >>>        }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
+            >>> client = contentstack.ContentstackClient(host='host')
             >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').create_stack_settings(data).json()
+            >>> result = client.stack('api_key').create_stack_settings(data).json()
 
         -------------------------------
         """
-        url = "stacks/settings"
-        self.headers['api_key'] = self.api_key
+        if 'api_key' not in self.client.headers:
+            raise Exception('api_key is required')
         data = json.dumps(data)
-        return self.api_client.post(url, headers=self.headers, data=data)
+        return self.client.post('stacks/settings', headers=self.client.headers, params=self.params, data=data)
 
     def reset_settings(self, data):
         """
@@ -266,19 +246,18 @@ class Stack:
         -------------------------------
         [Example:]
             >>> data = {
-                        "stack_settings":{}
-                    }               
+            >>>       "stack_settings":{}
+            >>>    }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').reset_stack_settings(data).json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> client.login(email="email", password="password")
+            >>> result = client.stack('api_key').reset_stack_settings(data)
         -------------------------------
         """
-        url = "stacks/settings/reset"
-        self.headers['api_key'] = self.api_key
+        if 'api_key' not in self.client.headers:
+            raise Exception('api_key is required')
         data = json.dumps(data)
-        return self.api_client.post(url, headers=self.headers, data=data)
+        return self.client.post('stacks/settings/reset', headers=self.client.headers, data=data)
 
     def share(self, data):
         """
@@ -287,26 +266,27 @@ class Stack:
         -------------------------------
         [Example:]
             >>> data = {
-                        "emails": [
-                            "manager@example.com"
-                        ],
-                        "roles": {
-                            "manager@example.com": [
-                                "abcdefhgi1234567890"
-                            ]
-                        }
-                    }
+            >>>            "emails": [
+            >>>                "*****"
+            >>>            ],
+            >>>            "roles": {
+            >>>                "manager@example.com": [
+            >>>                    "*******"
+            >>>                ]
+            >>>            }
+            >>>        }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
+            >>> client = contentstack.ContentstackClient(host='host')
             >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').share_stack(data).json()
-
+            >>> result = client.stack('api_key').share_stack(data).json()
         -------------------------------
         """
-        url = "stacks/share"
-        self.headers['api_key'] = self.api_key
+        if 'api_key' not in self.client.headers:
+            raise Exception('api_key is required')
         data = json.dumps(data)
-        return self.api_client.post(url, headers=self.headers, data=data)
+        return self.client.post('stacks/share', headers=self.client.headers, params=self.params, data=data)
+
+
 
     def unshare(self, data):
         """
@@ -315,20 +295,57 @@ class Stack:
         -------------------------------
         [Example:]
             >>> data = {
-                        "email": "manager@example.com"
-                    }
+            >>>     "email": "manager@example.com"
+            >>>   }
             >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='HOST NAME')
-            >>> client.login(email="email_id", password="password")
-            >>> result = client.stack('API_KEY').unshare_stack(data).json()
-
+            >>> client = contentstack.ContentstackClient(host='host')
+            >>> client.login(email="email", password="password")
+            >>> result = client.stack('api_key').unshare(data)
         -------------------------------
         """
-        url = "stacks/unshare"
-        self.headers['api_key'] = self.api_key
+        if 'api_key' not in self.client.headers:
+            raise Exception('api_key is required')
         data = json.dumps(data)
-        return self.api_client.post(url, headers=self.headers, data=data)
+        return self.client.post('stacks/unshare', headers=self.client.headers, params=self.params, data=data)
 
     def global_fields(self, global_field_uid=None):
-        return Globalfields(self.endpoint, self.authtoken, self.headers, self.api_client, self.api_key,
-                            global_field_uid)
+        if 'api_key' not in self.client.headers:
+            raise Exception('api_key is required')
+        return GlobalFields(self.client, global_field_uid)
+
+    def branch(self, branch_uid=None):
+        return Branch(self.client, branch_uid)
+
+    def alias(self, alias_uid=None):
+        return Alias(self.client, alias_uid)
+
+    def content_types(self, content_type_uid=None, branch=None):
+        return ContentType(self.client, content_type_uid, branch)
+
+    def webhooks(self, webhook_uid=None):
+        return Webhook(self.client, webhook_uid)
+
+    def assets(self, asset_uid=None, branch=None):
+        return Assets(self.client, asset_uid, branch)
+    
+    def workflows(self, workflow_uid=None):
+        return Workflows(self.client, workflow_uid)
+    
+    def metadata(self, metadata_uid: str = None):
+            return Metadata(self.client, metadata_uid)
+    
+    def roles(self, roles_uid: str = None):
+            return Roles(self.client, roles_uid)
+    
+    def auditlog(self, log_item_uid: str = None):
+            return Auditlog(self.client, log_item_uid)
+    
+    def environments(self, environment_name: str = None):
+            return Environment(self.client, environment_name)
+    
+    def locale(self, locale_code: str = None):
+            return Locale(self.client, locale_code)
+    
+    def taxonomy(self, taxonomy_uid: str = None):
+            return Taxonomy(self.client, taxonomy_uid)
+    

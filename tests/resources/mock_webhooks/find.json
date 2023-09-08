@@ -1,0 +1,42 @@
+{
+    "webhooks": [
+       {
+          "name": "Test",
+          "destinations": [
+             {
+                "target_url": "http://example.com",
+                "http_basic_auth": "basic",
+                "http_basic_password": "test",
+                "custom_header": [
+                   {
+                      "header_name": "Custom",
+                      "value": "testing"
+                   }
+                ]
+             }
+          ],
+          "channels": [
+             "assets.create"
+          ],
+          "retry_policy": "manual",
+          "branches": [
+             "main"
+          ],
+          "notifiers": [
+             "dave.joe@gmail.com"
+          ],
+          "disabled": false,
+          "applikation_id": "applikation_id",
+          "org_uid": "org_uid",
+          "updated_by": "user_uid",
+          "created_by": "user_uid",
+          "app_user_object_uid": "system",
+          "concise_payload": true,
+          "uid": "webhook_uid",
+          "created_at": "2023-07-26T10:22:04.047Z",
+          "updated_at": "2023-07-26T10:22:04.047Z",
+          "__v": 0
+       }
+    ],
+    "destination": {}
+ }

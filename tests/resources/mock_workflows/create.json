@@ -1,0 +1,93 @@
+{
+    "notice": "Workflow created successfully.",
+    "workflow": {
+       "workflow_stages": [
+          {
+             "color": "#2196f3",
+             "SYS_ACL": {
+                "others": {
+                   "read": true,
+                   "write": true,
+                   "transit": false
+                },
+                "users": {
+                   "uids": [
+                      "$all"
+                   ],
+                   "read": true,
+                   "write": true,
+                   "transit": true
+                },
+                "roles": {
+                   "uids": [],
+                   "read": true,
+                   "write": true,
+                   "transit": true
+                }
+             },
+             "next_available_stages": [
+                "$all"
+             ],
+             "allStages": true,
+             "allUsers": true,
+             "specificStages": false,
+             "specificUsers": false,
+             "name": "Review",
+             "uid": "uid"
+          },
+          {
+             "color": "#74ba76",
+             "SYS_ACL": {
+                "others": {
+                   "read": true,
+                   "write": true,
+                   "transit": false
+                },
+                "users": {
+                   "uids": [
+                      "$all"
+                   ],
+                   "read": true,
+                   "write": true,
+                   "transit": true
+                },
+                "roles": {
+                   "uids": [],
+                   "read": true,
+                   "write": true,
+                   "transit": true
+                }
+             },
+             "allStages": true,
+             "allUsers": true,
+             "specificStages": false,
+             "specificUsers": false,
+             "next_available_stages": [
+                "$all"
+             ],
+             "name": "Complete",
+             "uid": "uid"
+          }
+       ],
+       "admin_users": {
+          "users": [],
+          "roles": [
+             "uid"
+          ]
+       },
+       "name": "Workflow by test",
+       "enabled": true,
+       "branches": [
+          "main"
+       ],
+       "content_types": [
+          "$all"
+       ],
+       "uid": "bltccadd18340fad743",
+       "api_key": "api_key",
+       "org_uid": "org_uid",
+       "created_by": "user_uid",
+       "created_at": "2023-08-07T12:37:09.413Z",
+       "deleted_at": false
+    }
+ }

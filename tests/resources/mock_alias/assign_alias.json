@@ -1,0 +1,13 @@
+{
+    "notice": "Branch alias assigned successfully.",
+    "branch_alias": {
+        "uid": "test",
+        "source": "main",
+        "created_by": "created_by",
+        "updated_by": "updated_by",
+        "created_at": "created_at",
+        "updated_at": "u",
+        "deleted_at": false,
+        "alias": "alias_uid"
+    }
+}
