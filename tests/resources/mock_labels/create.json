@@ -1,0 +1,17 @@
+{
+    "notice": "Label created successfully.",
+    "label": {
+       "name": "Test",
+       "content_types": [
+          "student"
+       ],
+       "uid": "label_uid",
+       "created_by": "user_uid",
+       "updated_by": "user_uid",
+       "created_at": "2023-09-11T10:05:39.537Z",
+       "updated_at": "2023-09-11T10:05:39.537Z",
+       "ACL": {},
+       "_version": 1,
+       "parent": []
+    }
+ }

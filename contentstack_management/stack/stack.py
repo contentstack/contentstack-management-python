@@ -13,6 +13,7 @@ from ..auditlogs.auditlog import Auditlog
 from ..environments.environment import Environment
 from ..locale.locale import Locale
 from ..taxonomies.taxonomy import Taxonomy
+from ..labels.label import Label
 
 
 
@@ -348,4 +349,7 @@ class Stack(Parameter):
     
     def taxonomy(self, taxonomy_uid: str = None):
             return Taxonomy(self.client, taxonomy_uid)
+    
+    def label(self, label_uid: str = None):
+            return Label(self.client, label_uid)
     

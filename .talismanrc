@@ -251,3 +251,12 @@ fileignoreconfig:
 - filename: tests/unit/taxonomies/test_taxonomy_unit.py
   checksum: 5dd2f73f683c293f71fd9002148747a7167a85981d6fb90e491cafddf7b96169
 version: ""
+
+fileignoreconfig:
+- filename: tests/unit/labels/test_label_unit.py
+  checksum: 6fbb2a05402d94988e585dd48ee8881416d19340134a89088f9884533a6218d1
+- filename: tests/api/labels/test_labels_api.py
+  checksum: 1111ead97107bf5348adb0fa2457ec5c4182278865d7e461bf2a42c90ef71588
+- filename: tests/mock/labels/test_labels_mock.py
+  checksum: 069ee74fe19848e7a5bc4510772c389421e03956c31ce8347f93cb67b7f16847
+version: ""
