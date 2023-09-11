@@ -24,6 +24,7 @@ from .locale.locale import Locale
 from .taxonomies.taxonomy import Taxonomy
 from .labels.label import Label
 
+
 __all__ = (
 "ContentstackClient",
 "ContentstackRegion",
