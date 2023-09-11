@@ -44,7 +44,11 @@ class Label(Parameter):
     def fetch(self, label_uid: str = None):
         """
         The Get label call returns information about a particular label of a stack.
-        :return: Json, with label details.
+        
+        :param label_uid: The `label_uid` parameter is a string that represents the unique identifier of
+        a label. It is used to specify which label to fetch from the server
+        :type label_uid: str
+        :return: the result of the GET request made to the specified URL.
         -------------------------------
         [Example:]
 
@@ -54,6 +58,7 @@ class Label(Parameter):
 
         -------------------------------
         """
+        
         if label_uid is not None and label_uid != '':
             self.label_uid = label_uid
 
