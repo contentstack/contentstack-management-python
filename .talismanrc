@@ -260,3 +260,4 @@ fileignoreconfig:
 - filename: tests/mock/labels/test_labels_mock.py
   checksum: 069ee74fe19848e7a5bc4510772c389421e03956c31ce8347f93cb67b7f16847
 version: ""
+
