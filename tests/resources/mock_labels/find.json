@@ -1,0 +1,32 @@
+{
+    "labels": [
+       {
+          "name": "Test2",
+          "content_types": [
+             "page"
+          ],
+          "uid": "label_uid",
+          "created_by": "user_uid",
+          "updated_by": "user_uid",
+          "created_at": "2023-09-11T10:09:02.904Z",
+          "updated_at": "2023-09-11T10:09:02.904Z",
+          "ACL": [],
+          "_version": 1,
+          "parent": []
+       },
+       {
+          "name": "Test",
+          "content_types": [
+             "student"
+          ],
+          "uid": "label_uid",
+          "created_by": "user_uid",
+          "updated_by": "user_uid",
+          "created_at": "2023-09-11T10:05:39.537Z",
+          "updated_at": "2023-09-11T10:08:10.635Z",
+          "ACL": [],
+          "_version": 1,
+          "parent": []
+       }
+    ]
+ }
