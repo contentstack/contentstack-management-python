@@ -74,5 +74,6 @@ def get_credentials():
         "locale_code": os.getenv("LOCALE_CODE", default_locale_code),
         "taxonomy_uid": os.getenv("TAXONOMY_UID", default_taxonomy_uid),
         "label_uid": os.getenv("LABEL_UID", default_label_uid),
+
     }
     return credentials

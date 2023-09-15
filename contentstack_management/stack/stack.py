@@ -16,6 +16,7 @@ from ..taxonomies.taxonomy import Taxonomy
 from ..labels.label import Label
 
 
+
 class Stack(Parameter):
     """
     This class takes a base URL as an argument when it's initialized, 
