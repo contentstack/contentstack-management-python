@@ -22,6 +22,8 @@ from .common import Parameter
 from ._errors import ArgumentException
 from .locale.locale import Locale
 from .taxonomies.taxonomy import Taxonomy
+from .labels.label import Label
+
 
 __all__ = (
 "ContentstackClient",
@@ -47,6 +49,7 @@ __all__ = (
 "Entry",
 "Locale",
 "Taxonomy",
+"Label",
 )
 
 __title__ = 'contentstack-management-python'
