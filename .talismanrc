@@ -260,4 +260,12 @@ fileignoreconfig:
 - filename: tests/mock/labels/test_labels_mock.py
   checksum: 069ee74fe19848e7a5bc4510772c389421e03956c31ce8347f93cb67b7f16847
 version: ""
+fileignoreconfig:
+- filename: tests/api/terms/test_terms_api.py
+  checksum: f8aecb8888884944bb18219e1437e46421140a534467df3ebcb579aa80089627
+- filename: tests/mock/terms/test_terms_mock.py
+  checksum: d8816eddbcbcc993e123afd9d40a7c55cafc1f50e4dbe91084c2212d4715d2d3
+- filename: tests/unit/terms/test_terms_unit.py
+  checksum: 1723d11c8e22d67e28409c0868781c3e4ec7e1d8e97d63e718716d26e486c8ad
+version: ""
 
