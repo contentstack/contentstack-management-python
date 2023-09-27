@@ -14,6 +14,7 @@ from ..environments.environment import Environment
 from ..locale.locale import Locale
 from ..taxonomies.taxonomy import Taxonomy
 from ..labels.label import Label
+from ..bulk_operations.bulk_operation import BulkOperation
 
 
 
@@ -352,4 +353,7 @@ class Stack(Parameter):
     
     def label(self, label_uid: str = None):
             return Label(self.client, label_uid)
+    
+    def bulk_operation(self):
+            return BulkOperation(self.client)
     
