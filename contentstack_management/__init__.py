@@ -23,6 +23,8 @@ from ._errors import ArgumentException
 from .locale.locale import Locale
 from .taxonomies.taxonomy import Taxonomy
 from .labels.label import Label
+from .terms.terms import Terms
+from .bulk_operations.bulk_operation import BulkOperation
 
 
 __all__ = (
@@ -50,6 +52,8 @@ __all__ = (
 "Locale",
 "Taxonomy",
 "Label",
+"Terms",
+"BulkOperation"
 )
 
 __title__ = 'contentstack-management-python'

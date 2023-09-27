@@ -268,4 +268,12 @@ fileignoreconfig:
 - filename: tests/unit/terms/test_terms_unit.py
   checksum: 1723d11c8e22d67e28409c0868781c3e4ec7e1d8e97d63e718716d26e486c8ad
 version: ""
+fileignoreconfig:
+- filename: tests/mock/bulk_operations/test_bulk_operations_mock.py
+  checksum: f672aa30ff2595147a1de4bcaff1d42a3bd2242b70c139f03d2bf4c3f86d9185
+- filename: tests/api/bulk_operations/test_bulk_operations_api.py
+  checksum: 1cd949c89caaea5b4a7560627a2c745ceec292adbed382450b6a88444a0b667e
+- filename: tests/unit/bulk_operations/test_bulk_operations_unit.py
+  checksum: 1cfaea5cacaef44f2154bd25150d599e6e7be541477b3cef2e909ab16ef86636
+version: ""
 
