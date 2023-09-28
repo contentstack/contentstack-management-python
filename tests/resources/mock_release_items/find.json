@@ -1,0 +1,12 @@
+{
+    "items": [
+       {
+          "action": "publish",
+          "title": "Text 1",
+          "uid": "items_uid",
+          "locale": "en-us",
+          "version": 1,
+          "content_type_uid": "text_section"
+       }
+    ]
+ }

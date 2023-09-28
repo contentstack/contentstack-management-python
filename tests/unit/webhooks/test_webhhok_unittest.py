@@ -14,7 +14,7 @@ webhook_uid = credentials["webhook_uid"]
 
 
 
-class ContentTypeUnitTests(unittest.TestCase):
+class WebhookUnitTests(unittest.TestCase):
 
     def setUp(self):
         self.client = contentstack.ContentstackClient(host=host)

@@ -1,0 +1,15 @@
+{
+    "notice": "Release created successfully.",
+    "release": {
+       "name": "Release_Name",
+       "description": "2023-09-27",
+       "locked": false,
+       "uid": "release_uid",
+       "created_by": "created_by",
+       "updated_by": "updated_by",
+       "created_at": "2023-09-27T15:35:49.251Z",
+       "updated_at": "2023-09-27T15:35:49.251Z",
+       "status": [],
+       "_deploy_latest": false
+    }
+ }

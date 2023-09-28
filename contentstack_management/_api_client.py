@@ -130,7 +130,7 @@ class _APIClient:
         # headers = headers or {}
         return self._call_request('POST', url, headers=headers, params=params, data=data, json_data=json_data, files=files)
 
-    def delete(self, path, headers=None, params=None):
+    def delete(self, path, headers=None, params=None, data=None):
         """
         The function sends a DELETE request to a specified URL with optional headers and parameters.
         
@@ -150,4 +150,4 @@ class _APIClient:
         
         url = f"{self.endpoint}{path}"
         # headers = headers or {}
-        return self._call_request('DELETE', url, headers=headers, params=params)
+        return self._call_request('DELETE', url, headers=headers, params=params, data = data)
