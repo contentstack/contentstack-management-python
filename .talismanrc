@@ -276,4 +276,18 @@ fileignoreconfig:
 - filename: tests/unit/bulk_operations/test_bulk_operations_unit.py
   checksum: 1cfaea5cacaef44f2154bd25150d599e6e7be541477b3cef2e909ab16ef86636
 version: ""
+fileignoreconfig:
+- filename: tests/mock/releases/test_releases_mock.py
+  checksum: b519703e910b645882404ba508e5b64132b24130f204f1d4791d4faad824e93b
+- filename: tests/api/release_items/test_release_items_api.py
+  checksum: 5258ca032ee32626fafd9fd7af27c1399a2773319a33bd89761fabc579b15977
+- filename: tests/api/releases/test_releases_api.py
+  checksum: 6250feb132ce2ddd1ca3607cb04bc30f47ffc8f7bcf495e5b09a03cd99eae8b5
+- filename: tests/mock/release_items/test_release_items_mock.py
+  checksum: 98def0f6650518882a8cbcc3b2ea8fe243795d08c7059d1885ba73f37d7c4aa3
+- filename: tests/unit/release_items/test_release_items_unit.py
+  checksum: 0bf883a9918b0669266d1a736538d2492e0287e152424d1164a258afa31ddc72
+- filename: tests/unit/releases/test_release_unit.py
+  checksum: ffef2e354ac901eafd0f0aa8a95394892ec23b9d8b807de3e096a28536a75126
+version: ""
 

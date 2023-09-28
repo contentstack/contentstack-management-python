@@ -1,4 +1,5 @@
 import json
+from .._errors import ArgumentException
 from ..aliases.aliases import Alias
 from ..assets.assets import Assets
 from ..branches.branches import Branch
@@ -15,6 +16,8 @@ from ..locale.locale import Locale
 from ..taxonomies.taxonomy import Taxonomy
 from ..labels.label import Label
 from ..bulk_operations.bulk_operation import BulkOperation
+from ..releases.release import Releases
+from ..release_items.release_item import  ReleaseItems
 
 
 
@@ -356,4 +359,9 @@ class Stack(Parameter):
     
     def bulk_operation(self):
             return BulkOperation(self.client)
+    
+    def releases(self, release_uid: str = None):
+            return Releases(self.client, release_uid)
+    
+    
     
