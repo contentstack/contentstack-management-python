@@ -25,6 +25,8 @@ from .taxonomies.taxonomy import Taxonomy
 from .labels.label import Label
 from .terms.terms import Terms
 from .bulk_operations.bulk_operation import BulkOperation
+from .releases.release import Releases
+from .release_items.release_item import ReleaseItems
 
 
 __all__ = (
@@ -53,7 +55,9 @@ __all__ = (
 "Taxonomy",
 "Label",
 "Terms",
-"BulkOperation"
+"BulkOperation",
+"Releases",
+"ReleaseItems"
 )
 
 __title__ = 'contentstack-management-python'

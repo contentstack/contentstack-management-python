@@ -36,6 +36,7 @@ default_taxonomy_uid = "taxonomy_uid" #Default taxonomy code
 default_label_uid = "label_uid" #Default label code
 default_terms_uid = "terms_uid" #Default terms uid
 default_terms_string = "terms_string" #Default terms string
+default_release_uid = "release_uid" #default release uid
 
 
 def get_credentials():
@@ -78,6 +79,7 @@ def get_credentials():
         "label_uid": os.getenv("LABEL_UID", default_label_uid),
         "terms_uid": os.getenv("TERMS_UID", default_terms_uid),
         "terms_string": os.getenv("TERMS_STRING", default_terms_string),
+        "release_uid": os.getenv("RELEASE_UID", default_release_uid),
 
     }
     return credentials

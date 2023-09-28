@@ -1,0 +1,29 @@
+{
+    "notice": "Item added to release successfully.",
+    "release": {
+       "name": "New_Name",
+       "description": "2023-12-12",
+       "items": [
+          {
+             "action": "publish",
+             "title": "Text 1",
+             "uid": "items_uid",
+             "locale": "en-us",
+             "version": 1,
+             "content_type_uid": "text_section"
+          }
+       ],
+       "app_user_object_uid": "system",
+       "uid": "release_uid",
+       "created_by": "created_by",
+       "updated_by": "updated_by",
+       "created_at": "2023-09-27T15:54:15.839Z",
+       "updated_at": "2023-09-27T15:54:15.839Z",
+       "ACL": [],
+       "_version": 1,
+       "locked": false,
+       "status": [],
+       "_deploy_latest": false,
+       "tags": []
+    }
+ }
