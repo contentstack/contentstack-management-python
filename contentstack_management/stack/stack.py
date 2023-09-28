@@ -359,9 +359,5 @@ class Stack(Parameter):
     
     def bulk_operation(self):
             return BulkOperation(self.client)
-    
     def releases(self, release_uid: str = None):
-            return Releases(self.client, release_uid)
-    
-    
-    
+            return Releases(self.client, release_uid)    
