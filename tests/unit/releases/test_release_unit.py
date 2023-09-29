@@ -84,15 +84,8 @@ class ReleaseUnitTests(unittest.TestCase):
     def test_deploy(self):
         data = {
                 "release": {
-                    "scheduled_at": "2018-12-12T13:13:13:122Z",
-                    "action": "publish/unpublish",
                     "environments": [
-                        "Production",
-                        "UAT"
-                    ],
-                    "locales": [
-                        "en-us",
-                        "ja-jp"
+                        "development"
                     ]
                 }
             }
