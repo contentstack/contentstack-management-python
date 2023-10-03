@@ -77,13 +77,8 @@ class ReleaseApiTests(unittest.TestCase):
     def test_deploy(self):
         data = {
                 "release": {
-                    "scheduled_at": "2023-09-27T13:13:13:122Z",
-                    "action": "publish",
                     "environments": [
                         "development"
-                    ],
-                    "locales": [
-                        "en-us"
                     ]
                 }
             }
