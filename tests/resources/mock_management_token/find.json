@@ -1,0 +1,62 @@
+{
+    "tokens": [
+       {
+          "name": "Test Management Token",
+          "description": "This is a sample Test management token.",
+          "scope": [
+             {
+                "module": "content_type",
+                "acl": {
+                   "read": true,
+                   "write": true
+                }
+             },
+             {
+                "module": "branch",
+                "acl": {
+                   "read": true
+                },
+                "branches": [
+                   "main"
+                ]
+             }
+          ],
+          "expires_on": "2023-12-10",
+          "is_email_notification_enabled": true,
+          "uid": "token_uid",
+          "created_by": "created_by_uid",
+          "updated_by": "updated_by_uid",
+          "created_at": "2023-10-06T07:27:47.789Z",
+          "updated_at": "2023-10-06T07:27:47.789Z"
+       },
+       {
+          "name": "Test Token",
+          "description": "This is a sample management token.",
+          "scope": [
+             {
+                "module": "content_type",
+                "acl": {
+                   "read": true,
+                   "write": true
+                }
+             },
+             {
+                "module": "branch",
+                "acl": {
+                   "read": true
+                },
+                "branches": [
+                   "main"
+                ]
+             }
+          ],
+          "expires_on": "2023-12-10",
+          "is_email_notification_enabled": true,
+          "uid": "token_uid",
+          "created_by": "created_by_uid",
+          "updated_by": "updated_by_uid",
+          "created_at": "2023-10-06T07:26:36.681Z",
+          "updated_at": "2023-10-06T07:26:36.681Z"
+       }
+    ]
+ }

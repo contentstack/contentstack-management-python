@@ -1,0 +1,57 @@
+{
+    "token": {
+       "description": "",
+       "name": "development",
+       "scope": [
+          {
+             "environments": [
+                {
+                   "urls": [
+                      {
+                         "locale": "en-us",
+                         "url": "http://example.com/"
+                      }
+                   ],
+                   "name": "development",
+                   "color": "#A9B6CB",
+                   "app_user_object_uid": "system",
+                   "uid": "environment_uid",
+                   "created_by": "created_by_uid",
+                   "updated_by": "updated_by_uid",
+                   "created_at": "2023-06-08T10:19:21.750Z",
+                   "updated_at": "2023-07-13T08:12:35.265Z",
+                   "ACL": [],
+                   "_version": 3,
+                   "tags": []
+                }
+             ],
+             "module": "environment",
+             "acl": {
+                "read": true
+             },
+             "_metadata": {
+                "uid": "_metadata_uid"
+             }
+          },
+          {
+             "module": "branch",
+             "acl": {
+                "read": true
+             },
+             "branches": [
+                "main"
+             ],
+             "_metadata": {
+                "uid": "_metadata_uid"
+             }
+          }
+       ],
+       "uid": "token_uid",
+       "created_by": "created_by_uid",
+       "updated_by": "updated_by_uid",
+       "created_at": "2023-06-08T10:19:49.102Z",
+       "updated_at": "2023-06-08T10:19:49.102Z",
+       "token": "token",
+       "type": "delivery"
+    }
+ }
