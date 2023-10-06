@@ -27,6 +27,8 @@ from .terms.terms import Terms
 from .bulk_operations.bulk_operation import BulkOperation
 from .releases.release import Releases
 from .release_items.release_item import ReleaseItems
+from .delivery_token.delivery_token import DeliveryToken
+from .management_token.management_token import ManagementToken
 
 
 __all__ = (
@@ -57,7 +59,9 @@ __all__ = (
 "Terms",
 "BulkOperation",
 "Releases",
-"ReleaseItems"
+"ReleaseItems",
+"DeliveryToken",
+"ManagementToken"
 )
 
 __title__ = 'contentstack-management-python'

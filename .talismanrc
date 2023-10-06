@@ -290,4 +290,18 @@ fileignoreconfig:
 - filename: tests/unit/releases/test_release_unit.py
   checksum: ffef2e354ac901eafd0f0aa8a95394892ec23b9d8b807de3e096a28536a75126
 version: ""
+fileignoreconfig:
+- filename: tests/mock/management_token/test_management_token_mock.py
+  checksum: 3e477590f628e3f713a7e17e397b1cb2f4d07400e70165dbc6b880be2e5c85d8
+- filename: tests/mock/delivery_token/test_delivery_token_mock.py
+  checksum: 295c1c8b7474c6d6c27e9020de0b4c8ee4546f24db66324279abc841b8068e1f
+- filename: tests/api/delivery_token/test_delivery_token_api.py
+  checksum: 169ceff6f69e548878508c090016bb6df2a04b4d81f6a4139c10dc85dc244996
+- filename: tests/unit/delivery_token/test_delivery_token_unit.py
+  checksum: b078f78a4856f5f3aff7627747b6fae4d1dfcbd2f93fb2ec47ce1e9fd00384ac
+- filename: tests/api/management_token/test_management_token_api.py
+  checksum: 11318bdb60aebf8a65c78fcb0bdd6cf6b42bb6ba6462871b170d95be08caf5b0
+- filename: tests/unit/management_token/test_management_token_unit.py
+  checksum: ddb2b5dd54b6ac762fa78936196a4b2088d82254c0ee25fccae290375d1f71e7
+version: ""
 

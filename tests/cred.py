@@ -37,7 +37,8 @@ default_label_uid = "label_uid" #Default label code
 default_terms_uid = "terms_uid" #Default terms uid
 default_terms_string = "terms_string" #Default terms string
 default_release_uid = "release_uid" #default release uid
-
+default_delivery_token_uid = "delivery_token_uid" #default delivery token uid
+default_management_token_uid = "management_token_uid" #default management token uid
 
 def get_credentials():
     load_dotenv()
@@ -80,6 +81,8 @@ def get_credentials():
         "terms_uid": os.getenv("TERMS_UID", default_terms_uid),
         "terms_string": os.getenv("TERMS_STRING", default_terms_string),
         "release_uid": os.getenv("RELEASE_UID", default_release_uid),
+        "delivery_token_uid": os.getenv("DELIVERY_TOKEN_UID", default_delivery_token_uid),
+        "management_token_uid": os.getenv("MANAGEMENT_TOKEN_UID", default_management_token_uid),
 
     }
     return credentials

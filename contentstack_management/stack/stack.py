@@ -17,8 +17,8 @@ from ..taxonomies.taxonomy import Taxonomy
 from ..labels.label import Label
 from ..bulk_operations.bulk_operation import BulkOperation
 from ..releases.release import Releases
-from ..release_items.release_item import  ReleaseItems
-
+from ..delivery_token.delivery_token import DeliveryToken
+from ..management_token.management_token import ManagementToken
 
 
 class Stack(Parameter):
@@ -359,5 +359,12 @@ class Stack(Parameter):
     
     def bulk_operation(self):
             return BulkOperation(self.client)
+    
     def releases(self, release_uid: str = None):
-            return Releases(self.client, release_uid)    
+            return Releases(self.client, release_uid)
+
+    def delivery_token(self, delivery_token: str = None):
+            return DeliveryToken(self.client, delivery_token)
+
+    def management_token(self, management_token: str = None):
+            return ManagementToken(self.client, management_token)  
