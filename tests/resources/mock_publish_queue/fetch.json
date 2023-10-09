@@ -1,0 +1,32 @@
+{
+    "entry": {
+       "uid": "publish_queue_uid",
+       "stack": "api_key",
+       "created_at": "2023-09-27T17:50:55.624Z",
+       "updated_at": "2023-09-27T17:50:55.624Z",
+       "created_by": "created_by_uid",
+       "updated_by": "updated_by_uid",
+       "type": "release",
+       "publish_details": {
+          "status": "success"
+       },
+       "entry": {
+          "title": "New_Name",
+          "uid": "entry_uid",
+          "skip_items_webhook_trigger": false,
+          "release": {
+             "uid": "release_uid",
+             "title": "New_Name"
+          }
+       },
+       "environment": [
+          "environment_uid"
+       ],
+       "action": "deploy",
+       "published_at": "2023-09-27T17:50:55.536Z",
+       "user": "user_uid",
+       "approval": false,
+       "approved": true,
+       "rejected": false
+    }
+ }
