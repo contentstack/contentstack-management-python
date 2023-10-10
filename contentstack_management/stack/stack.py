@@ -19,6 +19,7 @@ from ..bulk_operations.bulk_operation import BulkOperation
 from ..releases.release import Releases
 from ..delivery_token.delivery_token import DeliveryToken
 from ..management_token.management_token import ManagementToken
+from ..publish_queue.publish_queue import PublishQueue
 
 
 class Stack(Parameter):
@@ -368,3 +369,6 @@ class Stack(Parameter):
 
     def management_token(self, management_token: str = None):
             return ManagementToken(self.client, management_token)  
+    
+    def publish_queue(self, publish_queue_uid: str = None):
+            return PublishQueue(self.client, publish_queue_uid)  
