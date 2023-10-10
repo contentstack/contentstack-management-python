@@ -304,4 +304,12 @@ fileignoreconfig:
 - filename: tests/unit/management_token/test_management_token_unit.py
   checksum: ddb2b5dd54b6ac762fa78936196a4b2088d82254c0ee25fccae290375d1f71e7
 version: ""
+fileignoreconfig:
+- filename: tests/api/publish_queue/test_publish_queue_api.py
+  checksum: 8364fcd077ec8e99556738460d0659e2ec7bf8747969428f2d99761ef3ae4020
+- filename: tests/mock/publish_queue/test_publish_queue_mock.py
+  checksum: 6581d4def863f65e0321e0ff3e9ee074aa5ae1a53bf46035ea01b41e9de0bc36
+- filename: tests/unit/publish_queue/test_publish_queue_unit.py
+  checksum: add55174c8c3ee4e931433e9bf54a80304d6927681912a19e5ee78747dc608bf
+version: ""
 
