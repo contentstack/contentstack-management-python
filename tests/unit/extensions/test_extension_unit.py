@@ -55,7 +55,7 @@ class extensionUnitTests(unittest.TestCase):
     def test_upload(self):
         extension = {
                     "file_name": "demo.html",
-                    "file_path": "/Users/sunil.lakshman/Downloads/demo.html",
+                    "file_path": "tests/resources/mock_extension/demo.html",
                     "data_type": 'text',
                     "title": 'Old Extension',
                     "multiple": False,
