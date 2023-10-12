@@ -312,4 +312,16 @@ fileignoreconfig:
 - filename: tests/unit/publish_queue/test_publish_queue_unit.py
   checksum: add55174c8c3ee4e931433e9bf54a80304d6927681912a19e5ee78747dc608bf
 version: ""
+fileignoreconfig:
+- filename: tests/api/extensions/test_extension_api.py
+  checksum: 8e1dda663e6fd54d7a05c75ce7ed146b4c9dbf13103236f5bb45960482f32fef
+- filename: tests/resources/mock_extension/find.json
+  checksum: ba433741506e21dd46a1ba72b81ff3ef6b9377c589cc90bdcab23b496762b630
+- filename: tests/resources/mock_extension/upload.json
+  checksum: 20364016b0db0e64ad20a9a1ce922fdcfd6db3708f4046a129a54e3d22d80cec
+- filename: tests/unit/extensions/test_extension_unit.py
+  checksum: 7d6c6cc7ca536a099d3c1e08a30fc9eeb441ca29b5b908b55bfb900bb27a181f
+- filename: tests/mock/extensions/test_extension_mock.py
+  checksum: 88bf3b97761c880dc360e358018150e198117a2acef812d1f9ff4653708f8b5c
+version: ""
 

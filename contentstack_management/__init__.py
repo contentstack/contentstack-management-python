@@ -30,6 +30,7 @@ from .release_items.release_item import ReleaseItems
 from .delivery_token.delivery_token import DeliveryToken
 from .management_token.management_token import ManagementToken
 from .publish_queue.publish_queue import PublishQueue
+from .extensions.extension import Extension
 
 
 __all__ = (
@@ -63,7 +64,8 @@ __all__ = (
 "ReleaseItems",
 "DeliveryToken",
 "ManagementToken",
-"PublishQueue"
+"PublishQueue",
+"Extension"
 )
 
 __title__ = 'contentstack-management-python'
