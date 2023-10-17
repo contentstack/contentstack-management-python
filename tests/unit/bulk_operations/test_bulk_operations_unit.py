@@ -1,7 +1,7 @@
 import os
 import unittest
 from dotenv import load_dotenv
-from contentstack_management import contentstack
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -13,7 +13,7 @@ api_key = credentials["api_key"]
 class BulkOperationUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_publish(self):

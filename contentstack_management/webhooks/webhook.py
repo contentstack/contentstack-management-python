@@ -32,7 +32,7 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack("api_key").webhooks().find().json()
@@ -54,7 +54,7 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').webhooks('webhook_uid').fetch().json()
@@ -107,7 +107,7 @@ class Webhook(Parameter):
             >>>                "concise_payload":true
             >>>            }
             >>>            }
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').webhooks().create(data).json()
@@ -156,7 +156,7 @@ class Webhook(Parameter):
             >>>             "concise_payload":true
             >>>         }
             >>>         }
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').webhooks('webhook_uid').update(data).json()
@@ -179,7 +179,7 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = result = client.stack('api_key').webhooks('webhook_uid').delete().json()
@@ -209,7 +209,7 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> file_path = "tests/resources/mock_content_types/import_content_types.json"
@@ -235,7 +235,7 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').webhooks('webhook_uid').export().json()
@@ -256,7 +256,7 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').webhooks('webhook_execution_uid').executions().json()
@@ -279,7 +279,7 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').webhooks().retry('execution_uid').json()
@@ -305,7 +305,7 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').webhooks().logs('execution_uid').json()

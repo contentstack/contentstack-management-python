@@ -2,7 +2,7 @@ import unittest
 import json
 import os
 from dotenv import load_dotenv
-from contentstack_management import contentstack
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -15,7 +15,7 @@ global_field_uid = credentials["global_field_uid"]
 class GlobalFieldsUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
     
     def read_file(self, file_name):

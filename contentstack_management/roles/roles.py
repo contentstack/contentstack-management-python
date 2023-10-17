@@ -31,8 +31,8 @@ class Roles(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").roles().find().json()
 
         -------------------------------
@@ -48,8 +48,8 @@ class Roles(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').roles('role_uid').fetch().json()
 
         -------------------------------
@@ -150,8 +150,8 @@ class Roles(Parameter):
             >>>        }
             >>>        }
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').roles().create(data).json()
 
         -------------------------------
@@ -257,8 +257,8 @@ class Roles(Parameter):
             >>>            "uid":"blt5a570885da41c710"
             >>>        }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').roles("role_uid").update(data).json()
 
         -------------------------------
@@ -278,8 +278,8 @@ class Roles(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').roles('role_uid').delete().json()
 
         -------------------------------

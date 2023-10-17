@@ -31,8 +31,8 @@ class Locale(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").locale().find().json()
 
         -------------------------------
@@ -48,8 +48,8 @@ class Locale(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale('locale_code').fetch().json()
 
         -------------------------------
@@ -76,8 +76,8 @@ class Locale(Parameter):
             >>>            "fallback_locale":"en-us"
             >>>         }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale().create(data).json()
 
         -------------------------------
@@ -102,8 +102,8 @@ class Locale(Parameter):
             >>>            "fallback_locale":"zh-cn"
             >>>         }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale("locale_code").update(data).json()
 
         -------------------------------
@@ -123,8 +123,8 @@ class Locale(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').locale('locale_code').delete().json()
 
         -------------------------------
@@ -152,8 +152,8 @@ class Locale(Parameter):
             >>>            "fallback_locale":"en-us"
             >>>         }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale().set_fallback(data).json()
 
         -------------------------------
@@ -177,8 +177,8 @@ class Locale(Parameter):
             >>>            "fallback_locale":"zh-cn"
             >>>         }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale('locale_code').update_fallback(data).json()
 
         -------------------------------

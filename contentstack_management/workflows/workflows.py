@@ -31,7 +31,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack("api_key").workflows().find().json()
@@ -51,7 +51,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows('workflow_uid').fetch().json()
@@ -143,7 +143,7 @@ class Workflows(Parameter):
             >>>            ]
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().create(data).json()
@@ -232,7 +232,7 @@ class Workflows(Parameter):
             >>>            ]
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows("workflow_uid").update(data).json()
@@ -255,7 +255,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = result = client.stack('api_key').workflows('workflow_uid').delete().json()
@@ -278,7 +278,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> file_path = "tests/resources/mock_content_types/import_content_types.json"
@@ -299,7 +299,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows('workflow_uid').export().json()
@@ -345,7 +345,7 @@ class Workflows(Parameter):
             >>>            }
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().set_workflow_stage('content_type_uid', 'entry_uid', data).json()
@@ -401,7 +401,7 @@ class Workflows(Parameter):
             >>>            "disable_approver_publishing":false
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().create_publish_rule(data).json()
@@ -446,7 +446,7 @@ class Workflows(Parameter):
             >>>            "disable_approver_publishing": false
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().update_publish_rule('rule_uid', data).json()
@@ -471,7 +471,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().delete_publish_rule('rule_uid').json()
@@ -494,7 +494,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().fetch_publish_rule('rule_uid').json()
@@ -514,7 +514,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().fetch_publish_rules().json()
@@ -536,7 +536,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().fetch_publish_rule_content_type('content_type_uid').json()
@@ -563,7 +563,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().publish_request_approval('content_type_uid', 'entry_uid').json()
@@ -586,7 +586,7 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').workflows().logs().json()

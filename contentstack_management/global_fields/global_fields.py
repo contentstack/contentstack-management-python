@@ -29,8 +29,8 @@ class GlobalFields(Parameter):
         :return: Json, with global fields details.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken='authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='authtoken')
             >>> result = client.stack("api_key").global_fields('global_field_uid').find().json()
         -------------------------------
         """
@@ -43,8 +43,8 @@ class GlobalFields(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken='authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='authtoken')
             >>> result = client.stack('api_key').global_fields('global_field_uid').fetch().json()
 
         -------------------------------
@@ -68,8 +68,8 @@ class GlobalFields(Parameter):
             >>>                    "data_type": "text"
             >>>                }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> result = client.stack('api_key').global_fields().create(data)
         -------------------------------
         """
@@ -92,8 +92,8 @@ class GlobalFields(Parameter):
             >>>                    "data_type": "text"
             >>>                }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken="authtoken")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken="authtoken")
             >>> result = client.stack('api_key').global_fields('global_field_uid').update(data)
         -------------------------------
         """
@@ -108,8 +108,8 @@ class GlobalFields(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken="authtoken")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken="authtoken")
             >>> result = client.stack('api_key').global_fields('global_field_uid').delete()
         -------------------------------
         """
@@ -123,8 +123,8 @@ class GlobalFields(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken="authtoken")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken="authtoken")
             >>> path = "tests/resources/mock_global_fields/import_global_fields.json"
             >>> result = client.stack('api_key').global_fields().imports(path)
         -------------------------------
@@ -140,8 +140,8 @@ class GlobalFields(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken='authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='authtoken')
             >>> result = client.stack('api_key').global_fields().export().json()
         -------------------------------
         """

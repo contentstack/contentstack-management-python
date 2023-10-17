@@ -32,7 +32,7 @@ class Assets(Parameter):
         is being returned.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets()
@@ -51,7 +51,7 @@ class Assets(Parameter):
         comprehensive information about a specific version of an asset of a stack.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets()
@@ -71,7 +71,7 @@ class Assets(Parameter):
         :return: The delete() method returns the status code and message as a response.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets()
@@ -92,7 +92,7 @@ class Assets(Parameter):
         :return: the response from the API call made to retrieve all assets of a specific asset folder.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets()
@@ -115,7 +115,7 @@ class Assets(Parameter):
         within a specific parent asset folder.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets()
@@ -138,7 +138,7 @@ class Assets(Parameter):
         file.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> file_path = ""
@@ -162,7 +162,7 @@ class Assets(Parameter):
         provided headers, parameters, and files.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> file_path = ""
@@ -188,7 +188,7 @@ class Assets(Parameter):
         the provided headers, parameters, and data.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> data = {
@@ -213,7 +213,7 @@ class Assets(Parameter):
         :return: The code is returning the result of the `get` request made to the specified URL.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets(asset_uid='asset_uid')
@@ -232,7 +232,7 @@ class Assets(Parameter):
         parameters.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets()
@@ -254,7 +254,7 @@ class Assets(Parameter):
         :return: the result of the PUT request made to the specified URL.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> version_number = 1
@@ -279,7 +279,7 @@ class Assets(Parameter):
         :return: The code is returning the result of the `client.get` method call.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets(asset_uid='asset_uid')
@@ -300,7 +300,7 @@ class Assets(Parameter):
         :return: the result of the delete request made to the specified URL.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> version_number = 1
@@ -323,7 +323,7 @@ class Assets(Parameter):
         :return: the result of a GET request to a specific URL, with headers and parameters included.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets(asset_uid='asset_uid')
@@ -343,7 +343,7 @@ class Assets(Parameter):
         :return: the result of a GET request to a specific URL, with headers and parameters included.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset_type = "images"
@@ -367,7 +367,7 @@ class Assets(Parameter):
         :return: the result of the `put` request made to the specified URL.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> data = {
@@ -398,7 +398,7 @@ class Assets(Parameter):
         :return: the result of the `self.client.put()` method call.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> data = {
@@ -427,7 +427,7 @@ class Assets(Parameter):
         :return: the result of the `client.post` method call.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> data = {
@@ -463,7 +463,7 @@ class Assets(Parameter):
         :return: the result of the `post` request made to the specified URL.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> data = {
@@ -499,7 +499,7 @@ class Assets(Parameter):
         headers.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets()
@@ -520,7 +520,7 @@ class Assets(Parameter):
         :return: the result of the GET request made by the `self.client.get()` method.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> query = {"is_dir": True, "name": "folder_name"}
@@ -545,7 +545,7 @@ class Assets(Parameter):
         :return: the result of a GET request made by the client.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> query = {"is_dir": True}
@@ -572,7 +572,7 @@ class Assets(Parameter):
         :return: the result of the `self.client.post()` method.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> data = {
@@ -600,7 +600,7 @@ class Assets(Parameter):
         :return: the result of the `self.client.put()` method call.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> data = {
@@ -626,7 +626,7 @@ class Assets(Parameter):
         :return: the result of the delete request made to the specified URL.
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
+            >>> import contentstack_management
             >>> client = contentstack.client(host='host_name')
             >>> client.login(email="email_id", password="password")
             >>> asset = client().stack(api_key='api_key').assets()

@@ -1,1 +1,1 @@
-from contentstack_management import contentstack
+import contentstack_management

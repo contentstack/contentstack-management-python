@@ -1,7 +1,7 @@
 import os
 import unittest
 import json
-from contentstack_management import contentstack
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -22,7 +22,7 @@ def read_file(self, file_name):
 class AssetsMockTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_get_all_assets(self):

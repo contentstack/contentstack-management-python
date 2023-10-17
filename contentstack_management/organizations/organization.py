@@ -24,8 +24,8 @@ class Organization(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> result = client.organizations().find()
         -------------------------------
         """
@@ -38,8 +38,8 @@ class Organization(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host', authtoken="")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host', authtoken="")
             >>> client.login(email="email", password="password")
             >>> result = client.organizations('organization_uid').fetch().json()
 
@@ -56,8 +56,8 @@ class Organization(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.organizations('organization_uid').get_organization_roles().json()
 
@@ -91,8 +91,8 @@ class Organization(Parameter):
             >>>            }
             >>>        }
             >>>
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.organizations('organization_uid').organization_add_users(data).json()
         -------------------------------
@@ -113,8 +113,8 @@ class Organization(Parameter):
             >>>      "transfer_to": "abc@sample.com"
             >>>   }
             >>>
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> result = client.organizations('organization_uid').transfer_organizations_ownership(data)
         -------------------------------
         """
@@ -130,8 +130,8 @@ class Organization(Parameter):
         :return: Json, with organization stack details.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.organizations('organization_uid').organization_stacks()
         -------------------------------
@@ -147,8 +147,8 @@ class Organization(Parameter):
         :return: Json, with organization log details.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.organizations('organization_uid').organization_logs().json()
         -------------------------------

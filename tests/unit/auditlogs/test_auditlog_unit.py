@@ -3,7 +3,7 @@ import unittest
 
 from dotenv import load_dotenv
 
-from contentstack_management import contentstack
+import contentstack_management
 from contentstack_management._errors import ArgumentException
 from tests.cred import get_credentials
 
@@ -18,7 +18,7 @@ log_item_uid = credentials["log_item_uid"]
 class auditlogesUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_get_all_auditloges(self):

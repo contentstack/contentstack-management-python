@@ -21,8 +21,8 @@ class User(Parameter):
 
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.user().fetch()
         -------------------------------
@@ -45,8 +45,8 @@ class User(Parameter):
             >>>       "first_name": "Your name"
             >>>      }
             >>>   }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> user = client.user()
             >>> result = user.update(body)
         -------------------------------
@@ -77,8 +77,8 @@ class User(Parameter):
             >>>       "password_confirmation": "confirm_password"
             >>>      }
             >>>   }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = self.client.user().activate('user_activation_token', body)
         -------------------------------
@@ -105,8 +105,8 @@ class User(Parameter):
             >>>         "email": "john.doe@contentstack.com"
             >>>      }
             >>>   }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.user().request_password(payload).json()
         -------------------------------
@@ -135,8 +135,8 @@ class User(Parameter):
         >>>     "password_confirmation": "*****"
         >>>    }
         >>>  }
-        >>> from contentstack_management import contentstack
-        >>> client = contentstack.ContentstackClient(host='host')
+        >>> import contentstack_management
+        >>> client = contentstack_management.Client(host='host')
         >>> client.login(email="email", password="password")
         >>> result = client.user().reset_password(body).json()
         -------------------------------

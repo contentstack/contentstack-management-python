@@ -28,8 +28,8 @@ class Releases(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").releases().find().json()
 
         -------------------------------
@@ -45,8 +45,8 @@ class Releases(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases('release_uid').fetch().json()
 
         -------------------------------
@@ -75,8 +75,8 @@ class Releases(Parameter):
             >>>            "archived": false
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases().create(data).json()
 
         -------------------------------
@@ -100,8 +100,8 @@ class Releases(Parameter):
             >>>            "description": "2018-12-22"
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases("release_uid").update(data).json()
 
         -------------------------------
@@ -120,8 +120,8 @@ class Releases(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases('release_uid').delete().json()
 
         -------------------------------
@@ -149,8 +149,8 @@ class Releases(Parameter):
             >>>            ]
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases('release_uid').deploy(data).json()
 
         -------------------------------
@@ -176,8 +176,8 @@ class Releases(Parameter):
             >>>            "description": "2018-12-12"
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases('release_uid').clone(data).json()
 
         -------------------------------

@@ -65,8 +65,8 @@ class BulkOperation(Parameter):
                 >>>            "scheduled_at":"scheduled_time",
                 >>>            "publish_with_reference":true
                 >>>            }
-                >>> from contentstack_management import contentstack
-                >>> client = contentstack.client(authtoken='your_authtoken')
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
                 >>> result = client.stack('api_key').bulk_operation().publish(data).json()
 
             -------------------------------
@@ -127,8 +127,8 @@ class BulkOperation(Parameter):
                 >>>            "env_uid"
                 >>>        ]
                 >>>        }
-                >>> from contentstack_management import contentstack
-                >>> client = contentstack.client(authtoken='your_authtoken')
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
                 >>> result = client.stack('api_key').bulk_operation().unpublish(data).json()
 
         -------------------------------
@@ -164,8 +164,8 @@ class BulkOperation(Parameter):
                 >>>            "uid": "uid"
                 >>>        }]
                 >>>    }
-                >>> from contentstack_management import contentstack
-                >>> client = contentstack.client(authtoken='your_authtoken')
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
                 >>> result = client.stack('api_key').bulk_operation().delete(data).json()
 
         -------------------------------
@@ -216,8 +216,8 @@ class BulkOperation(Parameter):
                 >>>            }
                 >>>        }
                 >>>    }
-                >>> from contentstack_management import contentstack
-                >>> client = contentstack.client(authtoken='your_authtoken')
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
                 >>> result = client.stack('api_key').bulk_operation().update(data).json()
 
         -------------------------------

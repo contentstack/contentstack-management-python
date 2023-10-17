@@ -44,8 +44,8 @@ class Stack(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.stack('api_key').fetch()
         -------------------------------
@@ -59,8 +59,8 @@ class Stack(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host', authtoken='authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host', authtoken='authtoken')
             >>> client.login(email="email", password="password")
             >>> result = client.stack().find()
         -------------------------------
@@ -80,8 +80,8 @@ class Stack(Parameter):
             >>>         "master_locale": "en-us"
             >>>         }
             >>>      }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> result = client.stack().create('organization_uid', data).json()
         -------------------------------
         """
@@ -104,8 +104,8 @@ class Stack(Parameter):
             >>>     "master_locale": "en-us"
             >>>     }
             >>> }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> result = client.stack('api_key').update(data).json()
         -------------------------------
         """
@@ -118,8 +118,8 @@ class Stack(Parameter):
         :return: Json, with status code and message.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken='authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='authtoken')
             >>> result = client.stack('api_key').delete()
         -------------------------------
         """
@@ -131,8 +131,8 @@ class Stack(Parameter):
         :return: Json, with users of a stack details.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.stack().users()
         -------------------------------
@@ -150,8 +150,8 @@ class Stack(Parameter):
             >>>         "user_uid": ["role_uid1", "role_uid2"]
             >>>       }
             >>>   }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken='the_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='the_authtoken')
             >>> result = client.stack('api_key').update_user_role(data)
         -------------------------------
         """
@@ -169,8 +169,8 @@ class Stack(Parameter):
             >>> data = {
                         "transfer_to": "manager@example.com"
                     }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken='the_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='the_authtoken')
             >>> result = client.stack('api_key').transfer_ownership(data)
         -------------------------------
         """
@@ -185,8 +185,8 @@ class Stack(Parameter):
         :return: Json, with stacks details.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(authtoken='the_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='the_authtoken')
             >>> result = client.stack('api_key').accept_ownership('user_id', 'ownership_token')
         -------------------------------
         """
@@ -206,8 +206,8 @@ class Stack(Parameter):
         :return: Json, with stack settings details.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.stack('api_key').settings()
         -------------------------------
@@ -234,8 +234,8 @@ class Stack(Parameter):
             >>>                }
             >>>            }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').create_stack_settings(data).json()
 
@@ -255,8 +255,8 @@ class Stack(Parameter):
             >>> data = {
             >>>       "stack_settings":{}
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.stack('api_key').reset_stack_settings(data)
         -------------------------------
@@ -282,8 +282,8 @@ class Stack(Parameter):
             >>>                ]
             >>>            }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email_id", password="password")
             >>> result = client.stack('api_key').share_stack(data).json()
         -------------------------------
@@ -304,8 +304,8 @@ class Stack(Parameter):
             >>> data = {
             >>>     "email": "manager@example.com"
             >>>   }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host')
             >>> client.login(email="email", password="password")
             >>> result = client.stack('api_key').unshare(data)
         -------------------------------
