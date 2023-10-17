@@ -20,6 +20,7 @@ from ..releases.release import Releases
 from ..delivery_token.delivery_token import DeliveryToken
 from ..management_token.management_token import ManagementToken
 from ..publish_queue.publish_queue import PublishQueue
+from ..extensions.extension import Extension
 
 
 class Stack(Parameter):
@@ -372,3 +373,6 @@ class Stack(Parameter):
     
     def publish_queue(self, publish_queue_uid: str = None):
             return PublishQueue(self.client, publish_queue_uid)  
+    
+    def extension(self, extension_uid: str = None):
+            return Extension(self.client, extension_uid) 
