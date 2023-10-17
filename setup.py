@@ -23,7 +23,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Operating System :: OS Independent",
     ],
-    install_requires=["bson >= 0.5.9", "requests >= 2.5.4"],
+    install_requires=["bson >= 0.5.9", "requests >= 2.5.4", "requests-toolbelt > = 1.0.0"],
     extras_require={
         "dev": ["pytest>=7.0", "twine>=4.0.2", "dotenv>=0.0.5"],
     },

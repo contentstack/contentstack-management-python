@@ -16,7 +16,7 @@ from .roles.roles import Roles
 from .auditlogs.auditlog import Auditlog
 from .environments.environment import Environment
 from .entries.entry import Entry
-from .contentstack import ContentstackClient, ContentstackRegion
+from .contentstack import ContentstackClient, Region
 from ._api_client import _APIClient
 from .common import Parameter
 from ._errors import ArgumentException
@@ -30,11 +30,12 @@ from .release_items.release_item import ReleaseItems
 from .delivery_token.delivery_token import DeliveryToken
 from .management_token.management_token import ManagementToken
 from .publish_queue.publish_queue import PublishQueue
+from .extensions.extension import Extension
 
 
 __all__ = (
 "ContentstackClient",
-"ContentstackRegion",
+"Region",
 "_APIClient",
 "Parameter",
 "ArgumentException",
@@ -63,7 +64,8 @@ __all__ = (
 "ReleaseItems",
 "DeliveryToken",
 "ManagementToken",
-"PublishQueue"
+"PublishQueue",
+"Extension"
 )
 
 __title__ = 'contentstack-management-python'
