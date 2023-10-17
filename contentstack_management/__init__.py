@@ -16,7 +16,7 @@ from .roles.roles import Roles
 from .auditlogs.auditlog import Auditlog
 from .environments.environment import Environment
 from .entries.entry import Entry
-from .contentstack import ContentstackClient, ContentstackRegion
+from .contentstack import ContentstackClient, Region
 from ._api_client import _APIClient
 from .common import Parameter
 from ._errors import ArgumentException
@@ -35,7 +35,7 @@ from .extensions.extension import Extension
 
 __all__ = (
 "ContentstackClient",
-"ContentstackRegion",
+"Region",
 "_APIClient",
 "Parameter",
 "ArgumentException",

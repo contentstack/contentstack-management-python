@@ -171,8 +171,6 @@ class Extension(Parameter):
         url = f"{self.path}/{self.extension_uid}"
         return self.client.delete(url, headers = self.client.headers)
     
-    
-    
     def validate_uid(self):
          if self.extension_uid is None or '':
             raise ArgumentException("Extension Uid is required")
