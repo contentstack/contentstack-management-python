@@ -32,7 +32,7 @@ To use this SDK, you need to authenticate your users by using the Authtoken, cre
 
 An **Authtoken** is a read-write token used to make authorized CMA requests, and it is a **user-specific** token.
 ```python
-client = contentstack_management.Client(authtoken= 'authtoken')
+client = contentstack_management.Client(authtoken= 'your_authtoken')
 ```
 ### Login
 To Login to Contentstack by using credentials, you can use the following lines of code:
@@ -56,7 +56,7 @@ To use the Python CMA SDK, you need to first initialize it. To do this, use the 
 ```python
 import contentstack_management
 
-client = contentstack_management.Client(authtoken= 'authtoken')
+client = contentstack_management.Client(authtoken= 'your_authtoken')
 ```
 #### Fetch Stack Detail
 Use the following lines of code to fetch your stack detail using this SDK:
