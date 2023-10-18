@@ -22,8 +22,8 @@ class User(Parameter):
         -------------------------------
         [Example:]
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.user().fetch()
         -------------------------------
         """
@@ -46,7 +46,7 @@ class User(Parameter):
             >>>      }
             >>>   }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> user = client.user()
             >>> result = user.update(body)
         -------------------------------
@@ -78,8 +78,8 @@ class User(Parameter):
             >>>      }
             >>>   }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = self.client.user().activate('user_activation_token', body)
         -------------------------------
         """
@@ -106,8 +106,8 @@ class User(Parameter):
             >>>      }
             >>>   }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.user().request_password(payload).json()
         -------------------------------
         """
@@ -136,8 +136,8 @@ class User(Parameter):
         >>>    }
         >>>  }
         >>> import contentstack_management
-        >>> client = contentstack_management.Client(host='host')
-        >>> client.login(email="email", password="password")
+        >>> client = contentstack_management.Client(authtoken='your_authtoken')
+        
         >>> result = client.user().reset_password(body).json()
         -------------------------------
         """

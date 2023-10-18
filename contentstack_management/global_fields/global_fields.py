@@ -69,7 +69,7 @@ class GlobalFields(Parameter):
             >>>                }
             >>>        }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').global_fields().create(data)
         -------------------------------
         """

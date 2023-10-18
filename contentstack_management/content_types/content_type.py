@@ -32,7 +32,7 @@ class ContentType(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> content_type = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').content_type()
             >>> response = content_type.find()
@@ -55,7 +55,7 @@ class ContentType(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> content_type = client.stack(api_key='api_key').content_type('content_type_uid')
@@ -80,7 +80,7 @@ class ContentType(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> data = {
             		"content_type": {
@@ -134,7 +134,7 @@ class ContentType(Parameter):
         :return: Json, updates with all the content types details given
         --------------------------------
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> data = {
 		    >>>        "content_type": {
@@ -175,7 +175,7 @@ class ContentType(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> data = {
 	    		    "content_type": {
@@ -264,7 +264,7 @@ class ContentType(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> content_type = client.stack(api_key='api_key').content_type('content_type_uid')
@@ -287,7 +287,7 @@ class ContentType(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> content_type = client.stack(api_key='api_key').content_type('content_type_uid')
@@ -312,7 +312,7 @@ class ContentType(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> content_type = client.stack(api_key='api_key').content_type('content_type_uid')
@@ -329,7 +329,7 @@ class ContentType(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> content_type = client.stack(api_key='api_key').content_type('content_type_uid')

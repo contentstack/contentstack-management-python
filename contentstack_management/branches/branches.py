@@ -30,7 +30,7 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch()
             >>> response = branch.find()
@@ -48,7 +48,7 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch(branch_uid="branch_uid")
             >>> response = branch.fetch()
@@ -69,7 +69,7 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> data = {
                     "branch": {
@@ -94,7 +94,7 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
+            
             >>> import contentstack_management
             >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch(branch_uid="branch_uid")
             >>> response = branch.delete(data)

@@ -45,8 +45,7 @@ class Stack(Parameter):
         [Example:]
 
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').fetch()
         -------------------------------
         """
@@ -61,7 +60,6 @@ class Stack(Parameter):
 
             >>> import contentstack_management
             >>> client = contentstack_management.Client(host='host', authtoken='authtoken')
-            >>> client.login(email="email", password="password")
             >>> result = client.stack().find()
         -------------------------------
         """
@@ -81,7 +79,7 @@ class Stack(Parameter):
             >>>         }
             >>>      }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack().create('organization_uid', data).json()
         -------------------------------
         """
@@ -105,7 +103,7 @@ class Stack(Parameter):
             >>>     }
             >>> }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').update(data).json()
         -------------------------------
         """
@@ -132,8 +130,8 @@ class Stack(Parameter):
         -------------------------------
         [Example:]
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack().users()
         -------------------------------
         """
@@ -207,8 +205,7 @@ class Stack(Parameter):
         -------------------------------
         [Example:]
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').settings()
         -------------------------------
         """
@@ -235,8 +232,7 @@ class Stack(Parameter):
             >>>            }
             >>>        }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').create_stack_settings(data).json()
 
         -------------------------------
@@ -256,8 +252,7 @@ class Stack(Parameter):
             >>>       "stack_settings":{}
             >>>    }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').reset_stack_settings(data)
         -------------------------------
         """
@@ -283,8 +278,7 @@ class Stack(Parameter):
             >>>            }
             >>>        }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email_id", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').share_stack(data).json()
         -------------------------------
         """
@@ -305,8 +299,7 @@ class Stack(Parameter):
             >>>     "email": "manager@example.com"
             >>>   }
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').unshare(data)
         -------------------------------
         """

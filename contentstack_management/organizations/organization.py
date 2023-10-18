@@ -25,7 +25,7 @@ class Organization(Parameter):
         [Example:]
 
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.organizations().find()
         -------------------------------
         """
@@ -40,7 +40,7 @@ class Organization(Parameter):
 
             >>> import contentstack_management
             >>> client = contentstack_management.Client(host='host', authtoken="")
-            >>> client.login(email="email", password="password")
+            
             >>> result = client.organizations('organization_uid').fetch().json()
 
         -------------------------------
@@ -57,8 +57,8 @@ class Organization(Parameter):
         [Example:]
 
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.organizations('organization_uid').get_organization_roles().json()
 
         -------------------------------
@@ -92,8 +92,8 @@ class Organization(Parameter):
             >>>        }
             >>>
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.organizations('organization_uid').organization_add_users(data).json()
         -------------------------------
         """
@@ -114,7 +114,7 @@ class Organization(Parameter):
             >>>   }
             >>>
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.organizations('organization_uid').transfer_organizations_ownership(data)
         -------------------------------
         """
@@ -131,8 +131,8 @@ class Organization(Parameter):
         -------------------------------
         [Example:]
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.organizations('organization_uid').organization_stacks()
         -------------------------------
         """
@@ -148,8 +148,8 @@ class Organization(Parameter):
         -------------------------------
         [Example:]
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host')
-            >>> client.login(email="email", password="password")
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.organizations('organization_uid').organization_logs().json()
         -------------------------------
         """
