@@ -31,8 +31,8 @@ class DeliveryToken(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").delivery_token().find().json()
 
         -------------------------------
@@ -46,8 +46,8 @@ class DeliveryToken(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').delivery_token('delivery_token_uid').fetch().json()
 
         -------------------------------
@@ -104,8 +104,8 @@ class DeliveryToken(Parameter):
             >>>            ]
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').delivery_token().create(data).json()
 
         -------------------------------
@@ -159,8 +159,8 @@ class DeliveryToken(Parameter):
             >>>            ]
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').delivery_token("delivery_token_uid").update(data).json()
 
         -------------------------------
@@ -180,8 +180,8 @@ class DeliveryToken(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').delivery_token('delivery_token_uid').delete().json()
 
         -------------------------------

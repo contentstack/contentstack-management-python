@@ -1,6 +1,6 @@
 import unittest
 
-from contentstack_management import contentstack
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -12,15 +12,15 @@ host = credentials["host"]
 class ContentstackTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_client(self):
-        client = contentstack.ContentstackClient()
+        client = contentstack_management.Client(authtoken='your_authtoken')
         self.assertEqual('https://api.contentstack.io/v3/', client.endpoint) # Default host 'api.contentstack.io'
 
     def test_successful_get_login(self):
-        client = contentstack.ContentstackClient(host=host)
+        client = contentstack_management.Client(host=host)
         response = client.login(username, password)
         self.assertEqual(response.request.url, f"{self.client.endpoint}user-session")
         self.assertEqual(response.request.method, "POST")
@@ -28,7 +28,7 @@ class ContentstackTests(unittest.TestCase):
 
     def test_error_email_id(self):
         try:
-            self.client = contentstack.ContentstackClient(host=host)
+            self.client = contentstack_management.Client(host=host)
             self.client.login('', password)
             self.assertEqual(None, self.client.email)
         except PermissionError as e:
@@ -38,7 +38,7 @@ class ContentstackTests(unittest.TestCase):
 
     def test_error_password(self):
         try:
-            self.client = contentstack.ContentstackClient(host=host)
+            self.client = contentstack_management.Client(host=host)
             self.client.login(username, '')
             self.assertEqual(None, self.client.password)
         except PermissionError as e:

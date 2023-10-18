@@ -324,4 +324,19 @@ fileignoreconfig:
 - filename: tests/mock/extensions/test_extension_mock.py
   checksum: 88bf3b97761c880dc360e358018150e198117a2acef812d1f9ff4653708f8b5c
 version: ""
-
+fileignoreconfig:
+- filename: contentstack_management/environments/environment.py
+  checksum: f689b0564c0f35929d3a6f086d31baa6ea37c9a7fea3f6dec8988fcfc3a245e3
+- filename: tests/api/environments/test_environments_api.py
+  checksum: 72490f48a6f3346db6a00d80ce78c2dbc55219999270c75dd80d6ab66a8ffb40
+- filename: tests/mock/environments/test_environments_mock.py
+  checksum: b6a2c104b7296034064318c7c9c826bfe81aa84c511fffe8199393a4787f8306
+- filename: tests/unit/environments/test_environment_unit.py
+  checksum: 3a8efa44ba5bfaf4e599d76a0da933cbe883df5a13c3b0edce9d383b50ea4bfe
+- filename: contentstack_management/aliases/aliases.py
+  checksum: 96ebf3aa2256234997d5a50fa78310683b3eb8182f3904d95fa4b155ce0b6f94
+- filename: contentstack_management/branches/branches.py
+  checksum: a02a5821d8dbf0a2e364bbae87ca25d182c6edf56fdceb2e8e7c68874c15f0e4
+- filename: contentstack_management/content_types/content_type.py
+  checksum: 0a00803d139fef0b91ba6f2a38af41bd02e6a8a3390e74f9c8c2b85bf6162d9a
+version: ""

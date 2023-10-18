@@ -31,8 +31,8 @@ class Metadata(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").metadata().find().json()
 
         -------------------------------
@@ -48,8 +48,8 @@ class Metadata(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata('metadata_uid').fetch().json()
 
         -------------------------------
@@ -84,8 +84,8 @@ class Metadata(Parameter):
             >>>            }]
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata().create(data).json()
 
         -------------------------------
@@ -134,8 +134,8 @@ class Metadata(Parameter):
             >>>            ]
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata("metadata_uid").update(data).json()
 
         -------------------------------
@@ -154,8 +154,8 @@ class Metadata(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata('metadata_uid').delete().json()
 
         -------------------------------
@@ -181,8 +181,8 @@ class Metadata(Parameter):
             >>>            ]
             >>>        }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata('metadata_uid').publish(data).json()
 
         -------------------------------
@@ -208,8 +208,8 @@ class Metadata(Parameter):
             >>>            ]
             >>>        }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').metadata('metadata_uid').unpublish(data).json()
 
         -------------------------------

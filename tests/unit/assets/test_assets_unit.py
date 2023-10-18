@@ -1,7 +1,7 @@
 import os
 import unittest
 import json
-from contentstack_management import contentstack
+import contentstack_management
 from contentstack_management.common import Parameter
 from tests.cred import get_credentials
 
@@ -16,7 +16,7 @@ folder_uid = credentials["folder_uid"]
 class AssetsUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_get_all_assets(self):

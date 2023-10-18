@@ -1,6 +1,6 @@
 import unittest
 
-from contentstack_management import contentstack
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -16,7 +16,7 @@ ownership_token = credentials["ownership_token"]
 class StacksUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
         self.api_key = api_key
         self.stack = self.client.stack(api_key)

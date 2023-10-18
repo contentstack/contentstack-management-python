@@ -31,8 +31,8 @@ class Label(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").label().find().json()
 
         -------------------------------
@@ -52,8 +52,8 @@ class Label(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').label('label_uid').fetch().json()
 
         -------------------------------
@@ -88,8 +88,8 @@ class Label(Parameter):
             >>>            ]
             >>>        }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').label().create(data).json()
 
         -------------------------------
@@ -123,8 +123,8 @@ class Label(Parameter):
             >>>            ]
             >>>        }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').label("label_uid").update(data).json()
 
         -------------------------------
@@ -149,8 +149,8 @@ class Label(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').label('label_uid').delete().json()
 
         -------------------------------

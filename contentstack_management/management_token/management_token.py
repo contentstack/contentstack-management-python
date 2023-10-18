@@ -32,8 +32,8 @@ class ManagementToken(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").management_token().find().json()
 
         -------------------------------
@@ -49,8 +49,8 @@ class ManagementToken(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').management_token('management_token_uid').fetch().json()
 
         -------------------------------
@@ -108,8 +108,8 @@ class ManagementToken(Parameter):
             >>>            "is_email_notification_enabled":true
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').management_token().create(data).json()
 
         -------------------------------
@@ -172,8 +172,8 @@ class ManagementToken(Parameter):
             >>>            "is_email_notification_enabled":true
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').management_token("management_token_uid").update(data).json()
 
         -------------------------------
@@ -192,8 +192,8 @@ class ManagementToken(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').management_token('management_token_uid').delete().json()
 
         -------------------------------

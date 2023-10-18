@@ -30,9 +30,9 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
-            >>> from contentstack_management import contentstack
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch()
+            
+            >>> import contentstack_management
+            >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch()
             >>> response = branch.find()
         --------------------------------
         """
@@ -48,9 +48,9 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
-            >>> from contentstack_management import contentstack
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch(branch_uid="branch_uid")
+            
+            >>> import contentstack_management
+            >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch(branch_uid="branch_uid")
             >>> response = branch.fetch()
         --------------------------------
         """
@@ -69,15 +69,15 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
-            >>> from contentstack_management import contentstack
+            
+            >>> import contentstack_management
             >>> data = {
                     "branch": {
                     "uid": "release",
                     "source": "main"
                     }
                 }
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch()
+            >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch()
             >>> response = branch.create(data)
         --------------------------------
         """
@@ -94,9 +94,9 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
-            >>> from contentstack_management import contentstack
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch(branch_uid="branch_uid")
+            
+            >>> import contentstack_management
+            >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch(branch_uid="branch_uid")
             >>> response = branch.delete(data)
         --------------------------------
         """
