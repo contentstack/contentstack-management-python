@@ -30,7 +30,7 @@ class GlobalFields(Parameter):
         -------------------------------
         [Example:]
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(authtoken='authtoken')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").global_fields('global_field_uid').find().json()
         -------------------------------
         """
@@ -44,7 +44,7 @@ class GlobalFields(Parameter):
         [Example:]
 
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(authtoken='authtoken')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').global_fields('global_field_uid').fetch().json()
 
         -------------------------------
@@ -141,7 +141,7 @@ class GlobalFields(Parameter):
         [Example:]
 
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(authtoken='authtoken')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').global_fields().export().json()
         -------------------------------
         """

@@ -59,7 +59,7 @@ class Stack(Parameter):
         [Example:]
 
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(host='host', authtoken='authtoken')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack().find()
         -------------------------------
         """
@@ -117,7 +117,7 @@ class Stack(Parameter):
         -------------------------------
         [Example:]
             >>> import contentstack_management
-            >>> client = contentstack_management.Client(authtoken='authtoken')
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').delete()
         -------------------------------
         """
