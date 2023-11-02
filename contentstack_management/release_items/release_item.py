@@ -30,8 +30,8 @@ class ReleaseItems(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").releases("release_uid").item().find()
 
         -------------------------------
@@ -61,8 +61,8 @@ class ReleaseItems(Parameter):
             >>>            "locale": "en-us"
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases('release_uid').item().create(data)
         -------------------------------
         """
@@ -98,8 +98,8 @@ class ReleaseItems(Parameter):
             >>>            "action": "publish"
             >>>        }]
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases('release_uid').item().create_multiple(data)
         -------------------------------
         """
@@ -127,8 +127,8 @@ class ReleaseItems(Parameter):
             >>>        "$all"
             >>>    ]
             >>>  }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases("release_uid").item().update(data)
 
         -------------------------------
@@ -160,8 +160,8 @@ class ReleaseItems(Parameter):
             >>>            "action": "publish"
             >>>        }]
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').releases('release_uid').item().delete(data)
 
         -------------------------------
@@ -192,8 +192,8 @@ class ReleaseItems(Parameter):
             >>>            "action": "publish_or_unpublish"
             >>>        }]
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').releases('release_uid').item().delete_multiple(data)
 
         -------------------------------

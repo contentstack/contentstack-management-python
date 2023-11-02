@@ -31,8 +31,8 @@ class Terms(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").taxonomy("taxonomy_uid").terms().find()
 
         -------------------------------
@@ -53,8 +53,8 @@ class Terms(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy('taxonomy_uid').terms('terms_uid').fetch()
 
         -------------------------------
@@ -88,8 +88,8 @@ class Terms(Parameter):
             >>>        },
             >>>        "parent_uid": null
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy('taxonomy_uid').terms().create(data)
         -------------------------------
         """
@@ -116,8 +116,8 @@ class Terms(Parameter):
             >>>            "name": "Term 1"
             >>>        }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy("taxonomy_uid").terms('terms_uid').update(data)
 
         -------------------------------
@@ -144,8 +144,8 @@ class Terms(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').taxonomy('taxonomy_uid').terms('terms_uid').delete('taxonomy_uid')
 
         -------------------------------
@@ -170,8 +170,8 @@ class Terms(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy('taxonomy_uid').terms('terms_uid').search("terms_string")
 
         -------------------------------
@@ -208,8 +208,8 @@ class Terms(Parameter):
             >>>        },
             >>>        "parent_uid": "term_1"
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy("taxonomy_uid").terms('terms_uid').move(data).json()
 
         -------------------------------
@@ -239,8 +239,8 @@ class Terms(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy('taxonomy_uid').terms('terms_uid').ancestors().json()
 
         -------------------------------
@@ -267,8 +267,8 @@ class Terms(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy('taxonomy_uid').terms('terms_uid').descendants().json()
 
         -------------------------------

@@ -16,7 +16,7 @@ from .roles.roles import Roles
 from .auditlogs.auditlog import Auditlog
 from .environments.environment import Environment
 from .entries.entry import Entry
-from .contentstack import ContentstackClient, Region
+from .contentstack import Client, Region
 from ._api_client import _APIClient
 from .common import Parameter
 from ._errors import ArgumentException
@@ -34,7 +34,7 @@ from .extensions.extension import Extension
 
 
 __all__ = (
-"ContentstackClient",
+"Client",
 "Region",
 "_APIClient",
 "Parameter",
@@ -72,7 +72,7 @@ __title__ = 'contentstack-management-python'
 __author__ = 'ishaileshmishra'
 __status__ = 'debug'
 __region__ = 'na'
-__version__ = '0.0.1'
+__version__ = '1.0.0'
 __host__ = 'api.contentstack.io'
 __protocol__ = 'https://'
 __api_version__ = 'v3'

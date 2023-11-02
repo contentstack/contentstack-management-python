@@ -32,8 +32,8 @@ class Taxonomy(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").taxonomy().find().json()
 
         -------------------------------
@@ -49,8 +49,8 @@ class Taxonomy(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy('taxonomy_uid').fetch('taxonomy_uid').json()
 
         -------------------------------
@@ -80,8 +80,8 @@ class Taxonomy(Parameter):
             >>>            "description": "Description for Taxonomy 1"
             >>>        }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy().create(data).json()
 
         -------------------------------
@@ -105,8 +105,8 @@ class Taxonomy(Parameter):
             >>>        "description": "Description updated for Taxonomy 12345"
             >>>    }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy("taxonomy_uid").update(data).json()
 
         -------------------------------
@@ -129,8 +129,8 @@ class Taxonomy(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').taxonomy('taxonomy_uid').delete('taxonomy_uid').json()
 
         -------------------------------

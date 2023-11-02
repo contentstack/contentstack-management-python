@@ -4,9 +4,9 @@
 
 ---
 
-## v0.0.1
+## v1.0.0
 
-#### Date: December-23
+#### Date: October-23
 
 ### Initial Release
 

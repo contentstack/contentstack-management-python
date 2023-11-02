@@ -31,8 +31,8 @@ class Extension(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").extension().find().json()
         -------------------------------
         """        
@@ -46,8 +46,8 @@ class Extension(Parameter):
         :return: Json, with extension details.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').extension('extension_uid').fetch().json()
         -------------------------------
         """
@@ -74,8 +74,8 @@ class Extension(Parameter):
             >>>        "tags": {},
             >>>        "type": 'dashboard'
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').extension().upload(extension).json()
         -------------------------------
         """
@@ -113,8 +113,8 @@ class Extension(Parameter):
             >>>            config: {},
             >>>            type: 'field'
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').extension("extension_uid").update(extension).json()
         -------------------------------
         """
@@ -144,8 +144,8 @@ class Extension(Parameter):
             >>>            "type": "field"
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').extension("extension_uid").update(data).json()
         -------------------------------
         """
@@ -162,8 +162,8 @@ class Extension(Parameter):
         :return: The delete() method returns the status code and message as a response.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').extension('extension_uid').delete().json()
         -------------------------------
         """

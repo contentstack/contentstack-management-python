@@ -30,9 +30,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack("api_key").content_types('content_type_uid').entry().find().json()
 
         -------------------------------
@@ -50,9 +50,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').fetch().json()
 
         -------------------------------
@@ -84,9 +84,9 @@ class Entry(Parameter):
             >>>                     "url": "/example"
             >>>                  }
             >>>         }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types().entry().create(data).json()
 
         -------------------------------
@@ -117,9 +117,9 @@ class Entry(Parameter):
             >>>                    "url": "/example"
             >>>            }
             >>>         }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').update(data).json()
 
         -------------------------------
@@ -152,9 +152,9 @@ class Entry(Parameter):
             >>>                    "force": true
             >>>                }
             >>>            }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').version_naming(data).json()
 
         -------------------------------
@@ -176,9 +176,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').references().json()
 
         -------------------------------
@@ -195,9 +195,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').languages().json()
 
         -------------------------------
@@ -238,9 +238,9 @@ class Entry(Parameter):
             >>>                    "_version": 2
             >>>                    }
             >>>            }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').localize(data).json()
 
         -------------------------------
@@ -265,9 +265,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').unlocalize().json()
 
         -------------------------------
@@ -287,9 +287,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').delete().json()
 
         -------------------------------
@@ -315,9 +315,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> file_path = "tests/resources/mock_content_types/import_content_types.json"
             >>> result = client.stack('api_key').content_types().entry('entry_uid').imports(file_path).json()
 
@@ -338,9 +338,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types().entry('entry_uid').export().json()
 
         -------------------------------
@@ -370,9 +370,9 @@ class Entry(Parameter):
             >>>                "version": 1,
             >>>                "scheduled_at": "2019-02-14T18:30:00.000Z"
             >>>            }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types().entry('entry_uid').publish(data).json()
 
         -------------------------------
@@ -406,9 +406,9 @@ class Entry(Parameter):
             >>>                "version": 1,
             >>>                "scheduled_at": "2019-02-14T18:30:00.000Z"
             >>>            }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types().entry('entry_uid').unpublish().json()
 
         -------------------------------

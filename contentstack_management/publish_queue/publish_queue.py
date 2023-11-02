@@ -32,8 +32,8 @@ class PublishQueue(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").publish_queue().find().json()
 
         -------------------------------
@@ -50,8 +50,8 @@ class PublishQueue(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').publish_queue('publish_queue_uid').fetch().json()
 
         -------------------------------
@@ -71,8 +71,8 @@ class PublishQueue(Parameter):
 
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').publish_queue().create(data).json()
 
         -------------------------------
