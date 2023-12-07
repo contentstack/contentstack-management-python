@@ -37,7 +37,7 @@ class DeliveryToken(Parameter):
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
     def fetch(self):
         """
@@ -54,7 +54,7 @@ class DeliveryToken(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.delivery_token_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -112,7 +112,7 @@ class DeliveryToken(Parameter):
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params=self.params)
     
     def update(self, data: dict):
         """
@@ -168,7 +168,7 @@ class DeliveryToken(Parameter):
         self.validate_uid()
         url = f"{self.path}/{self.delivery_token_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params=self.params)
     
     
     def delete(self):
@@ -188,7 +188,7 @@ class DeliveryToken(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.delivery_token_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params=self.params)
         
     def validate_uid(self):
          if self.delivery_token_uid is None or '':

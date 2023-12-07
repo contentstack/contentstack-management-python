@@ -38,7 +38,7 @@ class ManagementToken(Parameter):
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -57,7 +57,7 @@ class ManagementToken(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.management_token_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -116,7 +116,7 @@ class ManagementToken(Parameter):
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict):
         """
@@ -181,7 +181,7 @@ class ManagementToken(Parameter):
         self.validate_uid()
         url = f"{self.path}/{self.management_token_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self): 
@@ -200,7 +200,7 @@ class ManagementToken(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.management_token_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def validate_uid(self):
          if self.management_token_uid is None or '':

@@ -37,7 +37,7 @@ class Environment(Parameter):
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -56,7 +56,7 @@ class Environment(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.environment_name}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -85,7 +85,7 @@ class Environment(Parameter):
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict):
         """
@@ -113,7 +113,7 @@ class Environment(Parameter):
         self.validate_uid()
         url = f"{self.path}/{self.environment_name}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self): 
@@ -132,7 +132,7 @@ class Environment(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.environment_name}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
         
     def validate_uid(self):
          if self.environment_name is None or '':

@@ -57,7 +57,7 @@ class Branch(Parameter):
         if self.branch_uid is None or '':
             raise Exception('branch_uid is required field')
         url = f"{_path}/{self.branch_uid}"
-        return self.client.get(url, headers=self.client.headers)
+        return self.client.get(url, headers=self.client.headers, params=self.params)
 
     def create(self, data):
         r"""
@@ -82,7 +82,7 @@ class Branch(Parameter):
         --------------------------------
         """
         data = json.dumps(data)
-        return self.client.post(_path, headers=self.client.headers, data=data)
+        return self.client.post(_path, headers=self.client.headers, data=data, params=self.params)
 
     def delete(self):
         r"""

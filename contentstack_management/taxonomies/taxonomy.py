@@ -38,7 +38,7 @@ class Taxonomy(Parameter):
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -60,7 +60,7 @@ class Taxonomy(Parameter):
             
         self.validate_taxonomy_uid()
         url = f"{self.path}/{self.taxonomy_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -88,7 +88,7 @@ class Taxonomy(Parameter):
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict, taxonomy_uid: str = None):
         """
@@ -118,7 +118,7 @@ class Taxonomy(Parameter):
         self.validate_taxonomy_uid()
         url = f"{self.path}/{self.taxonomy_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self, taxonomy_uid: str = None): 
@@ -141,7 +141,7 @@ class Taxonomy(Parameter):
             
         self.validate_taxonomy_uid()
         url = f"{self.path}/{self.taxonomy_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
         
     def validate_taxonomy_uid(self):

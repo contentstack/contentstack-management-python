@@ -69,7 +69,7 @@ class TermsUnitTests(unittest.TestCase):
 
     def test_search(self):
         response = self.client.stack(api_key).taxonomy(taxonomy_uid).terms().search(terms_string)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}/terms")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}/terms?term={terms_string}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.body, None)
 

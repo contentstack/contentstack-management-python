@@ -340,3 +340,9 @@ fileignoreconfig:
 - filename: contentstack_management/content_types/content_type.py
   checksum: 0a00803d139fef0b91ba6f2a38af41bd02e6a8a3390e74f9c8c2b85bf6162d9a
 version: ""
+fileignoreconfig:
+- filename: contentstack_management/environments/environment.py
+  checksum: 46235166ac0e658ec22956cb4579609b0641dd42a711cc3858df2611f987c691
+- filename: tests/unit/stack/test_stack.py
+  checksum: 3695817bbf4e5f1b664eb42087d1ac79a28ddea51ecb638fa9ed5608203648b7
+version: ""

@@ -99,7 +99,7 @@ class ReleaseItemsUnitTests(unittest.TestCase):
                 }]
             }
         response = self.client.stack(api_key).releases(releases_uid).item().delete_multiple(data)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}releases/{releases_uid}/items")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}releases/{releases_uid}/items?all=True")
         self.assertEqual(response.request.method, "DELETE")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 

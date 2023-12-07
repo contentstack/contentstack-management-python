@@ -51,20 +51,6 @@ class Stack(Parameter):
         """
         return self.client.get('stacks', headers=self.client.headers, params=self.params)
 
-    def find(self):
-        """
-        Fetches the stacks entries 
-        :return: Json, with stacks details.
-        -------------------------------
-        [Example:]
-
-            >>> import contentstack_management
-            >>> client = contentstack_management.Client(authtoken='your_authtoken')
-            >>> result = client.stack().find()
-        -------------------------------
-        """
-        return self.client.get('stacks', headers=self.client.headers, params=self.params)
-
     def create(self, organization_uid, data):
         """
         Create the stacks entries 
@@ -175,7 +161,7 @@ class Stack(Parameter):
         if 'api_key' not in self.client.headers:
             raise Exception('api_key is required')
         data = json.dumps(data)
-        return self.client.post('stacks/transfer_ownership', headers=self.client.headers, data=data)
+        return self.client.post('stacks/transfer_ownership', headers=self.client.headers, data=data, params = self.params)
 
     def accept_ownership(self, user_id, ownership_token):
         """
@@ -259,7 +245,7 @@ class Stack(Parameter):
         if 'api_key' not in self.client.headers:
             raise Exception('api_key is required')
         data = json.dumps(data)
-        return self.client.post('stacks/settings/reset', headers=self.client.headers, data=data)
+        return self.client.post('stacks/settings/reset', headers=self.client.headers, data=data, params = self.params)
 
     def share(self, data):
         """
