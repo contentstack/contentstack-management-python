@@ -346,3 +346,7 @@ fileignoreconfig:
 - filename: tests/unit/stack/test_stack.py
   checksum: 3695817bbf4e5f1b664eb42087d1ac79a28ddea51ecb638fa9ed5608203648b7
 version: ""
+fileignoreconfig:
+- filename: tests/unit/stack/test_stack.py
+  checksum: 8fd255a1f2272d225fba9b25b079ce5fde9233b8c5888cbb240174beab4a5c0c
+version: ""

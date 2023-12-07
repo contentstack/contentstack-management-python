@@ -1,5 +1,5 @@
 import unittest
-
+from urllib.parse import urlencode
 import contentstack_management
 from tests.cred import get_credentials
 
@@ -91,7 +91,7 @@ class StacksUnitTests(unittest.TestCase):
         response = self.stack.accept_ownership(user_id,
                                                ownership_token)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}stacks/accept_ownership/{ownership_token}?api_key={api_key}&uid={user_id}")
+                         f"{self.client.endpoint}stacks/accept_ownership/{ownership_token}?api_key={api_key}&uid={urlencode(user_id)}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
