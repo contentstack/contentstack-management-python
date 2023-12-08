@@ -73,7 +73,7 @@ class BulkOperation(Parameter):
         """
         url = f"{self.path}/publish"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
         
     def unpublish(self, data: dict):
         """
@@ -136,7 +136,7 @@ class BulkOperation(Parameter):
             
         url = f"{self.path}/unpublish"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
     
     def delete(self, data: dict):
         """
@@ -173,7 +173,7 @@ class BulkOperation(Parameter):
             
         url = f"{self.path}/delete"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
     
     def update(self, data: dict):
         """
@@ -225,6 +225,6 @@ class BulkOperation(Parameter):
         
         url = f"{self.path}/workflow"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
     
     

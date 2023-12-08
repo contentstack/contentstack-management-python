@@ -37,7 +37,7 @@ class Metadata(Parameter):
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -56,7 +56,7 @@ class Metadata(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -92,7 +92,7 @@ class Metadata(Parameter):
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict):
         """
@@ -143,7 +143,7 @@ class Metadata(Parameter):
         self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self): 
@@ -162,7 +162,7 @@ class Metadata(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def publish(self, data: dict):
         """
@@ -190,7 +190,7 @@ class Metadata(Parameter):
         self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}/publish"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
     
     def unpublish(self, data: dict):
         """
@@ -217,7 +217,7 @@ class Metadata(Parameter):
         self.validate_uid()
         url = f"{self.path}/{self.metadata_uid}/unpublish"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
     
     def validate_uid(self):
          if self.metadata_uid is None or '':

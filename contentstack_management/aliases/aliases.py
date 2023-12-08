@@ -73,7 +73,7 @@ class Alias(Parameter):
         """
         url = f"{_path}/{self.alias_uid}"
         body = json.dumps(data)
-        return self.client.put(url, headers=self.client.headers, data=body)
+        return self.client.put(url, headers=self.client.headers, params=self.params, data=body)
 
     def delete(self):
         r"""

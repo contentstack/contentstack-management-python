@@ -341,7 +341,7 @@ class ContentType(Parameter):
         files = {'content_type': open(f"{file_path}", 'rb')}
         return self.client.post(url, headers=self.client.headers, params=self.params, files=files)
 
-    def entry(self, entry_uid=None):
+    def entry(self, entry_uid: str =None):
         if self.content_type_uid is None:
             raise Exception('Content type uid is required')
         return entry.Entry(self.client, self.content_type_uid, entry_uid)

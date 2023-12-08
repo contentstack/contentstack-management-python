@@ -34,7 +34,7 @@ class Releases(Parameter):
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -53,7 +53,7 @@ class Releases(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.release_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -83,7 +83,7 @@ class Releases(Parameter):
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict):
         """
@@ -109,7 +109,7 @@ class Releases(Parameter):
         self.validate_uid()
         url = f"{self.path}/{self.release_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self): 
@@ -128,7 +128,7 @@ class Releases(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.release_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def deploy(self, data: dict):
         """
@@ -158,7 +158,7 @@ class Releases(Parameter):
         
         data = json.dumps(data)
         url = f"{self.path}/{self.release_uid}/deploy"
-        return self.client.post(url, headers = self.client.headers, data=data)
+        return self.client.post(url, headers = self.client.headers, data=data, params = self.params)
     
     def clone(self, data: dict):
         """
@@ -185,7 +185,7 @@ class Releases(Parameter):
         
         data = json.dumps(data)
         url = f"{self.path}/{self.release_uid}/clone"
-        return self.client.post(url, headers = self.client.headers, data=data)
+        return self.client.post(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def validate_uid(self):
