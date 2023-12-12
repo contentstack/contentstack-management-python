@@ -31,15 +31,15 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack("api_key").workflows().find().json()
 
         -------------------------------
         """        
         url = self.path
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
       
     
@@ -51,9 +51,9 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows('workflow_uid').fetch().json()
 
         -------------------------------
@@ -61,7 +61,7 @@ class Workflows(Parameter):
         if self.workflow_uid is None:
             raise Exception('workflow uid is required')
         url = f"{self.path}/{self.workflow_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data):
@@ -143,16 +143,16 @@ class Workflows(Parameter):
             >>>            ]
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().create(data).json()
 
         -------------------------------
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data):
         """
@@ -232,9 +232,9 @@ class Workflows(Parameter):
             >>>            ]
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows("workflow_uid").update(data).json()
         -------------------------------
         
@@ -244,7 +244,7 @@ class Workflows(Parameter):
             raise Exception('workflow uid is required')
         url = f"{self.path}/{self.workflow_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self): 
@@ -255,9 +255,9 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = result = client.stack('api_key').workflows('workflow_uid').delete().json()
 
         -------------------------------
@@ -268,7 +268,7 @@ class Workflows(Parameter):
             raise Exception('workflow uid is required')
         url = f"{self.path}/{self.workflow_uid}"
         
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def disable(self):
         """
@@ -278,9 +278,9 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> file_path = "tests/resources/mock_content_types/import_content_types.json"
             >>> result = client.stack('api_key').workflows('workflow_uid').disable().json()
 
@@ -290,7 +290,7 @@ class Workflows(Parameter):
         if self.workflow_uid is None:
             raise Exception('workflow uid is required')
         url = f"{self.path}/{self.workflow_uid}/disable"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def enable(self):
         """
@@ -299,9 +299,9 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows('workflow_uid').export().json()
 
         -------------------------------
@@ -310,7 +310,7 @@ class Workflows(Parameter):
         if self.workflow_uid is None:
             raise Exception('workflow uid is required')
         url = f"{self.path}/{self.workflow_uid}/enable"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def set_workflow_stage(self, content_type_uid, entry_uid, data):
         """
@@ -345,9 +345,9 @@ class Workflows(Parameter):
             >>>            }
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().set_workflow_stage('content_type_uid', 'entry_uid', data).json()
 
         -------------------------------
@@ -360,7 +360,7 @@ class Workflows(Parameter):
             raise Exception('Entry uid is required')
         url = f"content_types/{content_type_uid}/entries/{entry_uid}/workflow"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
     
     def create_publish_rule(self, data):
         """
@@ -401,9 +401,9 @@ class Workflows(Parameter):
             >>>            "disable_approver_publishing":false
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().create_publish_rule(data).json()
 
         -------------------------------
@@ -412,7 +412,7 @@ class Workflows(Parameter):
         
         url = f"{self.path}/publishing_rules"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
     
     
     
@@ -446,9 +446,9 @@ class Workflows(Parameter):
             >>>            "disable_approver_publishing": false
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().update_publish_rule('rule_uid', data).json()
 
         -------------------------------
@@ -458,7 +458,7 @@ class Workflows(Parameter):
             raise Exception('Rule uid is required')
         url = f"{self.path}/publishing_rules/{rule_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data = data)
+        return self.client.put(url, headers = self.client.headers, data = data, params = self.params)
     
     def delete_publish_rule(self, rule_uid):
         """
@@ -471,9 +471,9 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().delete_publish_rule('rule_uid').json()
 
         -------------------------------
@@ -482,7 +482,7 @@ class Workflows(Parameter):
         if rule_uid is None:
             raise Exception('Rule uid is required')
         url = f"{self.path}/publishing_rules/{rule_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def fetch_publish_rule(self, rule_uid):
         """
@@ -494,9 +494,9 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().fetch_publish_rule('rule_uid').json()
 
         -------------------------------
@@ -505,7 +505,7 @@ class Workflows(Parameter):
         if rule_uid is None:
             raise Exception('Rule uid is required')
         url = f"{self.path}/publishing_rules/{rule_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def fetch_publish_rules(self):
         """
@@ -514,16 +514,16 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().fetch_publish_rules().json()
 
         -------------------------------
         """
         
         url = f"{self.path}/publishing_rules"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
 
     def fetch_publish_rule_content_type(self, content_type_uid):
@@ -536,9 +536,9 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().fetch_publish_rule_content_type('content_type_uid').json()
 
         -------------------------------
@@ -547,7 +547,7 @@ class Workflows(Parameter):
         if content_type_uid is None:
             raise Exception('Content type uid is required')
         url = f"{self.path}/content_type/{content_type_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
 
     def publish_request_approval(self, content_type_uid, entry_uid):
@@ -563,9 +563,9 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().publish_request_approval('content_type_uid', 'entry_uid').json()
 
         -------------------------------
@@ -576,7 +576,7 @@ class Workflows(Parameter):
         if entry_uid is None:
             raise Exception('Entry uid is required')
         url = f"content_types/{content_type_uid}/entries/{entry_uid}/workflow"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
 
     def fetch_tasks(self):
@@ -586,15 +586,15 @@ class Workflows(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').workflows().logs().json()
 
         -------------------------------
         """
         url = f"user/assignments"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
 
     

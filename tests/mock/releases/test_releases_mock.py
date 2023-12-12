@@ -3,7 +3,11 @@ import os
 import unittest
 
 from dotenv import load_dotenv
+<<<<<<< HEAD
 from contentstack_management import contentstack
+=======
+import contentstack_management
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -18,7 +22,11 @@ class ReleasesMockTests(unittest.TestCase):
 
     def setUp(self):
         
+<<<<<<< HEAD
         self.client = contentstack.ContentstackClient(host = host)
+=======
+        self.client = contentstack_management.Client(host = host)
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
         self.client.login(username, password)
 
     
@@ -92,6 +100,7 @@ class ReleasesMockTests(unittest.TestCase):
     def test_deploy(self):
         data = {
                 "release": {
+<<<<<<< HEAD
                     "scheduled_at": "2018-12-12T13:13:13:122Z",
                     "action": "publish/unpublish",
                     "environments": [
@@ -101,6 +110,10 @@ class ReleasesMockTests(unittest.TestCase):
                     "locales": [
                         "en-us",
                         "ja-jp"
+=======
+                    "environments": [
+                        "development"
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
                     ]
                 }
             }

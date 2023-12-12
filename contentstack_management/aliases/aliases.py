@@ -25,8 +25,8 @@ class Alias(Parameter):
         :return: Returns all the aliases
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> alias = contentstack.ContentstackClient().stack(api_key='api_key').alias()
+            >>> import contentstack_management
+            >>> alias = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').alias()
             >>> response = alias.find()
         --------------------------------
         """
@@ -41,8 +41,8 @@ class Alias(Parameter):
         --------------------------------
 
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> alias = contentstack.ContentstackClient().stack(api_key='api_key').alias('alias_uid')
+            >>> import contentstack_management
+            >>> alias = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').alias('alias_uid')
             >>> response = alias.fetch()
         --------------------------------
         """
@@ -67,13 +67,13 @@ class Alias(Parameter):
             >>>            "target_branch": "test"
             >>>            }
             >>>        }
-            >>> alias = contentstack.ContentstackClient().stack(api_key='api_key').alias("alias_uid")
+            >>> alias = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').alias("alias_uid")
             >>> response = alias.assign(data)
         --------------------------------
         """
         url = f"{_path}/{self.alias_uid}"
         body = json.dumps(data)
-        return self.client.put(url, headers=self.client.headers, data=body)
+        return self.client.put(url, headers=self.client.headers, params=self.params, data=body)
 
     def delete(self):
         r"""
@@ -82,8 +82,8 @@ class Alias(Parameter):
         :return: Returns status code and message
         --------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> alias = contentstack.ContentstackClient().stack(api_key='api_key').alias(alias_uid="alias_uid")
+            >>> import contentstack_management
+            >>> alias = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').alias(alias_uid="alias_uid")
             >>> response = alias.delete()
         --------------------------------
         """

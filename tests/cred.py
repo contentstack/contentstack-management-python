@@ -8,12 +8,11 @@ default_password_value = "cma@contentstack.com"  # Default password value
 default_host_value = "api.contentstack.io"  # Default host value
 default_organization_uid_value = "orgcontentstack"  # Default organization UID value
 default_api_key = "apikeycontentstack"  # API key value
-default_authtoken_value = "authtoken@contentstack"  # Default auth token value
-default_management_token_value = "management@contentstack"  # Default management token value
+default_authtoken_value = "auth_token"  # Default auth token value
+default_management_token_value = "management_token"  # Default management token value
 default_uid_value = "blt98998999999"  # Default UID value
-default_activation_token = "activation@contentstack"  # Default activation token value
-default_ownership_token = "ownership@contentstack"  # Default ownership token value
-default_user_id = "userid@contentstack"  # Default user uid value
+default_activation_token = "activation_token"  # Default activation token value
+default_ownership_token = "ownership_token"  # Default ownership token value
 default_content_type_uid = "content_type_uid"  # Default content type  value
 default_entry_uid = "entry_uid"  # Default entry value
 default_alias_uid = "alias_uid"  # Default alias  value
@@ -22,7 +21,7 @@ default_branch_alias_uid = "branch_alias_uid"  # Default branch alias token valu
 default_global_field_uid = "global_field_uid"  # Default branch alias token value
 default_webhook_execution_uid = "webhook_execution_uid"  # Default webhook execution value
 default_webhook_uid = "webhook_uid"  # Default webhook value
-default_user_id = "userid@contentstack"  # Default ownership token value
+default_user_id = "userid"  # Default ownership token value
 default_asset_uid = "asset_uid" #Default asset uid
 default_folder_uid = "folder_uid" #Default folder uid
 default_workflow_uid = "workflow_uid" #Default workflow uid
@@ -37,7 +36,14 @@ default_label_uid = "label_uid" #Default label code
 default_terms_uid = "terms_uid" #Default terms uid
 default_terms_string = "terms_string" #Default terms string
 default_release_uid = "release_uid" #default release uid
+<<<<<<< HEAD
 
+=======
+default_delivery_token_uid = "delivery_token_uid" #default delivery token uid
+default_management_token_uid = "management_token_uid" #default management token uid
+default_publish_queue_uid = "publish_queue_uid" # default publish queue uid
+default_extension_uid = "extension_uid" # default publish queue uid
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
 
 def get_credentials():
     load_dotenv()
@@ -80,6 +86,13 @@ def get_credentials():
         "terms_uid": os.getenv("TERMS_UID", default_terms_uid),
         "terms_string": os.getenv("TERMS_STRING", default_terms_string),
         "release_uid": os.getenv("RELEASE_UID", default_release_uid),
+<<<<<<< HEAD
 
+=======
+        "delivery_token_uid": os.getenv("DELIVERY_TOKEN_UID", default_delivery_token_uid),
+        "management_token_uid": os.getenv("MANAGEMENT_TOKEN_UID", default_management_token_uid),
+        "publish_queue_uid": os.getenv("PUBLISH_QUEUE_UID", default_publish_queue_uid),
+        "extension_uid": os.getenv("EXTENSION_UID", default_extension_uid)
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
     }
     return credentials

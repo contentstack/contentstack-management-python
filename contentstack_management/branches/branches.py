@@ -30,9 +30,9 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
-            >>> from contentstack_management import contentstack
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch()
+            
+            >>> import contentstack_management
+            >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch()
             >>> response = branch.find()
         --------------------------------
         """
@@ -48,16 +48,16 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
-            >>> from contentstack_management import contentstack
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch(branch_uid="branch_uid")
+            
+            >>> import contentstack_management
+            >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch(branch_uid="branch_uid")
             >>> response = branch.fetch()
         --------------------------------
         """
         if self.branch_uid is None or '':
             raise Exception('branch_uid is required field')
         url = f"{_path}/{self.branch_uid}"
-        return self.client.get(url, headers=self.client.headers)
+        return self.client.get(url, headers=self.client.headers, params=self.params)
 
     def create(self, data):
         r"""
@@ -69,20 +69,20 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
-            >>> from contentstack_management import contentstack
+            
+            >>> import contentstack_management
             >>> data = {
                     "branch": {
                     "uid": "release",
                     "source": "main"
                     }
                 }
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch()
+            >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch()
             >>> response = branch.create(data)
         --------------------------------
         """
         data = json.dumps(data)
-        return self.client.post(_path, headers=self.client.headers, data=data)
+        return self.client.post(_path, headers=self.client.headers, data=data, params=self.params)
 
     def delete(self):
         r"""
@@ -94,9 +94,9 @@ class Branch(Parameter):
         --------------------------------
 
         [Example:]
-            >>> import contentstack
-            >>> from contentstack_management import contentstack
-            >>> branch = contentstack.ContentstackClient().stack(api_key='api_key').branch(branch_uid="branch_uid")
+            
+            >>> import contentstack_management
+            >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch(branch_uid="branch_uid")
             >>> response = branch.delete(data)
         --------------------------------
         """

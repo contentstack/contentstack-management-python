@@ -32,13 +32,13 @@ class Taxonomy(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").taxonomy().find().json()
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -49,8 +49,8 @@ class Taxonomy(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy('taxonomy_uid').fetch('taxonomy_uid').json()
 
         -------------------------------
@@ -60,7 +60,7 @@ class Taxonomy(Parameter):
             
         self.validate_taxonomy_uid()
         url = f"{self.path}/{self.taxonomy_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -80,15 +80,15 @@ class Taxonomy(Parameter):
             >>>            "description": "Description for Taxonomy 1"
             >>>        }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy().create(data).json()
 
         -------------------------------
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict, taxonomy_uid: str = None):
         """
@@ -105,8 +105,8 @@ class Taxonomy(Parameter):
             >>>        "description": "Description updated for Taxonomy 12345"
             >>>    }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').taxonomy("taxonomy_uid").update(data).json()
 
         -------------------------------
@@ -118,7 +118,7 @@ class Taxonomy(Parameter):
         self.validate_taxonomy_uid()
         url = f"{self.path}/{self.taxonomy_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self, taxonomy_uid: str = None): 
@@ -129,8 +129,8 @@ class Taxonomy(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').taxonomy('taxonomy_uid').delete('taxonomy_uid').json()
 
         -------------------------------
@@ -141,7 +141,7 @@ class Taxonomy(Parameter):
             
         self.validate_taxonomy_uid()
         url = f"{self.path}/{self.taxonomy_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
         
     def validate_taxonomy_uid(self):

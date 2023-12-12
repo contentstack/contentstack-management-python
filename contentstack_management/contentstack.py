@@ -1,4 +1,4 @@
-from contentstack_management import contentstack
+import contentstack_management
 from enum import Enum
 from ._api_client import _APIClient
 from contentstack_management.organizations import organization
@@ -9,7 +9,7 @@ from contentstack_management.users import user
 version = '0.0.1'
 
 
-class ContentstackRegion(Enum):
+class Region(Enum):
     US = "us"
     EU = "eu"
     AZURE_EU = "azure-eu"
@@ -25,18 +25,20 @@ def user_agents(headers=None):
     return headers
 
 
-class ContentstackClient:
+class Client:
 
     # TODO: DefaultCSCredential(), needs to be implemented
     def __init__(self, host: str = 'api.contentstack.io', scheme: str = 'https://',
-                 authtoken=None, management_token=None, headers: dict = None,
-                 region: ContentstackRegion = ContentstackRegion.US, version='v3', timeout=2, max_retries: int = 18,
+                 authtoken: str = None , management_token=None, headers: dict = None,
+                 region: Region = Region.US.value, version='v3', timeout=2, max_retries: int = 18,
                  **kwargs):
         self.endpoint = 'https://api.contentstack.io/v3/'
-        if region is not ContentstackRegion.US:
-            self.endpoint = f'{scheme}{region.value}-{host}/{version}/'
-        if host is not None:
+        if region is not None and host is not None and region is not Region.US.value:
+            self.endpoint = f'{scheme}{region}-{host}/{version}/'
+        if host is not None and region is None:
             self.endpoint = f'{scheme}{host}/{version}/'
+        if headers is None:
+            headers = {}
         if authtoken is not None:
             headers['authtoken'] = authtoken
         
@@ -61,8 +63,8 @@ class ContentstackClient:
         -------------------------------
         [Example:]
 
-        >>> from contentstack_management import contentstack
-        >>> contentstack_client = contentstack.client()
+        >>> import contentstack_management
+        >>> contentstack_client = contentstack_management.Client()
         -------------------------------
         """
 

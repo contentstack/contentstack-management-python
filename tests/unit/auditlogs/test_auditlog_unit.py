@@ -3,7 +3,7 @@ import unittest
 
 from dotenv import load_dotenv
 
-from contentstack_management import contentstack
+import contentstack_management
 from contentstack_management._errors import ArgumentException
 from tests.cred import get_credentials
 
@@ -18,7 +18,7 @@ log_item_uid = credentials["log_item_uid"]
 class auditlogesUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_get_all_auditloges(self):
@@ -47,7 +47,7 @@ class auditlogesUnitTests(unittest.TestCase):
         query = self.client.stack(api_key).auditlog()
         query.add_param("include_branch", True)
         response = query.find()
-        self.assertEqual(response.request.url, f"{self.client.endpoint}audit-logs")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}audit-logs?include_branch=True")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
@@ -56,7 +56,7 @@ class auditlogesUnitTests(unittest.TestCase):
         query = self.client.stack(api_key).auditlog(log_item_uid)
         query.add_param("include_branch", False)
         response = query.fetch()
-        self.assertEqual(response.request.url, f"{self.client.endpoint}audit-logs/{log_item_uid}")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}audit-logs/{log_item_uid}?include_branch=False")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)

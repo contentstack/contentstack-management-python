@@ -290,4 +290,63 @@ fileignoreconfig:
 - filename: tests/unit/releases/test_release_unit.py
   checksum: ffef2e354ac901eafd0f0aa8a95394892ec23b9d8b807de3e096a28536a75126
 version: ""
-
+fileignoreconfig:
+- filename: contentstack_management/environments/environment.py
+  checksum: 46235166ac0e658ec22956cb4579609b0641dd42a711cc3858df2611f987c691
+- filename: tests/api/environments/test_environments_api.py
+  checksum: 72490f48a6f3346db6a00d80ce78c2dbc55219999270c75dd80d6ab66a8ffb40
+- filename: tests/mock/environments/test_environments_mock.py
+  checksum: b6a2c104b7296034064318c7c9c826bfe81aa84c511fffe8199393a4787f8306
+- filename: tests/unit/environments/test_environment_unit.py
+  checksum: 3a8efa44ba5bfaf4e599d76a0da933cbe883df5a13c3b0edce9d383b50ea4bfe
+- filename: tests/cred.py
+  checksum: d11b8e5ede925f6668971e2244dcc61faba9b74a3e38567daa8638a8bb364688
+- filename: tests/api/release_items/test_release_items_api.py
+  checksum: 11ea5fce857606d60cb7e835393bc55e2f9d930946871e5f8196e73a4973b040
+- filename: tests/api/releases/test_releases_api.py
+  checksum: ecd8ac8e79f5c8e225530f43ee4b17eead28dea18d256ca22a6f22628bbac48e
+- filename: tests/unit/release_items/test_release_items_unit.py
+  checksum: 48d3201f7f77600a53f693dbaaedcb7b76bb02848c0e52d1a57c8af38d418b21
+- filename: tests/unit/releases/test_release_unit.py
+  checksum: cdd55fd0614169ee13356d11688f6d24f0818cf805edd4cee2282bfd035c14e0
+- filename: tests/mock/release_items/test_release_items_mock.py
+  checksum: 995b63af12be93f45d7f0a33bf3538187e3b0ffbcb1a92d38107f6fe8242540b
+- filename: tests/mock/releases/test_releases_mock.py
+  checksum: 4faf19c127f3436bcca022537229109b1ce2ed1a8a0ee04b769711c2a2e035b4
+- filename: contentstack_management/aliases/aliases.py
+  checksum: a66365ff6ca026d122149cb016aee286231e16be25adc846a97b6c3390f3bb21
+- filename: contentstack_management/branches/branches.py
+  checksum: 8b14236f13966b4c27aba16a4a21e1ceffba4d0e4c0fc512f607c7aa9bba6f4f
+- filename: contentstack_management/content_types/content_type.py
+  checksum: d9bc657d86688a17637b0c51f16c47c57eca72748b99dd7ecf43cf14b3371af3
+- filename: tests/resources/mock_extension/upload.json
+  checksum: 20364016b0db0e64ad20a9a1ce922fdcfd6db3708f4046a129a54e3d22d80cec
+- filename: tests/api/delivery_token/test_delivery_token_api.py
+  checksum: 4a446ca4610325b91cdef7abe05e85468e3916b74fbbd8f51038a63bcb219bbf
+- filename: tests/resources/mock_extension/find.json
+  checksum: ba433741506e21dd46a1ba72b81ff3ef6b9377c589cc90bdcab23b496762b630
+- filename: tests/api/extensions/test_extension_api.py
+  checksum: e964c55803c9dab9f5d0b26754990e9411c6198a50d3ff6ab06401a07f3d5563
+- filename: tests/mock/publish_queue/test_publish_queue_mock.py
+  checksum: a6450520edc084c3ef5299034af53100457e78b0d1b2b8ac7706791a49725de4
+- filename: tests/mock/extensions/test_extension_mock.py
+  checksum: 67e60a26af9db5b0ed86673a7198b0b9401f3a48b926c82ea92aa1b8f448d157
+- filename: tests/mock/delivery_token/test_delivery_token_mock.py
+  checksum: 8499110337a98bfe25cfd59cdf018431ec066e77dab26ff347d9bf62555769f2
+- filename: tests/unit/stack/test_stack.py
+  checksum: 43e5b5f95f3d6a3de3eafa70bd1c24bf448c4a21e0f23ac37ba483e5e19da049
+- filename: tests/mock/management_token/test_management_token_mock.py
+  checksum: 35d6653e9f18f6b5e6691fe40aae7e3b968dbc3cef59d3df6239738736a5bd02
+- filename: tests/unit/management_token/test_management_token_unit.py
+  checksum: 24cfc725c6c807d916c6450568099a0e0da3bc8f2ba022a5c7dfa2c4b1ab9a7d
+- filename: tests/api/publish_queue/test_publish_queue_api.py
+  checksum: cdf86352249af48dc4924249d52fc3296f9df73c6b82b2c65b2d886f6c0c3210
+- filename: tests/unit/extensions/test_extension_unit.py
+  checksum: a33e88cf49a6a0c4d0e7e75189812fc8e514947c87916391fb073bf0bf7cdd76
+- filename: tests/api/management_token/test_management_token_api.py
+  checksum: fe0996fb15985d91e852c99761e2160332e16b5922a6245702155d7f24e5ed1c
+- filename: tests/unit/publish_queue/test_publish_queue_unit.py
+  checksum: f38789fb171166354dd1bc452d4a137af4232465356662dce2bdbde352074d6f
+- filename: tests/unit/delivery_token/test_delivery_token_unit.py
+  checksum: c7323b95249759bc67c33d3a89d3d2e8b3ed3d146b944682d451ebebe22567c0
+version: ""

@@ -65,15 +65,15 @@ class BulkOperation(Parameter):
                 >>>            "scheduled_at":"scheduled_time",
                 >>>            "publish_with_reference":true
                 >>>            }
-                >>> from contentstack_management import contentstack
-                >>> client = contentstack.client(authtoken='your_authtoken')
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
                 >>> result = client.stack('api_key').bulk_operation().publish(data).json()
 
             -------------------------------
         """
         url = f"{self.path}/publish"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
         
     def unpublish(self, data: dict):
         """
@@ -127,8 +127,8 @@ class BulkOperation(Parameter):
                 >>>            "env_uid"
                 >>>        ]
                 >>>        }
-                >>> from contentstack_management import contentstack
-                >>> client = contentstack.client(authtoken='your_authtoken')
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
                 >>> result = client.stack('api_key').bulk_operation().unpublish(data).json()
 
         -------------------------------
@@ -136,7 +136,7 @@ class BulkOperation(Parameter):
             
         url = f"{self.path}/unpublish"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
     
     def delete(self, data: dict):
         """
@@ -164,8 +164,8 @@ class BulkOperation(Parameter):
                 >>>            "uid": "uid"
                 >>>        }]
                 >>>    }
-                >>> from contentstack_management import contentstack
-                >>> client = contentstack.client(authtoken='your_authtoken')
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
                 >>> result = client.stack('api_key').bulk_operation().delete(data).json()
 
         -------------------------------
@@ -173,7 +173,7 @@ class BulkOperation(Parameter):
             
         url = f"{self.path}/delete"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
     
     def update(self, data: dict):
         """
@@ -216,8 +216,8 @@ class BulkOperation(Parameter):
                 >>>            }
                 >>>        }
                 >>>    }
-                >>> from contentstack_management import contentstack
-                >>> client = contentstack.client(authtoken='your_authtoken')
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
                 >>> result = client.stack('api_key').bulk_operation().update(data).json()
 
         -------------------------------
@@ -225,6 +225,6 @@ class BulkOperation(Parameter):
         
         url = f"{self.path}/workflow"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
     
     

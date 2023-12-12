@@ -31,13 +31,13 @@ class Locale(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").locale().find().json()
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -48,15 +48,15 @@ class Locale(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale('locale_code').fetch().json()
 
         -------------------------------
         """
         self.validate_locale_code()
         url = f"{self.path}/{self.locale_code}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -76,15 +76,15 @@ class Locale(Parameter):
             >>>            "fallback_locale":"en-us"
             >>>         }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale().create(data).json()
 
         -------------------------------
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict):
         """
@@ -102,8 +102,8 @@ class Locale(Parameter):
             >>>            "fallback_locale":"zh-cn"
             >>>         }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale("locale_code").update(data).json()
 
         -------------------------------
@@ -112,7 +112,7 @@ class Locale(Parameter):
         self.validate_locale_code()
         url = f"{self.path}/{self.locale_code}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self): 
@@ -123,8 +123,8 @@ class Locale(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').locale('locale_code').delete().json()
 
         -------------------------------
@@ -133,7 +133,7 @@ class Locale(Parameter):
         
         self.validate_locale_code()
         url = f"{self.path}/{self.locale_code}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def set_fallback(self, data: dict):
         """
@@ -152,15 +152,15 @@ class Locale(Parameter):
             >>>            "fallback_locale":"en-us"
             >>>         }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale().set_fallback(data).json()
 
         -------------------------------
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update_fallback(self, data: dict):
         """
@@ -177,8 +177,8 @@ class Locale(Parameter):
             >>>            "fallback_locale":"zh-cn"
             >>>         }
             >>>        }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').locale('locale_code').update_fallback(data).json()
 
         -------------------------------
@@ -187,7 +187,7 @@ class Locale(Parameter):
         self.validate_locale_code()
         url = f"{self.path}/{self.locale_code}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
         
     def validate_locale_code(self):

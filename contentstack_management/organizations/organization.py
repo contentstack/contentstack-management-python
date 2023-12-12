@@ -24,12 +24,12 @@ class Organization(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.organizations().find()
         -------------------------------
         """
-        return self.client.get('organizations', headers=self.client.headers)
+        return self.client.get('organizations', headers=self.client.headers, params = self.params)
 
     def fetch(self):
         """
@@ -38,16 +38,16 @@ class Organization(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host', authtoken="")
-            >>> client.login(email="email", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(host='host', authtoken="")
+            
             >>> result = client.organizations('organization_uid').fetch().json()
 
         -------------------------------
         """
         if self.organization_uid is None or '':
             raise Exception('organization_uid is required')
-        return self.client.get(self._path, headers=self.client.headers)
+        return self.client.get(self._path, headers=self.client.headers, params = self.params)
 
     def roles(self):
         """
@@ -56,9 +56,9 @@ class Organization(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
-            >>> client.login(email="email", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.organizations('organization_uid').get_organization_roles().json()
 
         -------------------------------
@@ -66,7 +66,7 @@ class Organization(Parameter):
         url = f"{self._path}/roles"
         if self.organization_uid is None or '':
             raise Exception('organization_uid is required')
-        return self.client.get(url, headers=self.client.headers)
+        return self.client.get(url, headers=self.client.headers, params = self.params)
 
     def add_users(self, user_data):
         """
@@ -91,9 +91,9 @@ class Organization(Parameter):
             >>>            }
             >>>        }
             >>>
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
-            >>> client.login(email="email", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.organizations('organization_uid').organization_add_users(data).json()
         -------------------------------
         """
@@ -101,7 +101,7 @@ class Organization(Parameter):
         if self.organization_uid is None or '':
             raise Exception('organization_uid is required')
         data = json.dumps(user_data)
-        return self.client.post(url, headers=self.client.headers, data=data)
+        return self.client.post(url, headers=self.client.headers, data=data, params = self.params)
 
     def transfer_ownership(self, data):
         """
@@ -113,8 +113,8 @@ class Organization(Parameter):
             >>>      "transfer_to": "abc@sample.com"
             >>>   }
             >>>
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.organizations('organization_uid').transfer_organizations_ownership(data)
         -------------------------------
         """
@@ -122,7 +122,7 @@ class Organization(Parameter):
         if self.organization_uid is None or '':
             raise Exception('organization_uid is required')
         data = json.dumps(data)
-        return self.client.post(url, headers=self.client.headers, data=data)
+        return self.client.post(url, headers=self.client.headers, data=data, params = self.params)
 
     def stacks(self):
         """
@@ -130,16 +130,16 @@ class Organization(Parameter):
         :return: Json, with organization stack details.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
-            >>> client.login(email="email", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.organizations('organization_uid').organization_stacks()
         -------------------------------
         """
         url = f"{self._path}/stacks"
         if self.organization_uid is None or '':
             raise Exception('organization_uid is required')
-        return self.client.get(url, headers=self.client.headers)
+        return self.client.get(url, headers=self.client.headers, params = self.params)
 
     def logs(self):
         """
@@ -147,9 +147,9 @@ class Organization(Parameter):
         :return: Json, with organization log details.
         -------------------------------
         [Example:]
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.ContentstackClient(host='host')
-            >>> client.login(email="email", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.organizations('organization_uid').organization_logs().json()
         -------------------------------
         """

@@ -1,7 +1,11 @@
 import os
 import unittest
 from dotenv import load_dotenv
+<<<<<<< HEAD
 from contentstack_management import contentstack
+=======
+import contentstack_management
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -14,7 +18,11 @@ releases_uid = credentials["release_uid"]
 class ReleaseItemsUnitTests(unittest.TestCase):
 
     def setUp(self):
+<<<<<<< HEAD
         self.client = contentstack.ContentstackClient(host=host)
+=======
+        self.client = contentstack_management.Client(host=host)
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
         self.client.login(username, password)
 
     def test_get_all_item(self):
@@ -99,7 +107,11 @@ class ReleaseItemsUnitTests(unittest.TestCase):
                 }]
             }
         response = self.client.stack(api_key).releases(releases_uid).item().delete_multiple(data)
+<<<<<<< HEAD
         self.assertEqual(response.request.url, f"{self.client.endpoint}releases/{releases_uid}/items")
+=======
+        self.assertEqual(response.request.url, f"{self.client.endpoint}releases/{releases_uid}/items?all=True")
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
         self.assertEqual(response.request.method, "DELETE")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 

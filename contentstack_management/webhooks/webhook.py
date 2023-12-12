@@ -32,9 +32,9 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack("api_key").webhooks().find().json()
 
         -------------------------------
@@ -42,7 +42,7 @@ class Webhook(Parameter):
         
         
         url = self.path
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
       
     
@@ -54,9 +54,9 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').webhooks('webhook_uid').fetch().json()
 
         -------------------------------
@@ -64,7 +64,7 @@ class Webhook(Parameter):
         if self.webhook_uid is None:
             raise Exception('Webhook uid is required')
         url = f"{self.path}/{self.webhook_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data):
@@ -107,9 +107,9 @@ class Webhook(Parameter):
             >>>                "concise_payload":true
             >>>            }
             >>>            }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').webhooks().create(data).json()
 
         -------------------------------
@@ -117,7 +117,7 @@ class Webhook(Parameter):
         
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data):
         """
@@ -156,9 +156,9 @@ class Webhook(Parameter):
             >>>             "concise_payload":true
             >>>         }
             >>>         }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').webhooks('webhook_uid').update(data).json()
 
         -------------------------------
@@ -168,7 +168,7 @@ class Webhook(Parameter):
             raise Exception('Webhook uid is required')
         url = f"{self.path}/{self.webhook_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self): 
@@ -179,9 +179,9 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = result = client.stack('api_key').webhooks('webhook_uid').delete().json()
 
         -------------------------------
@@ -194,7 +194,7 @@ class Webhook(Parameter):
             self.client.headers.pop('Content-Type')
         url = f"{self.path}/{self.webhook_uid}"
         
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def imports(self, file_path):
         """
@@ -209,9 +209,9 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> file_path = "tests/resources/mock_content_types/import_content_types.json"
             >>> result = client.stack('api_key').webhooks().imports(file_path).json()
 
@@ -223,7 +223,7 @@ class Webhook(Parameter):
         url = f"{self.path}/import"
         self.client.headers['Content-Type'] = "multipart/form-data"
         files = {'entry': open(f"{file_path}",'rb')}
-        return self.client.post(url, headers = self.client.headers, files = files)
+        return self.client.post(url, headers = self.client.headers, files = files, params = self.params)
     
     def export(self):
         """
@@ -235,9 +235,9 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').webhooks('webhook_uid').export().json()
 
         -------------------------------
@@ -246,7 +246,7 @@ class Webhook(Parameter):
         if self.webhook_uid is None:
             raise Exception('Webhok uid is required')
         url = f"{self.path}/{self.webhook_uid}/export"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def executions(self):
         """
@@ -256,9 +256,9 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').webhooks('webhook_execution_uid').executions().json()
 
         -------------------------------
@@ -267,7 +267,7 @@ class Webhook(Parameter):
         if self.webhook_uid is None:
             raise Exception('Webhook uid is required')
         url = f"{self.path}/{self.webhook_uid}/executions"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def retry(self, execution_uid):
         """
@@ -279,9 +279,9 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').webhooks().retry('execution_uid').json()
 
         -------------------------------
@@ -290,7 +290,7 @@ class Webhook(Parameter):
         if execution_uid is None:
             raise Exception('Execution uid is required')
         url = f"{self.path}/{execution_uid}/retry"
-        return self.client.post(url, headers = self.client.headers)
+        return self.client.post(url, headers = self.client.headers, params = self.params)
     
     
     
@@ -305,9 +305,9 @@ class Webhook(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').webhooks().logs('execution_uid').json()
 
         -------------------------------
@@ -315,7 +315,7 @@ class Webhook(Parameter):
         if execution_uid is None:
             raise Exception('Execution uid is required')
         url = f"{self.path}/{execution_uid}/logs"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
 
     

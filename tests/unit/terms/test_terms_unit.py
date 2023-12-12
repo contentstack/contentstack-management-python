@@ -1,7 +1,7 @@
 import os
 import unittest
 from dotenv import load_dotenv
-from contentstack_management import contentstack
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -16,7 +16,7 @@ terms_string = credentials["terms_string"]
 class TermsUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_get_all_terms(self):
@@ -69,7 +69,7 @@ class TermsUnitTests(unittest.TestCase):
 
     def test_search(self):
         response = self.client.stack(api_key).taxonomy(taxonomy_uid).terms().search(terms_string)
-        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}/terms")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}/terms?term={terms_string}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.body, None)
 

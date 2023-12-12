@@ -1,0 +1,97 @@
+{
+    "extensions": [
+       {
+          "uid": "extension_uid",
+          "created_at": "2023-10-11T11:17:25.528Z",
+          "updated_at": "2023-10-11T11:17:25.528Z",
+          "created_by": "created_by_uid",
+          "updated_by": "updated_by_uid",
+          "tags": [
+             "tag1",
+             "tag2"
+          ],
+          "ACL": [],
+          "_version": 1,
+          "title": "New Custom Field",
+          "config": {},
+          "type": "field",
+          "data_type": "text",
+          "multiple": false,
+          "src": "https://www.sample.com"
+       },
+       {
+          "uid": "extension_uid",
+          "created_at": "2023-07-13T08:13:26.563Z",
+          "updated_at": "2023-07-13T08:13:26.563Z",
+          "created_by": "created_by_uid",
+          "updated_by": "updated_by_uid",
+          "tags": [
+             "tag"
+          ],
+          "ACL": [],
+          "_version": 1,
+          "title": "Custom dashboard Upload",
+          "config": {},
+          "type": "dashboard",
+          "enable": true,
+          "default_width": "half",
+          "SYS_ACL": {
+             "others": {
+                "render": false
+             },
+             "users": {
+                "uids": [
+                   "$all"
+                ],
+                "render": true
+             },
+             "roles": {
+                "uids": [],
+                "render": true
+             }
+          },
+          "srcdoc": "<html>\n<head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    <script src=\"https://unpkg.com/@contentstack/ui-extensions-sdk@2.1.1/dist/ui-extension-sdk.js\"><\/script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://unpkg.com/@contentstack/ui-extensions-sdk@2.1.1/dist/ui-extension-sdk.css\">\n<\/head>\n<body>\n    <input type=\"color\" id=\"html5colorpicker\" onchange=\"colorChange()\">\n    <script>\n      // initialise Field Extension \n      window.extensionField = {};\n      // find color input element \n      var colorPickerElement = document.getElementById(\"html5colorpicker\");\n      ContentstackUIExtension.init().then(function(extension) {\n          // make extension object globally available\n          extensionField = extension;\n          // Get current color field value from Contentstack and update the color picker input element\n          colorPickerElement.value = extensionField.field.getData();\n      }).catch(function(error) {\n          console.log(error);\n      });\n        // On color change event, pass new value to Contentstack\n        function colorChange(){\n          extensionField.field.setData(colorPickerElement.value);      \n        }        \n    <\/script>\n<\/body>\n<\/html>"
+       },
+       {
+          "uid": "extension_uid",
+          "created_at": "2023-07-13T08:13:25.564Z",
+          "updated_at": "2023-07-13T08:13:25.564Z",
+          "created_by": "created_by_uid",
+          "updated_by": "updated_by_uid",
+          "tags": [
+             "tag1",
+             "tag2"
+          ],
+          "ACL": [],
+          "_version": 1,
+          "title": "Custom widget Upload",
+          "config": {},
+          "type": "widget",
+          "scope": {
+             "content_types": [
+                "$all"
+             ]
+          },
+          "srcdoc": "<html>\n<head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"/>\n    <script src=\"https://unpkg.com/@contentstack/ui-extensions-sdk@2.1.1/dist/ui-extension-sdk.js\"><\/script>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"https://unpkg.com/@contentstack/ui-extensions-sdk@2.1.1/dist/ui-extension-sdk.css\">\n<\/head>\n<body>\n    <input type=\"color\" id=\"html5colorpicker\" onchange=\"colorChange()\">\n    <script>\n      // initialise Field Extension \n      window.extensionField = {};\n      // find color input element \n      var colorPickerElement = document.getElementById(\"html5colorpicker\");\n      ContentstackUIExtension.init().then(function(extension) {\n          // make extension object globally available\n          extensionField = extension;\n          // Get current color field value from Contentstack and update the color picker input element\n          colorPickerElement.value = extensionField.field.getData();\n      }).catch(function(error) {\n          console.log(error);\n      });\n        // On color change event, pass new value to Contentstack\n        function colorChange(){\n          extensionField.field.setData(colorPickerElement.value);      \n        }        \n    <\/script>\n<\/body>\n<\/html>"
+       },
+       {
+          "uid": "extension_uid",
+          "created_at": "2023-07-13T08:13:11.302Z",
+          "updated_at": "2023-07-13T08:13:11.302Z",
+          "created_by": "created_by_uid",
+          "updated_by": "updated_by_uid",
+          "tags": [
+             "tag1",
+             "tag2"
+          ],
+          "ACL": [],
+          "_version": 1,
+          "title": "New Custom Field source code",
+          "config": {},
+          "type": "field",
+          "data_type": "text",
+          "multiple": false,
+          "srcdoc": "Source code of the extension"
+       }
+    ]
+ }

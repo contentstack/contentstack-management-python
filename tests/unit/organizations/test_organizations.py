@@ -2,7 +2,7 @@ import json
 import os
 import unittest
 
-from contentstack_management import contentstack
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -18,7 +18,7 @@ ownership_token = credentials["ownership_token"]
 class OrganizationUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_fetch_organization(self):

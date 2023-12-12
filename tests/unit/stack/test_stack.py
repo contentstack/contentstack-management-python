@@ -1,6 +1,6 @@
 import unittest
-
-from contentstack_management import contentstack
+from urllib.parse import urlencode
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -16,20 +16,13 @@ ownership_token = credentials["ownership_token"]
 class StacksUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
         self.api_key = api_key
         self.stack = self.client.stack(api_key)
 
     def test_stacks_get(self):
         response = self.stack.fetch()
-        self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
-        self.assertEqual(response.request.method, "GET")
-        self.assertEqual(response.request.headers["Content-Type"], "application/json")
-        self.assertEqual(response.request.body, None)
-
-    def test_stacks_all(self):
-        response = self.client.stack().find()
         self.assertEqual(response.request.url, f"{self.client.endpoint}stacks")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -98,7 +91,7 @@ class StacksUnitTests(unittest.TestCase):
         response = self.stack.accept_ownership(user_id,
                                                ownership_token)
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}stacks/accept_ownership/ownership@contentstack?api_key=apikeycontentstack&uid=userid%40contentstack")
+                         f"{self.client.endpoint}stacks/accept_ownership/{ownership_token}?api_key={api_key}&uid={user_id}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)

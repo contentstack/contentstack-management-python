@@ -1,7 +1,7 @@
 import os
 import unittest
 from dotenv import load_dotenv
-from contentstack_management import contentstack
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -15,12 +15,40 @@ entry_uid = credentials["entry_uid"]
 class EntryUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_get_all_entries(self):
         response = self.client.stack(api_key).content_types(content_type_uid).entry().find()
         self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
+
+    def test_get_all_entries_with_limit(self):
+        query = self.client.stack(api_key).content_types(content_type_uid).entry()
+        query.add_param("limit", 2)
+        response = query.find()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries?limit=2")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
+
+    def test_get_all_entries_with_skip(self):
+        query = self.client.stack(api_key).content_types(content_type_uid).entry()
+        query.add_param("skip", 2)
+        response = query.find()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries?skip=2")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
+
+    def test_get_all_entries_with_limit_and_skip(self):
+        query = self.client.stack(api_key).content_types(content_type_uid).entry()
+        query.add_param("limit", 2)
+        query.add_param("skip", 2)
+        response = query.find()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries?limit=2&skip=2")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)

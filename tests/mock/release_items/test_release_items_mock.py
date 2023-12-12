@@ -2,7 +2,11 @@ import os
 import json
 import unittest
 from dotenv import load_dotenv
+<<<<<<< HEAD
 from contentstack_management import contentstack
+=======
+import contentstack_management
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -15,7 +19,11 @@ releases_uid = credentials["release_uid"]
 class ReleaseItemsMockTests(unittest.TestCase):
 
     def setUp(self):
+<<<<<<< HEAD
         self.client = contentstack.ContentstackClient(host=host)
+=======
+        self.client = contentstack_management.Client(host=host)
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
         self.client.login(username, password)
 
     def read_file(self, file_name):

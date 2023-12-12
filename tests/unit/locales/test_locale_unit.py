@@ -1,7 +1,7 @@
 import os
 import unittest
 from dotenv import load_dotenv
-from contentstack_management import contentstack
+import contentstack_management
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -14,7 +14,7 @@ locale_code = credentials["locale_code"]
 class LocaleUnitTests(unittest.TestCase):
 
     def setUp(self):
-        self.client = contentstack.ContentstackClient(host=host)
+        self.client = contentstack_management.Client(host=host)
         self.client.login(username, password)
 
     def test_get_all_locale(self):
@@ -28,7 +28,7 @@ class LocaleUnitTests(unittest.TestCase):
         query = self.client.stack(api_key).locale()
         query.add_param("include_branch", True)
         response = query.find()
-        self.assertEqual(response.request.url, f"{self.client.endpoint}locales")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}locales?include_branch=True")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)

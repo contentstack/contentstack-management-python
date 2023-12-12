@@ -1,7 +1,11 @@
 import os
 import unittest
 from dotenv import load_dotenv
+<<<<<<< HEAD
 from contentstack_management import contentstack
+=======
+import contentstack_management
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -16,7 +20,11 @@ release_uid = credentials["release_uid"]
 class ReleaseApiTests(unittest.TestCase):
 
     def setUp(self):
+<<<<<<< HEAD
         self.client = contentstack.ContentstackClient(host=host)
+=======
+        self.client = contentstack_management.Client(host=host)
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
         self.client.login(username, password)
 
     def test_get_all_releases(self):
@@ -77,6 +85,7 @@ class ReleaseApiTests(unittest.TestCase):
     def test_deploy(self):
         data = {
                 "release": {
+<<<<<<< HEAD
                     "scheduled_at": "2023-09-27T13:13:13:122Z",
                     "action": "publish",
                     "environments": [
@@ -84,6 +93,10 @@ class ReleaseApiTests(unittest.TestCase):
                     ],
                     "locales": [
                         "en-us"
+=======
+                    "environments": [
+                        "development"
+>>>>>>> fff0f0fb49c9346070ad6dbf76e64808c5aeb364
                     ]
                 }
             }

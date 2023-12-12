@@ -30,14 +30,14 @@ class ReleaseItems(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack("api_key").releases("release_uid").item().find()
 
         -------------------------------
         """     
         url = f"{self.path}/items"  
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -61,15 +61,15 @@ class ReleaseItems(Parameter):
             >>>            "locale": "en-us"
             >>>        }
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases('release_uid').item().create(data)
         -------------------------------
         """
         
         data = json.dumps(data)
         url = f"{self.path}/item"
-        return self.client.post(url, headers = self.client.headers, data=data)
+        return self.client.post(url, headers = self.client.headers, data=data, params = self.params)
     
     def create_multiple(self, data: dict):
         """
@@ -98,15 +98,15 @@ class ReleaseItems(Parameter):
             >>>            "action": "publish"
             >>>        }]
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases('release_uid').item().create_multiple(data)
         -------------------------------
         """
         
         data = json.dumps(data)
         url = f"{self.path}/items"
-        return self.client.post(url, headers = self.client.headers, data=data)
+        return self.client.post(url, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict):
         """
@@ -127,8 +127,8 @@ class ReleaseItems(Parameter):
             >>>        "$all"
             >>>    ]
             >>>  }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = client.stack('api_key').releases("release_uid").item().update(data)
 
         -------------------------------
@@ -137,7 +137,7 @@ class ReleaseItems(Parameter):
         self.validate_release_uid()
         url = f"{self.path}/update_items"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self,  data: dict): 
@@ -160,8 +160,8 @@ class ReleaseItems(Parameter):
             >>>            "action": "publish"
             >>>        }]
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').releases('release_uid').item().delete(data)
 
         -------------------------------
@@ -170,7 +170,7 @@ class ReleaseItems(Parameter):
         self.validate_release_uid()
         url = f"{self.path}/items"
         data = json.dumps(data)
-        return self.client.delete(url, headers = self.client.headers, data=data)
+        return self.client.delete(url, headers = self.client.headers, data=data, params = self.params)
     
     def delete_multiple(self,  data: dict):
         """
@@ -192,17 +192,17 @@ class ReleaseItems(Parameter):
             >>>            "action": "publish_or_unpublish"
             >>>        }]
             >>>    }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(authtoken='your_authtoken')
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> result = result = client.stack('api_key').releases('release_uid').item().delete_multiple(data)
 
         -------------------------------
         """
         self.validate_release_uid()
         url = f"{self.path}/items"
-        Parameter.add_param(self, "all", True)
+        self.add_param("all", True)
         data = json.dumps(data)
-        return self.client.delete(url, headers = self.client.headers, data=data)
+        return self.client.delete(url, headers = self.client.headers, data=data, params = self.params)
     
     def validate_release_uid(self):
         if self.release_uid is None or '':

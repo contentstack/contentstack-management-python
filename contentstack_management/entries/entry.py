@@ -30,16 +30,16 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack("api_key").content_types('content_type_uid').entry().find().json()
 
         -------------------------------
         """
         
         url = f"content_types/{self.content_type_uid}/entries"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
       
     
@@ -50,9 +50,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').fetch().json()
 
         -------------------------------
@@ -60,7 +60,7 @@ class Entry(Parameter):
         if self.entry_uid is None:
             raise Exception('Entry uid is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data, locale='en-us'):
@@ -84,18 +84,18 @@ class Entry(Parameter):
             >>>                     "url": "/example"
             >>>                  }
             >>>         }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types().entry().create(data).json()
 
         -------------------------------
         """
 
         url = f"content_types/{self.content_type_uid}/entries"
-        params = {'locale': locale }
+        self.params['locale'] = locale
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, params = params, data=data)
+        return self.client.post(url, headers = self.client.headers, params = self.params, data=data)
     
     def update(self, data, locale='en-us'):
         """
@@ -117,9 +117,9 @@ class Entry(Parameter):
             >>>                    "url": "/example"
             >>>            }
             >>>         }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').update(data).json()
 
         -------------------------------
@@ -127,9 +127,9 @@ class Entry(Parameter):
         if self.entry_uid is None:
             raise Exception('Entry uid is required')
         url = url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
-        params = {'locale': locale }
+        self.params['locale'] = locale
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, params = params, data=data)
+        return self.client.put(url, headers = self.client.headers, params = self.params, data=data)
     
     
     def version_naming(self, version_number, data):
@@ -152,9 +152,9 @@ class Entry(Parameter):
             >>>                    "force": true
             >>>                }
             >>>            }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').version_naming(data).json()
 
         -------------------------------
@@ -167,7 +167,7 @@ class Entry(Parameter):
             raise Exception('Body is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/versions/{version_number}/name"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers,  data=data)
+        return self.client.post(url, headers = self.client.headers,  data=data, params = self.params)
     
     def references(self):
         """
@@ -176,9 +176,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').references().json()
 
         -------------------------------
@@ -186,7 +186,7 @@ class Entry(Parameter):
         if self.entry_uid is None:
             raise Exception('Entry uid is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/references"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def languages(self):
         """
@@ -195,9 +195,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').languages().json()
 
         -------------------------------
@@ -205,7 +205,7 @@ class Entry(Parameter):
         if self.entry_uid is None:
             raise Exception('Entry uid is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/locales"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def localize(self, data, locale='en-us'):
         """
@@ -238,9 +238,9 @@ class Entry(Parameter):
             >>>                    "_version": 2
             >>>                    }
             >>>            }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').localize(data).json()
 
         -------------------------------
@@ -250,9 +250,9 @@ class Entry(Parameter):
         if data is None:
             raise Exception('Body is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
-        params = {'locale': locale }
+        self.params['locale'] = locale
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, params = params, data = data)
+        return self.client.put(url, headers = self.client.headers, params = self.params, data = data)
     
     def unlocalize(self, locale='en-us'):
         """
@@ -265,9 +265,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').unlocalize().json()
 
         -------------------------------
@@ -275,8 +275,8 @@ class Entry(Parameter):
         if self.entry_uid is None:
             raise Exception('Entry uid is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/unlocalize"
-        params = {'locale': locale }
-        return self.client.post(url, headers = self.client.headers, params = params)
+        self.params['locale'] = locale
+        return self.client.post(url, headers = self.client.headers, params = self.params)
     
     
     def delete(self):
@@ -287,9 +287,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').delete().json()
 
         -------------------------------
@@ -297,8 +297,8 @@ class Entry(Parameter):
         if self.entry_uid is None:
             raise Exception('Entry uid is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
-        params = {'force': True}
-        return self.client.delete(url, headers = self.client.headers, params = params)
+        self.params['force'] = True
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def imports(self, file_path, locale='en-us'):
         """
@@ -315,9 +315,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> file_path = "tests/resources/mock_content_types/import_content_types.json"
             >>> result = client.stack('api_key').content_types().entry('entry_uid').imports(file_path).json()
 
@@ -328,8 +328,8 @@ class Entry(Parameter):
         url = f"content_types/{self.content_type_uid}/entries/import"
         self.client.headers['Content-Type'] = "multipart/form-data"
         files = {'entry': open(f"{file_path}",'rb')}
-        params = {'locale': locale }
-        return self.client.post(url, headers = self.client.headers, params = params, files = files)
+        self.params['locale'] = locale
+        return self.client.post(url, headers = self.client.headers, params = self.params, files = files)
     
     def export(self):
         """
@@ -338,9 +338,9 @@ class Entry(Parameter):
         -------------------------------
         [Example:]
 
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types().entry('entry_uid').export().json()
 
         -------------------------------
@@ -348,7 +348,7 @@ class Entry(Parameter):
         if self.entry_uid is None:
             raise Exception('Entry uid is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/export"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def publish(self, data):
         """
@@ -370,9 +370,9 @@ class Entry(Parameter):
             >>>                "version": 1,
             >>>                "scheduled_at": "2019-02-14T18:30:00.000Z"
             >>>            }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types().entry('entry_uid').publish(data).json()
 
         -------------------------------
@@ -383,7 +383,7 @@ class Entry(Parameter):
             raise Exception('Body is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/publish"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
     
     def unpublish(self, data):
         """
@@ -406,9 +406,9 @@ class Entry(Parameter):
             >>>                "version": 1,
             >>>                "scheduled_at": "2019-02-14T18:30:00.000Z"
             >>>            }
-            >>> from contentstack_management import contentstack
-            >>> client = contentstack.client(host='host_name')
-            >>> client.login(email="email_id", password="password")
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            
             >>> result = client.stack('api_key').content_types().entry('entry_uid').unpublish().json()
 
         -------------------------------
@@ -419,7 +419,7 @@ class Entry(Parameter):
             raise Exception('Body is required')
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/unpublish"
         data = json.dumps(data)
-        return self.client.post(url, headers = self.client.headers, data = data)
+        return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
     
     
     
