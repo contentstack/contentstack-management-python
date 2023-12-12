@@ -12,7 +12,7 @@
 
 ## v1.0.0
 
-#### Date: November-23
+#### Date: October-23
 
 ### Initial Release
 
