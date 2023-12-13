@@ -25,6 +25,34 @@ class EntryUnitTests(unittest.TestCase):
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
+    def test_get_all_entries_with_limit(self):
+        query = self.client.stack(api_key).content_types(content_type_uid).entry()
+        query.add_param("limit", 2)
+        response = query.find()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries?limit=2")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
+
+    def test_get_all_entries_with_skip(self):
+        query = self.client.stack(api_key).content_types(content_type_uid).entry()
+        query.add_param("skip", 2)
+        response = query.find()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries?skip=2")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
+
+    def test_get_all_entries_with_limit_and_skip(self):
+        query = self.client.stack(api_key).content_types(content_type_uid).entry()
+        query.add_param("limit", 2)
+        query.add_param("skip", 2)
+        response = query.find()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries?limit=2&skip=2")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
+
 
     def test_get_a_entry(self):
         response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).fetch()

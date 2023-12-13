@@ -34,7 +34,7 @@ class GlobalFields(Parameter):
             >>> result = client.stack("api_key").global_fields('global_field_uid').find().json()
         -------------------------------
         """
-        return self.client.get(_path, headers=self.client.headers)
+        return self.client.get(_path, headers=self.client.headers, params = self.params)
 
     def fetch(self):
         """
@@ -50,7 +50,7 @@ class GlobalFields(Parameter):
         -------------------------------
         """
         url = f"{_path}/{self.global_field_uid}"
-        return self.client.get(url, headers=self.client.headers)
+        return self.client.get(url, headers=self.client.headers, params = self.params)
 
     def create(self, data):
         """
@@ -74,7 +74,7 @@ class GlobalFields(Parameter):
         -------------------------------
         """
         data = json.dumps(data)
-        return self.client.post(_path, headers=self.client.headers, data=data)
+        return self.client.post(_path, headers=self.client.headers, data=data, params = self.params)
 
     def update(self, data):
         """

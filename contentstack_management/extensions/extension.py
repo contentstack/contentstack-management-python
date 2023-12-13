@@ -36,7 +36,7 @@ class Extension(Parameter):
             >>> result = client.stack("api_key").extension().find().json()
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -53,7 +53,7 @@ class Extension(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.extension_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def upload(self, data: dict):
@@ -90,7 +90,7 @@ class Extension(Parameter):
         }
         content_type, body = self.encode_multipart_formdata(fields)
         self.client.headers['Content-Type'] = content_type
-        return self.client.post(self.path, headers = self.client.headers, data = body)
+        return self.client.post(self.path, headers = self.client.headers, data = body, params = self.params)
     
     def create(self, data: dict):
         """
@@ -119,7 +119,7 @@ class Extension(Parameter):
         -------------------------------
         """
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict):
         """
@@ -152,7 +152,7 @@ class Extension(Parameter):
         self.validate_uid()
         url = f"{self.path}/{self.extension_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self): 
@@ -169,7 +169,7 @@ class Extension(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.extension_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def validate_uid(self):
          if self.extension_uid is None or '':

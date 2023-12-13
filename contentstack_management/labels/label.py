@@ -37,7 +37,7 @@ class Label(Parameter):
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -64,7 +64,7 @@ class Label(Parameter):
 
         self.validate_uid()
         url = f"{self.path}/{self.label_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -96,7 +96,7 @@ class Label(Parameter):
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict, label_uid: str = None):
         """
@@ -134,7 +134,7 @@ class Label(Parameter):
         self.validate_uid()
         url = f"{self.path}/{self.label_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self, label_uid: str = None): 
@@ -159,7 +159,7 @@ class Label(Parameter):
             self.label_uid = label_uid
         self.validate_uid()
         url = f"{self.path}/{self.label_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
     def validate_uid(self):
         """

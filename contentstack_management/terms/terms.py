@@ -37,7 +37,7 @@ class Terms(Parameter):
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -66,7 +66,7 @@ class Terms(Parameter):
         self.validate_taxonomy_uid()
         self.validate_terms_uid()
         url = f"{self.path}/{self.terms_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def create(self, data: dict):
@@ -95,7 +95,7 @@ class Terms(Parameter):
         """
         
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data)
+        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
     
     def update(self, data: dict, terms_uid: str = None):
         """
@@ -129,7 +129,7 @@ class Terms(Parameter):
         self.validate_taxonomy_uid()
         url = url = f"{self.path}/{self.terms_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
     
     def delete(self, terms_uid: str = None): 
@@ -156,7 +156,7 @@ class Terms(Parameter):
         self.validate_taxonomy_uid()
         self.validate_terms_uid()
         url = f"{self.path}/{self.terms_uid}"
-        return self.client.delete(url, headers = self.client.headers)
+        return self.client.delete(url, headers = self.client.headers, params = self.params)
     
 
     def search(self, term_string: str):
@@ -180,7 +180,7 @@ class Terms(Parameter):
         self.validate_taxonomy_uid()
         self.validate_term_string(term_string)
         Parameter.add_param(self, "term", term_string)
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
     def move(self, data: dict, terms_uid: str = None):
         """
@@ -222,7 +222,7 @@ class Terms(Parameter):
         self.validate_terms_uid()
         url = f"{self.path}/{self.terms_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data)
+        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
     
 
     def ancestors(self, terms_uid: str = None):
@@ -252,7 +252,7 @@ class Terms(Parameter):
         self.validate_taxonomy_uid()
         self.validate_terms_uid()
         url = f"{self.path}/{self.terms_uid}/ancestors"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def descendants(self, terms_uid: str = None):
         """
@@ -280,7 +280,7 @@ class Terms(Parameter):
         self.validate_taxonomy_uid()
         self.validate_terms_uid()
         url = f"{self.path}/{self.terms_uid}/descendants"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
       
     def validate_taxonomy_uid(self):
         if self.taxonomy_uid is None or '':

@@ -28,7 +28,7 @@ class taxonomyUnitTests(unittest.TestCase):
         query = self.client.stack(api_key).taxonomy()
         query.add_param("include_branch", True)
         response = query.find()
-        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies?include_branch=True")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)

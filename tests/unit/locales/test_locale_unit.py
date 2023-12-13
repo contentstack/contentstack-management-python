@@ -28,7 +28,7 @@ class LocaleUnitTests(unittest.TestCase):
         query = self.client.stack(api_key).locale()
         query.add_param("include_branch", True)
         response = query.find()
-        self.assertEqual(response.request.url, f"{self.client.endpoint}locales")
+        self.assertEqual(response.request.url, f"{self.client.endpoint}locales?include_branch=True")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)

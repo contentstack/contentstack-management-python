@@ -37,7 +37,7 @@ class Auditlog(Parameter):
 
         -------------------------------
         """  
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -56,7 +56,7 @@ class Auditlog(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.log_item_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     def validate_uid(self):
         if self.log_item_uid is None or '':

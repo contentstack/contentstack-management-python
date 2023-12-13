@@ -38,7 +38,7 @@ class PublishQueue(Parameter):
 
         -------------------------------
         """        
-        return self.client.get(self.path, headers = self.client.headers)
+        return self.client.get(self.path, headers = self.client.headers, params = self.params)
     
       
     
@@ -58,7 +58,7 @@ class PublishQueue(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.publish_queue_uid}"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
     def cancel(self):
@@ -80,7 +80,7 @@ class PublishQueue(Parameter):
         
         self.validate_uid()
         url = f"{self.path}/{self.publish_queue_uid}/unschedule"
-        return self.client.get(url, headers = self.client.headers)
+        return self.client.get(url, headers = self.client.headers, params = self.params)
     
     
     def validate_uid(self):
