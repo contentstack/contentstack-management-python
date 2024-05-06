@@ -3,6 +3,13 @@
 ## Content Management SDK For Python
 ---
 
+## v1.1.0
+
+#### Date: 14 May 2024
+
+- Added GCP NA region support
+---
+
 ## v1.0.1
 
 #### Date: 12 December 2023
