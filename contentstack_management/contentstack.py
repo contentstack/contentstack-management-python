@@ -14,6 +14,7 @@ class Region(Enum):
     EU = "eu"
     AZURE_EU = "azure-eu"
     AZURE_NA = "azure-na"
+    GCP_NA = "gcp-na"
 
 
 def user_agents(headers=None):
@@ -34,6 +35,9 @@ class Client:
                  **kwargs):
         self.endpoint = 'https://api.contentstack.io/v3/'
         if region is not None and host is not None and region is not Region.US.value:
+            self.endpoint = f'{scheme}{region}-{host}/{version}/'
+        if region is not None and host is None and region is not Region.US.value:
+            host = 'api.contentstack.com'
             self.endpoint = f'{scheme}{region}-{host}/{version}/'
         if host is not None and region is None:
             self.endpoint = f'{scheme}{host}/{version}/'
