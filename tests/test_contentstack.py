@@ -19,6 +19,10 @@ class ContentstackTests(unittest.TestCase):
         client = contentstack_management.Client(authtoken='your_authtoken')
         self.assertEqual('https://api.contentstack.io/v3/', client.endpoint) # Default host 'api.contentstack.io'
 
+    def test_gcp_na_region(self):
+        client = contentstack_management.Client(authtoken='your_authtoken', region='gcp-na')
+        self.assertEqual('https://gcp-na-api.contentstack.com/v3/', client.endpoint)
+
     def test_successful_get_login(self):
         client = contentstack_management.Client(host=host)
         response = client.login(username, password)
