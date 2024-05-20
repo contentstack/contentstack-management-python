@@ -3,6 +3,13 @@
 ## Content Management SDK For Python
 ---
 
+## v1.1.1
+
+#### Date: 21 May 2024
+
+- Fixed Assets upload issue.
+---
+
 ## v1.1.0
 
 #### Date: 14 May 2024
