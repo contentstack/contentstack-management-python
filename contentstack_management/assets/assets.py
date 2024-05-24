@@ -6,6 +6,8 @@ the CRUD operations that can be performed on the API
 """
 import json
 from ..common import Parameter
+import mimetypes
+import os
 
 class Assets(Parameter):
     """
@@ -142,8 +144,12 @@ class Assets(Parameter):
         """
 
         url = "assets"
-        Parameter.add_header(self, "Content-Type", "multipart/form-data")
-        files = {"asset": open(f"{file_path}",'rb')}
+        filename = os.path.basename(file_path)
+        content_type, _ = mimetypes.guess_type(file_path)
+        files = {
+            'asset[upload]': (filename, open(file_path, 'rb'), content_type)
+        }
+        self.client.headers.pop('Content-Type', None)
         return self.client.post(url, headers = self.client.headers, params = self.params, files = files)
     
     def replace(self, file_path):
