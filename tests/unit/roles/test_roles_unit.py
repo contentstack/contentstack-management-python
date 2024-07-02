@@ -109,6 +109,36 @@ class rolesUnitTests(unittest.TestCase):
                         "acl":{
                         "read":True
                         }
+                    },
+                    {
+                        "module": "taxonomy",
+                        "taxonomies": ["taxonomy_testing1"],
+                        "terms": ["taxonomy_testing1.term_test1"],
+                        "content_types": [
+                        {
+                            "uid": "$all",
+                            "acl": {
+                            "read": True,
+                            "sub_acl": {
+                                "read": True,
+                                "create": True,
+                                "update": True,
+                                "delete": True,
+                                "publish": True
+                            }
+                            }
+                        }
+                        ],
+                        "acl": {
+                        "read": True,
+                        "sub_acl": {
+                            "read": True,
+                            "create": True,
+                            "update": True,
+                            "delete": True,
+                            "publish": True
+                        }
+                        }
                     }
                     ]
                 }
