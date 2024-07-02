@@ -28,6 +28,27 @@ class rolesApiTests(unittest.TestCase):
                          f"{self.client.endpoint}roles/{role_uid}")
         self.assertEqual(response.status_code, 200)
 
+    def test_create_taxonomy(self):
+        data = {
+                "taxonomy": {
+                    "uid": "taxonomy_testing1",
+                    "name": "taxonomy_testing1",
+                    "description": "Description for Taxonomy 1"
+                }
+                }
+        response = self.client.stack(api_key).taxonomy().create(data)
+        self.assertEqual(response.status_code, 201)
+    
+    def test_create_terms(self):
+        data = {
+                "term": {
+                    "uid": "term_test1",
+                    "name": "term_test1",
+                    "parent_uid": None
+                }
+                }
+        response = self.client.stack(api_key).taxonomy("taxonomy_1").terms().create(data)
+        self.assertEqual(response.status_code, 201)
 
     def test_create(self):
         data = {
@@ -105,6 +126,36 @@ class rolesApiTests(unittest.TestCase):
                         ],
                         "acl":{
                         "read":True
+                        }
+                    },
+                    {
+                        "module": "taxonomy",
+                        "taxonomies": ["taxonomy_testing1"],
+                        "terms": ["taxonomy_testing1.term_test1"],
+                        "content_types": [
+                        {
+                            "uid": "$all",
+                            "acl": {
+                            "read": True,
+                            "sub_acl": {
+                                "read": True,
+                                "create": True,
+                                "update": True,
+                                "delete": True,
+                                "publish": True
+                            }
+                            }
+                        }
+                        ],
+                        "acl": {
+                        "read": True,
+                        "sub_acl": {
+                            "read": True,
+                            "create": True,
+                            "update": True,
+                            "delete": True,
+                            "publish": True
+                        }
                         }
                     }
                     ]
@@ -206,6 +257,14 @@ class rolesApiTests(unittest.TestCase):
         response = self.client.stack(api_key).roles(role_uid).update(data)
         self.assertEqual(response.request.url,
                          f"{self.client.endpoint}roles/{role_uid}")
+        self.assertEqual(response.status_code, 200)
+    
+    def test_delete(self):
+        response = self.client.stack(api_key).taxonomy("taxonomy_testing1").terms("term_test1").delete()
+        self.assertEqual(response.status_code, 200)
+
+    def test_delete_taxonomy(self):
+        response = self.client.stack(api_key).taxonomy("taxonomy_testing1").delete()
         self.assertEqual(response.status_code, 200)
 
 

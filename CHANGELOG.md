@@ -3,6 +3,13 @@
 ## Content Management SDK For Python
 ---
 
+## v1.2.0
+
+#### Date:  08 July 2024
+
+- Added testcases for creation of Roles with taxonomy permission.
+---
+
 ## v1.1.1
 
 #### Date: 21 May 2024
