@@ -3,6 +3,13 @@
 ## Content Management SDK For Python
 ---
 
+## v1.2.1
+
+#### Date:  22 July 2024
+
+- Package bump and fixed snyk issues
+---
+
 ## v1.2.0
 
 #### Date:  08 July 2024
