@@ -31,7 +31,7 @@ class Client:
     # TODO: DefaultCSCredential(), needs to be implemented
     def __init__(self, host: str = 'api.contentstack.io', scheme: str = 'https://',
                  authtoken: str = None , management_token=None, headers: dict = None,
-                 region: Region = Region.US.value, version='v3', timeout=2, max_retries: int = 18,
+                 region: Region = Region.US.value, version='v3', timeout=2, max_retries: int = 18, early_access: list = None,
                  **kwargs):
         self.endpoint = 'https://api.contentstack.io/v3/'
         if region is not None and host is not None and region is not Region.US.value:
@@ -43,6 +43,10 @@ class Client:
             self.endpoint = f'{scheme}{host}/{version}/'
         if headers is None:
             headers = {}
+        if early_access is not None:
+            early_access_str = ', '.join(self.early_access)
+            headers['x-header-ea'] = early_access_str
+
         if authtoken is not None:
             headers['authtoken'] = authtoken
         
