@@ -50,7 +50,10 @@ class ContentstackTests(unittest.TestCase):
                 self.assertEqual(
                     "'You are not permitted to the stack without valid password'", e.args[0])
                 
-   
+    def test_earlyaccess(self):
+        client = contentstack_management.Client(host=host, early_access=['ea1','ea2'])
+        response = client.login(username, password)
+        self.assertEqual(response.request.headers["x-header-ea"], "ea1, ea2")
 
 
 if __name__ == '__main__':
