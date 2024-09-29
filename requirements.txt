@@ -4,3 +4,4 @@ requests~=2.32.0
 pylint
 bson>=0.5.9
 requests-toolbelt>=1.0.0
+certifi>=2023.7.22 # not directly required, pinned by Snyk to avoid a vulnerability
