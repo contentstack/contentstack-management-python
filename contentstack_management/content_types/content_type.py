@@ -20,6 +20,8 @@ class ContentType(Parameter):
         self.client = client
         self.content_type_uid = content_type_uid
         self.branch = branch
+        if self.branch:
+            self.add_header('branch', branch)
         super().__init__(self.client)
 
     def find(self):
