@@ -2,6 +2,12 @@
 
 ## Content Management SDK For Python
 ---
+## v1.3.1
+
+#### Date:  06 February 2025
+
+- Added branch in header when provided as input to ContentType.
+---
 ## v1.3.0
 
 #### Date:  04 September 2024

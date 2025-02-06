@@ -16,7 +16,7 @@ def _default_user_agent():
         },
         'app': {
             'name': 'contentstack-management.python',
-            'version': '1.0.0'
+            'version': sys.version_info
         },
         'platform': {
             'name': 'python',
