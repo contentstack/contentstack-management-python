@@ -40,11 +40,12 @@ class ContentType(Parameter):
             >>> response = content_type.find()
         --------------------------------
         """
-        self.params = {
+        defaults = {
             "include_count": "false",
             "include_global_field_schema": "true",
             "include_branch": "false"
         }
+        self.params = {**defaults, **(self.params or {})}
         url = "content_types"
         return self.client.get(url, headers=self.client.headers, params=self.params)
 
@@ -64,11 +65,11 @@ class ContentType(Parameter):
             >>> response = content_type.fetch()
         --------------------------------
         """
-        self.params = {
-            "version": 1,
+        defaults = {
             "include_global_field_schema": "true",
             "include_branch": "false"
         }
+        self.params = {**defaults, **(self.params or {})}
         url = f"content_types/{self.content_type_uid}"
         return self.client.get(url, headers=self.client.headers, params=self.params)
 
@@ -296,10 +297,11 @@ class ContentType(Parameter):
             >>> response = content_type.references()
         --------------------------------
         """
-        self.params = {
+        defaults = {
             "include_global_fields": "true",
             "include_branch": "false"
         }
+        self.params = {**defaults, **(self.params or {})}
         url = f"content_types/{self.content_type_uid}/references"
         return self.client.get(url, headers=self.client.headers, params=self.params)
 

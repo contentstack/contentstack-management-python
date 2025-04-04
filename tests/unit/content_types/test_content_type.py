@@ -27,11 +27,30 @@ class ContentTypeUnitTests(unittest.TestCase):
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
+        
+    def test_get_all_content_types_with_params(self):
+        query = self.client.stack(api_key).content_types()
+        query.add_param("include_count", True)
+        response = query.find()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}content_types?include_count=True&include_global_field_schema=true&include_branch=false")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
 
     def test_get_a_content_types(self):
         response = self.client.stack(api_key).content_types(content_type_uid).fetch()
         self.assertEqual(response.request.url,
-                         f"{self.client.endpoint}content_types/{content_type_uid}?version=1&include_global_field_schema=true&include_branch=false")
+                         f"{self.client.endpoint}content_types/{content_type_uid}?include_global_field_schema=true&include_branch=false")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
+        
+    def test_get_a_content_types_with_params(self):
+        query = self.client.stack(api_key).content_types(content_type_uid)
+        query.add_param("include_branch", True)
+        response = query.fetch()
+        self.assertEqual(response.request.url,
+                         f"{self.client.endpoint}content_types/{content_type_uid}?include_global_field_schema=true&include_branch=True")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)

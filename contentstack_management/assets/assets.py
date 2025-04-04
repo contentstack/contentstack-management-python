@@ -21,6 +21,8 @@ class Assets(Parameter):
         self.client = client
         self.asset_uid = asset_uid
         self.branch = branch
+        if self.branch:
+            self.add_header('branch', branch)
         self.api_key = self.client.headers['api_key']
         super().__init__(self.client)
 
