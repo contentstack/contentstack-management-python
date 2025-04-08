@@ -2,6 +2,12 @@
 
 ## Content Management SDK For Python
 ---
+## v1.3.2
+
+#### Date:  07 April 2025
+
+- Allow users to override the query parameters.
+---
 ## v1.3.1
 
 #### Date:  06 February 2025
