@@ -352,4 +352,6 @@ fileignoreconfig:
   checksum: f38789fb171166354dd1bc452d4a137af4232465356662dce2bdbde352074d6f
 - filename: tests/unit/delivery_token/test_delivery_token_unit.py
   checksum: c7323b95249759bc67c33d3a89d3d2e8b3ed3d146b944682d451ebebe22567c0
+- filename: .github/workflows/secrets-scan.yml
+  checksum: d79ec3f3288964f7d117b9ad319a54c0ebc152e35f69be8fde95522034fdfb2a
 version: ""
