@@ -2,6 +2,12 @@
 
 ## Content Management SDK For Python
 ---
+## v1.3.3
+
+#### Date:  12 May 2025
+
+- Setuptools package version bump.
+---
 ## v1.3.2
 
 #### Date:  07 April 2025
