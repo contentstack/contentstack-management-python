@@ -69,7 +69,7 @@ __all__ = (
 )
 
 __title__ = 'contentstack-management-python'
-__author__ = 'ishaileshmishra'
+__author__ = 'dev-ex'
 __status__ = 'debug'
 __region__ = 'na'
 __version__ = '1.3.3'
