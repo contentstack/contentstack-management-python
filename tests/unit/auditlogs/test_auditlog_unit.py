@@ -1,7 +1,5 @@
-import os
 import unittest
 
-from dotenv import load_dotenv
 
 import contentstack_management
 from contentstack_management._errors import ArgumentException

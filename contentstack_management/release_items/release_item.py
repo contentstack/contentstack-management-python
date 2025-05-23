@@ -5,7 +5,6 @@ the CRUD operations that can be performed on the API """
 
 import json
 from ..common import Parameter
-from urllib.parse import quote
 from .._errors import ArgumentException
 
 class ReleaseItems(Parameter):
@@ -16,11 +15,13 @@ class ReleaseItems(Parameter):
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, client, release_uid: str):
+    def __init__(self, client, release_uid: str, headers: dict = None):
         self.client = client
         self.release_uid = release_uid
         super().__init__(self.client)
         self.path = f"releases/{self.release_uid}"
+        if headers:
+            self.add_header_dict(headers)
 
     def find(self):
         """
@@ -203,6 +204,46 @@ class ReleaseItems(Parameter):
         self.add_param("all", True)
         data = json.dumps(data)
         return self.client.delete(url, headers = self.client.headers, data=data, params = self.params)
+    
+    def move(self, data: dict):
+        """
+        The "Move items to a different Release" request allows you to move one or more items (entries and/or assets) from one Release to another Release.
+        
+        :param data: The `data` parameter is a dictionary that contains the data to be sent in the
+        request body. It will be converted to a JSON string using the `json.dumps()` function before
+        being sent in the request
+        :type data: dict
+        :return: the result of the `post` method call on the `self.client` object.
+
+        -------------------------------
+        [Example:]
+            >>> data ={
+            >>>        "release_uid": "targe_release_uid",
+            >>>        "item": [
+            >>>            {
+            >>>                "uid": "entry_uid",
+            >>>                "locale": "en-us"
+            >>>            },
+            >>>            {
+            >>>                "uid": "entry_uid",
+            >>>                "locale": "en-us",
+            >>>                "variant_id": "entry_variant_id"
+            >>>            }
+            >>>        ]
+            >>>    }
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> result = result = client.stack('api_key').releases('release_uid').item().move(data)
+
+        -------------------------------
+        """
+        
+        self.validate_release_uid()
+        url = f"{self.path}/items/move"
+        data = json.dumps(data)
+        return self.client.post(url, headers = self.client.headers, data=data, params = self.params)
+    
+    
     
     def validate_release_uid(self):
         if self.release_uid is None or '':
