@@ -1,4 +1,3 @@
-import os
 import unittest
 import contentstack_management
 from tests.cred import get_credentials
@@ -53,7 +52,7 @@ class AssetsApiTests(unittest.TestCase):
             self.assertEqual(response.request.method, "GET")
 
     def test_upload(self):
-        file_path = f"tests/resources/mock_assets/chaat.jpeg"
+        file_path = "tests/resources/mock_assets/chaat.jpeg"
         response = self.client.stack(api_key).assets().upload(file_path)
         if response.status_code == 201:
             self.assertEqual(response.status_code, 201)
@@ -61,7 +60,7 @@ class AssetsApiTests(unittest.TestCase):
             self.assertEqual(response.request.method, "POST")
 
     def test_replace(self):
-        file_path = f"tests/resources/mock_assets/chaat.jpeg"
+        file_path = "tests/resources/mock_assets/chaat.jpeg"
         response = self.client.stack(api_key).assets(asset_uid).replace(file_path)
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)

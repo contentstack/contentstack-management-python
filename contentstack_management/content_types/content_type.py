@@ -340,7 +340,7 @@ class ContentType(Parameter):
             >>> response = content_type.imports()
         --------------------------------
         """
-        url = f"content_types/import"
+        url = "content_types/import"
         self.client.headers['Content-Type'] = "multipart/form-data"
         files = {'content_type': open(f"{file_path}", 'rb')}
         return self.client.post(url, headers=self.client.headers, params=self.params, files=files)

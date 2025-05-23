@@ -1,4 +1,3 @@
-import contentstack_management
 from enum import Enum
 from ._api_client import _APIClient
 from contentstack_management.organizations import organization

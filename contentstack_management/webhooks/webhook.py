@@ -5,7 +5,6 @@ the CRUD operations that can be performed on the API """
 
 import json
 from ..common import Parameter
-from urllib.parse import quote
 
 class Webhook(Parameter):
     """
@@ -20,7 +19,7 @@ class Webhook(Parameter):
         self.webhook_uid = webhook_uid
         super().__init__(self.client)
 
-        self.path = f"webhooks"
+        self.path = "webhooks"
 
     def find(self):
         """

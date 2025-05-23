@@ -63,7 +63,7 @@ class UserMockTests(unittest.TestCase):
         self.assertEqual(mock_user_data['notice'], response['notice'])
 
     def test_request_password(self):
-        url = f"user/forgot_password"
+        url = "user/forgot_password"
         act_data = {
             "user": {
                 "email": "john.doe@contentstack.com"
@@ -75,7 +75,7 @@ class UserMockTests(unittest.TestCase):
         self.assertEqual(mock_user_data['notice'], response['notice'])
 
     def test_reset_password(self):
-        url = f"user/reset_password"
+        url = "user/reset_password"
         act_data = {
             "user": {
                 "reset_password_token": "abcdefghijklmnop1234567890",

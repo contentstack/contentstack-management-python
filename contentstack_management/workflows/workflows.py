@@ -5,7 +5,6 @@ the CRUD operations that can be performed on the API """
 
 import json
 from ..common import Parameter
-from urllib.parse import quote
 
 class Workflows(Parameter):
     """
@@ -20,7 +19,7 @@ class Workflows(Parameter):
         self.workflow_uid = workflow_uid
         super().__init__(self.client)
 
-        self.path = f"workflows"
+        self.path = "workflows"
 
     def find(self):
         """
@@ -593,7 +592,7 @@ class Workflows(Parameter):
 
         -------------------------------
         """
-        url = f"user/assignments"
+        url = "user/assignments"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
 

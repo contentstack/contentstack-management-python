@@ -1,8 +1,5 @@
-import os
 import unittest
-import json
 import contentstack_management
-from contentstack_management.common import Parameter
 from tests.cred import get_credentials
 
 credentials = get_credentials()
@@ -54,13 +51,13 @@ class AssetsUnitTests(unittest.TestCase):
         self.assertEqual(response.request.body, None)
 
     def test_upload(self):
-        file_path = f"tests/resources/mock_assets/chaat.jpeg"
+        file_path = "tests/resources/mock_assets/chaat.jpeg"
         response = self.client.stack(api_key).assets().upload(file_path)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets")
         self.assertEqual(response.request.method, "POST")
 
     def test_replace(self):
-        file_path = f"tests/resources/mock_assets/chaat.jpeg"
+        file_path = "tests/resources/mock_assets/chaat.jpeg"
         response = self.client.stack(api_key).assets(asset_uid).replace(file_path)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}")
         self.assertEqual(response.request.method, "PUT")

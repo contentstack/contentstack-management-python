@@ -1,7 +1,5 @@
-import os
 import unittest
 
-from dotenv import load_dotenv
 import contentstack_management
 from tests.cred import get_credentials
 

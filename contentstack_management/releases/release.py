@@ -5,7 +5,6 @@ the CRUD operations that can be performed on the API """
 
 import json
 from ..common import Parameter
-from urllib.parse import quote
 from .._errors import ArgumentException
 from ..release_items.release_item import ReleaseItems
 
@@ -14,11 +13,14 @@ class Releases(Parameter):
     You can define a “Release” as a set of entries and assets that needs to be deployed (published or unpublished) all at once to a particular environment.
     """
 
-    def __init__(self, client, release_uid: str):
+    def __init__(self, client, release_uid: str, headers: dict = None):
         self.client = client
         self.release_uid = release_uid
         super().__init__(self.client)
         self.path = "releases"
+        if headers:
+            self.add_header_dict(headers)
+        
 
     def find(self):
         """
@@ -192,8 +194,8 @@ class Releases(Parameter):
          if self.release_uid is None or '':
             raise ArgumentException("Releases Uid is required")
          
-    def item(self):
+    def item(self, headers: dict = None):
             self.validate_uid()
-            return ReleaseItems(self.client, self.release_uid)
+            return ReleaseItems(self.client, self.release_uid, headers)
     
          

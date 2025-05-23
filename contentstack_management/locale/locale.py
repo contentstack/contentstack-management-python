@@ -5,7 +5,6 @@ the CRUD operations that can be performed on the API """
 
 import json
 from ..common import Parameter
-from urllib.parse import quote
 from .._errors import ArgumentException
 
 class Locale(Parameter):

@@ -1,5 +1,4 @@
 import unittest
-from urllib.parse import urlencode
 import contentstack_management
 from tests.cred import get_credentials
 
