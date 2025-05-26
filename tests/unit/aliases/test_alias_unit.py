@@ -1,4 +1,3 @@
-import os
 import unittest
 import contentstack_management
 from tests.cred import get_credentials

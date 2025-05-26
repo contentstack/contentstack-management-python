@@ -227,4 +227,96 @@ class BulkOperation(Parameter):
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
     
+    def add_items(self, data: dict, headers: dict = None):
+        """
+        The Add items to bulk operation request allows you to add multiple entries and assets to a bulk operation.
+        
+        :return: The `add_items` method is returning the result of the `post` request made by the
+        `client.post` method.
+        -------------------------------
+            [Example:]
+                >>> data = {
+                >>>        "release": "release_uid"
+                >>>        "action": "publish",
+                >>>        "locale": ["en-us", "hi-in"]
+                >>>        "reference": true
+                >>>        "items": [
+                >>>            {
+                >>>            "uid": "blt63177c0f00f20b61",
+                >>>            "content_type_uid": "my_blog"
+                >>>            }
+                >>>        ]
+                >>>  }
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
+                >>> result = client.stack('api_key').bulk_operation().add_items(data).json()
+
+        -------------------------------
+        """
+        if headers is not None:
+            self.client.headers.update(headers)
+        url = f"{self.path}/release/items"
+        data = json.dumps(data)
+        return self.client.post(url, headers = self.client.headers, data = data, params=self.params)
+    
+    def update_items(self, data: dict, headers: dict = None):
+        """
+        The update items to bulk operation request allows you to update multiple entries and assets to a bulk operation.
+        
+        :return: The `update_items` method is returning the result of the `put` request made by the
+        `client.post` method.
+        -------------------------------
+            [Example:]
+                >>> data = {
+                >>>        "release": "release_uid",
+                >>>        "items": [
+                >>>            {
+                >>>                "uid": "entry_uid",
+                >>>                "locale": "en-us"
+                >>>            },
+                >>>            {
+                >>>                "uid": "entry_uid",
+                >>>                "locale": "en-us",
+                >>>                "variant_id": "entry_variant_id"
+                >>>            }
+                >>>        ]
+                >>>        or
+                >>>        [ '$all' ]
+                >>>    }
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
+                >>> result = client.stack('api_key').bulk_operation().update_items(data).json()
+
+        -------------------------------
+        """
+        if headers is not None:
+            self.client.headers.update(headers)
+        url = f"{self.path}/release/update_items"
+        data = json.dumps(data)
+        return self.client.put(url, headers = self.client.headers, data = data, params=self.params)
+    
+    def job_status(self, job_uid: str, headers: dict = None):
+        """
+        The Job status request allows you to get the status of a bulk operation job.
+        
+        :param job_uid: The `job_uid` parameter is a string that represents the unique identifier of the job
+        whose status you want to retrieve
+        :type job_uid: str
+        :return: The `job_status` method is returning the result of the `get` request made by the
+        `client.get` method.
+        -------------------------------
+            [Example:]
+                >>> import contentstack_management
+                >>> client = contentstack_management.Client(authtoken='your_authtoken')
+                >>> result = client.stack('api_key').bulk_operation().job_status('job_uid').json()
+
+        -------------------------------
+        """
+        if job_uid is None:
+            raise ArgumentException("job_uid", "job_uid cannot be None")
+        if headers is not None:
+            self.client.headers.update(headers)
+        url = f"{self.path}/jobs/{quote(job_uid)}"
+        return self.client.get(url, headers = self.client.headers, params=self.params)
+    
     

@@ -1,6 +1,4 @@
-import os
 import unittest
-from dotenv import load_dotenv
 import contentstack_management
 from tests.cred import get_credentials
 
@@ -99,6 +97,51 @@ class ReleaseItemsUnitTests(unittest.TestCase):
                 }]
             }
         response = self.client.stack(api_key).releases(releases_uid).item().delete_multiple(data)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}releases/{releases_uid}/items?all=True")
+        self.assertEqual(response.request.method, "DELETE")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        
+    def test_move_items(self):
+        data = {
+                "items": [{
+                    "uid": "item_uid",
+                    "version": 1,
+                    "locale": "en-us",
+                    "content_type_uid": "your_content_type_uid",
+                    "action": "publish_or_unpublish"
+                }]
+            }
+        response = self.client.stack(api_key).releases(releases_uid).item().move(data)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}releases/{releases_uid}/items/move")
+        self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        
+    def test_delete_release2(self):
+        data = {
+                "items": [{
+                    "uid": "items_uid",
+                    "version": 1,
+                    "locale": "ja-jp",
+                    "content_type_uid": "category",
+                    "action": "publish"
+                }]
+            }
+        response = self.client.stack(api_key).releases(releases_uid).item(headers={"release_version": '2.0'}).delete(data)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}releases/{releases_uid}/items")
+        self.assertEqual(response.request.method, "DELETE")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        
+    def test_delete_multiple2(self):
+        data = {
+                "items": [{
+                    "uid": "item_uid",
+                    "locale": "en-us",
+                    "version": 1,
+                    "content_type_uid": "your_content_type_uid",
+                    "action": "publish_or_unpublish"
+                }]
+            }
+        response = self.client.stack(api_key).releases(releases_uid).item(headers={"release_version": '2.0'}).delete_multiple(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}releases/{releases_uid}/items?all=True")
         self.assertEqual(response.request.method, "DELETE")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")

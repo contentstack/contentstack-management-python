@@ -1,5 +1,4 @@
 import json
-from .._errors import ArgumentException
 from ..aliases.aliases import Alias
 from ..assets.assets import Assets
 from ..branches.branches import Branch
@@ -341,8 +340,8 @@ class Stack(Parameter):
     def bulk_operation(self):
             return BulkOperation(self.client)
     
-    def releases(self, release_uid: str = None):
-            return Releases(self.client, release_uid)
+    def releases(self, release_uid: str = None, headers: dict = None):
+            return Releases(self.client, release_uid, headers)
 
     def delivery_token(self, delivery_token: str = None):
             return DeliveryToken(self.client, delivery_token)
