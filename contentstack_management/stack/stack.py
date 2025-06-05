@@ -293,10 +293,8 @@ class Stack(Parameter):
         data = json.dumps(data)
         return self.client.post('stacks/unshare', headers=self.client.headers, params=self.params, data=data)
 
-    def global_fields(self, global_field_uid=None):
-        if 'api_key' not in self.client.headers:
-            raise Exception('api_key is required')
-        return GlobalFields(self.client, global_field_uid)
+    def global_fields(self, global_field_uid=None, options=None):
+        return GlobalFields(self.client, global_field_uid, options)
 
     def branch(self, branch_uid=None):
         return Branch(self.client, branch_uid)
