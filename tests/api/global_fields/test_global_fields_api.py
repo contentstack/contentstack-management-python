@@ -24,17 +24,17 @@ class GlobalFieldsApiTests(unittest.TestCase):
         return data
 
     def test_create_global_fields(self): 
-        read_mock_global_fileds_data = self.read_file("create_global_fields.json")
-        read_mock_global_fileds_data = json.loads(read_mock_global_fileds_data)
-        response = self.client.stack(api_key).global_fields().create(read_mock_global_fileds_data)
+        read_mock_global_fields_data = self.read_file("create_global_fields.json")
+        read_mock_global_fields_data = json.loads(read_mock_global_fields_data)
+        response = self.client.stack(api_key).global_fields().create(read_mock_global_fields_data)
         global_field_uid = response.data.get('uid', 'global_field_uid')
         self.assertIsNotNone(global_field_uid, "Global field UID should not be None")
         self.assertEqual(response.status_code, 201)
         
     def test_create_nested_global_fields(self): 
-        read_mock_global_fileds_data = self.read_file("create_global_fields.json")
-        read_mock_global_fileds_data = json.loads(read_mock_global_fileds_data)
-        response = self.client.stack(api_key).global_fields(options={'api_version': 3.2}).create(read_mock_global_fileds_data)
+        read_mock_global_fields_data = self.read_file("create_global_fields.json")
+        read_mock_global_fields_data = json.loads(read_mock_global_fields_data)
+        response = self.client.stack(api_key).global_fields(options={'api_version': 3.2}).create(read_mock_global_fields_data)
         global_field_uid1 = response.data.get('uid', 'global_field_uid')
         self.assertIsNotNone(global_field_uid1, "Global field UID should not be None")
         self.assertEqual(response.status_code, 201)
@@ -54,9 +54,9 @@ class GlobalFieldsApiTests(unittest.TestCase):
 
 
     def test_update_global_fields(self):
-        read_mock_global_fileds_data = self.read_file("create_global_fields.json")
-        read_mock_global_fileds_data = json.loads(read_mock_global_fileds_data)    
-        response = self.client.stack(api_key).global_fields(global_field_uid).update(read_mock_global_fileds_data)
+        read_mock_global_fields_data = self.read_file("create_global_fields.json")
+        read_mock_global_fields_data = json.loads(read_mock_global_fields_data)    
+        response = self.client.stack(api_key).global_fields(global_field_uid).update(read_mock_global_fields_data)
         if response.status_code == 200:
             self.assertEqual(response.status_code, 200)
         else:
