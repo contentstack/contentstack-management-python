@@ -354,8 +354,6 @@ fileignoreconfig:
   checksum: c7323b95249759bc67c33d3a89d3d2e8b3ed3d146b944682d451ebebe22567c0
 - filename: .github/workflows/secrets-scan.yml
   checksum: d79ec3f3288964f7d117b9ad319a54c0ebc152e35f69be8fde95522034fdfb2a
-version: ""
-fileignoreconfig:
 - filename: tests/api/global_fields/test_global_fields_api.py
   checksum: 1cd57383fcad33cfaddc03aec9a7ee3e85b27de35e4545462fca33e74768e812
 - filename: tests/unit/global_fields/test_global_fields_unittest.py
