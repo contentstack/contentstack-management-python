@@ -23,7 +23,7 @@ class GlobalFields(Parameter):
         self.global_field_uid = global_field_uid
         self.options = options
         super().__init__(self.client)
-        if self.options and'api_version' in self.options:
+        if self.options and 'api_version' in self.options:
             Parameter.add_header(self, 'api_version', str(self.options['api_version']))
 
     def find(self):
