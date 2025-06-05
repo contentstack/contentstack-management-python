@@ -358,4 +358,6 @@ fileignoreconfig:
   checksum: 1cd57383fcad33cfaddc03aec9a7ee3e85b27de35e4545462fca33e74768e812
 - filename: tests/unit/global_fields/test_global_fields_unittest.py
   checksum: 9bb05624cf1dadb770b3cf17fbfe915cf3133d622110da30a7dfebdeab0a315c
+- filename: tests/api/global_fields/test_global_fields_api.py
+  checksum: ef69455a51168ea34d62a68caea0984504d3feeafb78010947fa99d7c54d9e9c
 version: "1.0"
