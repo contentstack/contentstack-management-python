@@ -2,6 +2,12 @@
 
 ## Content Management SDK For Python
 ---
+## v1.5.0
+
+#### Date:  09 June 2025
+
+- Added Nested Global fields support.
+---
 ## v1.4.0
 
 #### Date:  26 May 2025
