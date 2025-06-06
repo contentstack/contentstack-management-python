@@ -69,10 +69,10 @@ __all__ = (
 )
 
 __title__ = 'contentstack-management-python'
-__author__ = 'ishaileshmishra'
+__author__ = 'dev-ex'
 __status__ = 'debug'
 __region__ = 'na'
-__version__ = '1.3.3'
+__version__ = '1.4.0'
 __host__ = 'api.contentstack.io'
 __protocol__ = 'https://'
 __api_version__ = 'v3'

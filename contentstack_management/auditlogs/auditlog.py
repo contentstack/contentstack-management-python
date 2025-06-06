@@ -3,9 +3,7 @@ which is the endpoint for the RESTFUL API that we'll be interacting with.
 The create(), read(), update(), and delete() methods each correspond to 
 the CRUD operations that can be performed on the API """
 
-import json
 from ..common import Parameter
-from urllib.parse import quote
 from .._errors import ArgumentException
 
 class Auditlog(Parameter):
