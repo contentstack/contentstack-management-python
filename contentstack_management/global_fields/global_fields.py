@@ -18,10 +18,13 @@ class GlobalFields(Parameter):
     methods each correspond to the CRUD 
     operations that can be performed on the API """
 
-    def __init__(self, client, global_field_uid=None):
+    def __init__(self, client, global_field_uid=None, options=None):
         self.client = client
         self.global_field_uid = global_field_uid
+        self.options = options
         super().__init__(self.client)
+        if self.options and 'api_version' in self.options:
+            Parameter.add_header(self, 'api_version', str(self.options['api_version']))
 
     def find(self):
         """
@@ -34,7 +37,12 @@ class GlobalFields(Parameter):
             >>> result = client.stack("api_key").global_fields('global_field_uid').find().json()
         -------------------------------
         """
-        return self.client.get(_path, headers=self.client.headers, params = self.params)
+        response = self.client.get(_path, headers=self.client.headers, params = self.params)
+        # Remove the api_version header after request
+        if self.options and 'api_version' in self.options:
+            self.client.headers.pop('api_version', None)
+        
+        return response
 
     def fetch(self):
         """
@@ -50,7 +58,12 @@ class GlobalFields(Parameter):
         -------------------------------
         """
         url = f"{_path}/{self.global_field_uid}"
-        return self.client.get(url, headers=self.client.headers, params = self.params)
+        response =  self.client.get(url, headers=self.client.headers, params = self.params)
+        # Remove the api_version header after request
+        if self.options and 'api_version' in self.options:
+            self.client.headers.pop('api_version', None)
+        
+        return response
 
     def create(self, data):
         """
@@ -74,7 +87,12 @@ class GlobalFields(Parameter):
         -------------------------------
         """
         data = json.dumps(data)
-        return self.client.post(_path, headers=self.client.headers, data=data, params = self.params)
+        response = self.client.post(_path, headers=self.client.headers, data=data, params = self.params)
+        # Remove the api_version header after request
+        if self.options and 'api_version' in self.options:
+            self.client.headers.pop('api_version', None)
+        
+        return response
 
     def update(self, data):
         """
@@ -99,7 +117,12 @@ class GlobalFields(Parameter):
         """
         url = f"{_path}/{self.global_field_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers=self.client.headers, params=self.params, data=data)
+        response = self.client.put(url, headers=self.client.headers, params=self.params, data=data)
+        # Remove the api_version header after request
+        if self.options and 'api_version' in self.options:
+            self.client.headers.pop('api_version', None)
+        
+        return response
 
     def delete(self):
         """
@@ -114,7 +137,12 @@ class GlobalFields(Parameter):
         -------------------------------
         """
         url = f"{_path}/{self.global_field_uid}"
-        return self.client.delete(url, headers=self.client.headers, params=self.params)
+        response = self.client.delete(url, headers=self.client.headers, params=self.params)
+        # Remove the api_version header after request
+        if self.options and 'api_version' in self.options:
+            self.client.headers.pop('api_version', None)
+        
+        return response
 
     def imports(self, file_path):
         """
@@ -131,7 +159,12 @@ class GlobalFields(Parameter):
         """
         self.client.headers['Content-Type'] = "multipart/form-data"
         files = {'global_field': open(f"{file_path}", 'rb')}
-        return self.client.post('global_fields/import', headers=self.client.headers, params=self.params, files=files)
+        response = self.client.post('global_fields/import', headers=self.client.headers, params=self.params, files=files)
+        # Remove the api_version header after request
+        if self.options and 'api_version' in self.options:
+            self.client.headers.pop('api_version', None)
+        
+        return response
 
     def export(self):
         """
@@ -148,4 +181,9 @@ class GlobalFields(Parameter):
         if self.global_field_uid is None or '':
             raise Exception('global_field_uid is required')
         url = f"{_path}/{self.global_field_uid}/export"
-        return self.client.get(url, headers=self.client.headers, params=self.params)
+        response = self.client.get(url, headers=self.client.headers, params=self.params)
+        # Remove the api_version header after request
+        if self.options and 'api_version' in self.options:
+            self.client.headers.pop('api_version', None)
+        
+        return response

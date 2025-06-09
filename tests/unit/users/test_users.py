@@ -53,7 +53,7 @@ class UserUnitTests(unittest.TestCase):
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_request_password(self):
-        url = f"user/forgot_password"
+        url = "user/forgot_password"
         act_data = {
             "user": {
                 "email": username
@@ -65,7 +65,7 @@ class UserUnitTests(unittest.TestCase):
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_reset_password(self):
-        url = f"user/reset_password"
+        url = "user/reset_password"
         act_data = {
             "user": {
                 "reset_password_token": "****",

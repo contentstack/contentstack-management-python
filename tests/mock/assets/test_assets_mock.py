@@ -1,4 +1,3 @@
-import os
 import unittest
 import json
 import contentstack_management
@@ -49,12 +48,12 @@ class AssetsMockTests(unittest.TestCase):
         self.assertEqual(asset_uid, response["assets"]["uid"])
 
     def test_upload(self):
-        file_path = f"tests/mock/resources/mock_assets/image.jpg"
+        file_path = "tests/mock/resources/mock_assets/image.jpg"
         response = self.client.stack(api_key).assets().upload(file_path).json()
         self.assertEqual("Asset created successfully.", response['notice'])
 
     def test_replace(self):
-        file_path = f"tests/mock/resources/mock_assets/image.jpg"
+        file_path = "tests/mock/resources/mock_assets/image.jpg"
         response = self.client.stack(api_key).assets(asset_uid).replace(file_path).json()
         self.assertEqual("Asset updated successfully.", response['notice'])
 

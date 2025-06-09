@@ -354,4 +354,18 @@ fileignoreconfig:
   checksum: c7323b95249759bc67c33d3a89d3d2e8b3ed3d146b944682d451ebebe22567c0
 - filename: .github/workflows/secrets-scan.yml
   checksum: d79ec3f3288964f7d117b9ad319a54c0ebc152e35f69be8fde95522034fdfb2a
-version: ""
+- filename: tests/api/global_fields/test_global_fields_api.py
+  checksum: 1cd57383fcad33cfaddc03aec9a7ee3e85b27de35e4545462fca33e74768e812
+- filename: tests/unit/global_fields/test_global_fields_unittest.py
+  checksum: 9bb05624cf1dadb770b3cf17fbfe915cf3133d622110da30a7dfebdeab0a315c
+- filename: tests/api/global_fields/test_global_fields_api.py
+  checksum: ef69455a51168ea34d62a68caea0984504d3feeafb78010947fa99d7c54d9e9c
+- filename: tests/unit/bulk_operations/test_bulk_releases_unit.py
+  checksum: 6f21d8928139fe511b7477d25276c3d73d0f500d5b489ac69939f34f5ae6cad9
+- filename: tests/api/global_fields/test_global_fields_api.py
+  checksum: ef69455a51168ea34d62a68caea0984504d3feeafb78010947fa99d7c54d9e9c
+- filename: tests/unit/release_items/test_release_items_unit.py
+  checksum: f92e78bc9aa8fcdf4cf8490eaa81c7ce8ce518767d9becf1393e847cc2ee12c4
+- filename: tests/unit/global_fields/test_global_fields_unittest.py
+  checksum: 46297a6fbf321dfe4b85a3d2c1089614af8c9590d8352238c800ad69955b4b6a
+version: "1.0"
