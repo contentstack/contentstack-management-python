@@ -1,0 +1,29 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🚀 Running pre-push checks..."
+
+# Run tests to ensure code quality
+echo "🧪 Running tests..."
+if ! python -m pytest tests/ -v; then
+    echo "❌ Tests failed. Please fix before pushing."
+    exit 1
+fi
+
+# Run coverage check
+echo "📊 Checking test coverage..."
+if ! python -m pytest --cov=contentstack_management --cov-report=term-missing tests/; then
+    echo "❌ Coverage check failed. Please improve test coverage."
+    exit 1
+fi
+
+# Run security scan on dependencies
+if [ -n "$SNYK_TOKEN" ]; then
+    echo "🔍 Running comprehensive Snyk scan..."
+    if ! snyk test --severity-threshold=high; then
+        echo "❌ High severity vulnerabilities found. Please fix before pushing."
+        exit 1
+    fi
+fi
+
+echo "✅ All pre-push checks passed!"

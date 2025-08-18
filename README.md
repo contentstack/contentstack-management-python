@@ -90,6 +90,32 @@ asset = client().stack(api_key='api_key').assets()
 result = asset.upload(asset)
 ```
 
+### Development Setup
+
+This repository includes Husky-style pre-commit hooks for security scanning and code quality checks. To set up the development environment:
+
+```bash
+# Install required tools
+brew install talisman
+brew install snyk/tap/snyk
+
+# Set up Snyk authentication
+export SNYK_TOKEN=your_snyk_token_here
+snyk auth
+
+# Install git hooks
+chmod +x .husky/pre-commit .husky/pre-push .husky/hooks/*.sh .husky/hooks/*.py
+cp .husky/pre-commit .git/hooks/pre-commit
+cp .husky/pre-push .git/hooks/pre-push
+chmod +x .git/hooks/pre-commit .git/hooks/pre-push
+```
+
+### Security Features
+
+- **Talisman**: Detects secrets and sensitive data in commits
+- **Snyk**: Scans Python dependencies for vulnerabilities
+- **Code Quality**: Black, isort, flake8 for consistent code style
+
 ### Helpful Links
 
 -   [Contentstack Website](https://www.contentstack.com/)
