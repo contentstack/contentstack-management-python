@@ -2,6 +2,13 @@
 
 ## Content Management SDK For Python
 ---
+## v1.5.0
+
+#### Date:  25 August 2025
+
+- Variants feature support.
+
+---
 ## v1.4.0
 
 #### Date:  09 June 2025

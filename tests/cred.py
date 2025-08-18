@@ -40,6 +40,8 @@ default_delivery_token_uid = "delivery_token_uid" #default delivery token uid
 default_management_token_uid = "management_token_uid" #default management token uid
 default_publish_queue_uid = "publish_queue_uid" # default publish queue uid
 default_extension_uid = "extension_uid" # default publish queue uid
+default_variant_group_uid = "variant_group_uid" # default variant group uid
+default_variant_uid = "variant_uid" # default variant uid
 
 def get_credentials():
     load_dotenv()
@@ -85,6 +87,8 @@ def get_credentials():
         "delivery_token_uid": os.getenv("DELIVERY_TOKEN_UID", default_delivery_token_uid),
         "management_token_uid": os.getenv("MANAGEMENT_TOKEN_UID", default_management_token_uid),
         "publish_queue_uid": os.getenv("PUBLISH_QUEUE_UID", default_publish_queue_uid),
-        "extension_uid": os.getenv("EXTENSION_UID", default_extension_uid)
+        "extension_uid": os.getenv("EXTENSION_UID", default_extension_uid),
+        "variant_group_uid": os.getenv("VARIANT_GROUP_UID", default_variant_group_uid),
+        "variant_uid": os.getenv("VARIANT_UID", default_variant_uid)
     }
     return credentials

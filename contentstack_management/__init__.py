@@ -16,6 +16,7 @@ from .roles.roles import Roles
 from .auditlogs.auditlog import Auditlog
 from .environments.environment import Environment
 from .entries.entry import Entry
+from .entry_variants.entry_variants import EntryVariants
 from .contentstack import Client, Region
 from ._api_client import _APIClient
 from .common import Parameter
@@ -31,6 +32,8 @@ from .delivery_token.delivery_token import DeliveryToken
 from .management_token.management_token import ManagementToken
 from .publish_queue.publish_queue import PublishQueue
 from .extensions.extension import Extension
+from .variant_group.variant_group import VariantGroup
+from .variants.variants import Variants
 
 
 __all__ = (
@@ -55,6 +58,7 @@ __all__ = (
 "Auditlog",
 "Environment",
 "Entry",
+"EntryVariants",
 "Locale",
 "Taxonomy",
 "Label",
@@ -65,14 +69,16 @@ __all__ = (
 "DeliveryToken",
 "ManagementToken",
 "PublishQueue",
-"Extension"
+"Extension",
+"VariantGroup",
+"Variants"
 )
 
 __title__ = 'contentstack-management-python'
 __author__ = 'dev-ex'
 __status__ = 'debug'
 __region__ = 'na'
-__version__ = '1.4.0'
+__version__ = '1.5.0'
 __host__ = 'api.contentstack.io'
 __protocol__ = 'https://'
 __api_version__ = 'v3'

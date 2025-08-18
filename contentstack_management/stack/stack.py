@@ -20,6 +20,8 @@ from ..delivery_token.delivery_token import DeliveryToken
 from ..management_token.management_token import ManagementToken
 from ..publish_queue.publish_queue import PublishQueue
 from ..extensions.extension import Extension
+from ..variant_group.variant_group import VariantGroup
+from ..variants.variants import Variants
 
 
 class Stack(Parameter):
@@ -352,3 +354,9 @@ class Stack(Parameter):
     
     def extension(self, extension_uid: str = None):
             return Extension(self.client, extension_uid) 
+        
+    def variant_group(self, variant_group_uid: str = None):
+            return VariantGroup(self.client, variant_group_uid)
+
+    def variants(self, variant_uid: str = None):
+        return Variants(self.client, None, variant_uid)
