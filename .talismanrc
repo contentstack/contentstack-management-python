@@ -368,6 +368,8 @@ fileignoreconfig:
   checksum: f92e78bc9aa8fcdf4cf8490eaa81c7ce8ce518767d9becf1393e847cc2ee12c4
 - filename: tests/unit/global_fields/test_global_fields_unittest.py
   checksum: 46297a6fbf321dfe4b85a3d2c1089614af8c9590d8352238c800ad69955b4b6a
+- filename: .husky/pre-commit
+  checksum: 7a12030ddfea18d6f85edc25f1721fb2009df00fdd42bab66b05de25ab3e32b2
 version: "1.0"
 fileignoreconfig:
 - filename: tests/unit/variant_group/test_variant_group.py
