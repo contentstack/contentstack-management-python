@@ -2,6 +2,8 @@ fileignoreconfig:
 - filename: .github/workflows/secrets-scan.yml
   ignore_detectors:
     - filecontent
+- filename: .husky/pre-commit
+  checksum: 7a12030ddfea18d6f85edc25f1721fb2009df00fdd42bab66b05de25ab3e32b2
 
 - filename: tests/config/default.yml.enc
   checksum: f05423216fcfe17716c01932e7a87775a029ec4f1fb1314bfdf0697527e67038
@@ -368,4 +370,22 @@ fileignoreconfig:
   checksum: f92e78bc9aa8fcdf4cf8490eaa81c7ce8ce518767d9becf1393e847cc2ee12c4
 - filename: tests/unit/global_fields/test_global_fields_unittest.py
   checksum: 46297a6fbf321dfe4b85a3d2c1089614af8c9590d8352238c800ad69955b4b6a
+- filename: .husky/pre-commit
+  checksum: 7a12030ddfea18d6f85edc25f1721fb2009df00fdd42bab66b05de25ab3e32b2
+version: "1.0"
+fileignoreconfig:
+- filename: tests/unit/variant_group/test_variant_group.py
+  checksum: 7c3d5ee03ed59891c20f2447c9d6da423b28855455639f6a1f299a03c1ebe744
+- filename: tests/unit/entry_variants/test_entry_variants.py
+  checksum: 4f0d963c7e153974486af64e642dcfbf2d967448abe2344bcc3bddfb898384dc
+- filename: contentstack_management/variants/variants.py
+  checksum: c06b3471717db66b9e558c4c735a7690098839d87d96ef4b4be4c573b4a54709
+- filename: contentstack_management/entries/entry.py
+  checksum: 141933cd737709129bfe891cbbc5d19ed1435ac9611cc5fdf420087b98774ce9
+- filename: contentstack_management/entry_variants/entry_variants.py
+  checksum: a084c1b235d464def36854e662071c744b2f71abe33038ade439bbe313deea5d
+- filename: contentstack_management/variant_group/variant_group.py
+  checksum: a1d4824626aea510cd80c9b1920ede40cdc374ee9a81169811ca7980a9b67b32
+- filename: tests/unit/variants/test_variants.py
+  checksum: 866f8b27d41694d0b2a7273c842b2b2b25cab6dac5919edb7d4d658bc0aa20cb
 version: "1.0"
