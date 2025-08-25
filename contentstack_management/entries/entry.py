@@ -5,6 +5,7 @@ the CRUD operations that can be performed on the API """
 
 import json
 from ..common import Parameter
+from ..entry_variants.entry_variants import EntryVariants
 
 class Entry(Parameter):
     """
@@ -421,13 +422,58 @@ class Entry(Parameter):
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
     
-    
-    
-    
-    
+    def variants(self, variant_uid: str = None):
+        """
+        Returns an EntryVariants instance for managing variant entries.
+        
+        :param variant_uid: The `variant_uid` parameter is a string that represents the unique identifier of
+        the variant. It is used to specify which variant to work with
+        :type variant_uid: str
+        :return: EntryVariants instance for managing variant entries
+        -------------------------------
+        [Example:]
 
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> # Get all variant entries
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().query().find().json()
+            >>> # Get specific variant entry
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid').fetch().json()
+
+        -------------------------------
+        """
+        
+        return EntryVariants(self.client, self.content_type_uid, self.entry_uid, variant_uid)
     
+    def includeVariants(self, include_variants: str = 'true', variant_uid: str = None, params: dict = None):
+        """
+        The includeVariants method retrieves the details of a specific base entry with variant details.
+        
+        :param include_variants: The `include_variants` parameter is a string that specifies whether to include variants
+        :type include_variants: str
+        :param variant_uid: The `variant_uid` parameter is a string that represents the unique identifier of
+        the variant. It is used to specify which variant to include
+        :type variant_uid: str
+        :param params: The `params` parameter is a dictionary that contains query parameters to be sent with the request
+        :type params: dict
+        :return: the result of the GET request made to the specified URL.
+        -------------------------------
+        [Example:]
 
-    
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').includeVariants('true', 'variant_uid').json()
+            >>> # With parameters
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').includeVariants('true', 'variant_uid', params={'locale': 'en-us'}).json()
 
-
+        -------------------------------
+        """
+        if self.entry_uid is None:
+            raise Exception('Entry uid is required')
+        if params is not None:
+            self.params.update(params)
+        self.params['include_variants'] = include_variants
+        if variant_uid is not None and variant_uid != '':
+            self.params['variant_uid'] = variant_uid
+        url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
+        return self.client.get(url, headers = self.client.headers, params = self.params)

@@ -7,6 +7,7 @@
 # pytest --cov=contentstack
 # pytest -v --cov=contentstack --cov-report=html
 # pytest --html=tests/report/test-report.html
+# Sanity: PYTHONPATH=. pytest tests/unit/ --html=tests/report/test-report.html
 from unittest import TestLoader, TestSuite
 
 from .api.aliases.test_alias import AliaseApiTests
