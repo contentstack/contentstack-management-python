@@ -388,4 +388,10 @@ fileignoreconfig:
   checksum: a1d4824626aea510cd80c9b1920ede40cdc374ee9a81169811ca7980a9b67b32
 - filename: tests/unit/variants/test_variants.py
   checksum: 866f8b27d41694d0b2a7273c842b2b2b25cab6dac5919edb7d4d658bc0aa20cb
+- filename: tests/unit/contentstack/test_contentstack_integration.py
+  checksum: 02ba865a776ce83afb7cab6c08965ba512f696bd1daa0e39489f68ceff21ba2b
+- filename: tests/unit/contentstack/test_contentstack_utils.py
+  checksum: 344aa9e4b3ec399c581a507eceff63ff6faf56ad938475e5f4865f6cb590df68
+- filename: tests/unit/contentstack/test_contentstack.py
+  checksum: 98503cbd96cb546a19aed037a6ca28ef54fcea312efcd9bac1171e43760f6e86
 version: "1.0"
