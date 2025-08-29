@@ -27,6 +27,9 @@ from .unit.organizations.test_organizations import OrganizationUnitTests
 from .unit.stack.test_stack import StacksUnitTests
 from .unit.users.test_users import UserUnitTests
 from .unit.entry.test_entry import EntryUnitTests
+from .unit.contentstack.test_contentstack import ContentstackRegionUnitTests
+from .unit.contentstack.test_contentstack_integration import ContentstackIntegrationTests
+from .unit.contentstack.test_contentstack_utils import ContentstackUtilsTests
 
 
 def all_tests():
@@ -42,6 +45,9 @@ def all_tests():
     test_module_user_mock = TestLoader().loadTestsFromTestCase(UserMockTests)
     test_module_entry_unittest = TestLoader().loadTestsFromTestCase(EntryUnitTests)
     test_module_alias_unittest = TestLoader().loadTestsFromTestCase(AliasesUnitTests)
+    test_module_contentstack_region_unit = TestLoader().loadTestsFromTestCase(ContentstackRegionUnitTests)
+    test_module_contentstack_integration = TestLoader().loadTestsFromTestCase(ContentstackIntegrationTests)
+    test_module_contentstack_utils = TestLoader().loadTestsFromTestCase(ContentstackUtilsTests)
 
 
     TestSuite([
@@ -55,6 +61,9 @@ def all_tests():
         test_module_stacks_api,
         test_module_stacks_unit,
         test_module_entry_unittest,
-        test_module_alias_unittest
+        test_module_alias_unittest,
+        test_module_contentstack_region_unit,
+        test_module_contentstack_integration,
+        test_module_contentstack_utils
 
     ])

@@ -2,6 +2,13 @@
 
 ## Content Management SDK For Python
 ---
+## v1.6.0
+
+#### Date:  01 September 2025
+
+- AWS AU region support.
+
+---
 ## v1.5.0
 
 #### Date:  25 August 2025

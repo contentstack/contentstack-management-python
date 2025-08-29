@@ -11,9 +11,11 @@ version = '0.0.1'
 class Region(Enum):
     US = "us"
     EU = "eu"
+    AU = "au"
     AZURE_EU = "azure-eu"
     AZURE_NA = "azure-na"
     GCP_NA = "gcp-na"
+    GCP_EU = "gcp-eu"
 
 
 def user_agents(headers=None):
@@ -43,7 +45,7 @@ class Client:
         if headers is None:
             headers = {}
         if early_access is not None:
-            early_access_str = ', '.join(self.early_access)
+            early_access_str = ', '.join(early_access)
             headers['x-header-ea'] = early_access_str
 
         if authtoken is not None:
