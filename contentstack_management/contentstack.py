@@ -4,6 +4,7 @@ from contentstack_management.organizations import organization
 from contentstack_management.stack import stack
 from contentstack_management.user_session import user_session
 from contentstack_management.users import user
+from contentstack_management.oauth.oauth_handler import OAuthHandler
 
 version = '0.0.1'
 
@@ -33,7 +34,7 @@ class Client:
     def __init__(self, host: str = 'api.contentstack.io', scheme: str = 'https://',
                  authtoken: str = None , management_token=None, headers: dict = None,
                  region: Region = Region.US.value, version='v3', timeout=2, max_retries: int = 18, early_access: list = None,
-                 **kwargs):
+                 oauth_config: dict = None, **kwargs):
         self.endpoint = 'https://api.contentstack.io/v3/'
         if region is not None and host is not None and region is not Region.US.value:
             self.endpoint = f'{scheme}{region}-{host}/{version}/'
@@ -55,6 +56,19 @@ class Client:
             headers['authorization'] = management_token
         headers = user_agents(headers)
         self.client = _APIClient(endpoint=self.endpoint, headers=headers, timeout=timeout, max_retries=max_retries)
+        
+        # Initialize OAuth if configuration is provided
+        self.oauth_handler = None
+        if oauth_config:
+            self.oauth_handler = OAuthHandler(
+                app_id=oauth_config.get('app_id'),
+                client_id=oauth_config.get('client_id'),
+                redirect_uri=oauth_config.get('redirect_uri'),
+                response_type=oauth_config.get('response_type', 'code'),
+                client_secret=oauth_config.get('client_secret'),
+                scope=oauth_config.get('scope'),
+                api_client=self.client
+            )
 
         """
         :param host: Optional hostname for the API endpoint.
@@ -96,3 +110,41 @@ class Client:
 
     def stack(self, api_key: str = None):
         return stack.Stack(self.client, api_key)
+    
+    def oauth(self, app_id: str, client_id: str, redirect_uri: str, 
+              response_type: str = "code", client_secret: str = None, 
+              scope: list = None):
+        """
+        Create an OAuth handler for OAuth 2.0 authentication.
+        
+        Args:
+            app_id: Your registered App ID
+            client_id: Your OAuth Client ID
+            redirect_uri: The URL where the user is redirected after login and consent
+            response_type: OAuth response type (default: "code")
+            client_secret: Client secret for standard OAuth flows (optional for PKCE)
+            scope: Permissions requested (optional)
+            
+        Returns:
+            OAuthHandler instance
+            
+        Example:
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client()
+            >>> oauth_handler = client.oauth(
+            ...     app_id='your-app-id',
+            ...     client_id='your-client-id',
+            ...     redirect_uri='http://localhost:3000/callback'
+            ... )
+            >>> auth_url = oauth_handler.authorize()
+            >>> print(f"Visit this URL to authorize: {auth_url}")
+        """
+        return OAuthHandler(
+            app_id=app_id,
+            client_id=client_id,
+            redirect_uri=redirect_uri,
+            response_type=response_type,
+            client_secret=client_secret,
+            scope=scope,
+            api_client=self.client
+        )
