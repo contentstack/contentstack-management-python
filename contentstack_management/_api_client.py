@@ -54,14 +54,12 @@ class _APIClient:
         :return: the JSON response from the HTTP request.
         """
         
-        # Use OAuth interceptor if available (matching Java implementation)
         if self.oauth_interceptor and self.oauth_interceptor.is_oauth_configured():
             return self.oauth_interceptor.execute_request(
                 method, url, headers=headers, params=params, data=data, 
                 json=json_data, files=files, timeout=self.timeout
             )
         
-        # Fallback to standard requests (matching Java implementation)
         if headers is None:
             headers = {}
         headers.update(self.headers)  # Merge client headers (including authtoken) with request headers
