@@ -1,4 +1,6 @@
 from enum import Enum
+import os
+import pyotp
 from ._api_client import _APIClient
 from contentstack_management.organizations import organization
 from contentstack_management.stack import stack
@@ -36,12 +38,14 @@ class Client:
                  region: Region = Region.US.value, version='v3', timeout=2, max_retries: int = 18, early_access: list = None,
                  oauth_config: dict = None, **kwargs):
         self.endpoint = 'https://api.contentstack.io/v3/'
-        if region is not None and host is not None and region is not Region.US.value:
-            self.endpoint = f'{scheme}{region}-{host}/{version}/'
-        if region is not None and host is None and region is not Region.US.value:
-            host = 'api.contentstack.com'
-            self.endpoint = f'{scheme}{region}-{host}/{version}/'
-        if host is not None and region is None:
+        
+        if region is not None and region is not Region.US.value:
+            if host is not None and host != 'api.contentstack.io':
+                self.endpoint = f'{scheme}{region}-api.{host}/{version}/'
+            else:
+                host = 'api.contentstack.com'
+                self.endpoint = f'{scheme}{region}-{host}/{version}/'
+        elif host is not None and host != 'api.contentstack.io':
             self.endpoint = f'{scheme}{host}/{version}/'
         if headers is None:
             headers = {}
@@ -91,9 +95,36 @@ class Client:
         -------------------------------
         """
 
-    def login(self, email: str, password: str, tfa_token: str = None):
-        return user_session.UserSession(self.client).login(email, password, tfa_token)
-        pass
+    def login(self, email: str, password: str, tfa_token: str = None, mfa_secret: str = None):
+        """
+        Login to Contentstack with optional TOTP support.
+        
+        :param email: User's email address
+        :param password: User's password
+        :param tfa_token: Optional two-factor authentication token
+        :param mfa_secret: Optional MFA secret for automatic TOTP generation. 
+                          If not provided, will check MFA_SECRET environment variable
+        :return: Response object from the login request
+        """
+        final_tfa_token = tfa_token
+        
+        if not mfa_secret:
+            mfa_secret = os.getenv('MFA_SECRET')
+        
+        if mfa_secret and not tfa_token:
+            final_tfa_token = self._generate_totp(mfa_secret)
+        
+        return user_session.UserSession(self.client).login(email, password, final_tfa_token)
+
+    def _generate_totp(self, secret: str) -> str:
+        """
+        Generate a Time-Based One-Time Password (TOTP) from the provided secret.
+        
+        :param secret: The MFA secret key for TOTP generation
+        :return: The current TOTP code as a string
+        """
+        totp = pyotp.TOTP(secret)
+        return totp.now()
 
     def logout(self):
         return user_session.UserSession(client=self.client).logout()

@@ -394,9 +394,13 @@ fileignoreconfig:
 - filename: tests/unit/contentstack/test_contentstack.py
   checksum: 98503cbd96cb546a19aed037a6ca28ef54fcea312efcd9bac1171e43760f6e86
 - filename: contentstack_management/contentstack.py
-  checksum: 520f6fa236569a05579011fa67cb29381f187616d96526ecdfad5ec8255231a5
+  checksum: 721f899c44a30f9af64344175d2111481d85ee9052735a6281c204e6ba135fe5
 - filename: tests/unit/test_oauth_handler.py
   checksum: 8b6853ba64c3de4f9097ca506719c5e33c7468ae5985b8adcda3eb6461d76be5
 - filename: contentstack_management/oauth/oauth_handler.py
   checksum: e33cfd32d90c0553c4959c0d266fef1247cd0e0fe7bbe85cae98bb205e62c70e
+- filename: tests/unit/user_session/test_user_session_totp.py
+  checksum: 0db30c5a306783b10d345d73cff3c61490d7cbc47273623df47e6849c3e97002
+- filename: tests/unit/contentstack/test_totp_login.py
+  checksum: cefad0ddc1a2db1bf59d6e04501c4381acc8b44fad1e5e2e24c06e33d827c859
 version: "1.0"
