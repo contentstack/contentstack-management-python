@@ -115,7 +115,7 @@ class ContentstackIntegrationTests(unittest.TestCase):
         
         # Test non-US region with default host
         client = contentstack_management.Client(region='eu')
-        self.assertEqual(client.endpoint, 'https://eu-api.contentstack.io/v3/')
+        self.assertEqual(client.endpoint, 'https://eu-api.contentstack.com/v3/')
         
         # Skip custom host tests due to implementation issues
         # Test custom host without region
