@@ -8,25 +8,25 @@ class ContentstackRegionUnitTests(unittest.TestCase):
     def test_au_region(self):
         """Test that au region creates the correct endpoint URL"""
         client = contentstack_management.Client(authtoken='your_authtoken', region='au')
-        expected_endpoint = 'https://au-api.contentstack.io/v3/'
+        expected_endpoint = 'https://au-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_gcp_eu_region(self):
         """Test that gcp-eu region creates the correct endpoint URL"""
         client = contentstack_management.Client(authtoken='your_authtoken', region='gcp-eu')
-        expected_endpoint = 'https://gcp-eu-api.contentstack.io/v3/'
+        expected_endpoint = 'https://gcp-eu-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_azure_eu_region(self):
         """Test that azure-eu region creates the correct endpoint URL"""
         client = contentstack_management.Client(authtoken='your_authtoken', region='azure-eu')
-        expected_endpoint = 'https://azure-eu-api.contentstack.io/v3/'
+        expected_endpoint = 'https://azure-eu-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_azure_na_region(self):
         """Test that azure-na region creates the correct endpoint URL"""
         client = contentstack_management.Client(authtoken='your_authtoken', region='azure-na')
-        expected_endpoint = 'https://azure-na-api.contentstack.io/v3/'
+        expected_endpoint = 'https://azure-na-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_au_region_with_custom_host(self):
@@ -34,9 +34,9 @@ class ContentstackRegionUnitTests(unittest.TestCase):
         client = contentstack_management.Client(
             authtoken='your_authtoken', 
             region='au', 
-            host='custom.contentstack.io'
+            host='example.com'
         )
-        expected_endpoint = 'https://au-custom.contentstack.io/v3/'
+        expected_endpoint = 'https://au-api.example.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_gcp_eu_region_with_custom_host(self):
@@ -46,19 +46,19 @@ class ContentstackRegionUnitTests(unittest.TestCase):
             region='gcp-eu', 
             host='custom.contentstack.io'
         )
-        expected_endpoint = 'https://gcp-eu-custom.contentstack.io/v3/'
+        expected_endpoint = 'https://gcp-eu-api.custom.contentstack.io/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_au_region_enum_value(self):
         """Test that au region using enum value creates the correct endpoint URL"""
         client = contentstack_management.Client(authtoken='your_authtoken', region=Region.AU.value)
-        expected_endpoint = 'https://au-api.contentstack.io/v3/'
+        expected_endpoint = 'https://au-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_gcp_eu_region_enum_value(self):
         """Test that gcp-eu region using enum value creates the correct endpoint URL"""
         client = contentstack_management.Client(authtoken='your_authtoken', region=Region.GCP_EU.value)
-        expected_endpoint = 'https://gcp-eu-api.contentstack.io/v3/'
+        expected_endpoint = 'https://gcp-eu-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_au_region_with_custom_scheme(self):
@@ -68,7 +68,7 @@ class ContentstackRegionUnitTests(unittest.TestCase):
             region='au', 
             scheme='http://'
         )
-        expected_endpoint = 'http://au-api.contentstack.io/v3/'
+        expected_endpoint = 'http://au-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_gcp_eu_region_with_custom_scheme(self):
@@ -78,7 +78,7 @@ class ContentstackRegionUnitTests(unittest.TestCase):
             region='gcp-eu', 
             scheme='http://'
         )
-        expected_endpoint = 'http://gcp-eu-api.contentstack.io/v3/'
+        expected_endpoint = 'http://gcp-eu-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_au_region_with_custom_version(self):
@@ -88,7 +88,7 @@ class ContentstackRegionUnitTests(unittest.TestCase):
             region='au', 
             version='v2'
         )
-        expected_endpoint = 'https://au-api.contentstack.io/v2/'
+        expected_endpoint = 'https://au-api.contentstack.com/v2/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_gcp_eu_region_with_custom_version(self):
@@ -98,7 +98,7 @@ class ContentstackRegionUnitTests(unittest.TestCase):
             region='gcp-eu', 
             version='v2'
         )
-        expected_endpoint = 'https://gcp-eu-api.contentstack.io/v2/'
+        expected_endpoint = 'https://gcp-eu-api.contentstack.com/v2/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_au_region_headers(self):
@@ -222,13 +222,13 @@ class ContentstackRegionUnitTests(unittest.TestCase):
     def test_eu_region(self):
         """Test that eu region creates the correct endpoint URL"""
         client = contentstack_management.Client(authtoken='your_authtoken', region='eu')
-        expected_endpoint = 'https://eu-api.contentstack.io/v3/'
+        expected_endpoint = 'https://eu-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_gcp_na_region(self):
         """Test that gcp-na region creates the correct endpoint URL"""
         client = contentstack_management.Client(authtoken='your_authtoken', region='gcp-na')
-        expected_endpoint = 'https://gcp-na-api.contentstack.io/v3/'
+        expected_endpoint = 'https://gcp-na-api.contentstack.com/v3/'
         self.assertEqual(client.endpoint, expected_endpoint)
 
     def test_region_with_none_host(self):
