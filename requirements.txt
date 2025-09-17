@@ -4,3 +4,4 @@ requests>=2.32.0,<3.0.0
 pylint>=2.0.0
 bson>=0.5.9,<1.0.0
 requests-toolbelt>=1.0.0,<2.0.0
+pyotp==2.9.0

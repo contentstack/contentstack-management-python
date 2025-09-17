@@ -2,7 +2,7 @@ import requests
 
 
 class _APIClient:
-    def __init__(self, endpoint, headers, timeout=30, max_retries: int = 5):
+    def __init__(self, endpoint, headers, timeout=30, max_retries: int = 5, oauth_interceptor=None):
         """
         The function is a constructor that initializes the endpoint, headers, timeout, and max_retries
         attributes of an object.
@@ -25,6 +25,8 @@ class _APIClient:
         self.headers = headers
         self.timeout = timeout
         self.max_retries = max_retries
+        self.oauth_interceptor = oauth_interceptor
+        self.oauth = {}  # OAuth token storage
         pass
 
     def _call_request(self, method, url, headers: dict = None, params=None, data=None, json_data=None, files=None):
@@ -52,9 +54,17 @@ class _APIClient:
         :return: the JSON response from the HTTP request.
         """
         
-        # headers.update(self.headers)
+        if self.oauth_interceptor and self.oauth_interceptor.is_oauth_configured():
+            return self.oauth_interceptor.execute_request(
+                method, url, headers=headers, params=params, data=data, 
+                json=json_data, files=files, timeout=self.timeout
+            )
+        
+        if headers is None:
+            headers = {}
+        headers.update(self.headers)  # Merge client headers (including authtoken) with request headers
         response = requests.request(
-            method, url, headers=headers, params=params, data=data, json=json_data, files=files)
+            method, url, headers=headers, params=params, data=data, json=json_data, files=files, timeout=self.timeout)
         # response.raise_for_status()
         return response
 
