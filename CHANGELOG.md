@@ -1,6 +1,13 @@
 # CHANGELOG
 
 ## Content Management SDK For Python
+
+---
+## v1.7.0
+
+#### Date:  15 September 2025
+
+- OAuth 2.0 support.
 ---
 ## v1.6.0
 

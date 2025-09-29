@@ -14,7 +14,8 @@ class UserUnitTests(unittest.TestCase):
 
     def setUp(self):
         self.client = contentstack_management.Client(host=host)
-        self.client.login(username, password)
+        # Note: Login call removed to avoid network requests in unit tests
+        # The actual login is not needed for testing request structure
 
     def test_get_user(self):
         response = self.client.user().fetch()

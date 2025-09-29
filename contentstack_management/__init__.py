@@ -34,6 +34,8 @@ from .publish_queue.publish_queue import PublishQueue
 from .extensions.extension import Extension
 from .variant_group.variant_group import VariantGroup
 from .variants.variants import Variants
+from .oauth.oauth_handler import OAuthHandler
+from .oauth.oauth_interceptor import OAuthInterceptor
 
 
 __all__ = (
@@ -71,14 +73,16 @@ __all__ = (
 "PublishQueue",
 "Extension",
 "VariantGroup",
-"Variants"
+"Variants",
+"OAuthHandler",
+"OAuthInterceptor"
 )
 
 __title__ = 'contentstack-management-python'
 __author__ = 'dev-ex'
 __status__ = 'debug'
 __region__ = 'na'
-__version__ = '1.6.0'
+__version__ = '1.7.0'
 __host__ = 'api.contentstack.io'
 __protocol__ = 'https://'
 __api_version__ = 'v3'

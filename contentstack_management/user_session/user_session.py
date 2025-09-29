@@ -63,7 +63,7 @@ class UserSession:
         }
 
         if tfa_token is not None:
-            data["user"]["tf_token"] = tfa_token
+            data["user"]["tfa_token"] = tfa_token
 
         data = json.dumps(data)
         response = self.client.post(_path, headers=self.client.headers, data=data, json_data=None)
