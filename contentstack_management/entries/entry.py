@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from ..entry_variants.entry_variants import EntryVariants
+from .._messages import ENTRY_UID_REQUIRED, ENTRY_VERSION_NUMBER_REQUIRED, ENTRY_BODY_REQUIRED, ENTRY_FILE_PATH_REQUIRED
 
 class Entry(Parameter):
     """
@@ -59,7 +60,7 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
         return self.client.get(url, headers = self.client.headers, params = self.params)
         
@@ -126,7 +127,7 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         url = url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
         self.params['locale'] = locale
         data = json.dumps(data)
@@ -161,11 +162,11 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         if version_number is None:
-            raise Exception('Version Number is required')
+            raise Exception(ENTRY_VERSION_NUMBER_REQUIRED)
         if data is None:
-            raise Exception('Body is required')
+            raise Exception(ENTRY_BODY_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/versions/{version_number}/name"
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers,  data=data, params = self.params)
@@ -185,7 +186,7 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/references"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
@@ -204,7 +205,7 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/locales"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
@@ -247,9 +248,9 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         if data is None:
-            raise Exception('Body is required')
+            raise Exception(ENTRY_BODY_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
         self.params['locale'] = locale
         data = json.dumps(data)
@@ -274,7 +275,7 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/unlocalize"
         self.params['locale'] = locale
         return self.client.post(url, headers = self.client.headers, params = self.params)
@@ -296,7 +297,7 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
         self.params['force'] = True
         return self.client.delete(url, headers = self.client.headers, params = self.params)
@@ -325,7 +326,7 @@ class Entry(Parameter):
         -------------------------------
         """
         if file_path is None:
-            raise Exception('File path is required')
+            raise Exception(ENTRY_FILE_PATH_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/import"
         self.client.headers['Content-Type'] = "multipart/form-data"
         files = {'entry': open(f"{file_path}",'rb')}
@@ -347,7 +348,7 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/export"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
@@ -379,9 +380,9 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         if data is None:
-            raise Exception('Body is required')
+            raise Exception(ENTRY_BODY_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/publish"
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
@@ -415,9 +416,9 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         if data is None:
-            raise Exception('Body is required')
+            raise Exception(ENTRY_BODY_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/unpublish"
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
@@ -469,7 +470,7 @@ class Entry(Parameter):
         -------------------------------
         """
         if self.entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(ENTRY_UID_REQUIRED)
         if params is not None:
             self.params.update(params)
         self.params['include_variants'] = include_variants

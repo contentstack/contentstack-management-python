@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import TAXONOMY_UID_REQUIRED, TERMS_UID_REQUIRED, TERM_STRING_REQUIRED
 
 class Terms(Parameter):
     """
@@ -283,15 +284,15 @@ class Terms(Parameter):
       
     def validate_taxonomy_uid(self):
         if self.taxonomy_uid is None or '':
-            raise ArgumentException('Taxonomy Uid is required')
+            raise ArgumentException(TAXONOMY_UID_REQUIRED)
     
     def validate_terms_uid(self):
         if self.terms_uid is None or '':
-            raise ArgumentException('Terms Uid is required')
+            raise ArgumentException(TERMS_UID_REQUIRED)
         
     def validate_term_string(self, term_string):
         if term_string is None or '':
-            raise ArgumentException('Term String is required')
+            raise ArgumentException(TERM_STRING_REQUIRED)
         
     
     

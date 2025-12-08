@@ -7,6 +7,7 @@ import json
 from ..common import Parameter
 from .._errors import ArgumentException
 from ..variants.variants import Variants
+from .._messages import VARIANT_GROUP_UID_REQUIRED
 
 class VariantGroup(Parameter):
     """
@@ -218,4 +219,4 @@ class VariantGroup(Parameter):
         """
          
         if self.variant_group_uid is None or self.variant_group_uid == '':
-            raise ArgumentException("variant group Uid is required")
+            raise ArgumentException(VARIANT_GROUP_UID_REQUIRED)

@@ -168,7 +168,8 @@ class Client:
             ...     redirect_uri='http://localhost:3000/callback'
             ... )
             >>> auth_url = oauth_handler.authorize()
-            >>> print(f"Visit this URL to authorize: {auth_url}")
+            >>> from contentstack_management._messages import OAUTH_VISIT_URL_TO_AUTHORIZE
+            >>> print(OAUTH_VISIT_URL_TO_AUTHORIZE.format(auth_url=auth_url))
         """
         return OAuthHandler(
             app_id=app_id,

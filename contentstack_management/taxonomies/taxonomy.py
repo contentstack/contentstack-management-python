@@ -7,6 +7,7 @@ import json
 from ..common import Parameter
 from .._errors import ArgumentException
 from ..terms.terms import Terms
+from .._messages import TAXONOMY_UID_REQUIRED
 
 class Taxonomy(Parameter):
     """
@@ -145,7 +146,7 @@ class Taxonomy(Parameter):
         
     def validate_taxonomy_uid(self):
         if self.taxonomy_uid is None or '':
-            raise ArgumentException('Taxonomy Uid is required')
+            raise ArgumentException(TAXONOMY_UID_REQUIRED)
         
     def terms(self, terms_uid: str = None):
         self.validate_taxonomy_uid()
