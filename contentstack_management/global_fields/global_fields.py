@@ -4,6 +4,7 @@ The create(), read(), update(), and delete() methods each correspond to
 the CRUD operations that can be performed on the API """
 
 import json
+from .._messages import GLOBAL_FIELD_UID_REQUIRED
 
 from contentstack_management.common import Parameter
 
@@ -179,7 +180,7 @@ class GlobalFields(Parameter):
         -------------------------------
         """
         if self.global_field_uid is None or '':
-            raise Exception('global_field_uid is required')
+            raise Exception(GLOBAL_FIELD_UID_REQUIRED)
         url = f"{_path}/{self.global_field_uid}/export"
         response = self.client.get(url, headers=self.client.headers, params=self.params)
         # Remove the api_version header after request

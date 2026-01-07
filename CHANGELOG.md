@@ -3,6 +3,12 @@
 ## Content Management SDK For Python
 
 ---
+## v1.7.1
+
+#### Date:  12 January 2026
+
+- Improved Error messages.
+---
 ## v1.7.0
 
 #### Date:  15 September 2025

@@ -7,6 +7,7 @@ import json
 from ..common import Parameter
 from .._errors import ArgumentException
 from ..release_items.release_item import ReleaseItems
+from .._messages import RELEASE_UID_REQUIRED
 
 class Releases(Parameter):
     """
@@ -192,7 +193,7 @@ class Releases(Parameter):
     
     def validate_uid(self):
          if self.release_uid is None or '':
-            raise ArgumentException("Releases Uid is required")
+            raise ArgumentException(RELEASE_UID_REQUIRED)
          
     def item(self, headers: dict = None):
             self.validate_uid()

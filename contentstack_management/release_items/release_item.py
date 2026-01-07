@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import RELEASE_UID_REQUIRED
 
 class ReleaseItems(Parameter):
     """
@@ -247,7 +248,7 @@ class ReleaseItems(Parameter):
     
     def validate_release_uid(self):
         if self.release_uid is None or '':
-            raise ArgumentException('Releases Uid is required')
+            raise ArgumentException(RELEASE_UID_REQUIRED)
     
         
         

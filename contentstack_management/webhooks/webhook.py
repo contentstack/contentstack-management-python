@@ -5,6 +5,7 @@ the CRUD operations that can be performed on the API """
 
 import json
 from ..common import Parameter
+from .._messages import WEBHOOK_UID_REQUIRED, WEBHOOK_FILE_PATH_REQUIRED, WEBHOOK_EXECUTION_UID_REQUIRED
 
 class Webhook(Parameter):
     """
@@ -61,7 +62,7 @@ class Webhook(Parameter):
         -------------------------------
         """
         if self.webhook_uid is None:
-            raise Exception('Webhook uid is required')
+            raise Exception(WEBHOOK_UID_REQUIRED)
         url = f"{self.path}/{self.webhook_uid}"
         return self.client.get(url, headers = self.client.headers, params = self.params)
         
@@ -164,7 +165,7 @@ class Webhook(Parameter):
         """
         
         if self.webhook_uid is None:
-            raise Exception('Webhook uid is required')
+            raise Exception(WEBHOOK_UID_REQUIRED)
         url = f"{self.path}/{self.webhook_uid}"
         data = json.dumps(data)
         return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
@@ -188,7 +189,7 @@ class Webhook(Parameter):
         
         
         if self.webhook_uid is None:
-            raise Exception('Webhook uid is required')
+            raise Exception(WEBHOOK_UID_REQUIRED)
         if self.client.headers['Content-Type'] is not None:
             self.client.headers.pop('Content-Type')
         url = f"{self.path}/{self.webhook_uid}"
@@ -218,7 +219,7 @@ class Webhook(Parameter):
         """
         
         if file_path is None:
-            raise Exception('File path is required')
+            raise Exception(WEBHOOK_FILE_PATH_REQUIRED)
         url = f"{self.path}/import"
         self.client.headers['Content-Type'] = "multipart/form-data"
         files = {'entry': open(f"{file_path}",'rb')}
@@ -243,7 +244,7 @@ class Webhook(Parameter):
         """
         
         if self.webhook_uid is None:
-            raise Exception('Webhok uid is required')
+            raise Exception(WEBHOOK_UID_REQUIRED)
         url = f"{self.path}/{self.webhook_uid}/export"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
@@ -264,7 +265,7 @@ class Webhook(Parameter):
         """
         
         if self.webhook_uid is None:
-            raise Exception('Webhook uid is required')
+            raise Exception(WEBHOOK_UID_REQUIRED)
         url = f"{self.path}/{self.webhook_uid}/executions"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
@@ -287,7 +288,7 @@ class Webhook(Parameter):
         """
         
         if execution_uid is None:
-            raise Exception('Execution uid is required')
+            raise Exception(WEBHOOK_EXECUTION_UID_REQUIRED)
         url = f"{self.path}/{execution_uid}/retry"
         return self.client.post(url, headers = self.client.headers, params = self.params)
     
@@ -312,7 +313,7 @@ class Webhook(Parameter):
         -------------------------------
         """
         if execution_uid is None:
-            raise Exception('Execution uid is required')
+            raise Exception(WEBHOOK_EXECUTION_UID_REQUIRED)
         url = f"{self.path}/{execution_uid}/logs"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     

@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import LABEL_UID_REQUIRED
 
 class Label(Parameter):
     """
@@ -167,4 +168,4 @@ class Label(Parameter):
         """
          
         if self.label_uid is None or '':
-            raise ArgumentException("label Uid is required")
+            raise ArgumentException(LABEL_UID_REQUIRED)

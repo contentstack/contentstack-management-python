@@ -5,6 +5,7 @@ the CRUD operations that can be performed on the API """
 
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import LOG_ITEM_UID_REQUIRED
 
 class Auditlog(Parameter):
     """
@@ -58,6 +59,6 @@ class Auditlog(Parameter):
     
     def validate_uid(self):
         if self.log_item_uid is None or '':
-            raise ArgumentException('Log item Uid is required')
+            raise ArgumentException(LOG_ITEM_UID_REQUIRED)
         
     

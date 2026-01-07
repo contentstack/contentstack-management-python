@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import ROLE_UID_REQUIRED
 
 class Roles(Parameter):
     """
@@ -291,5 +292,5 @@ class Roles(Parameter):
     
     def validate_uid(self):
         if self.role_uid is None or '':
-            raise ArgumentException('Role Uid is required')
+            raise ArgumentException(ROLE_UID_REQUIRED)
     

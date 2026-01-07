@@ -6,6 +6,7 @@ organized, and structured manner without impacting each other."""
 import json
 
 from contentstack_management.common import Parameter
+from contentstack_management._messages import BRANCH_UID_REQUIRED
 
 _path = 'stacks/branches'
 
@@ -55,7 +56,7 @@ class Branch(Parameter):
         --------------------------------
         """
         if self.branch_uid is None or '':
-            raise Exception('branch_uid is required field')
+            raise Exception(BRANCH_UID_REQUIRED)
         url = f"{_path}/{self.branch_uid}"
         return self.client.get(url, headers=self.client.headers, params=self.params)
 
@@ -101,6 +102,6 @@ class Branch(Parameter):
         --------------------------------
         """
         if self.branch_uid is None or '':
-            raise Exception('branch_uid is required field')
+            raise Exception(BRANCH_UID_REQUIRED)
         url = f"{_path}/{self.branch_uid}"
         return self.client.delete(url, headers=self.client.headers, params=self.params)

@@ -5,6 +5,7 @@ the CRUD operations that can be performed on the API """
 
 import json
 from ..common import Parameter
+from .._messages import WORKFLOW_UID_REQUIRED, WORKFLOW_CONTENT_TYPE_UID_REQUIRED, WORKFLOW_ENTRY_UID_REQUIRED, WORKFLOW_RULE_UID_REQUIRED
 
 class Workflows(Parameter):
     """
@@ -58,7 +59,7 @@ class Workflows(Parameter):
         -------------------------------
         """
         if self.workflow_uid is None:
-            raise Exception('workflow uid is required')
+            raise Exception(WORKFLOW_UID_REQUIRED)
         url = f"{self.path}/{self.workflow_uid}"
         return self.client.get(url, headers = self.client.headers, params = self.params)
         
@@ -240,7 +241,7 @@ class Workflows(Parameter):
         """
         
         if self.workflow_uid is None:
-            raise Exception('workflow uid is required')
+            raise Exception(WORKFLOW_UID_REQUIRED)
         url = f"{self.path}/{self.workflow_uid}"
         data = json.dumps(data)
         return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
@@ -264,7 +265,7 @@ class Workflows(Parameter):
         
         
         if self.workflow_uid is None:
-            raise Exception('workflow uid is required')
+            raise Exception(WORKFLOW_UID_REQUIRED)
         url = f"{self.path}/{self.workflow_uid}"
         
         return self.client.delete(url, headers = self.client.headers, params = self.params)
@@ -287,7 +288,7 @@ class Workflows(Parameter):
         """
         
         if self.workflow_uid is None:
-            raise Exception('workflow uid is required')
+            raise Exception(WORKFLOW_UID_REQUIRED)
         url = f"{self.path}/{self.workflow_uid}/disable"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
@@ -307,7 +308,7 @@ class Workflows(Parameter):
         """
         
         if self.workflow_uid is None:
-            raise Exception('workflow uid is required')
+            raise Exception(WORKFLOW_UID_REQUIRED)
         url = f"{self.path}/{self.workflow_uid}/enable"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
@@ -354,9 +355,9 @@ class Workflows(Parameter):
         
         
         if content_type_uid is None:
-            raise Exception('Content type uid is required')
+            raise Exception(WORKFLOW_CONTENT_TYPE_UID_REQUIRED)
         if entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(WORKFLOW_ENTRY_UID_REQUIRED)
         url = f"content_types/{content_type_uid}/entries/{entry_uid}/workflow"
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
@@ -454,7 +455,7 @@ class Workflows(Parameter):
         """
         
         if rule_uid is None:
-            raise Exception('Rule uid is required')
+            raise Exception(WORKFLOW_RULE_UID_REQUIRED)
         url = f"{self.path}/publishing_rules/{rule_uid}"
         data = json.dumps(data)
         return self.client.put(url, headers = self.client.headers, data = data, params = self.params)
@@ -479,7 +480,7 @@ class Workflows(Parameter):
         """
         
         if rule_uid is None:
-            raise Exception('Rule uid is required')
+            raise Exception(WORKFLOW_RULE_UID_REQUIRED)
         url = f"{self.path}/publishing_rules/{rule_uid}"
         return self.client.delete(url, headers = self.client.headers, params = self.params)
     
@@ -502,7 +503,7 @@ class Workflows(Parameter):
         """
         
         if rule_uid is None:
-            raise Exception('Rule uid is required')
+            raise Exception(WORKFLOW_RULE_UID_REQUIRED)
         url = f"{self.path}/publishing_rules/{rule_uid}"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
@@ -544,7 +545,7 @@ class Workflows(Parameter):
         """
         
         if content_type_uid is None:
-            raise Exception('Content type uid is required')
+            raise Exception(WORKFLOW_CONTENT_TYPE_UID_REQUIRED)
         url = f"{self.path}/content_type/{content_type_uid}"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
@@ -571,9 +572,9 @@ class Workflows(Parameter):
         """
         
         if content_type_uid is None:
-            raise Exception('Content type uid is required')
+            raise Exception(WORKFLOW_CONTENT_TYPE_UID_REQUIRED)
         if entry_uid is None:
-            raise Exception('Entry uid is required')
+            raise Exception(WORKFLOW_ENTRY_UID_REQUIRED)
         url = f"content_types/{content_type_uid}/entries/{entry_uid}/workflow"
         return self.client.get(url, headers = self.client.headers, params = self.params)
     

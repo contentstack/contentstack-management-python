@@ -6,6 +6,7 @@ the operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import ENTRY_VARIANT_CONTENT_TYPE_UID_REQUIRED, ENTRY_VARIANT_ENTRY_UID_REQUIRED, ENTRY_VARIANT_UID_REQUIRED
 
 class EntryVariants(Parameter):
     """
@@ -251,7 +252,7 @@ class EntryVariants(Parameter):
         """
          
         if self.content_type_uid is None or self.content_type_uid == '':
-            raise ArgumentException("content type Uid is required")
+            raise ArgumentException(ENTRY_VARIANT_CONTENT_TYPE_UID_REQUIRED)
     
     def validate_entry_uid(self):
         """
@@ -260,7 +261,7 @@ class EntryVariants(Parameter):
         """
          
         if self.entry_uid is None or self.entry_uid == '':
-            raise ArgumentException("entry Uid is required")
+            raise ArgumentException(ENTRY_VARIANT_ENTRY_UID_REQUIRED)
     
     def validate_variant_uid(self):
         """
@@ -269,4 +270,4 @@ class EntryVariants(Parameter):
         """
          
         if self.variant_uid is None or self.variant_uid == '':
-            raise ArgumentException("variant Uid is required")
+            raise ArgumentException(ENTRY_VARIANT_UID_REQUIRED)

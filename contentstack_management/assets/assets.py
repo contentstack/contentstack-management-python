@@ -8,6 +8,7 @@ import json
 from ..common import Parameter
 import mimetypes
 import os
+from .._messages import ASSET_UID_REQUIRED, ASSET_TYPE_REQUIRED, ASSET_VERSION_NUMBER_REQUIRED
 
 class Assets(Parameter):
     """
@@ -62,7 +63,7 @@ class Assets(Parameter):
         """
 
         if self.asset_uid is None or '':
-            raise Exception('asset_uid is required')
+            raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}"
         return self.client.get(url, headers = self.client.headers, params = self.params)
 
@@ -284,7 +285,7 @@ class Assets(Parameter):
         """
 
         if self.asset_uid is None or '':
-            raise Exception('asset_uid is required')
+            raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}/versions"
         return self.client.get(url, headers = self.client.headers, params = self.params)
 
@@ -305,9 +306,9 @@ class Assets(Parameter):
         """
         
         if self.asset_uid is None or '':
-            raise Exception('asset_uid is required')
+            raise Exception(ASSET_UID_REQUIRED)
         if version_number is None:
-            raise Exception('Version Number is required')
+            raise Exception(ASSET_VERSION_NUMBER_REQUIRED)
         url = f"assets/{self.asset_uid}/versions/{version_number}/name"
         return self.client.delete(url, headers = self.client.headers, params = self.params)
 
@@ -326,7 +327,7 @@ class Assets(Parameter):
         """
         
         if self.asset_uid is None or '':
-            raise Exception('asset_uid is required')
+            raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}/references"
         return self.client.get(url, headers = self.client.headers, params = self.params)
 
@@ -346,7 +347,7 @@ class Assets(Parameter):
         """
         
         if asset_type is None or '':
-            raise Exception('asset_type is required')
+            raise Exception(ASSET_TYPE_REQUIRED)
         url = f"assets/{asset_type}"
         return self.client.get(url, headers = self.client.headers, params = self.params)
 
@@ -376,7 +377,7 @@ class Assets(Parameter):
         
         data = json.dumps(data)
         if self.asset_uid is None or '':
-            raise Exception('asset_uid is required')
+            raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}"
         return self.client.put(url, headers = self.client.headers, params = self.params, data = data)
 
@@ -404,7 +405,7 @@ class Assets(Parameter):
 
         data = json.dumps(data)
         if self.asset_uid is None or '':
-            raise Exception('asset_uid is required')
+            raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}"
         Parameter.add_header(self, "Content-Type", "multipart/form-data")
         return self.client.put(url, headers = self.client.headers, params = self.params, data = data)
@@ -439,7 +440,7 @@ class Assets(Parameter):
         
         data = json.dumps(data)
         if self.asset_uid is None or '':
-            raise Exception('asset_uid is required')
+            raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}/publish"
         return self.client.post(url, headers = self.client.headers, data = data)
     
@@ -474,7 +475,7 @@ class Assets(Parameter):
 
         data = json.dumps(data)
         if self.asset_uid is None or '':
-            raise Exception('asset_uid is required')
+            raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}/unpublish"
         return self.client.post(url, headers = self.client.headers, data = data)
     

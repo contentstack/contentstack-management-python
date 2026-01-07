@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import ENVIRONMENT_UID_REQUIRED
 
 class Environment(Parameter):
     """
@@ -135,4 +136,4 @@ class Environment(Parameter):
         
     def validate_uid(self):
          if self.environment_name is None or '':
-            raise ArgumentException("Environments Uid is required")
+            raise ArgumentException(ENVIRONMENT_UID_REQUIRED)

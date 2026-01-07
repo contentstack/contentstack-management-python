@@ -16,6 +16,23 @@ from typing import Dict, List, Optional, Union
 from urllib.parse import urlparse, parse_qs
 
 import requests
+from .._messages import (
+    OAUTH_ACCESS_TOKEN_EXPIRED,
+    OAUTH_ACCESS_TOKEN_NOT_AVAILABLE,
+    OAUTH_TOKENS_NOT_AVAILABLE,
+    OAUTH_REFRESH_TOKEN_NOT_AVAILABLE,
+    OAUTH_NOT_CONFIGURED,
+    OAUTH_AUTHORIZATION_CODE_NOT_FOUND,
+    OAUTH_TOKEN_EXCHANGE_FAILED,
+    OAUTH_TOKEN_REFRESH_FAILED,
+    OAUTH_BASE_URL_NOT_SET,
+    OAUTH_AUTHORIZING,
+    OAUTH_AUTHORIZATION_URL_GENERATED,
+    OAUTH_AUTHORIZATION_URL_GENERATION_FAILED,
+    OAUTH_AUTHORIZATION_CODE_EMPTY,
+    OAUTH_TOKEN_EXCHANGE_ERROR,
+    OAUTH_TOKEN_REFRESH_ERROR
+)
 
 
 class OAuthHandler:
@@ -26,16 +43,7 @@ class OAuthHandler:
     token exchange, refresh, and secure storage.
     """
     
-    # Error messages
-    ACCESS_TOKEN_EXPIRED_MSG = "🔄 Access token expired, refreshing..."
-    NO_ACCESS_TOKEN_MSG = "No access token available. Please authenticate first."
-    NO_OAUTH_TOKENS_MSG = "No OAuth tokens available"
-    NO_REFRESH_TOKEN_MSG = "No refresh token available"
-    OAUTH_NOT_CONFIGURED_MSG = "OAuth is not configured. Please set up OAuth first."
-    INVALID_AUTHORIZATION_CODE_MSG = "Authorization code not found in redirect URL"
-    TOKEN_EXCHANGE_FAILED_MSG = "Token exchange failed"
-    TOKEN_REFRESH_FAILED_MSG = "Token refresh failed"
-    OAUTH_BASE_URL_NOT_SET_MSG = "OAuthBaseURL is not set"
+    # Base URLs
     OAUTH_BASE_URL = 'https://app.contentstack.com'
     DEVELOPER_HUB_BASE_URL = 'https://developerhub-api.contentstack.com'
     
@@ -159,9 +167,9 @@ class OAuthHandler:
             Authorization URL for user to visit
         """
         try:
-            print(f"OAuth Handler - authorize() called with app_id: {self.app_id}, client_id: {self.client_id}")  # Debug
+            print(OAUTH_AUTHORIZING.format(app_id=self.app_id, client_id=self.client_id))  # Debug
             if not self._oauth_base_url:
-                raise ValueError(self.OAUTH_BASE_URL_NOT_SET_MSG)
+                raise ValueError(OAUTH_BASE_URL_NOT_SET)
             oauth_base = self._oauth_base_url.rstrip('/')
             base_url = f"{oauth_base}/#!/apps/{self.app_id}/authorize"
             params = {
@@ -181,11 +189,11 @@ class OAuthHandler:
             
             query_string = urllib.parse.urlencode(params)
             final_url = f"{base_url}?{query_string}"
-            print(f"OAuth Handler - final authorization URL: {final_url}")  # Debug
+            print(OAUTH_AUTHORIZATION_URL_GENERATED.format(final_url=final_url))  # Debug
             return final_url
             
         except Exception as e:
-            raise ValueError(f"Error generating authorization URL: {e}")
+            raise ValueError(OAUTH_AUTHORIZATION_URL_GENERATION_FAILED.format(error=e))
     
     def handle_redirect(self, redirect_url: str) -> Dict:
         """
@@ -196,7 +204,7 @@ class OAuthHandler:
         parsed_url = urlparse(redirect_url)
         query_params = parse_qs(parsed_url.query)
         if "code" not in query_params:
-            raise ValueError(self.INVALID_AUTHORIZATION_CODE_MSG)
+            raise ValueError(OAUTH_AUTHORIZATION_CODE_NOT_FOUND)
         authorization_code = query_params["code"][0]
         return self.exchange_code_for_token(authorization_code)
     
@@ -207,7 +215,7 @@ class OAuthHandler:
             Dictionary containing token information
         """
         if not authorization_code or not authorization_code.strip():
-            raise ValueError("Authorization code cannot be empty")
+            raise ValueError(OAUTH_AUTHORIZATION_CODE_EMPTY)
         data = {
             "grant_type": "authorization_code",
             "code": authorization_code.strip(),
@@ -237,7 +245,7 @@ class OAuthHandler:
             return token_data
             
         except requests.RequestException as e:
-            raise requests.RequestException(f"{self.TOKEN_EXCHANGE_FAILED_MSG}: {str(e)}")
+            raise requests.RequestException(OAUTH_TOKEN_EXCHANGE_ERROR.format(error=str(e)))
     
     def _save_tokens(self, token_data: Dict):
         """
@@ -268,11 +276,11 @@ class OAuthHandler:
             Valid access token
         """
         if self.is_token_expired():
-            print(self.ACCESS_TOKEN_EXPIRED_MSG)
+            print(OAUTH_ACCESS_TOKEN_EXPIRED)
             self.refresh_access_token()
         access_token = self.get_access_token()
         if not access_token:
-            raise ValueError(self.NO_ACCESS_TOKEN_MSG)
+            raise ValueError(OAUTH_ACCESS_TOKEN_NOT_AVAILABLE)
         return access_token
     
     def is_token_expired(self) -> bool:
@@ -300,10 +308,10 @@ class OAuthHandler:
             New access token
         """
         if not self.api_client or not hasattr(self.api_client, 'oauth') or not self.api_client.oauth:
-            raise ValueError(self.NO_OAUTH_TOKENS_MSG)
+            raise ValueError(OAUTH_TOKENS_NOT_AVAILABLE)
         refresh_token = self.api_client.oauth.get('refreshToken')
         if not refresh_token:
-            raise ValueError(self.NO_REFRESH_TOKEN_MSG)
+            raise ValueError(OAUTH_REFRESH_TOKEN_NOT_AVAILABLE)
         data = {
             "grant_type": "refresh_token",
             "refresh_token": refresh_token,
@@ -327,7 +335,7 @@ class OAuthHandler:
             
             return self._access_token
         except requests.RequestException as e:
-            raise requests.RequestException(f"{self.TOKEN_REFRESH_FAILED_MSG}: {str(e)}")
+            raise requests.RequestException(OAUTH_TOKEN_REFRESH_ERROR.format(error=str(e)))
     
     def logout(self, revoke_authorization: bool = True) -> bool:
         """

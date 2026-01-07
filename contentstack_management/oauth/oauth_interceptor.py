@@ -8,6 +8,11 @@ from typing import Dict, Any, Optional
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
+from .._messages import (
+    OAUTH_TOKEN_REFRESH_FAILED,
+    OAUTH_TOKENS_NOT_AVAILABLE,
+    OAUTH_TOKEN_REFRESH_FAILED_AFTER_401
+)
 
 class OAuthInterceptor:
     """
@@ -16,9 +21,6 @@ class OAuthInterceptor:
     MAX_RETRIES = 3
     REFRESH_TIMEOUT = 30 
     TOKEN_ENDPOINT_PATH = "/token"
-    TOKEN_REFRESH_FAILED_MSG = "Token refresh failed"
-    NO_VALID_TOKENS_MSG = "OAuth: No valid tokens available"
-    TOKEN_REFRESH_FAILED_AFTER_401_MSG = "OAuth: Token refresh failed after 401"
     # User agent strings
     USER_AGENT = "contentstack-python-management-sdk"
     X_USER_AGENT = "contentstack-python-management-sdk"
@@ -111,7 +113,7 @@ class OAuthInterceptor:
                         self.oauth_handler.refresh_access_token()
                     return True
                 except Exception as e:
-                    print(f"{self.TOKEN_REFRESH_FAILED_MSG}: {e}")
+                    print(OAUTH_TOKEN_REFRESH_FAILED.format(error=e))
                     return False
         
         return True
@@ -125,7 +127,7 @@ class OAuthInterceptor:
         if self.TOKEN_ENDPOINT_PATH in url:
             return self._make_request(method, url, **kwargs)
         if not self._ensure_valid_token():
-            raise requests.RequestException(self.NO_VALID_TOKENS_MSG)
+            raise requests.RequestException(OAUTH_TOKENS_NOT_AVAILABLE)
         return self._execute_with_retry(method, url, 0, **kwargs)
     
     def _execute_with_retry(self, method: str, url: str, retry_count: int, **kwargs) -> requests.Response:
@@ -159,7 +161,7 @@ class OAuthInterceptor:
                         kwargs['headers'] = headers
                         return self._execute_with_retry(method, url, retry_count + 1, **kwargs)
                     except Exception as e:
-                        raise requests.RequestException(f"{self.TOKEN_REFRESH_FAILED_AFTER_401_MSG}: {e}")
+                        raise requests.RequestException(OAUTH_TOKEN_REFRESH_FAILED_AFTER_401.format(error=e))
             
             if status_code == 429 or (status_code >= 500 and status_code != 501):
                 # Calculate delay with exponential backoff
