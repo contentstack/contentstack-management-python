@@ -5,6 +5,7 @@ the CRUD operations that can be performed on the API """
 
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import PUBLISH_QUEUE_UID_REQUIRED
 
 class PublishQueue(Parameter):
     """
@@ -83,4 +84,4 @@ class PublishQueue(Parameter):
     
     def validate_uid(self):
          if self.publish_queue_uid is None or '':
-            raise ArgumentException("Publish Queue Uid is required")
+            raise ArgumentException(PUBLISH_QUEUE_UID_REQUIRED)

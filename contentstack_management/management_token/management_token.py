@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import MANAGEMENT_TOKEN_UID_REQUIRED
 
 class ManagementToken(Parameter):
     """
@@ -203,4 +204,4 @@ class ManagementToken(Parameter):
     
     def validate_uid(self):
          if self.management_token_uid is None or '':
-            raise ArgumentException("Management Token Uid is required")
+            raise ArgumentException(MANAGEMENT_TOKEN_UID_REQUIRED)

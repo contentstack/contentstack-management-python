@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import VARIANT_UIDS_NON_EMPTY_LIST_REQUIRED, VARIANT_GROUP_UID_REQUIRED, VARIANT_UID_REQUIRED
 
 class Variants(Parameter):
     """
@@ -225,7 +226,7 @@ class Variants(Parameter):
         -------------------------------
         """
         if not isinstance(variant_uids, list) or len(variant_uids) == 0:
-            raise ArgumentException("variant_uids must be a non-empty list")
+            raise ArgumentException(VARIANT_UIDS_NON_EMPTY_LIST_REQUIRED)
         
         if self.variant_group_uid:
             self.validate_variant_group_uid()
@@ -244,7 +245,7 @@ class Variants(Parameter):
         """
          
         if self.variant_group_uid is None or self.variant_group_uid == '':
-            raise ArgumentException("variant group Uid is required")
+            raise ArgumentException(VARIANT_GROUP_UID_REQUIRED)
     
     def validate_variant_uid(self):
         """
@@ -253,4 +254,4 @@ class Variants(Parameter):
         """
          
         if self.variant_uid is None or self.variant_uid == '':
-            raise ArgumentException("variant Uid is required")
+            raise ArgumentException(VARIANT_UID_REQUIRED)

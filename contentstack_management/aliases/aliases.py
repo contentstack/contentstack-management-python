@@ -3,6 +3,7 @@ frontend code to pull content from the target branch associated with an alias.""
 
 import json
 from ..common import Parameter
+from .._messages import ALIAS_UID_REQUIRED
 _path = 'stacks/branch_aliases'
 
 
@@ -47,7 +48,7 @@ class Alias(Parameter):
         --------------------------------
         """
         if self.alias_uid is None or '':
-            raise Exception('alias_uid is required')
+            raise Exception(ALIAS_UID_REQUIRED)
         url = f"{_path}/{self.alias_uid}"
         return self.client.get(url, headers=self.client.headers, params=self.params)
 

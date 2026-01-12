@@ -7,6 +7,7 @@ import json
 from ..common import Parameter
 from urllib.parse import quote
 from .._errors import ArgumentException
+from .._messages import JOB_UID_REQUIRED
 
 class BulkOperation(Parameter):
     """
@@ -313,7 +314,7 @@ class BulkOperation(Parameter):
         -------------------------------
         """
         if job_uid is None:
-            raise ArgumentException("job_uid", "job_uid cannot be None")
+            raise ArgumentException(JOB_UID_REQUIRED)
         if headers is not None:
             self.client.headers.update(headers)
         url = f"{self.path}/jobs/{quote(job_uid)}"

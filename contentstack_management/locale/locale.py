@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import LOCALE_CODE_REQUIRED
 
 class Locale(Parameter):
     """
@@ -191,7 +192,7 @@ class Locale(Parameter):
         
     def validate_locale_code(self):
         if self.locale_code is None or '':
-            raise ArgumentException('Locale code is required')
+            raise ArgumentException(LOCALE_CODE_REQUIRED)
         
     
     

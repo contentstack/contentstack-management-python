@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import METADATA_UID_REQUIRED
 
 class Metadata(Parameter):
     """
@@ -220,4 +221,4 @@ class Metadata(Parameter):
     
     def validate_uid(self):
          if self.metadata_uid is None or '':
-            raise ArgumentException("Metadata Uid is required")
+            raise ArgumentException(METADATA_UID_REQUIRED)
