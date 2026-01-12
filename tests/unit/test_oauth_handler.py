@@ -160,7 +160,7 @@ class TestOAuthHandler(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             self.oauth_handler_with_secret.handle_redirect(redirect_url)
         
-        self.assertIn("Authorization code not found", str(context.exception))
+        self.assertIn("Authorization code was not found in the redirect URL", str(context.exception))
     
     def test_exchange_code_for_token_success(self):
         """Test successful code exchange for token."""
@@ -242,7 +242,7 @@ class TestOAuthHandler(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             self.oauth_handler_with_secret.refresh_access_token()
         
-        self.assertIn("No refresh token available", str(context.exception))
+        self.assertIn("Refresh token is not available", str(context.exception))
     
     def test_refresh_access_token_failure(self):
         """Test refresh access token failure."""
@@ -305,7 +305,7 @@ class TestOAuthHandler(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             self.oauth_handler_with_secret.get_valid_access_token()
         
-        self.assertIn("No refresh token available", str(context.exception))
+        self.assertIn("Refresh token is not available", str(context.exception))
     
     def test_logout_success(self):
         """Test successful logout."""

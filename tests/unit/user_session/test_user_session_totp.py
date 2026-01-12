@@ -116,7 +116,7 @@ class UserSessionTOTPTests(unittest.TestCase):
         # Test with empty email
         with self.assertRaises(PermissionError) as context:
             self.user_session.login("", self.test_password, self.test_tfa_token)
-        self.assertIn("Email Id is required", str(context.exception))
+        self.assertIn("Email ID is required", str(context.exception))
         
         # Test with empty password
         with self.assertRaises(PermissionError) as context:

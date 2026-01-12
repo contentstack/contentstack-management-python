@@ -1,5 +1,6 @@
 import json
 from ..common import Parameter
+from .._messages import ORGANIZATION_UID_REQUIRED
 
 
 class Organization(Parameter):
@@ -46,7 +47,7 @@ class Organization(Parameter):
         -------------------------------
         """
         if self.organization_uid is None or '':
-            raise Exception('organization_uid is required')
+            raise Exception(ORGANIZATION_UID_REQUIRED)
         return self.client.get(self._path, headers=self.client.headers, params = self.params)
 
     def roles(self):
@@ -65,7 +66,7 @@ class Organization(Parameter):
         """
         url = f"{self._path}/roles"
         if self.organization_uid is None or '':
-            raise Exception('organization_uid is required')
+            raise Exception(ORGANIZATION_UID_REQUIRED)
         return self.client.get(url, headers=self.client.headers, params = self.params)
 
     def add_users(self, user_data):
@@ -99,7 +100,7 @@ class Organization(Parameter):
         """
         url = f"{self._path}/share"
         if self.organization_uid is None or '':
-            raise Exception('organization_uid is required')
+            raise Exception(ORGANIZATION_UID_REQUIRED)
         data = json.dumps(user_data)
         return self.client.post(url, headers=self.client.headers, data=data, params = self.params)
 
@@ -120,7 +121,7 @@ class Organization(Parameter):
         """
         url = f"{self._path}/transfer-ownership"
         if self.organization_uid is None or '':
-            raise Exception('organization_uid is required')
+            raise Exception(ORGANIZATION_UID_REQUIRED)
         data = json.dumps(data)
         return self.client.post(url, headers=self.client.headers, data=data, params = self.params)
 
@@ -138,7 +139,7 @@ class Organization(Parameter):
         """
         url = f"{self._path}/stacks"
         if self.organization_uid is None or '':
-            raise Exception('organization_uid is required')
+            raise Exception(ORGANIZATION_UID_REQUIRED)
         return self.client.get(url, headers=self.client.headers, params = self.params)
 
     def logs(self):
@@ -155,5 +156,5 @@ class Organization(Parameter):
         """
         url = f"{self._path}/logs"
         if self.organization_uid is None or '':
-            raise Exception('organization_uid is required')
+            raise Exception(ORGANIZATION_UID_REQUIRED)
         return self.client.get(url, headers=self.client.headers, params=self.params)

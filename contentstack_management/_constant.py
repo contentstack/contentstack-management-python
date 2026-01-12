@@ -1,5 +1,6 @@
 import platform
-import sys 
+import sys
+from ._messages import REQUEST_HEADERS_INVALID
 
 
 def _default_user_agent():
@@ -55,4 +56,4 @@ def _request_headers():
 
 
 if __name__ == '__main__':
-    print(_request_headers().__str__())
+    print(REQUEST_HEADERS_INVALID)

@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import EXTENSION_UID_REQUIRED
 from requests_toolbelt.multipart.encoder import MultipartEncoder
 
 class Extension(Parameter):
@@ -172,7 +173,7 @@ class Extension(Parameter):
     
     def validate_uid(self):
          if self.extension_uid is None or '':
-            raise ArgumentException("Extension Uid is required")
+            raise ArgumentException(EXTENSION_UID_REQUIRED)
          
     def encode_multipart_formdata(self, fields):
         # Create a MultipartEncoder instance with the specified fields

@@ -1,4 +1,5 @@
 import json
+from .._messages import EMAIL_ID_REQUIRED, PASSWORD_REQUIRED
 
 _path = "user-session"
 
@@ -49,11 +50,11 @@ class UserSession:
         
         if email is None or email == '':
             raise PermissionError(
-                'Email Id is required')
+                EMAIL_ID_REQUIRED)
 
         if password is None or password == '':
             raise PermissionError(
-                'Password is required')
+                PASSWORD_REQUIRED)
 
         data = {
             "user": {

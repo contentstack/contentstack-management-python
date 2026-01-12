@@ -6,6 +6,7 @@ the CRUD operations that can be performed on the API """
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
+from .._messages import DELIVERY_TOKEN_UID_REQUIRED
 
 class DeliveryToken(Parameter):
     """
@@ -191,4 +192,4 @@ class DeliveryToken(Parameter):
         
     def validate_uid(self):
          if self.delivery_token_uid is None or '':
-            raise ArgumentException("Delivery Token Uid is required")
+            raise ArgumentException(DELIVERY_TOKEN_UID_REQUIRED)
