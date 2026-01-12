@@ -22,6 +22,7 @@ from ..publish_queue.publish_queue import PublishQueue
 from ..extensions.extension import Extension
 from ..variant_group.variant_group import VariantGroup
 from ..variants.variants import Variants
+from .._messages import API_KEY_REQUIRED, USER_ID_REQUIRED, OWNERSHIP_TOKEN_REQUIRED
 
 
 class Stack(Parameter):
@@ -141,7 +142,7 @@ class Stack(Parameter):
         -------------------------------
         """
         if 'api_key' not in self.client.headers:
-            raise Exception('api_key is required')
+            raise Exception(API_KEY_REQUIRED)
         data = json.dumps(data)
         return self.client.put('stacks/users/roles', headers=self.client.headers, params=self.params, data=data)
 
@@ -160,7 +161,7 @@ class Stack(Parameter):
         -------------------------------
         """
         if 'api_key' not in self.client.headers:
-            raise Exception('api_key is required')
+            raise Exception(API_KEY_REQUIRED)
         data = json.dumps(data)
         return self.client.post('stacks/transfer_ownership', headers=self.client.headers, data=data, params = self.params)
 
@@ -176,11 +177,11 @@ class Stack(Parameter):
         -------------------------------
         """
         if 'api_key' not in self.client.headers:
-            raise PermissionError('api_key is required')
+            raise PermissionError(API_KEY_REQUIRED)
         if user_id is None or '':
-            raise PermissionError('user_id is required')
+            raise PermissionError(USER_ID_REQUIRED)
         if ownership_token is None or '':
-            raise PermissionError('ownership_token is required')
+            raise PermissionError(OWNERSHIP_TOKEN_REQUIRED)
         url = f"stacks/accept_ownership/{ownership_token}"
         self.params.update({'api_key': self.client.headers['api_key'], 'uid': user_id})
         return self.client.get(url, headers=self.client.headers, params=self.params)
@@ -197,7 +198,7 @@ class Stack(Parameter):
         -------------------------------
         """
         if 'api_key' not in self.client.headers:
-            raise Exception('api_key is required')
+            raise Exception(API_KEY_REQUIRED)
         return self.client.get('stacks/settings', headers=self.client.headers, params=self.params)
 
     def create_settings(self, data):
@@ -225,7 +226,7 @@ class Stack(Parameter):
         -------------------------------
         """
         if 'api_key' not in self.client.headers:
-            raise Exception('api_key is required')
+            raise Exception(API_KEY_REQUIRED)
         data = json.dumps(data)
         return self.client.post('stacks/settings', headers=self.client.headers, params=self.params, data=data)
 
@@ -244,7 +245,7 @@ class Stack(Parameter):
         -------------------------------
         """
         if 'api_key' not in self.client.headers:
-            raise Exception('api_key is required')
+            raise Exception(API_KEY_REQUIRED)
         data = json.dumps(data)
         return self.client.post('stacks/settings/reset', headers=self.client.headers, data=data, params = self.params)
 
@@ -270,7 +271,7 @@ class Stack(Parameter):
         -------------------------------
         """
         if 'api_key' not in self.client.headers:
-            raise Exception('api_key is required')
+            raise Exception(API_KEY_REQUIRED)
         data = json.dumps(data)
         return self.client.post('stacks/share', headers=self.client.headers, params=self.params, data=data)
 
@@ -291,7 +292,7 @@ class Stack(Parameter):
         -------------------------------
         """
         if 'api_key' not in self.client.headers:
-            raise Exception('api_key is required')
+            raise Exception(API_KEY_REQUIRED)
         data = json.dumps(data)
         return self.client.post('stacks/unshare', headers=self.client.headers, params=self.params, data=data)
 

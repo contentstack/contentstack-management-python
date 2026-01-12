@@ -6,6 +6,7 @@ import json
 
 from contentstack_management.common import Parameter
 from ..entries import entry
+from .._messages import CONTENT_TYPE_UID_REQUIRED
 
 _path = 'content_types'
 
@@ -163,7 +164,7 @@ class ContentType(Parameter):
         """
         data = json.dumps(data)
         if self.content_type_uid is None or '':
-            raise Exception('content_type_uid is required')
+            raise Exception(CONTENT_TYPE_UID_REQUIRED)
         url = f"{_path}/{self.content_type_uid}"
         return self.client.put(url, headers=self.client.headers, params=self.params, data=data)
 
@@ -347,5 +348,5 @@ class ContentType(Parameter):
 
     def entry(self, entry_uid: str =None):
         if self.content_type_uid is None:
-            raise Exception('Content type uid is required')
+            raise Exception(CONTENT_TYPE_UID_REQUIRED)
         return entry.Entry(self.client, self.content_type_uid, entry_uid)
