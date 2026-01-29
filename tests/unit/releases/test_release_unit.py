@@ -64,6 +64,7 @@ class ReleaseUnitTests(unittest.TestCase):
         response = self.client.stack(api_key).releases(release_uid).delete()
         self.assertEqual(response.request.url, f"{self.client.endpoint}releases/{release_uid}")
         self.assertEqual(response.request.method, "DELETE")
+        self.assertNotIn("Content-Type", response.request.headers)
 
     
     def test_clone(self):
