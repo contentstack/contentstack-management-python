@@ -1,6 +1,12 @@
 # CHANGELOG
 
 ## Content Management SDK For Python
+---
+## v1.7.2
+
+#### Date:  02 February 2026
+
+- removed content-type header in the release delete method.
 
 ---
 ## v1.7.1

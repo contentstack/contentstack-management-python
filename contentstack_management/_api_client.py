@@ -63,6 +63,8 @@ class _APIClient:
         if headers is None:
             headers = {}
         headers.update(self.headers)  # Merge client headers (including authtoken) with request headers
+        if method == 'DELETE' and '/releases' in url and data is None and json_data is None:
+            headers = {k: v for k, v in headers.items() if k.lower() != 'content-type'}
         response = requests.request(
             method, url, headers=headers, params=params, data=data, json=json_data, files=files, timeout=self.timeout)
         # response.raise_for_status()

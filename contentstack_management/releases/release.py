@@ -131,7 +131,7 @@ class Releases(Parameter):
         """
         self.validate_uid()
         url = f"{self.path}/{self.release_uid}"
-        return self.client.delete(url, headers = self.client.headers, params = self.params)
+        return self.client.delete(url, headers=self.client.headers, params=self.params)
     
     def deploy(self, data: dict):
         """
