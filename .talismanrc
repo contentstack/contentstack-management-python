@@ -403,4 +403,6 @@ fileignoreconfig:
   checksum: 0db30c5a306783b10d345d73cff3c61490d7cbc47273623df47e6849c3e97002
 - filename: tests/unit/contentstack/test_totp_login.py
   checksum: cefad0ddc1a2db1bf59d6e04501c4381acc8b44fad1e5e2e24c06e33d827c859
+- filename: tests/mock/assets/test_assets_mock.py
+  checksum: 12c9091bb88c0c12712f046b29fb4a9dce3b95ecc45f4ea46bbc3fd4529742a0
 version: "1.0"
