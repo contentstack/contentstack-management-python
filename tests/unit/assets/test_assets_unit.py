@@ -30,6 +30,24 @@ class AssetsUnitTests(unittest.TestCase):
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
 
+    def test_find_with_locale(self):
+        assets = self.client.stack(api_key).assets()
+        assets.add_param("locale", "en-us")
+        response = assets.find()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}assets?locale=en-us")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
+
+    def test_fetch_with_locale(self):
+        asset = self.client.stack(api_key).assets(asset_uid)
+        asset.add_param("locale", "en-us")
+        response = asset.fetch()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}?locale=en-us")
+        self.assertEqual(response.request.method, "GET")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+        self.assertEqual(response.request.body, None)
+
     def test_delete(self):
         response = self.client.stack(api_key).assets(asset_uid).delete()
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}")

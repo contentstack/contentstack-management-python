@@ -2,6 +2,13 @@
 
 ## Content Management SDK For Python
 ---
+## v1.8.0
+
+#### Date:  30 March 2026
+
+- Added unit, API, and mock tests for asset localization using query parameter (for example `en-us` via `add_param`).
+
+---
 ## v1.7.2
 
 #### Date:  02 February 2026

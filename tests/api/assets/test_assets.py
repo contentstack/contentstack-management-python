@@ -30,6 +30,24 @@ class AssetsApiTests(unittest.TestCase):
         else:
             self.assertEqual(response.request.method, "GET")
 
+    def test_get_all_assets_with_locale(self):
+        assets = self.client.stack(api_key).assets()
+        assets.add_param("locale", "en-us")
+        response = assets.find()
+        if response.status_code == 200:
+            self.assertEqual(response.status_code, 200)
+        else:
+            self.assertEqual(response.request.method, "GET")
+
+    def test_get_asset_with_locale(self):
+        asset = self.client.stack(api_key).assets(asset_uid)
+        asset.add_param("locale", "en-us")
+        response = asset.fetch()
+        if response.status_code == 200:
+            self.assertEqual(response.status_code, 200)
+        else:
+            self.assertEqual(response.request.method, "GET")
+
     def test_delete(self):
         response = self.client.stack(api_key).assets(asset_uid).delete()
         if response.status_code == 200:
