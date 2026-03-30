@@ -34,6 +34,20 @@ class AssetsMockTests(unittest.TestCase):
         response = self.client.stack(api_key).assets(asset_uid).fetch().json()
         self.assertEqual(asset_uid, response["assets"]["uid"])
 
+    def test_get_all_assets_with_locale(self):
+        assets = self.client.stack(api_key).assets()
+        assets.add_param("locale", "en-us")
+        response = assets.find().json()
+        read_mock_asset_data = read_file("find.json")
+        mock_asset_data = json.loads(read_mock_asset_data)
+        self.assertEqual(mock_asset_data.keys(), response.keys())
+
+    def test_get_asset_with_locale(self):
+        asset = self.client.stack(api_key).assets(asset_uid)
+        asset.add_param("locale", "en-us")
+        response = asset.fetch().json()
+        self.assertEqual(asset_uid, response["assets"]["uid"])
+
     def test_delete(self):
         response = self.client.stack(api_key).assets(asset_uid).delete().json()
         self.assertEqual("Asset deleted successfully.", response['notice'])
