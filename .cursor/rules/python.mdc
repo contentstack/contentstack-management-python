@@ -1,0 +1,30 @@
+---
+description: "Python conventions for the Management SDK package and packaging files"
+globs:
+  - "contentstack_management/**/*.py"
+  - "setup.py"
+  - "requirements.txt"
+alwaysApply: false
+---
+
+# Python — `contentstack-management`
+
+## Layout
+
+- **`contentstack_management/contentstack.py`** — **`Client`**, **`Region`**, **`user_agents`**, OAuth wiring.
+- **`contentstack_management/_api_client.py`** — **`_APIClient`** (HTTP, retries).
+- **`contentstack_management/stack/`** — stack-scoped API surface.
+- **Domain modules** — **`entries/`**, **`assets/`**, **`webhooks/`**, **`oauth/`**, etc.
+
+## Style
+
+- Match existing modules: naming, docstrings, and patterns already used in the same directory.
+- Prefer small, focused changes; keep **`__init__.py`** exports consistent with public API intent.
+
+## Imports
+
+- Use **`requests`** (and **`requests-toolbelt`** where already used) through **`_APIClient`** patterns rather than ad-hoc clients in domain modules unless justified.
+
+## Security
+
+- Do not log **authtokens**, **management tokens**, **passwords**, or **API keys**; preserve existing header handling in **`Client`**.

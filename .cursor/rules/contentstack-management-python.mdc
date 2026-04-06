@@ -1,0 +1,26 @@
+---
+description: "CMA Management SDK — Client, Stack, _APIClient, resources, OAuth"
+globs:
+  - "contentstack_management/**/*.py"
+alwaysApply: false
+---
+
+# Contentstack Management Python SDK (`contentstack_management/`)
+
+## Client entry
+
+- **`Client`** in **`contentstack_management/contentstack.py`** builds **`endpoint`** from **host** / **region** / **scheme**, merges **headers** (**authtoken**, **management_token**, **early_access**), and constructs **`_APIClient`**. Optional **`oauth_config`** attaches **`OAuthHandler`**.
+
+## Features
+
+- **Stack** — **`contentstack_management/stack/stack.py`**: content types, entries, assets, branches, webhooks, etc.
+- **Org / user** — **`organizations/`**, **`users/`**, **`user_session/`** as applicable.
+- **OAuth** — **`oauth/oauth_handler.py`**, **`oauth/oauth_interceptor.py`**; keep aligned with **`_APIClient`** request path.
+
+## HTTP layer
+
+- **`_APIClient._call_request`** — central place for method, URL, JSON, files; respect **timeout** and **max_retries**.
+
+## Docs
+
+- [Content Management API](https://www.contentstack.com/docs/developers/apis/content-management-api/)

@@ -1,0 +1,26 @@
+---
+description: "pytest unit, api, and mock tests for contentstack-management-python"
+globs:
+  - "tests/**/*.py"
+alwaysApply: false
+---
+
+# Testing — `contentstack-management`
+
+## pytest
+
+| Suite | Path | Notes |
+|-------|------|--------|
+| **Unit** | `tests/unit/**` | Fast, isolated; primary CI target (`pytest tests/unit/`) |
+| **API** | `tests/api/**` | Live CMA — **`.env`** via **`tests/cred.py`** |
+| **Mock** | `tests/mock/**` | Mocked HTTP / contracts |
+
+## Env (`tests/cred.py`)
+
+- **`get_credentials()`** loads **dotenv** and returns host, tokens, and resource UIDs.
+- Required for real API runs typically include **`HOST`**, **`APIKEY`**, and either **`AUTHTOKEN`** or stack **`MANAGEMENT_TOKEN`** context as tests expect; see **`tests/cred.py`** and individual tests.
+
+## Hygiene
+
+- No committed secrets; use placeholders or env-only values for CI.
+- Avoid leaving **`pytest.skip`** or focused-only tests enabled in paths meant for full suite runs unless intentional.

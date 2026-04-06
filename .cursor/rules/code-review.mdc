@@ -1,0 +1,27 @@
+---
+description: "PR checklist for contentstack-management — public API, Client, HTTP layer, tests"
+alwaysApply: true
+---
+
+# Code review — `contentstack-management`
+
+## Public API
+
+- **Exported** **`Client`**, **`Region`**, stack and resource helpers match **README** and **`contentstack_management.__all__`** / **`__init__.py`**.
+- **Docstrings** on **`Client`** and changed public methods when behavior or parameters change.
+
+## Compatibility
+
+- Avoid breaking **`Client`** constructor or stack method chains without a semver strategy; document migration for breaking changes.
+
+## HTTP / auth
+
+- Changes to **`_APIClient`** or **OAuth** paths: verify retries, headers, and interceptor behavior with unit tests; no regressions for **authtoken** / **management_token** headers.
+
+## Tests
+
+- **Unit** coverage for new logic; **API** updates when live CMA request/response behavior changes; **mock** when contract-style tests are appropriate.
+
+## Security
+
+- No hardcoded tokens; no logging secrets in new code.
