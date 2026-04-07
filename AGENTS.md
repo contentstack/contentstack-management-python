@@ -1,6 +1,8 @@
-# AGENTS.md — AI / automation context
+# Contentstack Management Python — Agent guide
 
-## Project
+**Universal entry point** for anyone automating or assisting work in this repo—AI agents (Cursor, Copilot, CLI tools), reviewers, and contributors. Conventions and detailed guidance live in **`skills/*/SKILL.md`**, not in editor-specific config, so the same instructions apply whether or not you use Cursor.
+
+## What this repo is
 
 | | |
 |---|---|
@@ -29,7 +31,7 @@
 | `contentstack_management/__init__.py` | Public exports |
 | `tests/cred.py` | **`get_credentials()`** — **dotenv** + env vars for API/mock tests |
 
-## Common commands
+## Commands (quick reference)
 
 ```bash
 pip install -e ".[dev]"
@@ -48,9 +50,23 @@ Loaded via **`tests/cred.py`** (`load_dotenv()`). Examples include **`HOST`**, *
 
 Do not commit secrets.
 
-## Further guidance
+## Where the real documentation lives: skills
 
-- **Cursor rules:** [`.cursor/rules/README.md`](.cursor/rules/README.md)
-- **Skills:** [`skills/README.md`](skills/README.md)
+Read these **`SKILL.md` files** for full conventions—**this is the source of truth** for implementation and review:
+
+| Skill | Path | What it covers |
+|-------|------|----------------|
+| **Development workflow** | [`skills/dev-workflow/SKILL.md`](skills/dev-workflow/SKILL.md) | Install, pytest suites, packaging version, pylint, hooks, PR baseline |
+| **Contentstack Management (SDK)** | [`skills/contentstack-management/SKILL.md`](skills/contentstack-management/SKILL.md) | **`Client`**, **`Stack`**, **`_APIClient`**, CMA resources, OAuth, CMA docs |
+| **Python style & repo layout** | [`skills/python-style/SKILL.md`](skills/python-style/SKILL.md) | Package layout, naming, imports via **`_APIClient`**, secrets in logs |
+| **Testing** | [`skills/testing/SKILL.md`](skills/testing/SKILL.md) | pytest unit / API / mock, **`tests/cred.py`**, env hygiene |
+| **Code review** | [`skills/code-review/SKILL.md`](skills/code-review/SKILL.md) | PR checklist—public API, HTTP/auth, tests, security |
+| **Framework / HTTP** | [`skills/framework/SKILL.md`](skills/framework/SKILL.md) | **`requests`**, retries, OAuth interceptor, where to change transport |
+
+An index with short “when to use” hints is in [`skills/README.md`](skills/README.md).
+
+## Using Cursor
+
+If you use **Cursor**, [`.cursor/rules/README.md`](.cursor/rules/README.md) only points to **`AGENTS.md`**—same source of truth as everyone else; no separate `.mdc` rule files.
 
 Product docs: [Content Management API](https://www.contentstack.com/docs/developers/apis/content-management-api/).

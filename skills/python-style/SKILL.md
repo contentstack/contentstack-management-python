@@ -1,13 +1,14 @@
 ---
-description: "Python conventions for the Management SDK package and packaging files"
-globs:
-  - "contentstack_management/**/*.py"
-  - "setup.py"
-  - "requirements.txt"
-alwaysApply: false
+name: python-style
+description: Package layout under contentstack_management/, setup.py, pylint-friendly style, imports, no secret logging.
 ---
 
-# Python — `contentstack-management`
+# Python style and repo layout — Contentstack Management Python
+
+## When to use
+
+- Editing any Python under **`contentstack_management/`**, **`setup.py`**, or **`requirements.txt`**.
+- Adding modules or changing how the public package surface is exported.
 
 ## Layout
 
@@ -19,7 +20,7 @@ alwaysApply: false
 ## Style
 
 - Match existing modules: naming, docstrings, and patterns already used in the same directory.
-- Prefer small, focused changes; keep **`__init__.py`** exports consistent with public API intent.
+- Prefer small, focused changes; keep **`__init__.py`** exports consistent with public API intent (**`README`**, **`contentstack_management.__all__`**).
 
 ## Imports
 
@@ -28,3 +29,9 @@ alwaysApply: false
 ## Security
 
 - Do not log **authtokens**, **management tokens**, **passwords**, or **API keys**; preserve existing header handling in **`Client`**.
+
+## References
+
+- **`skills/framework/SKILL.md`**
+- **`skills/contentstack-management/SKILL.md`**
+- **`skills/testing/SKILL.md`**

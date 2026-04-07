@@ -1,14 +1,14 @@
 ---
-description: "Branches, install, and test layout for contentstack-management-python"
-globs:
-  - "**/*.py"
-  - "setup.py"
-  - "requirements.txt"
-  - ".github/**/*.yml"
-alwaysApply: false
+name: dev-workflow
+description: Install, pytest unit/API/mock, versioning, pylint, hooks—standard workflow for this SDK repo.
 ---
 
-# Development workflow — `contentstack-management`
+# Development workflow — Contentstack Management Python
+
+## When to use
+
+- Setting up locally, opening a PR, or matching CI expectations.
+- Answering “how do we run tests?” or “what runs in CI?”
 
 ## Before a PR
 
@@ -26,6 +26,14 @@ alwaysApply: false
 - **pylint** is listed in **`requirements.txt`**; follow existing style in touched files.
 - **Husky / Talisman / Snyk** — see **README.md** for local hook setup.
 
-## Links
+## Pull requests
 
-- [`AGENTS.md`](../../AGENTS.md) · [`skills/contentstack-management-python/SKILL.md`](../../skills/contentstack-management-python/SKILL.md)
+- Build passes: **`pytest tests/unit/`** at minimum; run **API** / **mock** when your change touches those layers.
+- Follow **`skills/code-review/SKILL.md`** before merge.
+- Prefer backward-compatible public API; call out breaking changes and semver.
+
+## References
+
+- **`AGENTS.md`**
+- **`skills/contentstack-management/SKILL.md`**
+- **`skills/testing/SKILL.md`**
