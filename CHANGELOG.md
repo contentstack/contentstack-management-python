@@ -2,6 +2,13 @@
 
 ## Content Management SDK For Python
 ---
+## v1.8.1
+
+#### Date:  15 April 2026
+
+- Fixed Security issues
+
+---
 ## v1.8.0
 
 #### Date:  30 March 2026
