@@ -1,4 +1,4 @@
-python-dotenv>=1.0.0,<2.0.0
+python-dotenv>=1.2.2
 # <82: pkg_resources (used by coverage-badge and similar tools) was removed in setuptools 82+
 setuptools>=80.0.0,<82.0.0
 requests>=2.33.0,<3.0.0
