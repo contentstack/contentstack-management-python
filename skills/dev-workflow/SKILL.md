@@ -10,6 +10,11 @@ description: Install, pytest unit/API/mock, versioning, pylint, hooks—standard
 - Setting up locally, opening a PR, or matching CI expectations.
 - Answering “how do we run tests?” or “what runs in CI?”
 
+## Branches & releases
+
+- **Flow:** merge work to **`development`**; **release PRs** are **`development` → `main`**. After **`main`** moves, [`.github/workflows/back-merge-pr.yml`](../../.github/workflows/back-merge-pr.yml) can open **`main` → `development`** to resync.
+- **PyPI:** publish a **GitHub Release** (`release: published`) to run [`.github/workflows/release.yml`](../../.github/workflows/release.yml). PRs that touch **`contentstack_management/`** or **`setup.py`** must bump **`__version__`** and **`CHANGELOG.md`** per [`.github/workflows/check-version-bump.yml`](../../.github/workflows/check-version-bump.yml).
+
 ## Before a PR
 
 1. **Install** — `pip install -e ".[dev]"` or install **`requirements.txt`** plus **pytest** / **pytest-cov** as needed.
