@@ -2,6 +2,13 @@
 
 ## Content Management SDK For Python
 ---
+## v1.8.2
+
+#### Date:  13 May 2026
+
+- Bumped minimum `urllib3` dependency to `>=2.7.0,<3.0.0` (aligned with `requirements.txt`).
+
+---
 ## v1.8.1
 
 #### Date:  15 April 2026
