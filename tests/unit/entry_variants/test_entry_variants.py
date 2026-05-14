@@ -59,7 +59,7 @@ class EntryVariantsUnitTests(unittest.TestCase):
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_fetch_entry_variant(self):
-        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid).fetch()
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid, None).fetch()
         self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/variants/{variant_uid}")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -67,7 +67,7 @@ class EntryVariantsUnitTests(unittest.TestCase):
 
     def test_fetch_entry_variant_with_params(self):
         params = {"include_count": True}
-        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid).fetch(params=params)
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid, None).fetch(params=params)
         self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/variants/{variant_uid}?include_count=True")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -86,19 +86,19 @@ class EntryVariantsUnitTests(unittest.TestCase):
                 "description": "Updated description"
             }
         }
-        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid).update(data)
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid, None).update(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/variants/{variant_uid}")
         self.assertEqual(response.request.method, "PUT")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_delete_entry_variant(self):
-        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid).delete()
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid, None).delete()
         self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/variants/{variant_uid}")
         self.assertEqual(response.request.method, "DELETE")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_versions_entry_variant(self):
-        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid).versions()
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid, None).versions()
         self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/variants/{variant_uid}/versions")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -106,7 +106,7 @@ class EntryVariantsUnitTests(unittest.TestCase):
 
     def test_versions_entry_variant_with_params(self):
         params = {"limit": 10, "skip": 0}
-        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid).versions(params=params)
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid, None).versions(params=params)
         self.assertEqual(response.request.url, f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/variants/{variant_uid}/versions?limit=10&skip=0")
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
@@ -126,6 +126,66 @@ class EntryVariantsUnitTests(unittest.TestCase):
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
         self.assertEqual(response.request.body, None)
+
+    def test_find_entry_variants_with_branch_header(self):
+        branch_uid = "main"
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(branch_uid).find()
+        self.assertEqual(
+            response.request.url,
+            f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/variants",
+        )
+        self.assertEqual(response.request.headers["branch"], branch_uid)
+
+    def test_fetch_entry_variant_with_uid_and_branch(self):
+        branch_uid = "main"
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants(variant_uid, branch_uid).fetch()
+        self.assertEqual(
+            response.request.url,
+            f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/variants/{variant_uid}",
+        )
+        self.assertEqual(response.request.headers["branch"], branch_uid)
+
+    def test_variants_rejects_more_than_two_positional_args(self):
+        with self.assertRaises(TypeError):
+            self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants("a", "b", "c")
+
+    def test_publish_entry_from_variants(self):
+        data = {
+            "entry": {
+                "environments": ["production"],
+                "locales": ["en-us"],
+                "variants": [{"uid": variant_uid, "version": 1}],
+                "variant_rules": {
+                    "publish_latest_base": False,
+                    "publish_latest_base_conditionally": True,
+                },
+            },
+            "locale": "en-us",
+        }
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants().publish(data)
+        self.assertEqual(
+            response.request.url,
+            f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/publish",
+        )
+        self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+
+    def test_unpublish_entry_from_variants(self):
+        data = {
+            "entry": {
+                "environments": ["development"],
+                "locales": ["en-us"],
+                "variants": [{"uid": variant_uid, "version": 1}],
+            },
+            "locale": "en-us",
+        }
+        response = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants().unpublish(data)
+        self.assertEqual(
+            response.request.url,
+            f"{self.client.endpoint}content_types/{content_type_uid}/entries/{entry_uid}/unpublish",
+        )
+        self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_validate_content_type_uid_with_valid_uid(self):
         entry_variants = self.client.stack(api_key).content_types(content_type_uid).entry(entry_uid).variants()

@@ -423,13 +423,15 @@ class Entry(Parameter):
         data = json.dumps(data)
         return self.client.post(url, headers = self.client.headers, data = data, params = self.params)
     
-    def variants(self, variant_uid: str = None):
+    def variants(self, *args):
         """
         Returns an EntryVariants instance for managing variant entries.
-        
-        :param variant_uid: The `variant_uid` parameter is a string that represents the unique identifier of
-        the variant. It is used to specify which variant to work with
-        :type variant_uid: str
+
+        Pass no arguments when no ``branch`` header is required, one positional argument for the
+        branch UID only (sent as the ``branch`` request header), or two
+        arguments ``(variant_uid, branch)`` for a specific variant on a branch.
+
+        :param args: ``()`` | ``(branch,)`` | ``(variant_uid, branch)``
         :return: EntryVariants instance for managing variant entries
         -------------------------------
         [Example:]
@@ -438,13 +440,26 @@ class Entry(Parameter):
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
             >>> # Get all variant entries
             >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().query().find().json()
-            >>> # Get specific variant entry
-            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid').fetch().json()
+            >>> # Variant operations on a branch (branch header only)
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('branch_uid').query().find().json()
+            >>> # Specific variant on a branch
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid', 'branch_uid').fetch().json()
 
         -------------------------------
         """
-        
-        return EntryVariants(self.client, self.content_type_uid, self.entry_uid, variant_uid)
+        variant_uid = None
+        branch = None
+        if len(args) == 1:
+            branch = args[0]
+        elif len(args) == 2:
+            variant_uid, branch = args[0], args[1]
+        elif len(args) > 2:
+            raise TypeError(
+                f"variants() takes at most 2 positional arguments ({len(args)} given)"
+            )
+        return EntryVariants(
+            self.client, self.content_type_uid, self.entry_uid, variant_uid, branch
+        )
     
     def includeVariants(self, include_variants: str = 'true', variant_uid: str = None, params: dict = None):
         """
