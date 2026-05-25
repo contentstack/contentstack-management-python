@@ -2,6 +2,13 @@
 
 ## Content Management SDK For Python
 ---
+## v1.9.0
+
+#### Date:  25 May 2026
+
+- Removed unused `bson` dependency so the package installs on Python 3.12+ and 3.14 (the standalone `bson` 0.5.x package fails to build on newer Python versions).
+
+---
 ## v1.8.1
 
 #### Date:  15 April 2026
