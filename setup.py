@@ -50,7 +50,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     install_requires=[
-        "bson >= 0.5.9",
         "requests >= 2.5.4",
         "requests-toolbelt >= 0.3.1",
         "urllib3 >= 2.6.3",
