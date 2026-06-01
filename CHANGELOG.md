@@ -2,11 +2,11 @@
 
 ## Content Management SDK For Python
 ---
-## v1.8.2
+## v1.9.0
 
-#### Date:  13 May 2026
+#### Date:  01 June 2026
 
-- Bumped minimum `urllib3` dependency to `>=2.7.0,<3.0.0` (aligned with `requirements.txt`).
+- Removed unused `bson` dependency so the package installs on Python 3.12+ and 3.14 (the standalone `bson` 0.5.x package fails to build on newer Python versions).
 
 ---
 ## v1.8.1
