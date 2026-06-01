@@ -4,7 +4,7 @@
 ---
 ## v1.9.0
 
-#### Date:  25 May 2026
+#### Date:  01 June 2026
 
 - Removed unused `bson` dependency so the package installs on Python 3.12+ and 3.14 (the standalone `bson` 0.5.x package fails to build on newer Python versions).
 

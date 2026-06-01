@@ -52,7 +52,7 @@ setup(
     install_requires=[
         "requests >= 2.5.4",
         "requests-toolbelt >= 0.3.1",
-        "urllib3 >= 2.6.3",
+        "urllib3 >= 2.7.0,<3.0.0",
     ],
     extras_require={
         "dev": ["pytest>=7.0", "twine>=4.0.2", "packaging>=24.0", "dotenv>=0.0.5"],
