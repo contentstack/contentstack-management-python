@@ -137,4 +137,5 @@ tests/resources/.DS_Store
 tests/.DS_Store
 tests/resources/.DS_Store
 .DS_Store
+*/data/regions.json
 .talismanrc

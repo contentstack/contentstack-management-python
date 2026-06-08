@@ -36,6 +36,7 @@ setup(
     name="contentstack-management",
     version=get_version(package),
     packages=find_packages(exclude=['tests']),
+    package_data={'contentstack_management': ['data/regions.json']},
     py_modules=['_api_client', 'contentstack','common','_errors','_constant'],
     description="Contentstack API Client Library for Python",
     long_description=long_description,
