@@ -18,6 +18,7 @@ from .environments.environment import Environment
 from .entries.entry import Entry
 from .entry_variants.entry_variants import EntryVariants
 from .contentstack import Client, Region
+from .endpoint import Endpoint
 from ._api_client import _APIClient
 from .common import Parameter
 from ._errors import ArgumentException
@@ -41,6 +42,7 @@ from .oauth.oauth_interceptor import OAuthInterceptor
 __all__ = (
 "Client",
 "Region",
+"Endpoint",
 "_APIClient",
 "Parameter",
 "ArgumentException",
@@ -78,11 +80,27 @@ __all__ = (
 "OAuthInterceptor"
 )
 
+def get_contentstack_endpoint(region='us', service='', omit_https=False):
+    """
+    Resolve a Contentstack service endpoint URL for a given region.
+
+    Proxy to :class:`Endpoint.get_contentstack_endpoint` for convenience —
+    mirrors ``Contentstack::getContentstackEndpoint()`` in the PHP SDK.
+
+    :param region: Region ID or alias ('us', 'eu', 'azure-na', 'gcp-eu', ...).
+    :param service: Service key ('contentDelivery', 'contentManagement', ...).
+                    When empty, returns a dict of all endpoints for the region.
+    :param omit_https: When True, strips 'https://' from the returned URL(s).
+    :returns: str when service is provided, dict[str,str] otherwise.
+    """
+    return Endpoint.get_contentstack_endpoint(region, service, omit_https)
+
+
 __title__ = 'contentstack-management-python'
 __author__ = 'dev-ex'
 __status__ = 'debug'
 __region__ = 'na'
-__version__ = '1.9.0'
+__version__ = '1.10.0'
 __host__ = 'api.contentstack.io'
 __protocol__ = 'https://'
 __api_version__ = 'v3'

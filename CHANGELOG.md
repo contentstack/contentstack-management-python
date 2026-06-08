@@ -2,6 +2,18 @@
 
 ## Content Management SDK For Python
 ---
+## v1.10.0
+
+#### Date: 08 June 2026
+
+- Dynamic region endpoint resolution via the Contentstack Regions Registry (`regions.json`).
+- Added `Endpoint` class with 3-tier resolution: in-memory cache → bundled `data/regions.json` → live CDN download.
+- Exposed `contentstack_management.get_contentstack_endpoint(region, service, omit_https)` module-level proxy.
+- `Client` now resolves the `contentManagement` endpoint from the registry instead of a hardcoded host pattern.
+- Added `scripts/download_regions.py` to refresh the bundled registry file.
+- New regions and services require no SDK code changes — registry update is sufficient.
+
+---
 ## v1.9.0
 
 #### Date:  01 June 2026
