@@ -1,6 +1,6 @@
-# Skills — Contentstack Management Python
+# Skills – Contentstack Management Python
 
-**This directory is the source of truth** for conventions (workflow, SDK API, style, tests, review, HTTP layer). Read **`AGENTS.md`** at the repo root for the index and quick commands; each skill is a folder with **`SKILL.md`** (YAML frontmatter: `name`, `description`).
+Source of truth for detailed guidance. Read **[`AGENTS.md`](../AGENTS.md)** first, then open the skill that matches your task.
 
 ## When to use which skill
 
@@ -13,7 +13,4 @@
 | **code-review** | PR checklist, API semver, HTTP regressions, secrets |
 | **framework** | Changing **`_APIClient`**, retries, **`requests`** usage, OAuth interceptor wiring |
 
-## How to use these docs
-
-- **Humans / any AI tool:** Start at **`AGENTS.md`**, then open the relevant **`skills/<name>/SKILL.md`**.
-- **Cursor users:** **`.cursor/rules/README.md`** only points to **`AGENTS.md`** so guidance stays universal—no duplicate `.mdc` rule sets.
+Each folder contains `SKILL.md` with YAML frontmatter (`name`, `description`).
