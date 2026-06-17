@@ -37,6 +37,7 @@ from .variant_group.variant_group import VariantGroup
 from .variants.variants import Variants
 from .oauth.oauth_handler import OAuthHandler
 from .oauth.oauth_interceptor import OAuthInterceptor
+from .region_refresh import refresh_regions
 
 
 __all__ = (
@@ -77,7 +78,8 @@ __all__ = (
 "VariantGroup",
 "Variants",
 "OAuthHandler",
-"OAuthInterceptor"
+"OAuthInterceptor",
+"refresh_regions",
 )
 
 def get_contentstack_endpoint(region='us', service='', omit_https=False):

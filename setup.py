@@ -1,6 +1,21 @@
 import os
 import re
+import sys
 from setuptools import setup, find_packages
+from setuptools.command.build_py import build_py
+
+
+class BuildPyWithRegions(build_py):
+    """Fetch latest regions.json from Contentstack CDN before packaging."""
+
+    def run(self):
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        try:
+            from contentstack_management.region_refresh import refresh_regions
+            refresh_regions()
+        except Exception as exc:
+            print(f"WARNING: Could not refresh regions.json: {exc}", file=sys.stderr)
+        super().run()
 
 with open("README.md", "r") as f:
     long_description = f.read()
@@ -33,6 +48,7 @@ def get_author_email(package):
                      init_py, re.MULTILINE).group(1)
 
 setup(
+    cmdclass={"build_py": BuildPyWithRegions},
     name="contentstack-management",
     version=get_version(package),
     packages=find_packages(exclude=['tests']),
