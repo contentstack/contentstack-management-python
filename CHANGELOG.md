@@ -4,7 +4,7 @@
 ---
 ## v1.10.0
 
-#### Date: 08 June 2026
+#### Date: 22 June 2026
 
 - Dynamic region endpoint resolution via the Contentstack Regions Registry (`regions.json`).
 - Added `Endpoint` class with 3-tier resolution: in-memory cache → bundled `data/regions.json` → live CDN download.
