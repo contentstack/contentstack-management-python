@@ -12,6 +12,9 @@
 - `Client` now resolves the `contentManagement` endpoint from the registry instead of a hardcoded host pattern.
 - Added `scripts/download_regions.py` to refresh the bundled registry file.
 - New regions and services require no SDK code changes — registry update is sufficient.
+- Added `refresh_regions()` utility to programmatically download the latest regions manifest from the Contentstack CDN and overwrite the bundled `data/regions.json`.
+- Exposed `refresh_regions` at the package level (`from contentstack_management import refresh_regions`) for use in CI pipelines and tooling.
+- `setup.py` now auto-refreshes `regions.json` at build time via a custom `BuildPyWithRegions` command, keeping bundled region data current on every `pip install`.
 
 ---
 ## v1.9.0
