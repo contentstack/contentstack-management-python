@@ -10,11 +10,12 @@
 - Added `Endpoint` class with 3-tier resolution: in-memory cache → bundled `data/regions.json` → live CDN download.
 - Exposed `contentstack_management.get_contentstack_endpoint(region, service, omit_https)` module-level proxy.
 - `Client` now resolves the `contentManagement` endpoint from the registry instead of a hardcoded host pattern.
-- Added `scripts/download_regions.py` to refresh the bundled registry file.
+- Bundled `contentstack_management/data/regions.json` included in `package_data` — always present after `pip install`.
+- `setup.py` auto-refreshes `regions.json` at build time via a custom `BuildPyWithRegions` command; network failures warn but never block the build.
+- Runtime fallback: if `regions.json` is absent, the SDK downloads it live on the first `Endpoint` call.
 - New regions and services require no SDK code changes — registry update is sufficient.
-- Added `refresh_regions()` utility to programmatically download the latest regions manifest from the Contentstack CDN and overwrite the bundled `data/regions.json`.
-- Exposed `refresh_regions` at the package level (`from contentstack_management import refresh_regions`) for use in CI pipelines and tooling.
-- `setup.py` now auto-refreshes `regions.json` at build time via a custom `BuildPyWithRegions` command, keeping bundled region data current on every `pip install`.
+- Added `refresh_regions()` utility to programmatically download the latest regions manifest from the Contentstack CDN and overwrite the bundled `data/regions.json` (`from contentstack_management import refresh_regions`).
+- Added `python3 -m contentstack_management.region_refresh` CLI command for refreshing the registry after `pip install` (source-tree script `scripts/download_regions.py` is for contributors only).
 
 ---
 ## v1.9.0
