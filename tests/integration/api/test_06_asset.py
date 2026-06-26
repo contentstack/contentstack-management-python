@@ -49,15 +49,10 @@ class TestAssetCRUD:
         h.assert_status(resp, 200)
         h.tracked_assert(h.body(resp).get("assets"), "assets list").is_type(list)
 
-    @pytest.mark.xfail(reason="SDK bug: Assets.update() sets Content-Type "
-                              "multipart/form-data but sends a JSON body -> 422", strict=False)
     def test_update_title(self, stack, store):
         resp = stack.assets(store["assets"]["main"]).update({"asset": {"title": "Updated Asset"}})
         h.assert_status(resp, 200, 201)
 
-    @pytest.mark.xfail(reason="SDK bug: Assets.replace() sets Content-Type "
-                              "multipart/form-data manually while also passing files=, so "
-                              "requests cannot set the multipart boundary -> 422", strict=False)
     def test_replace(self, stack, store):
         resp = stack.assets(store["assets"]["main"]).replace(_ASSET_PATH)
         h.assert_status(resp, 200, 201)

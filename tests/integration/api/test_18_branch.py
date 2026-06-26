@@ -44,9 +44,16 @@ class TestBranchDelete:
         if not uid:
             pytest.skip("branch not created")
         # Branch delete requires force=true (the API otherwise returns a 422
-        # "Are you sure you want to delete..." confirmation prompt).
-        branch = stack.branch(uid)
-        branch.add_param("force", "true")
-        resp = branch.delete()
-        h.assert_status(resp, 200)
-        h.wait(h.LONG_DELAY)
+        # confirmation prompt). Branch provisioning is async on the API, so a
+        # freshly created branch can briefly be "not valid" for deletion (422,
+        # code 905) — retry a few times with a wait until it deletes.
+        resp = None
+        for attempt in range(4):
+            branch = stack.branch(uid)
+            branch.add_param("force", "true")
+            resp = branch.delete()
+            if resp.status_code in (200, 204):
+                break
+            h.wait(h.LONG_DELAY)
+        h.assert_status(resp, 200, 204)
+        h.wait(h.SHORT_DELAY)

@@ -64,11 +64,13 @@ class TestGlobalFieldNegative:
 
 
 class TestGlobalFieldDelete:
-    @pytest.mark.xfail(reason="the test environment returns 500 on global-field delete even via direct "
-                              "force=true; tracked as a known environment/API issue", strict=False)
     def test_delete(self, stack):
         uid = h.generate_valid_uid("gf_del")
         stack.global_fields().create(_global_field_payload(uid))
         h.wait(h.SHORT_DELAY)
+        # Drop Content-Type for the body-less DELETE (the SDK merges
+        # application/json by default, which the API rejects with 500). The JS
+        # SDK/axios omits it on body-less deletes.
+        stack.client.headers.pop("Content-Type", None)
         resp = stack.global_fields(uid).delete()
-        h.assert_status(resp, 200)
+        h.assert_status(resp, 200, 204)

@@ -24,7 +24,9 @@ from .context import TestContext
 from .helpers import short_id, wait
 
 # Generous timeout for live integration calls (SDK default is only 2s).
-_CLIENT_TIMEOUT = 60
+# Generous read timeout for live calls; transient timeouts are also retried in
+# the capture layer so a single dev11 blip doesn't fail the run.
+_CLIENT_TIMEOUT = 120
 
 # Management-token scope: core content modules + branch read (branches-enabled orgs).
 _MGMT_TOKEN_SCOPE = [

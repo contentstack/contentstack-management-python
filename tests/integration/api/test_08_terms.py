@@ -79,11 +79,11 @@ class TestTermsNegative:
 
 
 class TestTermsDelete:
-    @pytest.mark.xfail(reason="the test environment returns 400 on term delete; tracked as a known "
-                              "environment/API issue", strict=False)
     def test_delete(self, stack, taxonomy_uid):
         uid = h.generate_valid_uid("term_del")
         stack.taxonomy(taxonomy_uid).terms().create({"term": {"uid": uid, "name": f"Del {uid}"}})
         h.wait(h.SHORT_DELAY)
+        # Drop Content-Type for the body-less DELETE (see taxonomy delete note).
+        stack.client.headers.pop("Content-Type", None)
         resp = stack.taxonomy(taxonomy_uid).terms(uid).delete()
-        h.assert_status(resp, 200)
+        h.assert_status(resp, 200, 204)

@@ -10,6 +10,7 @@ This mirrors the JS suite's axios request-capture plugin.
 """
 
 import json
+import os
 import time
 from typing import Any, Optional
 
@@ -112,6 +113,35 @@ def _detect_sdk_method(method: str, url: str) -> str:
     return f"{m} {path}"
 
 
+# Transient network errors get a couple of automatic retries so a single dev11
+# blip (e.g. a read timeout) doesn't red the whole suite.
+_TRANSIENT_RETRIES = 2
+_RETRY_BACKOFF_SECONDS = 3
+
+
+def _request_with_retry(method, url, kwargs):
+    """Call the real requests.request, retrying transient network failures."""
+    import requests.exceptions as rex
+
+    transient = (rex.ConnectionError, rex.ConnectTimeout, rex.ReadTimeout, rex.Timeout)
+    last_exc = None
+    for attempt in range(_TRANSIENT_RETRIES + 1):
+        try:
+            return _original_request(method, url, **kwargs)
+        except transient as exc:
+            last_exc = exc
+            if attempt < _TRANSIENT_RETRIES:
+                time.sleep(_RETRY_BACKOFF_SECONDS)
+            # Re-open any file handles (consumed by the failed multipart attempt).
+            files = kwargs.get("files")
+            if files:
+                for key, val in list(files.items()):
+                    name = getattr(val[1] if isinstance(val, (tuple, list)) else val, "name", None)
+                    if name and os.path.exists(name):
+                        kwargs["files"][key] = (val[0], open(name, "rb"), val[2]) if isinstance(val, (tuple, list)) else open(name, "rb")
+    raise last_exc
+
+
 def _patched_request(method, url, **kwargs):
     """Drop-in for requests.request that records the call, then delegates."""
     start = time.time()
@@ -135,7 +165,7 @@ def _patched_request(method, url, **kwargs):
         "error": None,
     }
     try:
-        response = _original_request(method, url, **kwargs)
+        response = _request_with_retry(method, url, kwargs)
         record["status"] = response.status_code
         record["status_text"] = response.reason
         record["response_headers"] = dict(response.headers)

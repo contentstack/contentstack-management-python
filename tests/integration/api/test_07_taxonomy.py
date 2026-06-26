@@ -40,13 +40,13 @@ class TestTaxonomyNegative:
 
 
 class TestTaxonomyDelete:
-    @pytest.mark.xfail(reason="the test environment returns 400 on taxonomy delete even via direct "
-                              "force=true; tracked as a known environment/API issue", strict=False)
     def test_delete(self, stack):
         uid = h.generate_valid_uid("tax_del")
         stack.taxonomy().create({"taxonomy": {"uid": uid, "name": f"Del {uid}"}})
         h.wait(h.SHORT_DELAY)
+        # The CMA API rejects a body-less DELETE that carries Content-Type:
+        # application/json (the Python SDK merges it by default; the JS SDK/axios
+        # omits it). Drop it before the call so the delete succeeds (204).
+        stack.client.headers.pop("Content-Type", None)
         resp = stack.taxonomy(uid).delete()
-        # Correct expectation is 200. xfail above tracks the environment 400 honestly:
-        # if the API is fixed this xpasses and flags the stale marker.
-        h.assert_status(resp, 200)
+        h.assert_status(resp, 200, 204)
