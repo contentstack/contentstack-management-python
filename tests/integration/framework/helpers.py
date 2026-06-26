@@ -92,6 +92,24 @@ def body(response) -> dict:
         return {}
 
 
+def wait_for_scan(stack, asset_uid, expected, timeout=40, interval=3):
+    """Poll an asset's _asset_scan_status (AM 2.0) until it reaches `expected`.
+
+    Requires the include_asset_scan_status=true query param to surface the field.
+    Returns the last observed status (the caller asserts == expected).
+    """
+    deadline = time.time() + timeout
+    last = None
+    while time.time() < deadline:
+        asset = stack.assets(asset_uid)
+        asset.add_param("include_asset_scan_status", "true")
+        last = body(asset.fetch()).get("asset", {}).get("_asset_scan_status")
+        if last == expected:
+            return last
+        time.sleep(interval)
+    return last
+
+
 # ---------------------------------------------------------------------------
 # Status / error assertions (Python SDK does NOT raise on HTTP errors)
 # ---------------------------------------------------------------------------

@@ -179,6 +179,52 @@ class TestAssetNegative:
             stack.assets().specific_asset_type(None)
 
 
+class TestAssetScan:
+    """Asset scanning (AM 2.0) — verified enabled on the normal ORGANIZATION too.
+
+    The scan status is exposed only when include_asset_scan_status=true is passed;
+    the response field is _asset_scan_status with values pending -> clean | quarantined.
+    """
+
+    def test_upload_returns_pending(self, stack):
+        asset = stack.assets()
+        asset.add_param("include_asset_scan_status", "true")
+        resp = asset.upload(_ASSET_PATH)
+        h.assert_status(resp, 201)
+        status = h.body(resp).get("asset", {}).get("_asset_scan_status")
+        h.tracked_assert(status, "scan status on upload").equals("pending")
+
+    def test_scan_status_absent_without_param(self, stack):
+        # The field must be absent unless the include param is passed.
+        created = h.body(stack.assets().upload(_ASSET_PATH)).get("asset", {})
+        resp = stack.assets(created["uid"]).fetch()
+        h.assert_status(resp, 200)
+        h.tracked_assert(
+            "_asset_scan_status" not in h.body(resp).get("asset", {}), "field absent w/o param"
+        ).equals(True)
+
+    def test_clean_asset_scanned_clean(self, stack):
+        created = h.body(stack.assets().upload(_ASSET_PATH)).get("asset", {})
+        status = h.wait_for_scan(stack, created["uid"], "clean")
+        h.tracked_assert(status, "clean file scan result").equals("clean")
+
+    def test_malware_asset_quarantined(self, stack, eicar_file):
+        created = h.body(stack.assets().upload(eicar_file)).get("asset", {})
+        status = h.wait_for_scan(stack, created["uid"], "quarantined")
+        h.tracked_assert(status, "EICAR scan result").equals("quarantined")
+
+    def test_find_includes_scan_status(self, stack):
+        query = stack.assets()
+        query.add_param("include_asset_scan_status", "true")
+        resp = query.find()
+        h.assert_status(resp, 200)
+        assets = h.body(resp).get("assets", [])
+        if assets:
+            h.tracked_assert(
+                "_asset_scan_status" in assets[0], "scan status in listing"
+            ).equals(True)
+
+
 class TestAssetDelete:
     def test_delete(self, stack):
         created = h.body(stack.assets().upload(_ASSET_PATH))

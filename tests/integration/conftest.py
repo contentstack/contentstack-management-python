@@ -29,7 +29,7 @@ from dotenv import load_dotenv
 from framework import capture, report
 from framework import setup as setup_mod
 from framework.context import reset_store, test_data
-from framework.helpers import set_active_tracker
+from framework.helpers import set_active_tracker, short_id, wait
 from framework.report import TestRecord
 
 load_dotenv()
@@ -72,6 +72,60 @@ def store():
     return test_data
 
 
+@pytest.fixture(scope="session")
+def am_stack(ctx):
+    """A stack created in the AM 2.0 (DAM-enabled) org from AM_ORG_UID.
+
+    Skips the whole AM suite when AM_ORG_UID is not configured. Reuses the
+    authenticated session client; only the stack lives in the AM org.
+    """
+    am_org = os.getenv("AM_ORG_UID")
+    if not am_org:
+        pytest.skip("AM_ORG_UID not set — AM 2.0 tests require a DAM-enabled org")
+    client = ctx.client
+    # This session fixture runs before the per-test header reset, so restore a
+    # clean JSON Content-Type (a prior asset upload may have mutated/popped it).
+    client.client.headers["Content-Type"] = "application/json"
+    client.client.headers.pop("api_version", None)
+    client.client.headers["organization_uid"] = am_org  # Stack.create org-header workaround
+    resp = client.stack().create(am_org, {"stack": {
+        "name": f"SDK_Py_AM_{short_id()}",
+        "description": "Automated AM 2.0 test stack",
+        "master_locale": "en-us",
+    }})
+    if resp.status_code not in (200, 201):
+        client.client.headers["organization_uid"] = ctx.organization_uid
+        pytest.skip(f"could not create AM stack ({resp.status_code}): {resp.text[:120]}")
+    api_key = resp.json()["stack"]["api_key"]
+    wait(5)
+    yield client.stack(api_key)
+    # teardown: delete the AM stack, then restore the normal org header
+    if setup_mod.should_delete_resources():
+        try:
+            client.stack(api_key).delete()
+        except Exception:  # noqa: BLE001
+            pass
+    client.client.headers["organization_uid"] = ctx.organization_uid
+
+
+@pytest.fixture(scope="session")
+def eicar_file(tmp_path_factory):
+    """Path to an EICAR antivirus test file, written at runtime (never committed).
+
+    The asset scanner quarantines this standard test signature, letting us assert
+    the 'quarantined' scan status. The signature is stored base64-encoded (not as a
+    raw literal) so the source file itself isn't flagged by antivirus / repo scanners.
+    """
+    import base64
+
+    signature = base64.b64decode(
+        "WDVPIVAlQEFQWzRcUFpYNTQoUF4pN0NDKTd9JEVJQ0FSLVNUQU5EQVJELUFOVElWSVJVUy1URVNULUZJTEUhJEgrSCo="
+    )
+    path = tmp_path_factory.mktemp("am_scan") / "eicar.com"
+    path.write_bytes(signature)
+    return str(path)
+
+
 # ---------------------------------------------------------------------------
 # Per-test capture wiring
 # ---------------------------------------------------------------------------
@@ -101,6 +155,7 @@ def _reset_client_headers(request):
     headers = context.client.client.headers
     headers["Content-Type"] = "application/json"
     headers.pop("branch", None)
+    headers.pop("api_version", None)  # AM 2.0 publish header leaks otherwise (breaks later calls)
     yield
 
 
