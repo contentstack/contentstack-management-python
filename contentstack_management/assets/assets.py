@@ -174,7 +174,10 @@ class Assets(Parameter):
         """
 
         url = f"assets/{self.asset_uid}"
-        Parameter.add_header(self, "Content-Type", "multipart/form-data")
+        # Let requests build the multipart body and set Content-Type WITH a boundary.
+        # Setting a bare "multipart/form-data" (no boundary) makes the API reject the
+        # upload with 422 "Please send a valid multipart/form-data payload".
+        self.client.headers.pop("Content-Type", None)
         files = {"asset": open(f"{file_path}",'rb')}
         return self.client.put(url, headers = self.client.headers, params = self.params, files = files)
     
@@ -407,7 +410,9 @@ class Assets(Parameter):
         if self.asset_uid is None or '':
             raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}"
-        Parameter.add_header(self, "Content-Type", "multipart/form-data")
+        # Updating an asset's title/description sends a JSON body, so it must use
+        # application/json. Forcing multipart/form-data here makes the API reject
+        # the request with 422 "Please send a valid multipart/form-data payload".
         return self.client.put(url, headers = self.client.headers, params = self.params, data = data)
 
     def publish(self, data):

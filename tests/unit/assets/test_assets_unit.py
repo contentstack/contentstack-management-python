@@ -167,7 +167,9 @@ class AssetsUnitTests(unittest.TestCase):
         response = self.client.stack(api_key).assets(asset_uid).update(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}")
         self.assertEqual(response.request.method, "PUT")
-        self.assertEqual(response.request.headers["Content-Type"], "multipart/form-data")
+        # Asset update sends a JSON body, so Content-Type must be application/json
+        # (it previously forced multipart/form-data, which the API rejects).
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_publish(self):
         data = {
