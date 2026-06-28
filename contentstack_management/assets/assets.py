@@ -174,12 +174,11 @@ class Assets(Parameter):
         """
 
         url = f"assets/{self.asset_uid}"
-        # Let requests build the multipart body and set Content-Type WITH a boundary.
-        # Setting a bare "multipart/form-data" (no boundary) makes the API reject the
-        # upload with 422 "Please send a valid multipart/form-data payload".
-        self.client.headers.pop("Content-Type", None)
-        files = {"asset": open(f"{file_path}",'rb')}
-        return self.client.put(url, headers = self.client.headers, params = self.params, files = files)
+        # Omit Content-Type so requests can set it with the correct multipart boundary.
+        # Use a per-request header copy to avoid mutating the shared client headers dict.
+        request_headers = {k: v for k, v in self.client.headers.items() if k.lower() != "content-type"}
+        with open(file_path, 'rb') as fh:
+            return self.client.put(url, headers=request_headers, params=self.params, files={"asset": fh})
     
     def generate(self, data):
         """
@@ -410,10 +409,11 @@ class Assets(Parameter):
         if self.asset_uid is None or '':
             raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}"
-        # Updating an asset's title/description sends a JSON body, so it must use
-        # application/json. Forcing multipart/form-data here makes the API reject
-        # the request with 422 "Please send a valid multipart/form-data payload".
-        return self.client.put(url, headers = self.client.headers, params = self.params, data = data)
+        # Use a per-request header copy with Content-Type explicitly set to application/json
+        # so this call is not affected by whatever a preceding upload/replace left in
+        # the shared headers dict.
+        request_headers = {**self.client.headers, "Content-Type": "application/json"}
+        return self.client.put(url, headers=request_headers, params=self.params, data=data)
 
     def publish(self, data):
         """

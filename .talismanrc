@@ -406,3 +406,7 @@ fileignoreconfig:
 - filename: tests/mock/assets/test_assets_mock.py
   checksum: 12c9091bb88c0c12712f046b29fb4a9dce3b95ecc45f4ea46bbc3fd4529742a0
 version: "1.0"
+fileignoreconfig:
+- filename: tests/integration/framework/capture.py
+  checksum: c9680c4ee3e1def0765fd89767fa1383aee5d195222fa021a19618607373047c
+version: "1.0"

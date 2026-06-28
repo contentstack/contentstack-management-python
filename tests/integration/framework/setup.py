@@ -11,7 +11,7 @@ Drives the full setup/teardown:
 All calls go through the SDK so the request-capture layer records them. Uses the
 SDK exactly as a customer would — exercising the real artifact under test.
 
-Env vars (see .env.example):
+Env vars (set in tests/integration/.env):
   Required: EMAIL, PASSWORD, HOST, ORGANIZATION
   Optional: MFA_SECRET, DELETE_DYNAMIC_RESOURCES (default 'true')
 """
@@ -47,7 +47,7 @@ def validate_environment() -> None:
     if missing:
         raise RuntimeError(
             f"Missing required environment variables: {', '.join(missing)}. "
-            f"See tests/integration/.env.example."
+            f"Create tests/integration/.env with these variables set."
         )
 
 

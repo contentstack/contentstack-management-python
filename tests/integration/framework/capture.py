@@ -136,9 +136,23 @@ def _request_with_retry(method, url, kwargs):
             files = kwargs.get("files")
             if files:
                 for key, val in list(files.items()):
-                    name = getattr(val[1] if isinstance(val, (tuple, list)) else val, "name", None)
-                    if name and os.path.exists(name):
-                        kwargs["files"][key] = (val[0], open(name, "rb"), val[2]) if isinstance(val, (tuple, list)) else open(name, "rb")
+                    if isinstance(val, (tuple, list)):
+                        fh = val[1]
+                        name = getattr(fh, "name", None)
+                        if name and os.path.exists(name):
+                            try:
+                                fh.close()
+                            except Exception:
+                                pass
+                            kwargs["files"][key] = (val[0], open(name, "rb")) + tuple(val[2:])
+                    else:
+                        name = getattr(val, "name", None)
+                        if name and os.path.exists(name):
+                            try:
+                                val.close()
+                            except Exception:
+                                pass
+                            kwargs["files"][key] = open(name, "rb")
     raise last_exc
 
 
