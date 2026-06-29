@@ -185,11 +185,16 @@ class TestWorkflowPublishRules:
         resp = stack.workflows().delete_publish_rule(rule_uid)
         h.assert_status(resp, 200)
 
-    @pytest.mark.xfail(reason="publish_request_approval returns 401 — the test account "
-                              "lacks publish-approval permission on a fresh stack", strict=False)
-    def test_publish_request_approval(self, stack, content_type_uid, wf_entry):
+    def test_publish_request_approval(self, stack, content_type_uid, wf_entry, wf_stage_uid):
         if not wf_entry:
             pytest.skip("entry not available")
+        # wf_entry is class-scoped so this class gets a fresh entry that was never
+        # assigned to a workflow stage. Assign it first so the GET /workflow endpoint
+        # returns 200 instead of 401 (no active workflow state).
+        if wf_stage_uid:
+            stage_data = {"workflow": {"workflow_stage": {"comment": "approval test", "uid": wf_stage_uid, "notify": False}}}
+            stack.workflows().set_workflow_stage(content_type_uid, wf_entry, stage_data)
+            h.wait(h.SHORT_DELAY)
         resp = stack.workflows().publish_request_approval(content_type_uid, wf_entry)
         h.assert_status(resp, 200, 201)
 
