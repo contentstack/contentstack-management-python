@@ -174,9 +174,17 @@ class Assets(Parameter):
         """
 
         url = f"assets/{self.asset_uid}"
-        Parameter.add_header(self, "Content-Type", "multipart/form-data")
-        files = {"asset": open(f"{file_path}",'rb')}
-        return self.client.put(url, headers = self.client.headers, params = self.params, files = files)
+        # _api_client._call_request does headers.update(self.headers) so a per-request
+        # copy is overwritten before the request is sent. The only way to suppress
+        # Content-Type is to temporarily remove it from the shared dict so requests can
+        # set multipart/form-data with the correct boundary automatically.
+        saved_ct = self.client.headers.pop("Content-Type", None)
+        try:
+            with open(file_path, 'rb') as fh:
+                return self.client.put(url, headers=self.client.headers, params=self.params, files={"asset": fh})
+        finally:
+            if saved_ct is not None:
+                self.client.headers["Content-Type"] = saved_ct
     
     def generate(self, data):
         """
@@ -407,8 +415,11 @@ class Assets(Parameter):
         if self.asset_uid is None or '':
             raise Exception(ASSET_UID_REQUIRED)
         url = f"assets/{self.asset_uid}"
-        Parameter.add_header(self, "Content-Type", "multipart/form-data")
-        return self.client.put(url, headers = self.client.headers, params = self.params, data = data)
+        # Use a per-request header copy with Content-Type explicitly set to application/json
+        # so this call is not affected by whatever a preceding upload/replace left in
+        # the shared headers dict.
+        request_headers = {**self.client.headers, "Content-Type": "application/json"}
+        return self.client.put(url, headers=request_headers, params=self.params, data=data)
 
     def publish(self, data):
         """
