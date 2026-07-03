@@ -167,7 +167,9 @@ class AssetsUnitTests(unittest.TestCase):
         response = self.client.stack(api_key).assets(asset_uid).update(data)
         self.assertEqual(response.request.url, f"{self.client.endpoint}assets/{asset_uid}")
         self.assertEqual(response.request.method, "PUT")
-        self.assertEqual(response.request.headers["Content-Type"], "multipart/form-data")
+        # Asset update sends a JSON body, so Content-Type must be application/json
+        # (it previously forced multipart/form-data, which the API rejects).
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
     def test_publish(self):
         data = {
@@ -259,24 +261,24 @@ class AssetsUnitTests(unittest.TestCase):
 
     def test_fetch_includes_scan_status_param(self):
         asset = self.client.stack(api_key).assets(asset_uid)
-        asset.add_param("include_asset_scan_status", True)
+        asset.add_param("include_asset_scan_status", "true")
         response = asset.fetch()
-        self.assertIn("include_asset_scan_status=True", response.request.url)
+        self.assertIn("include_asset_scan_status=true", response.request.url)
         self.assertEqual(response.request.method, "GET")
 
     def test_find_includes_scan_status_param(self):
         asset = self.client.stack(api_key).assets()
-        asset.add_param("include_asset_scan_status", True)
+        asset.add_param("include_asset_scan_status", "true")
         response = asset.find()
-        self.assertIn("include_asset_scan_status=True", response.request.url)
+        self.assertIn("include_asset_scan_status=true", response.request.url)
         self.assertEqual(response.request.method, "GET")
 
     def test_upload_includes_scan_status_param(self):
         file_path = "tests/resources/mock_assets/chaat.jpeg"
         asset = self.client.stack(api_key).assets()
-        asset.add_param("include_asset_scan_status", True)
+        asset.add_param("include_asset_scan_status", "true")
         response = asset.upload(file_path)
-        self.assertIn("include_asset_scan_status=True", response.request.url)
+        self.assertIn("include_asset_scan_status=true", response.request.url)
         self.assertEqual(response.request.method, "POST")
 
     def test_fetch_without_scan_status_param_field_absent(self):
@@ -298,10 +300,10 @@ class AssetsUnitTests(unittest.TestCase):
     def test_scan_status_param_coexists_with_other_params(self):
         asset = self.client.stack(api_key).assets(asset_uid)
         asset.add_param("locale", "en-us")
-        asset.add_param("include_asset_scan_status", True)
+        asset.add_param("include_asset_scan_status", "true")
         response = asset.fetch()
         self.assertIn("locale=en-us", response.request.url)
-        self.assertIn("include_asset_scan_status=True", response.request.url)
+        self.assertIn("include_asset_scan_status=true", response.request.url)
         self.assertEqual(response.request.method, "GET")
 
     def test_publish_includes_api_version_header(self):

@@ -133,9 +133,17 @@ tests/config/default.yml
 .vscode/settings.json
 run.py
 tests/resources/.DS_Store
-.talismanrc
 tests/.DS_Store
-tests/resources/.DS_Store
 .DS_Store
 */data/regions.json
-.talismanrc
+# Local backup of legacy tests (do not commit)
+
+# --- CMA integration suite: do not track ---
+docs/
+tests_backup_legacy/
+tests/integration/report/
+tests/integration/.env
+tests/integration/.env.example
+# Timestamped reports written at repo root
+cma-python-report-*.html
+api-requests-*.txt
