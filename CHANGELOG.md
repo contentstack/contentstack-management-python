@@ -2,6 +2,14 @@
 
 ## Content Management SDK For Python
 ---
+## v1.10.1
+
+#### Date: 26 June 2026
+
+- Fixed `Asset.update()` to send the JSON body with `Content-Type: application/json` instead of an invalid bare `multipart/form-data`, which the API rejected with 422.
+- Fixed `Asset.replace()` to let the HTTP layer set `multipart/form-data` with a proper boundary (a bare `multipart/form-data` header without a boundary previously caused a 422). Both fixes also remove a side effect that leaked the wrong `Content-Type` onto subsequent requests.
+
+---
 ## v1.10.0
 
 #### Date: 22 June 2026

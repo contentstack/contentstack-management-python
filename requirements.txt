@@ -7,3 +7,6 @@ pylint>=2.0.0
 requests-toolbelt>=1.0.0,<2.0.0
 pyotp==2.9.0
 packaging>=24.0
+# Integration test suite
+pytest>=7.0
+pytest-order>=1.2.0
