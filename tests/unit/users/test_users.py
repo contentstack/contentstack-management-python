@@ -44,8 +44,8 @@ class UserUnitTests(unittest.TestCase):
             "user": {
                 "first_name": "your_first_name",
                 "last_name": "your_last_name",
-                "password": "your_password",
-                "password_confirmation": "confirm_your_password"
+                "password": password,
+                "password_confirmation": password
             }
         }
         response = self.client.user().activate(activation_token, act_data)
@@ -70,8 +70,8 @@ class UserUnitTests(unittest.TestCase):
         act_data = {
             "user": {
                 "reset_password_token": "****",
-                "password": "Simple@123",
-                "password_confirmation": "Simple@123"
+                "password": password,
+                "password_confirmation": password
             }
         }
         response = self.client.user().reset_password(act_data)
