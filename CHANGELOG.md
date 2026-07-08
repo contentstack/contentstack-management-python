@@ -2,6 +2,13 @@
 
 ## Content Management SDK For Python
 ---
+## v1.10.2
+
+#### Date: 13 July 2026
+
+- Removed hardcoded password literals in unit tests to resolve Snyk CWE-798 (Use of Hardcoded Passwords) findings.
+
+---
 ## v1.10.1
 
 #### Date: 26 June 2026
