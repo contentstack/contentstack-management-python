@@ -1,9 +1,9 @@
 ---
 name: code-review
-description: PR checklist—public API, Client/Stack, _APIClient/OAuth, tests, secrets; align with README and exports.
+description: Use when reviewing PRs for the Management Python SDK — public API, _APIClient, OAuth, tests, security.
 ---
 
-# Code review — Contentstack Management Python
+# Code review – Contentstack Management Python
 
 ## When to use
 
@@ -42,9 +42,3 @@ Work through the checklist below. Optionally tag findings: **Blocker**, **Major*
 | **Blocker** | Breaking public API without approval; security issue; no tests for new logic where tests are practical |
 | **Major** | Inconsistent HTTP/auth behavior; README examples that do not match code |
 | **Minor** | Style; minor docs |
-
-## References
-
-- **`skills/testing/SKILL.md`**
-- **`skills/contentstack-management/SKILL.md`**
-- **`skills/dev-workflow/SKILL.md`**

@@ -2,6 +2,7 @@ from enum import Enum
 import os
 import pyotp
 from ._api_client import _APIClient
+from .endpoint import Endpoint
 from contentstack_management.organizations import organization
 from contentstack_management.stack import stack
 from contentstack_management.user_session import user_session
@@ -37,16 +38,25 @@ class Client:
                  authtoken: str = None , management_token=None, headers: dict = None,
                  region: Region = Region.US.value, version='v3', timeout=2, max_retries: int = 18, early_access: list = None,
                  oauth_config: dict = None, **kwargs):
-        self.endpoint = 'https://api.contentstack.io/v3/'
-        
-        if region is not None and region is not Region.US.value:
-            if host is not None and host != 'api.contentstack.io':
+        _DEFAULT_HOST = 'api.contentstack.io'
+        self.endpoint = f'{scheme}{_DEFAULT_HOST}/{version}/'
+
+        if host is None or host == _DEFAULT_HOST:
+            # No custom host — resolve via Endpoint (regions.json-driven)
+            try:
+                base = Endpoint.get_contentstack_endpoint(
+                    region or 'us', 'contentManagement', omit_https=True)
+                self.endpoint = f'{scheme}{base}/{version}/'
+            except (ValueError, RuntimeError):
+                # Unknown/custom region string — fall back to legacy pattern
+                if region and region != Region.US.value:
+                    self.endpoint = f'{scheme}{region}-api.contentstack.com/{version}/'
+        else:
+            # Explicit custom host always wins; apply region prefix when non-US
+            if region and region != Region.US.value:
                 self.endpoint = f'{scheme}{region}-api.{host}/{version}/'
             else:
-                host = 'api.contentstack.com'
-                self.endpoint = f'{scheme}{region}-{host}/{version}/'
-        elif host is not None and host != 'api.contentstack.io':
-            self.endpoint = f'{scheme}{host}/{version}/'
+                self.endpoint = f'{scheme}{host}/{version}/'
         if headers is None:
             headers = {}
         if early_access is not None:

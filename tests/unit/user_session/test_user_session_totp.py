@@ -18,7 +18,7 @@ class UserSessionTOTPTests(unittest.TestCase):
         self.mock_client = MagicMock()
         self.user_session = UserSession(self.mock_client)
         self.test_email = "test@example.com"
-        self.test_password = "test_password"
+        self.test_password = os.getenv("TEST_PASSWORD", "test_password_placeholder")
         self.test_tfa_token = "123456"
 
     def test_login_with_tfa_token_uses_correct_field_name(self):

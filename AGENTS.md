@@ -1,24 +1,24 @@
-# Contentstack Management Python — Agent guide
+# Contentstack Management Python – Agent guide
 
-**Universal entry point** for anyone automating or assisting work in this repo—AI agents (Cursor, Copilot, CLI tools), reviewers, and contributors. Conventions and detailed guidance live in **`skills/*/SKILL.md`**, not in editor-specific config, so the same instructions apply whether or not you use Cursor.
+**Universal entry point** for contributors and AI agents. Detailed conventions live in **`skills/*/SKILL.md`**.
 
 ## What this repo is
 
-| | |
-|---|---|
-| **Name** | **`contentstack-management`** (PyPI) — **Contentstack Management Python SDK** |
-| **Purpose** | Python client for the **Content Management API (CMA)**: organizations, stacks, content types, entries, assets, webhooks, workflows, OAuth, and related resources. Uses **`requests`** via **`_APIClient`**. |
-| **Repository** | [contentstack/contentstack-management-python](https://github.com/contentstack/contentstack-management-python.git) |
+| Field | Detail |
+|--------|--------|
+| **Name:** | **`contentstack-management`** (PyPI) — [contentstack/contentstack-management-python](https://github.com/contentstack/contentstack-management-python) |
+| **Purpose:** | Python client for the **Content Management API (CMA)**: organizations, stacks, content types, entries, assets, webhooks, workflows, OAuth, and related resources. Uses **`requests`** via **`_APIClient`**. |
 
-## Tech stack
+## Tech stack (at a glance)
 
 | Area | Details |
 |------|---------|
-| **Language** | **Python** ≥ 3.9 (`setup.py` `python_requires`) |
-| **HTTP** | **`requests`**, **`requests-toolbelt`**, **`urllib3`** |
-| **Tests** | **pytest** — **`tests/unit`**, **`tests/api`**, **`tests/mock`** |
-| **Lint** | **pylint** (see `requirements.txt`) |
-| **Secrets / hooks** | **Talisman**, **Snyk** (see **README.md** development setup) |
+| Language | Python ≥ 3.9 (`setup.py` `python_requires`) |
+| Build | `setuptools` / `setup.py`; package `contentstack_management` |
+| HTTP | `requests`, `requests-toolbelt`, `urllib3` |
+| Tests | `pytest` — `tests/integration` (live e2e / sanity, dynamic stack), `tests/unit`, `tests/mock`, `tests/api` (legacy, superseded by `tests/integration`) |
+| Lint / coverage | `pylint`, `coverage` (see `requirements.txt`) |
+| Secrets / hooks | Talisman, Snyk (see `README.md` development setup) |
 
 ## Source layout
 
@@ -29,30 +29,44 @@
 | `contentstack_management/stack/stack.py` | **Stack**-scoped CMA operations |
 | `contentstack_management/*/` | Domain modules (entries, assets, webhooks, taxonomies, …) |
 | `contentstack_management/__init__.py` | Public exports |
-| `tests/cred.py` | **`get_credentials()`** — **dotenv** + env vars for API/mock tests |
+| `tests/integration/` | **Live e2e / sanity suite** (pytest). Self-contained: creates a fresh stack per run, exercises every SDK method (positive/negative/edge), tears it down. Own `framework/` + `data/`; config in `tests/integration/.env`. |
+| `tests/cred.py` | **`get_credentials()`** — **dotenv** + env vars for the legacy `tests/api` / `tests/mock` suites |
 
 ## Commands (quick reference)
 
-```bash
-pip install -e ".[dev]"
-# or: pip install -r requirements.txt && pip install pytest pytest-cov
+| Command Type | Command |
+|---|---|
+| Install | `pip install -e ".[dev]"` |
+| **Sanity / e2e (live)** | `pytest tests/integration` — dynamically creates a stack, runs the full suite, tears it down. Needs `tests/integration/.env` (`EMAIL`, `PASSWORD`, `HOST`, `ORGANIZATION`). Writes a timestamped HTML report + cURL log to the repo root. |
+| Sanity, keep stack | `DELETE_DYNAMIC_RESOURCES=false pytest tests/integration` (preserve the created stack for debugging) |
+| Sanity, one resource | `pytest tests/integration/api/test_12_content_type.py` |
+| Test (unit) | `pytest tests/unit/ -v` |
+| Test (mock) | `pytest tests/mock/ -v` |
+| Test (legacy API, live) | `pytest tests/api/ -v` (needs `.env` — see `tests/cred.py`) |
+| Coverage (CI) | `coverage run -m pytest tests/unit/` |
+| Lint | `pylint contentstack_management/` |
 
-pytest tests/unit/ -v
-pytest tests/api/ -v      # live CMA — needs .env (see tests/cred.py)
-pytest tests/mock/ -v
-pytest tests/ -v
-coverage run -m pytest tests/unit/
-```
+> **CI note:** `.github/workflows/unit-test.yml` runs **only `tests/unit/`** (no credentials). The `tests/integration` sanity suite is run manually (or via a credential-gated job) because it provisions real stacks.
 
-## Environment variables (API / integration tests)
+## Environment variables
 
-Loaded via **`tests/cred.py`** (`load_dotenv()`). Examples include **`HOST`**, **`APIKEY`**, **`AUTHTOKEN`**, **`MANAGEMENT_TOKEN`**, **`ORG_UID`**, and resource UIDs (**`CONTENT_TYPE_UID`**, **`ENTRY_UID`**, …). See that file for the full list.
+**Sanity / e2e suite** (`tests/integration`) — configured via **`tests/integration/.env`** (gitignored). No pre-existing stack/UIDs needed; the suite creates everything at runtime.
 
-Do not commit secrets.
+| Var | Required | Purpose |
+|-----|----------|---------|
+| `EMAIL`, `PASSWORD` | ✅ | Login for the run (a **non-2FA** account) |
+| `HOST` | ✅ | API host (e.g. `api.contentstack.io`) |
+| `ORGANIZATION` | ✅ | Org the dynamic test stack is created in |
+| `MFA_SECRET` | — | TOTP secret (for the OAuth/2FA account, not the primary login) |
+| `DELETE_DYNAMIC_RESOURCES` | — | `false` keeps the created stack for debugging (default deletes) |
+| `CLIENT_ID`, `APP_ID`, `REDIRECT_URI` | — | OAuth tests |
+| `PERSONALIZE_HOST` | — | Personalize project for variant tests |
 
-## Where the real documentation lives: skills
+**Legacy `tests/api` / `tests/mock`** — loaded via **`tests/cred.py`** (`load_dotenv()`): `HOST`, `APIKEY`, `AUTHTOKEN`, `MANAGEMENT_TOKEN`, `ORG_UID`, and resource UIDs. See that file for the full list.
 
-Read these **`SKILL.md` files** for full conventions—**this is the source of truth** for implementation and review:
+Do not commit secrets. `tests/integration/.env`, `docs/`, and the repo-root `cma-python-report-*.html` / `api-requests-*.txt` are gitignored.
+
+## Where the documentation lives: skills
 
 | Skill | Path | What it covers |
 |-------|------|----------------|
@@ -63,10 +77,10 @@ Read these **`SKILL.md` files** for full conventions—**this is the source of t
 | **Code review** | [`skills/code-review/SKILL.md`](skills/code-review/SKILL.md) | PR checklist—public API, HTTP/auth, tests, security |
 | **Framework / HTTP** | [`skills/framework/SKILL.md`](skills/framework/SKILL.md) | **`requests`**, retries, OAuth interceptor, where to change transport |
 
-An index with short “when to use” hints is in [`skills/README.md`](skills/README.md).
+An index with “when to use” hints is in [`skills/README.md`](skills/README.md).
 
-## Using Cursor
+## Using Cursor (optional)
 
-If you use **Cursor**, [`.cursor/rules/README.md`](.cursor/rules/README.md) only points to **`AGENTS.md`**—same source of truth as everyone else; no separate `.mdc` rule files.
+If you use **Cursor**, [`.cursor/rules/README.md`](.cursor/rules/README.md) only points to **`AGENTS.md`**—same docs as everyone else.
 
 Product docs: [Content Management API](https://www.contentstack.com/docs/developers/apis/content-management-api/).

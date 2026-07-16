@@ -2,12 +2,50 @@
 
 ## Content Management SDK For Python
 ---
-## v1.9.0
+## v1.11.0
 
-#### Date:  18 May 2026
+#### Date:  20 July 2026
 
 - Entry variants: added `publish` and `unpublish` for the entry publish/unpublish endpoints; documented payloads including `entry.variants` and optional `entry.variant_rules` on publish.
 - Entry variants: optional stack branch via the `branch` request header; `Entry.variants()` accepts no arguments, a branch UID only, or `(variant_uid, branch)` (use `variants(variant_uid, None)` when targeting a variant without a branch).
+
+---
+## v1.10.2
+
+#### Date: 13 July 2026
+
+- Removed hardcoded password literals in unit tests to resolve Snyk CWE-798 (Use of Hardcoded Passwords) findings.
+
+---
+## v1.10.1
+
+#### Date: 26 June 2026
+
+- Fixed `Asset.update()` to send the JSON body with `Content-Type: application/json` instead of an invalid bare `multipart/form-data`, which the API rejected with 422.
+- Fixed `Asset.replace()` to let the HTTP layer set `multipart/form-data` with a proper boundary (a bare `multipart/form-data` header without a boundary previously caused a 422). Both fixes also remove a side effect that leaked the wrong `Content-Type` onto subsequent requests.
+
+---
+## v1.10.0
+
+#### Date: 22 June 2026
+
+- Dynamic region endpoint resolution via the Contentstack Regions Registry (`regions.json`).
+- Added `Endpoint` class with 3-tier resolution: in-memory cache → bundled `data/regions.json` → live CDN download.
+- Exposed `contentstack_management.get_contentstack_endpoint(region, service, omit_https)` module-level proxy.
+- `Client` now resolves the `contentManagement` endpoint from the registry instead of a hardcoded host pattern.
+- Bundled `contentstack_management/data/regions.json` included in `package_data` — always present after `pip install`.
+- `setup.py` auto-refreshes `regions.json` at build time via a custom `BuildPyWithRegions` command; network failures warn but never block the build.
+- Runtime fallback: if `regions.json` is absent, the SDK downloads it live on the first `Endpoint` call.
+- New regions and services require no SDK code changes — registry update is sufficient.
+- Added `refresh_regions()` utility to programmatically download the latest regions manifest from the Contentstack CDN and overwrite the bundled `data/regions.json` (`from contentstack_management import refresh_regions`).
+- Added `python3 -m contentstack_management.region_refresh` CLI command for refreshing the registry after `pip install` (source-tree script `scripts/download_regions.py` is for contributors only).
+
+---
+## v1.9.0
+
+#### Date:  01 June 2026
+
+- Removed unused `bson` dependency so the package installs on Python 3.12+ and 3.14 (the standalone `bson` 0.5.x package fails to build on newer Python versions).
 
 ---
 ## v1.8.1

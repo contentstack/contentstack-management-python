@@ -1,44 +1,40 @@
 ---
 name: dev-workflow
-description: Install, pytest unit/API/mock, versioning, pylint, hooks—standard workflow for this SDK repo.
+description: Use for install, pytest suites, versioning, pylint, hooks, and PR baseline in contentstack-management-python.
 ---
 
-# Development workflow — Contentstack Management Python
+# Development workflow – Contentstack Management Python
 
 ## When to use
 
 - Setting up locally, opening a PR, or matching CI expectations.
-- Answering “how do we run tests?” or “what runs in CI?”
+- Answering "how do we run tests?" or "what runs in CI?"
 
-## Branches & releases
+## Instructions
+
+### Branches & releases
 
 - **Flow:** merge work to **`development`**; **release PRs** are **`development` → `main`**. After **`main`** moves, [`.github/workflows/back-merge-pr.yml`](../../.github/workflows/back-merge-pr.yml) can open **`main` → `development`** to resync.
 - **PyPI:** publish a **GitHub Release** (`release: published`) to run [`.github/workflows/release.yml`](../../.github/workflows/release.yml). PRs that touch **`contentstack_management/`** or **`setup.py`** must bump **`__version__`** and **`CHANGELOG.md`** per [`.github/workflows/check-version-bump.yml`](../../.github/workflows/check-version-bump.yml).
 
-## Before a PR
+### Before a PR
 
 1. **Install** — `pip install -e ".[dev]"` or install **`requirements.txt`** plus **pytest** / **pytest-cov** as needed.
 2. **`pytest tests/unit/`** — required baseline (matches CI **`coverage run -m pytest tests/unit/`**).
 3. **API tests** — `pytest tests/api/` when your change affects live CMA behavior; configure **`.env`** per **`tests/cred.py`**. Never commit tokens.
 4. **Mock tests** — `pytest tests/mock/` when extending mocked HTTP or fixtures.
 
-## Packaging
+### Packaging
 
 - Bump **`contentstack_management/__init__.py`** **`__version__`** and align **`setup.py`** versioning if release-facing.
 
-## Tooling
+### Tooling
 
 - **pylint** is listed in **`requirements.txt`**; follow existing style in touched files.
 - **Husky / Talisman / Snyk** — see **README.md** for local hook setup.
 
-## Pull requests
+### Pull requests
 
 - Build passes: **`pytest tests/unit/`** at minimum; run **API** / **mock** when your change touches those layers.
 - Follow **`skills/code-review/SKILL.md`** before merge.
 - Prefer backward-compatible public API; call out breaking changes and semver.
-
-## References
-
-- **`AGENTS.md`**
-- **`skills/contentstack-management/SKILL.md`**
-- **`skills/testing/SKILL.md`**
