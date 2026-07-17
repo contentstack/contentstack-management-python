@@ -1,28 +1,49 @@
 """This class takes a base URL as an argument when it's initialized, 
 which is the endpoint for the RESTFUL API that we'll be interacting with.
-The query(), create(), fetch(), delete(), update(), versions(), and includeVariants() methods each correspond to 
+The query(), create(), fetch(), delete(), update(), versions(), includeVariants(), publish(), and unpublish() methods each correspond to 
 the operations that can be performed on the API """
 
 import json
 from ..common import Parameter
 from .._errors import ArgumentException
-from .._messages import ENTRY_VARIANT_CONTENT_TYPE_UID_REQUIRED, ENTRY_VARIANT_ENTRY_UID_REQUIRED, ENTRY_VARIANT_UID_REQUIRED
+from .._messages import (
+    ENTRY_BODY_REQUIRED,
+    ENTRY_VARIANT_CONTENT_TYPE_UID_REQUIRED,
+    ENTRY_VARIANT_ENTRY_UID_REQUIRED,
+    ENTRY_VARIANT_UID_REQUIRED,
+)
 
 class EntryVariants(Parameter):
     """
     This class takes a base URL as an argument when it's initialized, 
     which is the endpoint for the RESTFUL API that
-    we'll be interacting with. The query(), create(), fetch(), delete(), update(), versions(), and includeVariants() 
-    methods each correspond to the operations that can be performed on the API """
+    we'll be interacting with. The query(), create(), fetch(), delete(), update(), versions(),
+    includeVariants(), publish(), and unpublish() methods each correspond to the operations that can be
+    performed on the API. Optional ``branch`` scopes requests to a stack branch via the ``branch`` header. """
 
-    def __init__(self, client, content_type_uid: str, entry_uid: str, variant_uid: str = None):
+    def __init__(
+        self,
+        client,
+        content_type_uid: str,
+        entry_uid: str,
+        variant_uid: str = None,
+        branch: str = None,
+    ):
         self.client = client
         self.content_type_uid = content_type_uid
         self.entry_uid = entry_uid
         self.variant_uid = variant_uid
+        self.branch = branch if branch else None
         super().__init__(self.client)
         self.path = f"content_types/{content_type_uid}/entries/{entry_uid}/variants"
 
+    def _headers(self):
+        """Merge optional branch into request headers without mutating the client."""
+        if not self.branch:
+            return self.client.headers
+        headers = dict(self.client.headers)
+        headers["branch"] = self.branch
+        return headers
 
     def find(self, params: dict = None):
         """
@@ -47,7 +68,7 @@ class EntryVariants(Parameter):
         self.validate_entry_uid()
         if params is not None:
             self.params.update(params)
-        return self.client.get(self.path, headers = self.client.headers, params = self.params)
+        return self.client.get(self.path, headers=self._headers(), params=self.params)
     
     def create(self, data: dict):
         """
@@ -79,7 +100,7 @@ class EntryVariants(Parameter):
         self.validate_content_type_uid()
         self.validate_entry_uid()
         data = json.dumps(data)
-        return self.client.post(self.path, headers = self.client.headers, data=data, params = self.params)
+        return self.client.post(self.path, headers=self._headers(), data=data, params=self.params)
     
     def fetch(self, variant_uid: str = None, params: dict = None):
         """
@@ -96,9 +117,11 @@ class EntryVariants(Parameter):
 
             >>> import contentstack_management
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid').fetch().json()
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().fetch('variant_uid').json()
             >>> # With parameters
-            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid').fetch(params={'include_count': True}).json()
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().fetch('variant_uid', params={'include_count': True}).json()
+            >>> # On a branch
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid', 'branch_uid').fetch().json()
 
         -------------------------------
         """
@@ -112,7 +135,7 @@ class EntryVariants(Parameter):
         if params is not None:
             self.params.update(params)
         url = f"{self.path}/{self.variant_uid}"
-        return self.client.get(url, headers = self.client.headers, params = self.params)
+        return self.client.get(url, headers=self._headers(), params=self.params)
     
     def delete(self, variant_uid: str = None): 
         """
@@ -128,7 +151,7 @@ class EntryVariants(Parameter):
 
             >>> import contentstack_management
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid').delete().json()
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().delete('variant_uid').json()
 
         -------------------------------
         """
@@ -138,7 +161,7 @@ class EntryVariants(Parameter):
         self.validate_entry_uid()
         self.validate_variant_uid()
         url = f"{self.path}/{self.variant_uid}"
-        return self.client.delete(url, headers = self.client.headers, params = self.params)
+        return self.client.delete(url, headers=self._headers(), params=self.params)
     
     def update(self, data: dict, variant_uid: str = None):
         """
@@ -167,7 +190,7 @@ class EntryVariants(Parameter):
             >>>        }
             >>> import contentstack_management
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid').update(data).json()
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().update(data, 'variant_uid').json()
 
         -------------------------------
         """
@@ -178,7 +201,7 @@ class EntryVariants(Parameter):
         self.validate_variant_uid()
         url = f"{self.path}/{self.variant_uid}"
         data = json.dumps(data)
-        return self.client.put(url, headers = self.client.headers, data=data, params = self.params)
+        return self.client.put(url, headers=self._headers(), data=data, params=self.params)
     
     def versions(self, variant_uid: str = None, params: dict = None):
         """
@@ -195,9 +218,9 @@ class EntryVariants(Parameter):
 
             >>> import contentstack_management
             >>> client = contentstack_management.Client(authtoken='your_authtoken')
-            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid').versions().json()
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().versions('variant_uid').json()
             >>> # With parameters
-            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants('variant_uid').versions(params={'limit': 10}).json()
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().versions('variant_uid', params={'limit': 10}).json()
 
         -------------------------------
         """
@@ -209,7 +232,7 @@ class EntryVariants(Parameter):
         if params is not None:
             self.params.update(params)
         url = f"{self.path}/{self.variant_uid}/versions"
-        return self.client.get(url, headers = self.client.headers, params = self.params)
+        return self.client.get(url, headers=self._headers(), params=self.params)
     
     def includeVariants(self, include_variants: str = 'true', variant_uid: str = None, params: dict = None):
         """
@@ -243,8 +266,85 @@ class EntryVariants(Parameter):
             self.params.update(params)
         self.params['include_variants'] = include_variants
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
-        return self.client.get(url, headers = self.client.headers, params = self.params)
+        return self.client.get(url, headers=self._headers(), params=self.params)
     
+    def publish(self, data: dict):
+        """
+        Publish the entry for this content type and entry UID (CMA ``.../entries/{entry_uid}/publish``).
+
+        For entry variants, the body typically includes ``entry.environments``, ``entry.locales``,
+        ``entry.variants`` (list of ``{"uid", "version"}`` per variant), optional ``entry.variant_rules``,
+        and top-level ``locale`` (and optional scheduling fields supported by the API).
+
+        :param data: Publish payload dict (serialized as JSON).
+        :return: Response from the publish request.
+        -------------------------------
+        [Example:]
+
+            >>> data = {
+            >>>     "entry": {
+            >>>         "environments": ["production"],
+            >>>         "locales": ["en-us"],
+            >>>         "variants": [
+            >>>             {"uid": "variant_uid", "version": 1}
+            >>>         ],
+            >>>         "variant_rules": {
+            >>>             "publish_latest_base": False,
+            >>>             "publish_latest_base_conditionally": True
+            >>>         }
+            >>>     },
+            >>>     "locale": "en-us"
+            >>> }
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().publish(data).json()
+
+        -------------------------------
+        """
+        self.validate_content_type_uid()
+        self.validate_entry_uid()
+        if data is None:
+            raise Exception(ENTRY_BODY_REQUIRED)
+        url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/publish"
+        data = json.dumps(data)
+        return self.client.post(url, headers=self._headers(), data=data, params=self.params)
+
+    def unpublish(self, data: dict):
+        """
+        Unpublish the entry for this content type and entry UID (CMA ``.../entries/{entry_uid}/unpublish``).
+
+        For entry variants, the body typically includes ``entry.environments``, ``entry.locales``,
+        ``entry.variants`` (list of ``{"uid", "version"}`` per variant), and top-level ``locale``.
+
+        :param data: Unpublish payload dict (serialized as JSON).
+        :return: Response from the unpublish request.
+        -------------------------------
+        [Example:]
+
+            >>> data = {
+            >>>     "entry": {
+            >>>         "environments": ["environment_uid"],
+            >>>         "locales": ["en-us"],
+            >>>         "variants": [
+            >>>             {"uid": "variant_uid", "version": 1}
+            >>>         ]
+            >>>     },
+            >>>     "locale": "en-us"
+            >>> }
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> result = client.stack('api_key').content_types('content_type_uid').entry('entry_uid').variants().unpublish(data).json()
+
+        -------------------------------
+        """
+        self.validate_content_type_uid()
+        self.validate_entry_uid()
+        if data is None:
+            raise Exception(ENTRY_BODY_REQUIRED)
+        url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}/unpublish"
+        data = json.dumps(data)
+        return self.client.post(url, headers=self._headers(), data=data, params=self.params)
+
     def validate_content_type_uid(self):
         """
         The function checks if the content_type_uid is None or an empty string and raises an ArgumentException
