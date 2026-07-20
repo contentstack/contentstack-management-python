@@ -2,6 +2,14 @@
 
 ## Content Management SDK For Python
 ---
+## v1.11.0
+
+#### Date:  20 July 2026
+
+- Entry variants: added `publish` and `unpublish` for the entry publish/unpublish endpoints; documented payloads including `entry.variants` and optional `entry.variant_rules` on publish.
+- Entry variants: optional stack branch via the `branch` request header; `Entry.variants()` accepts no arguments, a branch UID only, or `(variant_uid, branch)` (use `variants(variant_uid, None)` when targeting a variant without a branch).
+
+---
 ## v1.10.2
 
 #### Date: 13 July 2026
