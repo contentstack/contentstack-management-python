@@ -2,6 +2,13 @@
 
 ## Content Management SDK For Python
 ---
+## v1.11.1
+
+#### Date: 22 July 2026
+
+- Bumped `setuptools` minimum version from `>=80.0.0,<82.0.0` to `>=83.0.0` to resolve a Snyk vulnerability finding.
+
+---
 ## v1.11.0
 
 #### Date:  20 July 2026
