@@ -282,14 +282,49 @@ class Terms(Parameter):
         url = f"{self.path}/{self.terms_uid}/descendants"
         return self.client.get(url, headers = self.client.headers, params = self.params)
       
+    def localize(self, data: dict, locale: str):
+        """
+        Localize a term into the specified locale.
+        Requires both taxonomy_uid and terms_uid (instance-level).
+
+        :param data: ``{"term": {"name": "..."}}``
+        :param locale: Target locale code, e.g. ``"hi-in"``
+        :return: requests.Response
+
+        [Example:]
+            >>> client.stack('api_key').taxonomy('t_uid').terms('term_uid').localize({"term": {"name": "Hindi"}}, 'hi-in').json()
+        """
+        self.validate_taxonomy_uid()
+        self.validate_terms_uid()
+        self.add_param('locale', locale)
+        url = f"{self.path}/{self.terms_uid}"
+        return self.client.post(url, headers=self.client.headers, data=json.dumps(data), params=self.params)
+
+    def unlocalize(self, locale: str):
+        """
+        Remove a locale variant of a term.
+        Requires both taxonomy_uid and terms_uid (instance-level).
+
+        :param locale: Locale code to remove, e.g. ``"hi-in"``
+        :return: requests.Response
+
+        [Example:]
+            >>> client.stack('api_key').taxonomy('t_uid').terms('term_uid').unlocalize('hi-in').json()
+        """
+        self.validate_taxonomy_uid()
+        self.validate_terms_uid()
+        self.add_param('locale', locale)
+        url = f"{self.path}/{self.terms_uid}"
+        return self.client.delete(url, headers=self.client.headers, params=self.params)
+
     def validate_taxonomy_uid(self):
         if self.taxonomy_uid is None or '':
             raise ArgumentException(TAXONOMY_UID_REQUIRED)
-    
+
     def validate_terms_uid(self):
         if self.terms_uid is None or '':
             raise ArgumentException(TERMS_UID_REQUIRED)
-        
+
     def validate_term_string(self, term_string):
         if term_string is None or '':
             raise ArgumentException(TERM_STRING_REQUIRED)

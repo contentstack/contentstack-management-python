@@ -144,10 +144,73 @@ class Taxonomy(Parameter):
         return self.client.delete(url, headers = self.client.headers, params = self.params)
     
         
+    def publish(self, data: dict):
+        """
+        Publish one or more taxonomies to the specified environments and locales.
+        Call on a collection-level instance (no taxonomy_uid set).
+
+        :param data: ``{"locales": [...], "environments": [...], "items": [{"uid": "..."}]}``
+        :return: requests.Response
+
+        [Example:]
+            >>> data = {"locales": ["en-us"], "environments": ["production"], "items": [{"uid": "taxonomy_1"}]}
+            >>> client.stack('api_key').taxonomy().publish(data).json()
+        """
+        url = f"{self.path}/publish"
+        return self.client.post(url, headers=self.client.headers, data=json.dumps(data), params=self.params)
+
+    def unpublish(self, data: dict):
+        """
+        Unpublish one or more taxonomies from the specified environments and locales.
+        Call on a collection-level instance (no taxonomy_uid set).
+
+        :param data: ``{"locales": [...], "environments": [...], "items": [{"uid": "..."}]}``
+        :return: requests.Response
+
+        [Example:]
+            >>> data = {"locales": ["en-us"], "environments": ["production"], "items": [{"uid": "taxonomy_1"}]}
+            >>> client.stack('api_key').taxonomy().unpublish(data).json()
+        """
+        url = f"{self.path}/unpublish"
+        return self.client.post(url, headers=self.client.headers, data=json.dumps(data), params=self.params)
+
+    def localize(self, data: dict, locale: str):
+        """
+        Localize a taxonomy into the specified locale.
+        Requires a taxonomy_uid (instance-level).
+
+        :param data: ``{"taxonomy": {"name": "..."}}``
+        :param locale: Target locale code, e.g. ``"hi-in"``
+        :return: requests.Response
+
+        [Example:]
+            >>> client.stack('api_key').taxonomy('uid').localize({"taxonomy": {"name": "Hindi"}}, 'hi-in').json()
+        """
+        self.validate_taxonomy_uid()
+        self.add_param('locale', locale)
+        url = f"{self.path}/{self.taxonomy_uid}"
+        return self.client.post(url, headers=self.client.headers, data=json.dumps(data), params=self.params)
+
+    def unlocalize(self, locale: str):
+        """
+        Remove a locale variant of a taxonomy.
+        Requires a taxonomy_uid (instance-level).
+
+        :param locale: Locale code to remove, e.g. ``"hi-in"``
+        :return: requests.Response
+
+        [Example:]
+            >>> client.stack('api_key').taxonomy('uid').unlocalize('hi-in').json()
+        """
+        self.validate_taxonomy_uid()
+        self.add_param('locale', locale)
+        url = f"{self.path}/{self.taxonomy_uid}"
+        return self.client.delete(url, headers=self.client.headers, params=self.params)
+
     def validate_taxonomy_uid(self):
         if self.taxonomy_uid is None or '':
             raise ArgumentException(TAXONOMY_UID_REQUIRED)
-        
+
     def terms(self, terms_uid: str = None):
         self.validate_taxonomy_uid()
         return Terms(self.client, self.taxonomy_uid, terms_uid)

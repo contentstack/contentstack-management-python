@@ -71,3 +71,28 @@ class taxonomyUnitTests(unittest.TestCase):
         response = self.client.stack(api_key).taxonomy(taxonomy_uid).delete()
         self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}")
         self.assertEqual(response.request.method, "DELETE")
+
+    def test_publish(self):
+        data = {"locales": ["en-us"], "environments": ["production"], "items": [{"uid": taxonomy_uid}]}
+        response = self.client.stack(api_key).taxonomy().publish(data)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/publish")
+        self.assertEqual(response.request.method, "POST")
+
+    def test_unpublish(self):
+        data = {"locales": ["en-us"], "environments": ["production"], "items": [{"uid": taxonomy_uid}]}
+        response = self.client.stack(api_key).taxonomy().unpublish(data)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/unpublish")
+        self.assertEqual(response.request.method, "POST")
+
+    def test_localize(self):
+        data = {"taxonomy": {"name": "Taxonomy Hindi"}}
+        response = self.client.stack(api_key).taxonomy(taxonomy_uid).localize(data, "hi-in")
+        self.assertIn(f"taxonomies/{taxonomy_uid}", response.request.url)
+        self.assertIn("locale=hi-in", response.request.url)
+        self.assertEqual(response.request.method, "POST")
+
+    def test_unlocalize(self):
+        response = self.client.stack(api_key).taxonomy(taxonomy_uid).unlocalize("hi-in")
+        self.assertIn(f"taxonomies/{taxonomy_uid}", response.request.url)
+        self.assertIn("locale=hi-in", response.request.url)
+        self.assertEqual(response.request.method, "DELETE")
