@@ -95,5 +95,22 @@ class TermsUnitTests(unittest.TestCase):
         self.assertEqual(response.request.method, "GET")
         self.assertEqual(response.request.headers["Content-Type"], "application/json")
 
+    def test_localize_term(self):
+        data = {"term": {"uid": terms_uid, "name": "Term HI"}}
+        term = self.client.stack(api_key).taxonomy(taxonomy_uid).terms(terms_uid)
+        term.add_param("locale", "hi-in")
+        response = term.localize(data)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}/terms/{terms_uid}?locale=hi-in")
+        self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+
+    def test_unlocalize_term(self):
+        term = self.client.stack(api_key).taxonomy(taxonomy_uid).terms(terms_uid)
+        term.add_param("locale", "hi-in")
+        response = term.unlocalize()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}/terms/{terms_uid}?locale=hi-in")
+        self.assertEqual(response.request.method, "DELETE")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+
 if __name__ == '__main__':
     unittest.main()

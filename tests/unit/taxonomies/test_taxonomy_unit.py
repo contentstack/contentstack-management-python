@@ -71,3 +71,41 @@ class taxonomyUnitTests(unittest.TestCase):
         response = self.client.stack(api_key).taxonomy(taxonomy_uid).delete()
         self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}")
         self.assertEqual(response.request.method, "DELETE")
+
+    def test_publish_taxonomy(self):
+        data = {
+            "locales": ["en-us"],
+            "environments": ["production"],
+            "items": [{"uid": taxonomy_uid}]
+        }
+        response = self.client.stack(api_key).taxonomy().publish(data)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/publish")
+        self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+
+    def test_unpublish_taxonomy(self):
+        data = {
+            "locales": ["en-us"],
+            "environments": ["production"],
+            "items": [{"uid": taxonomy_uid}]
+        }
+        response = self.client.stack(api_key).taxonomy().unpublish(data)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/unpublish")
+        self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+
+    def test_localize_taxonomy(self):
+        data = {"taxonomy": {"name": "Taxonomy HI"}}
+        tax = self.client.stack(api_key).taxonomy(taxonomy_uid)
+        tax.add_param("locale", "hi-in")
+        response = tax.localize(data)
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}?locale=hi-in")
+        self.assertEqual(response.request.method, "POST")
+        self.assertEqual(response.request.headers["Content-Type"], "application/json")
+
+    def test_unlocalize_taxonomy(self):
+        tax = self.client.stack(api_key).taxonomy(taxonomy_uid)
+        tax.add_param("locale", "hi-in")
+        response = tax.unlocalize()
+        self.assertEqual(response.request.url, f"{self.client.endpoint}taxonomies/{taxonomy_uid}?locale=hi-in")
+        self.assertEqual(response.request.method, "DELETE")

@@ -39,6 +39,45 @@ class TestTaxonomyNegative:
         h.assert_status(resp, 404, 422)
 
 
+class TestTaxonomyPublish:
+    def test_publish(self, stack, store):
+        uid = store["taxonomies"]["main"]
+        data = {
+            "locales": ["en-us"],
+            "environments": ["development"],
+            "items": [{"uid": uid}]
+        }
+        resp = stack.taxonomy().publish(data)
+        h.assert_status(resp, 200, 202)
+
+    def test_unpublish(self, stack, store):
+        uid = store["taxonomies"]["main"]
+        data = {
+            "locales": ["en-us"],
+            "environments": ["development"],
+            "items": [{"uid": uid}]
+        }
+        resp = stack.taxonomy().unpublish(data)
+        h.assert_status(resp, 200, 202)
+
+
+class TestTaxonomyLocalize:
+    def test_localize(self, stack, store):
+        uid = store["taxonomies"]["main"]
+        tax = stack.taxonomy(uid)
+        tax.add_param("locale", "hi-in")
+        resp = tax.localize({"taxonomy": {"name": f"Localized {uid}"}})
+        h.assert_status(resp, 200, 201)
+
+    def test_unlocalize(self, stack, store):
+        uid = store["taxonomies"]["main"]
+        tax = stack.taxonomy(uid)
+        tax.add_param("locale", "hi-in")
+        stack.client.headers.pop("Content-Type", None)
+        resp = tax.unlocalize()
+        h.assert_status(resp, 200, 204)
+
+
 class TestTaxonomyDelete:
     def test_delete(self, stack):
         uid = h.generate_valid_uid("tax_del")

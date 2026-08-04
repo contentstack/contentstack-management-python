@@ -78,6 +78,23 @@ class TestTermsNegative:
         h.assert_status(resp, 404, 422)
 
 
+class TestTermsLocalize:
+    def test_localize(self, stack, store, taxonomy_uid):
+        uid = store["terms"]["main"]
+        term = stack.taxonomy(taxonomy_uid).terms(uid)
+        term.add_param("locale", "hi-in")
+        resp = term.localize({"term": {"uid": uid, "name": f"Localized {uid}"}})
+        h.assert_status(resp, 200, 201)
+
+    def test_unlocalize(self, stack, store, taxonomy_uid):
+        uid = store["terms"]["main"]
+        term = stack.taxonomy(taxonomy_uid).terms(uid)
+        term.add_param("locale", "hi-in")
+        stack.client.headers.pop("Content-Type", None)
+        resp = term.unlocalize()
+        h.assert_status(resp, 200, 204)
+
+
 class TestTermsDelete:
     def test_delete(self, stack, taxonomy_uid):
         uid = h.generate_valid_uid("term_del")

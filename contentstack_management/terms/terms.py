@@ -282,14 +282,54 @@ class Terms(Parameter):
         url = f"{self.path}/{self.terms_uid}/descendants"
         return self.client.get(url, headers = self.client.headers, params = self.params)
       
+    def localize(self, data: dict):
+        """
+        Localize a term into the locale specified via add_param("locale", "...").
+        :param data: Request body, e.g. {"term": {"uid": "...", "name": "..."}}.
+
+        -------------------------------
+        [Example:]
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> term = client.stack('api_key').taxonomy('taxonomy_uid').terms('term_uid')
+            >>> term.add_param("locale", "hi-in")
+            >>> result = term.localize({"term": {"uid": "term_uid", "name": "Term HI"}}).json()
+
+        -------------------------------
+        """
+        self.validate_taxonomy_uid()
+        self.validate_terms_uid()
+        url = f"{self.path}/{self.terms_uid}"
+        data = json.dumps(data)
+        return self.client.post(url, headers=self.client.headers, data=data, params=self.params)
+
+    def unlocalize(self):
+        """
+        Unlocalize a term from the locale specified via add_param("locale", "...").
+
+        -------------------------------
+        [Example:]
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> term = client.stack('api_key').taxonomy('taxonomy_uid').terms('term_uid')
+            >>> term.add_param("locale", "hi-in")
+            >>> result = term.unlocalize().json()
+
+        -------------------------------
+        """
+        self.validate_taxonomy_uid()
+        self.validate_terms_uid()
+        url = f"{self.path}/{self.terms_uid}"
+        return self.client.delete(url, headers=self.client.headers, params=self.params)
+
     def validate_taxonomy_uid(self):
         if self.taxonomy_uid is None or '':
             raise ArgumentException(TAXONOMY_UID_REQUIRED)
-    
+
     def validate_terms_uid(self):
         if self.terms_uid is None or '':
             raise ArgumentException(TERMS_UID_REQUIRED)
-        
+
     def validate_term_string(self, term_string):
         if term_string is None or '':
             raise ArgumentException(TERM_STRING_REQUIRED)

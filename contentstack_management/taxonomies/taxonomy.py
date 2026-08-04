@@ -144,10 +144,92 @@ class Taxonomy(Parameter):
         return self.client.delete(url, headers = self.client.headers, params = self.params)
     
         
+    def publish(self, data: dict):
+        """
+        Publish one or more taxonomies to the given environments and locales.
+        Call on a collection-level instance: stack.taxonomy().publish(...)
+        :param data: Request body with keys: locales, environments, items, scheduled_at.
+
+        -------------------------------
+        [Example:]
+            >>> data = {
+            >>>     "locales": ["en-us"],
+            >>>     "environments": ["production"],
+            >>>     "items": [{"uid": "taxonomy_uid"}]
+            >>> }
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> result = client.stack('api_key').taxonomy().publish(data).json()
+
+        -------------------------------
+        """
+        data = json.dumps(data)
+        return self.client.post(f"{self.path}/publish", headers=self.client.headers, data=data, params=self.params)
+
+    def unpublish(self, data: dict):
+        """
+        Unpublish one or more taxonomies from the given environments and locales.
+        Call on a collection-level instance: stack.taxonomy().unpublish(...)
+        :param data: Request body with keys: locales, environments, items, scheduled_at.
+
+        -------------------------------
+        [Example:]
+            >>> data = {
+            >>>     "locales": ["en-us"],
+            >>>     "environments": ["production"],
+            >>>     "items": [{"uid": "taxonomy_uid"}]
+            >>> }
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> result = client.stack('api_key').taxonomy().unpublish(data).json()
+
+        -------------------------------
+        """
+        data = json.dumps(data)
+        return self.client.post(f"{self.path}/unpublish", headers=self.client.headers, data=data, params=self.params)
+
+    def localize(self, data: dict):
+        """
+        Localize a taxonomy into the locale specified via add_param("locale", "...").
+        :param data: Request body, e.g. {"taxonomy": {"name": "Localized name"}}.
+
+        -------------------------------
+        [Example:]
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> tax = client.stack('api_key').taxonomy('taxonomy_uid')
+            >>> tax.add_param("locale", "hi-in")
+            >>> result = tax.localize({"taxonomy": {"name": "Taxonomy HI"}}).json()
+
+        -------------------------------
+        """
+        self.validate_taxonomy_uid()
+        url = f"{self.path}/{self.taxonomy_uid}"
+        data = json.dumps(data)
+        return self.client.post(url, headers=self.client.headers, data=data, params=self.params)
+
+    def unlocalize(self):
+        """
+        Unlocalize a taxonomy from the locale specified via add_param("locale", "...").
+
+        -------------------------------
+        [Example:]
+            >>> import contentstack_management
+            >>> client = contentstack_management.Client(authtoken='your_authtoken')
+            >>> tax = client.stack('api_key').taxonomy('taxonomy_uid')
+            >>> tax.add_param("locale", "hi-in")
+            >>> result = tax.unlocalize().json()
+
+        -------------------------------
+        """
+        self.validate_taxonomy_uid()
+        url = f"{self.path}/{self.taxonomy_uid}"
+        return self.client.delete(url, headers=self.client.headers, params=self.params)
+
     def validate_taxonomy_uid(self):
         if self.taxonomy_uid is None or '':
             raise ArgumentException(TAXONOMY_UID_REQUIRED)
-        
+
     def terms(self, terms_uid: str = None):
         self.validate_taxonomy_uid()
         return Terms(self.client, self.taxonomy_uid, terms_uid)
