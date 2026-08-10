@@ -2,6 +2,13 @@
 
 ## Content Management SDK For Python
 ---
+## v1.11.2
+
+#### Date: 10 August 2026
+
+- Moved `pylint` from `requirements.txt` to `requirements-dev.txt` to resolve Snyk GPL-2.0 license flag (DX-8256). `pylint` is a static analysis tool used only during development and CI; it is not distributed as part of the production package.
+
+---
 ## v1.11.1
 
 #### Date: 22 July 2026
