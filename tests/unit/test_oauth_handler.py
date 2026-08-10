@@ -31,6 +31,7 @@ class TestOAuthHandler(unittest.TestCase):
             app_id=self.app_id,
             client_id=self.client_id,
             redirect_uri=self.redirect_uri,
+            # deepcode ignore HardcodedNonCryptoSecret: test fixture value, not a real secret
             client_secret=self.client_secret,
             scope=self.scope,
             api_client=self.api_client

@@ -26,11 +26,13 @@ class TestUserAuthOps:
     """Account auth endpoints exercised safely (bogus tokens / non-real email)."""
 
     def test_activate_bogus_token(self, ctx):
+        # deepcode ignore NoHardcodedPasswords: test fixture value, not a real secret
         resp = ctx.client.user().activate("bogus_activation_token", {"user": {"password": "Test@12345"}})
         h.assert_status(resp, 400, 404, 422)
 
     def test_reset_password_bogus_token(self, ctx):
         resp = ctx.client.user().reset_password(
+            # deepcode ignore NoHardcodedPasswords: test fixture value, not a real secret            
             {"user": {"reset_password_token": "bogus", "password": "Test@12345", "password_confirmation": "Test@12345"}}
         )
         h.assert_status(resp, 400, 404, 422)
