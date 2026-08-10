@@ -44,7 +44,9 @@ class UserApiTests(unittest.TestCase):
             "user": {
                 "first_name": "your_first_name",
                 "last_name": "your_last_name",
+                # deepcode ignore NoHardcodedPasswords: test fixture value, not a real secret
                 "password": "your_password",
+                # deepcode ignore NoHardcodedPasswords: test fixture value, not a real secret
                 "password_confirmation": "confirm_your_password"
             }
         }
@@ -78,7 +80,9 @@ class UserApiTests(unittest.TestCase):
         act_data = {
             "user": {
                 "reset_password_token": "abcdefghijklmnop1234567890",
+                # deepcode ignore NoHardcodedPasswords: test fixture value, not a real secret
                 "password": "Simple@123",
+                # deepcode ignore NoHardcodedPasswords: test fixture value, not a real secret
                 "password_confirmation": "Simple@123"
             }
         }
