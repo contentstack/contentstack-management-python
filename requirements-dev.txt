@@ -1,0 +1,4 @@
+# Development-only dependencies — not shipped in the production package.
+# GPL-licensed tools live here so copyleft obligations don't apply to distributed code.
+-r requirements.txt
+pylint>=2.0.0
