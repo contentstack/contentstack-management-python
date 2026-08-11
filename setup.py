@@ -72,7 +72,7 @@ setup(
         "urllib3 >= 2.7.0,<3.0.0",
     ],
     extras_require={
-        "dev": ["pytest>=7.0", "twine>=4.0.2", "packaging>=24.0", "dotenv>=0.0.5"],
+        "dev": ["pytest>=7.0", "twine>=4.0.2", "packaging>=24.0", "dotenv>=0.0.5", "pylint>=2.0.0"],
     },
     python_requires=">=3.9",
 )

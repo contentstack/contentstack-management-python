@@ -17,7 +17,7 @@
 | Build | `setuptools` / `setup.py`; package `contentstack_management` |
 | HTTP | `requests`, `requests-toolbelt`, `urllib3` |
 | Tests | `pytest` — `tests/integration` (live e2e / sanity, dynamic stack), `tests/unit`, `tests/mock`, `tests/api` (legacy, superseded by `tests/integration`) |
-| Lint / coverage | `pylint`, `coverage` (see `requirements.txt`) |
+| Lint / coverage | `pylint`, `coverage` (see `requirements-dev.txt`) |
 | Secrets / hooks | Talisman, Snyk (see `README.md` development setup) |
 
 ## Source layout

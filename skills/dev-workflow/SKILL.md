@@ -19,7 +19,7 @@ description: Use for install, pytest suites, versioning, pylint, hooks, and PR b
 
 ### Before a PR
 
-1. **Install** — `pip install -e ".[dev]"` or install **`requirements.txt`** plus **pytest** / **pytest-cov** as needed.
+1. **Install** — `pip install -e ".[dev]"` then `pip install -r requirements-dev.txt` for linting tools.
 2. **`pytest tests/unit/`** — required baseline (matches CI **`coverage run -m pytest tests/unit/`**).
 3. **API tests** — `pytest tests/api/` when your change affects live CMA behavior; configure **`.env`** per **`tests/cred.py`**. Never commit tokens.
 4. **Mock tests** — `pytest tests/mock/` when extending mocked HTTP or fixtures.
@@ -30,7 +30,7 @@ description: Use for install, pytest suites, versioning, pylint, hooks, and PR b
 
 ### Tooling
 
-- **pylint** is listed in **`requirements.txt`**; follow existing style in touched files.
+- **pylint** is listed in **`requirements-dev.txt`**; follow existing style in touched files.
 - **Husky / Talisman / Snyk** — see **README.md** for local hook setup.
 
 ### Pull requests
