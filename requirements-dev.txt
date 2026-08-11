@@ -1,0 +1,4 @@
+# Development-only dependencies — not shipped in the production package.
+# Keep linting/tools (e.g. pylint) here so production scans can exclude them.
+-r requirements.txt
+pylint>=2.0.0
