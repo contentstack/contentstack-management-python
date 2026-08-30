@@ -24,7 +24,7 @@ class Entry(Parameter):
 
         self.path = f"content_types/{content_type_uid}/entries/"
 
-    def find(self):
+    def find(self, locale=None):
         """
         The Get all entries call fetches the list of all the entries of a particular content type. 
         It also returns the content of each entry in JSON format. You can also specify the environment and locale of which you wish to get the entries.
@@ -41,11 +41,13 @@ class Entry(Parameter):
         """
         
         url = f"content_types/{self.content_type_uid}/entries"
+        if locale:
+            self.params['locale'] = locale
         return self.client.get(url, headers = self.client.headers, params = self.params)
     
       
     
-    def fetch(self):
+    def fetch(self, locale=None):
         """
         The Get a single entry request fetches a particular entry of a content type.
         :return: the response object.
@@ -62,6 +64,8 @@ class Entry(Parameter):
         if self.entry_uid is None:
             raise Exception(ENTRY_UID_REQUIRED)
         url = f"content_types/{self.content_type_uid}/entries/{self.entry_uid}"
+        if locale:
+            self.params['locale'] = locale
         return self.client.get(url, headers = self.client.headers, params = self.params)
         
     
