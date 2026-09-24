@@ -36,6 +36,7 @@ class TestEntryVariants:
 class TestEntryVariantsNegative:
     def test_fetch_nonexistent(self, stack, entry_ctx):
         ct_uid, entry_uid = entry_ctx
-        resp = stack.content_types(ct_uid).entry(entry_uid).variants("no_such_variant").fetch()
+        # variants(x) treats x as branch, not variant_uid — pass uid to fetch() instead.
+        resp = stack.content_types(ct_uid).entry(entry_uid).variants().fetch("no_such_variant")
         # Variants API returns 412 (precondition failed, code 1010) for unknown variant.
         h.assert_status(resp, 404, 412, 422)
