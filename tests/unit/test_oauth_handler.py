@@ -5,6 +5,7 @@ Unit tests for OAuth Handler functionality.
 import json
 import time
 import unittest
+import uuid
 from unittest.mock import Mock, patch, MagicMock
 import requests
 
@@ -19,7 +20,7 @@ class TestOAuthHandler(unittest.TestCase):
         self.app_id = "test-app-id"
         self.client_id = "test-client-id"
         self.redirect_uri = "http://localhost:3000/callback"
-        self.client_secret = "test-client-secret"
+        self.client_secret = uuid.uuid4().hex  # Generated per test run, not a real secret
         self.scope = ["read", "write"]
         self.api_client = Mock()
         self.api_client.headers = {}
@@ -31,7 +32,6 @@ class TestOAuthHandler(unittest.TestCase):
             app_id=self.app_id,
             client_id=self.client_id,
             redirect_uri=self.redirect_uri,
-            # deepcode ignore HardcodedNonCryptoSecret: test fixture value, not a real secret
             client_secret=self.client_secret,
             scope=self.scope,
             api_client=self.api_client
