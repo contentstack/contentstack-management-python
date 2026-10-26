@@ -1,6 +1,6 @@
 ---
 name: python-style
-description: Use for package layout under contentstack_management/, setup.py, pylint-friendly style, and imports.
+description: Use for package layout under contentstack_management/, setup.py, lint-friendly style, and imports.
 ---
 
 # Python style and repo layout – Contentstack Management Python
