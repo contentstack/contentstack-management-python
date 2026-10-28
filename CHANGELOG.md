@@ -2,6 +2,14 @@
 
 ## Content Management SDK For Python
 ---
+## v1.12.0
+
+#### Date: 28 October 2026
+
+- Branch create: optional `branch.publish_config.environments` (environment names, not UIDs) clones only the listed environments. `[]` clones none; omitting `publish_config` clones all environments, as before. The list is sent unchanged; an unknown name returns the API's 422 response with its body unchanged and no branch is created.
+- Tests: unit tests for the branch create body with and without the environment list and for a mocked 422. Sanity integration tests for create with two names, `[]`, an unknown name and a mix (not run here).
+
+---
 ## v1.11.2
 
 #### Date: 10 August 2026
