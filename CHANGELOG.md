@@ -4,7 +4,7 @@
 ---
 ## v1.11.3
 
-#### Date: 26 October 2026
+#### Date: 02 November 2026
 
 - Bumped `urllib3` minimum version from `>=2.7.0` to `>=2.8.0` in `requirements.txt` and `setup.py` to resolve Snyk findings: improper certificate validation, allocation of resources without limits or throttling, and an infinite loop (DX-27815, DX-27816, DX-27817).
 - Tests: replaced hardcoded passwords and secrets with environment-backed or runtime-generated values and removed `# deepcode ignore` suppression comments, resolving Snyk Code findings (DX-22180 to DX-22195). No change to the published package.
