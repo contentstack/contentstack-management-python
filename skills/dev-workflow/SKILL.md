@@ -1,6 +1,6 @@
 ---
 name: dev-workflow
-description: Use for install, pytest suites, versioning, pylint, hooks, and PR baseline in contentstack-management-python.
+description: Use for install, pytest suites, versioning, ruff, hooks, and PR baseline in contentstack-management-python.
 ---
 
 # Development workflow – Contentstack Management Python
@@ -30,7 +30,7 @@ description: Use for install, pytest suites, versioning, pylint, hooks, and PR b
 
 ### Tooling
 
-- **pylint** is listed in **`requirements-dev.txt`**; follow existing style in touched files.
+- **ruff** is listed in **`requirements-dev.txt`** (lint with `ruff check contentstack_management/`); follow existing style in touched files.
 - **Husky / Talisman / Snyk** — see **README.md** for local hook setup.
 
 ### Pull requests

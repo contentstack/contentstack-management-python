@@ -6,7 +6,7 @@ Source of truth for detailed guidance. Read **[`AGENTS.md`](../AGENTS.md)** firs
 
 | Skill folder | Use when |
 |--------------|----------|
-| **dev-workflow** | Install, **`pytest`** (unit / API / mock), **`__version__`**, pylint, Talisman/Snyk, before PR |
+| **dev-workflow** | Install, **`pytest`** (unit / API / mock), **`__version__`**, ruff, Talisman/Snyk, before PR |
 | **contentstack-management** | **`Client`**, **`Stack`**, **`_APIClient`**, domain modules, OAuth, CMA paths and payloads |
 | **python-style** | Editing **`contentstack_management/`** or **`setup.py`** / **`requirements.txt`**—layout, style, imports |
 | **testing** | Adding or changing tests under **`tests/`**, **`tests/cred.py`**, env for API runs |
