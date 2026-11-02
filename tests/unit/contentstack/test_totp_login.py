@@ -1,3 +1,4 @@
+import base64
 import unittest
 import os
 import sys
@@ -18,8 +19,7 @@ class TOTPLoginTests(unittest.TestCase):
         self.client = Client()
         self.test_email = "test@example.com"
         self.test_password = "test_password"
-        # deepcode ignore HardcodedNonCryptoSecret: test fixture value, not a real secret
-        self.test_secret = "JBSWY3DPEHPK3PXP"  # Standard test secret for TOTP
+        self.test_secret = base64.b32encode(os.urandom(10)).decode()  # Valid base32 TOTP secret generated per test run
         self.test_tfa_token = "123456"
 
     def tearDown(self):
@@ -38,9 +38,7 @@ class TOTPLoginTests(unittest.TestCase):
         # Test that the method accepts TOTP parameters without error
         try:
             client.login(self.test_email, self.test_password, tfa_token=self.test_tfa_token)
-            # deepcode ignore HardcodedNonCryptoSecret: test fixture value, not a real secret
             client.login(self.test_email, self.test_password, mfa_secret=self.test_secret)
-            # deepcode ignore HardcodedNonCryptoSecret: test fixture value, not a real secret
             client.login(self.test_email, self.test_password, tfa_token=self.test_tfa_token, mfa_secret=self.test_secret)
         except Exception as e:
             self.fail(f"Login method should accept TOTP parameters without error: {e}")
@@ -74,7 +72,6 @@ class TOTPLoginTests(unittest.TestCase):
                     result = self.client.login(
                         self.test_email, 
                         self.test_password, 
-                        # deepcode ignore HardcodedNonCryptoSecret: test fixture value, not a real secret
                         mfa_secret=self.test_secret
                     )
                     
