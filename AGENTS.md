@@ -17,7 +17,7 @@
 | Build | `setuptools` / `setup.py`; package `contentstack_management` |
 | HTTP | `requests`, `requests-toolbelt`, `urllib3` |
 | Tests | `pytest` — `tests/integration` (live e2e / sanity, dynamic stack), `tests/unit`, `tests/mock`, `tests/api` (legacy, superseded by `tests/integration`) |
-| Lint / coverage | `pylint`, `coverage` (see `requirements-dev.txt`) |
+| Lint / coverage | `ruff`, `coverage` (see `requirements-dev.txt`) |
 | Secrets / hooks | Talisman, Snyk (see `README.md` development setup) |
 
 ## Source layout
@@ -44,7 +44,7 @@
 | Test (mock) | `pytest tests/mock/ -v` |
 | Test (legacy API, live) | `pytest tests/api/ -v` (needs `.env` — see `tests/cred.py`) |
 | Coverage (CI) | `coverage run -m pytest tests/unit/` |
-| Lint | `pylint contentstack_management/` |
+| Lint | `ruff check contentstack_management/` |
 
 > **CI note:** `.github/workflows/unit-test.yml` runs **only `tests/unit/`** (no credentials). The `tests/integration` sanity suite is run manually (or via a credential-gated job) because it provisions real stacks.
 
@@ -70,7 +70,7 @@ Do not commit secrets. `tests/integration/.env`, `docs/`, and the repo-root `cma
 
 | Skill | Path | What it covers |
 |-------|------|----------------|
-| **Development workflow** | [`skills/dev-workflow/SKILL.md`](skills/dev-workflow/SKILL.md) | Install, pytest suites, packaging version, pylint, hooks, PR baseline |
+| **Development workflow** | [`skills/dev-workflow/SKILL.md`](skills/dev-workflow/SKILL.md) | Install, pytest suites, packaging version, ruff, hooks, PR baseline |
 | **Contentstack Management (SDK)** | [`skills/contentstack-management/SKILL.md`](skills/contentstack-management/SKILL.md) | **`Client`**, **`Stack`**, **`_APIClient`**, CMA resources, OAuth, CMA docs |
 | **Python style & repo layout** | [`skills/python-style/SKILL.md`](skills/python-style/SKILL.md) | Package layout, naming, imports via **`_APIClient`**, secrets in logs |
 | **Testing** | [`skills/testing/SKILL.md`](skills/testing/SKILL.md) | pytest unit / API / mock, **`tests/cred.py`**, env hygiene |
