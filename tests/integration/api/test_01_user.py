@@ -1,10 +1,15 @@
 """User API tests — profile fetch and update."""
 
+import os
+
 import pytest
 
 from framework import helpers as h
 
 pytestmark = pytest.mark.order(1)
+
+# Exercised only with bogus tokens; value comes from the environment, no fallback.
+TEST_PASSWORD = os.environ.get("TEST_USER_PASSWORD")
 
 
 class TestUser:
@@ -26,14 +31,12 @@ class TestUserAuthOps:
     """Account auth endpoints exercised safely (bogus tokens / non-real email)."""
 
     def test_activate_bogus_token(self, ctx):
-        # deepcode ignore NoHardcodedPasswords: test fixture value, not a real secret
-        resp = ctx.client.user().activate("bogus_activation_token", {"user": {"password": "Test@12345"}})
+        resp = ctx.client.user().activate("bogus_activation_token", {"user": {"password": TEST_PASSWORD}})
         h.assert_status(resp, 400, 404, 422)
 
     def test_reset_password_bogus_token(self, ctx):
         resp = ctx.client.user().reset_password(
-            # deepcode ignore NoHardcodedPasswords: test fixture value, not a real secret            
-            {"user": {"reset_password_token": "bogus", "password": "Test@12345", "password_confirmation": "Test@12345"}}
+            {"user": {"reset_password_token": "bogus", "password": TEST_PASSWORD, "password_confirmation": TEST_PASSWORD}}
         )
         h.assert_status(resp, 400, 404, 422)
 
