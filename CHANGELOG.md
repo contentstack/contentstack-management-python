@@ -2,6 +2,22 @@
 
 ## Content Management SDK For Python
 ---
+## v1.12.0
+
+#### Date: 12 November 2026
+
+- Branch create: optional `branch.publish_config.environments` (environment names, not UIDs) clones only the listed environments. `[]` clones none; omitting `publish_config` clones all environments, as before. The list is sent unchanged; an unknown name returns the API's 422 response with its body unchanged and no branch is created.
+- Tests: unit tests for the branch create body with and without the environment list and for a mocked 422. Sanity integration tests for create with two names, `[]`, an unknown name and a mix (not run here).
+
+---
+## v1.11.3
+
+#### Date: 02 November 2026
+
+- Bumped `urllib3` minimum version from `>=2.7.0` to `>=2.8.0` in `requirements.txt` and `setup.py` to resolve Snyk findings: improper certificate validation, allocation of resources without limits or throttling, and an infinite loop (DX-27815, DX-27816, DX-27817).
+- Tests: replaced hardcoded passwords and secrets with environment-backed or runtime-generated values and removed `# deepcode ignore` suppression comments, resolving Snyk Code findings (DX-22180 to DX-22195). No change to the published package.
+
+---
 ## v1.11.2
 
 #### Date: 10 August 2026

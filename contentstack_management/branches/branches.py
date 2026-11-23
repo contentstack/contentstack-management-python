@@ -64,6 +64,17 @@ class Branch(Parameter):
         r"""
         The Create a branch request creates a new branch in a particular stack of your organization.
 
+        Optionally set ``branch.publish_config.environments`` to a list of environment names
+        (not UIDs) to choose which environments the branch clones:
+
+        - a list of names clones only those environments;
+        - an empty list ``[]`` clones none;
+        - omitting ``publish_config`` clones all environments, as before.
+
+        The list is sent unchanged. The SDK does not validate the names or limit the list length. An
+        unknown name, or any other validation failure, returns the API's 422 response with its body
+        unchanged, and no branch is created.
+
         :param data: {json} -- Data required in json format to create a branch
         :return: Returns a branch with the given data
     
@@ -79,6 +90,19 @@ class Branch(Parameter):
                     }
                 }
             >>> branch = contentstack_management.Client(authtoken='your_authtoken').stack(api_key='api_key').branch()
+            >>> response = branch.create(data)
+
+        Clone only two environments (names, not UIDs):
+
+            >>> data = {
+                    "branch": {
+                    "uid": "release",
+                    "source": "main",
+                    "publish_config": {
+                        "environments": ["development", "staging"]
+                    }
+                    }
+                }
             >>> response = branch.create(data)
         --------------------------------
         """
